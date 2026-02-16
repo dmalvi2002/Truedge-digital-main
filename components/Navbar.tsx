@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SquareTerminal, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -25,11 +26,17 @@ const Navbar = () => {
         
         {/* --- Logo Section --- */}
         <div className="flex items-center shrink-0">
-          <Link href="/" className="flex items-center gap-2">
-            {/* 3D Beveled Logo Icon */}
-            <div className="flex items-center justify-center p-2 rounded-xl bg-gradient-to-b from-slate-700 to-slate-950 text-white shadow-[0_3px_10px_rgba(0,0,0,0.2),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.4)]">
-              <SquareTerminal size={24} strokeWidth={1.5} />
-            </div>
+          <Link href="/" className="flex items-center gap-4">
+            {/* Logo Image directly on the background */}
+            <Image 
+              src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771262572/Copy_of_truedge_logo_main_yymyy1.webp" 
+              alt="Truedge Digital Logo" 
+              // Increased size slightly to 32x32 for better visual balance
+              width={40} 
+              height={40} 
+              // Added a subtle drop shadow to make the icon separate nicely from the glass background
+              className="object-contain drop-shadow-sm"
+            />
             <span className="hidden text-xl font-bold text-slate-900 sm:inline-block drop-shadow-sm">
               Truedge Digital
             </span>
