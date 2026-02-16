@@ -6,6 +6,7 @@ import { ArrowRight, PlayCircle, ShieldCheck, TrendingUp, CheckCircle2, Star } f
 // --- Import Google Fonts ---
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import ContrastSection from "../components/ContrastSection";
+import ProofSection from "../components/ProofSection";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -20,7 +21,6 @@ const ibmPlexSans = IBM_Plex_Sans({
 export default function Home() {
   return (
     <main>
-    // min-h-[calc(100vh-5rem)] accounts for the height of your navbar
     <div className="relative flex min-h-[calc(100vh-5rem)] w-full items-center overflow-hidden bg-slate-950">
       
       {/* --- Background Image --- */}
@@ -199,6 +199,8 @@ export default function Home() {
         </div>
       </div>
     </div>
+    <ContrastSection />
+    <ProofSection />
     </main>
   );
 }
