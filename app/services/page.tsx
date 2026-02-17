@@ -6,6 +6,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import CoreServices from "@/components/CoreServices";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import GrowthBridge from "@/components/GrowthBridge";
+import ServicesCTA from "@/components/ServicesCTA";
+import FaqSection from "@/components/FaqSection";
+import { servicesFaqs } from "@/data/servicesFaqs";
 
 // Font Configuration
 const sora = Sora({
@@ -169,6 +173,16 @@ export default function ServicesHero() {
     </section>
       <CoreServices />
       <WhyChooseUs />
+      <GrowthBridge />
+      <div className="bg-white py-12">
+        <FaqSection
+          faqs={servicesFaqs}
+          title="Engineering"
+          highlightedTitle="Questions."
+          initialVisibleCount={4}
+        />
+      </div>
+      <ServicesCTA />
       </div>
   );
 }
