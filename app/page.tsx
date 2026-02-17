@@ -7,6 +7,7 @@ import { ArrowRight, PlayCircle, ShieldCheck, TrendingUp, CheckCircle2, Star } f
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import ContrastSection from "../components/ContrastSection";
 import ProofSection from "../components/ProofSection";
+import ExpertiseSection from "@/components/ExpertiseSection";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -181,13 +182,13 @@ export default function Home() {
 
               {/* Bottom Section: Verification and Credibility */}
               <div className="flex items-center justify-start gap-1.5 md:gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500 md:h-5 md:w-5" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 md:h-5 md:w-5" />
                 <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-600 md:text-[13px]">
                   8+ Google Reviews
                 </span>
               </div>
               <div className="flex items-center justify-start gap-1.5 md:gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500 md:h-5 md:w-5" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 md:h-5 md:w-5" />
                 <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-600 md:text-[13px]">
                   100% Client Satisfaction
                 </span>
@@ -201,6 +202,7 @@ export default function Home() {
     </div>
     <ContrastSection />
     <ProofSection />
+    <ExpertiseSection />
     </main>
   );
 }
