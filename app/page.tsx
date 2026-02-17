@@ -8,6 +8,7 @@ import { Sora, IBM_Plex_Sans } from "next/font/google";
 import ContrastSection from "../components/ContrastSection";
 import ProofSection from "../components/ProofSection";
 import ExpertiseSection from "@/components/ExpertiseSection";
+import ProcessSection from "@/components/ProcessSection";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -203,6 +204,7 @@ export default function Home() {
     <ContrastSection />
     <ProofSection />
     <ExpertiseSection />
+    <ProcessSection />
     </main>
   );
 }
