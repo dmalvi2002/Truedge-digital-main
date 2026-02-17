@@ -5,6 +5,7 @@ import { ArrowRight, Smartphone, Database, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import CoreServices from "@/components/CoreServices";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 // Font Configuration
 const sora = Sora({
@@ -167,6 +168,7 @@ export default function ServicesHero() {
       </div>
     </section>
       <CoreServices />
+      <WhyChooseUs />
       </div>
   );
 }

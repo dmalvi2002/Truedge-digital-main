@@ -12,6 +12,7 @@ import ProcessSection from "@/components/ProcessSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaSection from "@/components/CtaSection";
 import FaqSection from "@/components/FaqSection";
+import { homeFaqs } from "@/data/homeFaqs";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -210,7 +211,7 @@ export default function Home() {
     <ProcessSection />
     <TestimonialSection />
     <CtaSection />
-    <FaqSection />
+    <FaqSection faqs={homeFaqs} />
     </main>
   );
 }
