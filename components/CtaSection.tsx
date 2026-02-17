@@ -95,8 +95,7 @@ export default function CtaSection() {
               {/* Cheeky Hover Tooltip */}
               <div className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none whitespace-nowrap rounded-xl bg-slate-900 px-4 py-2 text-sm font-black text-white opacity-0 shadow-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:opacity-100">
                 <div className="flex items-center gap-1.5">
-                  <Sparkles size={16} className="text-amber-400" />
-                  Do it. We dare you.
+                  🔥 Do it. We dare you.
                 </div>
                 <div className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-slate-900"></div>
               </div>
@@ -104,7 +103,7 @@ export default function CtaSection() {
               {/* The Main Action Button */}
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-3 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-10 py-5 text-lg font-bold text-white shadow-[0_10px_30px_rgba(124,58,237,0.3),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.4)]"
+                className="flex items-center justify-center gap-3 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] p-5 lg:px-10 lg:py-5 text-lg font-bold text-white shadow-[0_10px_30px_rgba(124,58,237,0.3),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.4)]"
               >
                 Start Your Project
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
