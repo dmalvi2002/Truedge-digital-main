@@ -4,6 +4,7 @@ import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { ArrowRight, Smartphone, Database, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import CoreServices from "@/components/CoreServices";
 
 // Font Configuration
 const sora = Sora({
@@ -22,6 +23,7 @@ export default function ServicesHero() {
   useEffect(() => setIsMounted(true), []);
 
   return (
+    <div>
     <section className="relative w-full overflow-hidden bg-[#fafafa] pt-16 pb-16 sm:pt-24 sm:pb-24 lg:pt-30 lg:pb-32">
       {/* --- BACKGROUND LAYERS ("ReactBits" Style Pure CSS Aurora) --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -164,5 +166,7 @@ export default function ServicesHero() {
         </div>
       </div>
     </section>
+      <CoreServices />
+      </div>
   );
 }
