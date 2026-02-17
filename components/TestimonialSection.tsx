@@ -58,7 +58,7 @@ export default function TestimonialSection() {
         {/* Section Header */}
         <div className="mb-16 md:mb-20 text-center">
           <h2 className={`${sora.className} mb-6 text-4xl font-semibold leading-tight text-white sm:text-5xl`}>
-            Don't just take our <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500 drop-shadow-sm">word for it.</span>
+            Don't just take our <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent drop-shadow-sm">word for it.</span>
           </h2>
           <p className={`${ibmPlexSans.className} text-lg text-slate-400 sm:text-xl leading-relaxed max-w-2xl mx-auto`}>
             We partner with ambitious brands to engineer digital assets that drive real, measurable ROI. Here is what they have to say.

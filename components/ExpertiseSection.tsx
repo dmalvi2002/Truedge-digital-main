@@ -18,7 +18,7 @@ export default function ExpertiseSection() {
         {/* Section Header */}
         <div className="mb-16 max-w-3xl text-left md:mb-24">
           <h2 className={`${sora.className} mb-6 text-4xl font-semibold leading-tight text-white sm:text-5xl`}>
-            Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400 drop-shadow-sm">Expertise.</span>
+            Our Core <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent drop-shadow-sm">Expertise.</span>
           </h2>
           <p className={`${ibmPlexSans.className} text-lg text-slate-400 sm:text-xl leading-relaxed max-w-2xl`}>
             We don't offer a menu of generic services. We focus exclusively on the core digital pillars that actually move the needle for ambitious brands.

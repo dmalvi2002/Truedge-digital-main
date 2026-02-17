@@ -107,8 +107,11 @@ export default function ProcessSection() {
             {/* Timeline Steps */}
             <div className="flex flex-col gap-8 md:gap-12">
               {steps.map((step, index) => {
-                const stepPercentage = (index / (steps.length - 1)) * 100;
-                const isActive = lineHeight >= stepPercentage - 5;
+                const stepPercentage = (index / steps.length) * 100;
+                
+                // BUG FIX: Removed the "- 5" offset. 
+                // Now it waits for the line to physically touch the target percentage before lighting up!
+                const isActive = lineHeight >= stepPercentage;
                 const Icon = step.icon;
 
                 return (
