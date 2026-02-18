@@ -44,7 +44,7 @@ export default function ServicesCTA() {
             
             <Link
               href="/contact"
-              className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-10 py-5 text-lg font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.7),inset_0_2px_2px_rgba(255,255,255,0.4)] sm:w-auto"
+              className="group flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-5 py-3 text-md md:text-lg font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.7),inset_0_2px_2px_rgba(255,255,255,0.4)] sm:w-auto"
             >
               Start a Project
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
@@ -55,12 +55,12 @@ export default function ServicesCTA() {
           {/* hidden on mobile (hidden), flex on desktop (lg:flex) */}
           <div className="hidden lg:flex w-full lg:w-[45%] h-[400px] xl:h-[450px] items-center justify-center cursor-pointer pointer-events-auto">
             <Cubes 
-              gridSize={8} // Adjusted to 9x9 so they fit perfectly in the half-screen layout
+              gridSize={9} // Adjusted to 9x9 so they fit perfectly in the half-screen layout
               maxAngle={35}
-              radius={4}
+              radius={5}
               // Styling them so they pop visually against the solid white card
               faceColor="rgba(255, 31, 31, 0.04)" // Very faint purple faces so they have volume
-              borderStyle="2px solid rgba(139, 92, 246, 0.25)" // Crisp purple borders
+              borderStyle="2px solid rgba(138, 92, 246, 0.46)" // Crisp purple borders
               rippleColor="rgba(139, 92, 246, 0.4)" 
               rippleSpeed={2}
               autoAnimate={true}

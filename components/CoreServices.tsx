@@ -80,13 +80,14 @@ export default function CoreServices() {
               
               <div className="w-full max-w-md h-80 rounded-2xl border border-slate-700 bg-[#0d1117] shadow-2xl transition-all duration-700 [transform:rotateY(-10deg)_rotateX(5deg)] group-hover:[transform:rotateY(-5deg)_rotateX(2deg)_translateY(-10px)_scale(1.02)] relative z-10 overflow-hidden">
                 {/* Editor Header */}
-                <div className="flex items-center gap-2 border-b border-slate-800 bg-[#161b22] px-4 py-3">
-                  <div className="flex gap-2">
+                <div className="flex items-center gap-2 border-b border-slate-800 bg-[#161b22] px-4 py-3 rounded-t-2xl">
+                  {/* Added 'items-center' to perfect the vertical alignment of the dots */}
+                  <div className="flex items-center gap-2 shrink-0">
                     <div className="h-3 w-3 rounded-full bg-rose-500/80"></div>
                     <div className="h-3 w-3 rounded-full bg-amber-500/80"></div>
                     <div className="h-3 w-3 rounded-full bg-emerald-500/80"></div>
                   </div>
-                  <span className={`${ibm.className} text-[10px] text-slate-500 ml-4`}>page.tsx — Truedge</span>
+                  <span className={`${ibm.className} text-[10px] text-slate-500 ml-4 truncate`}>page.tsx — Truedge</span>
                 </div>
                 {/* Simulated Code Lines */}
                 <div className="p-5 font-mono text-sm flex flex-col gap-3 opacity-80">

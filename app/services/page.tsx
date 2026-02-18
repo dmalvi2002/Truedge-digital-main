@@ -174,7 +174,7 @@ export default function ServicesHero() {
       <CoreServices />
       <WhyChooseUs />
       <GrowthBridge />
-      <div className="bg-white py-12">
+      <div className="bg-white">
         <FaqSection
           faqs={servicesFaqs}
           title="Engineering"
