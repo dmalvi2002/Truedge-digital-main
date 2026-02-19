@@ -82,7 +82,7 @@ export default function ArchiveSection() {
               </div>
 
               <h2
-                className={`${sora.className} mb-6 text-4xl font-black leading-[1.1] text-slate-900 md:text-5xl lg:text-6xl`}
+                className={`${sora.className} mb-6 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl md:text-5xl`}
               >
                 Proof of <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
