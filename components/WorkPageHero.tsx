@@ -189,7 +189,7 @@ const WorksHero = () => {
 
         {/* Header Area */}
         <div className="text-center z-10 mb-8 mt-6">
-          <h1 className="font-sora font-black text-6xl tracking-tighter text-slate-800 uppercase mb-3">
+          <h1 className="font-sora font-black text-6xl tracking-tighter text-slate-900 uppercase mb-3">
             Showcase
           </h1>
           <div className="flex items-center justify-center gap-4 opacity-80">
@@ -202,14 +202,39 @@ const WorksHero = () => {
         </div>
 
         {/* Central Visual: Mobile Phone */}
-        <div className="mobile-float w-[180px] h-[380px] bg-slate-950 rounded-[2.5rem] border-[8px] border-slate-800 shadow-2xl p-2 z-20 relative mb-12">
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[35%] h-4 bg-black rounded-full z-10"></div>
-          <div className="w-full h-full bg-[linear-gradient(180deg,#0f172a_0%,#000000_100%)] rounded-[1.8rem] p-4 pt-14 flex flex-col gap-4 relative overflow-hidden">
-            <div className="absolute top-[-10%] left-[-20%] w-[120px] h-[120px] bg-purple-600/40 blur-[40px] rounded-full"></div>
-            <div className="w-[85%] h-3 bg-slate-800 rounded-full"></div>
-            <div className="w-[60%] h-3 bg-slate-800 rounded-full"></div>
-            <div className="w-full flex-1 bg-slate-900/60 rounded-xl border border-slate-800 mt-2 flex flex-col items-center justify-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 shadow-[0_0_20px_rgba(139,92,246,0.5)]"></div>
+        {/* Central Visual: Mobile Phone */}
+        {/* The wrapper handles the GSAP float so it doesn't break the 3D tilt below */}
+        <div className="mobile-float z-20 relative mb-16 mt-4">
+          {/* The actual phone with 3D perspective, tilt (X & Y), and rotation (Z) */}
+          <div className="w-[180px] h-[380px] bg-slate-950 rounded-[2.5rem] border-[8px] border-slate-800 p-2 relative [transform:perspective(1200px)_rotateX(15deg)_rotateY(-15deg)_rotateZ(-6deg)] shadow-[-20px_30px_50px_rgba(0,0,0,0.3)]">
+            {/* Notch */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[35%] h-4 bg-black rounded-full z-10"></div>
+
+            {/* Screen */}
+            <div className="w-full h-full bg-[linear-gradient(180deg,#0f172a_0%,#000000_100%)] rounded-[1.8rem] p-4 pt-14 flex flex-col gap-4 relative overflow-hidden">
+              <div className="absolute top-[-10%] left-[-20%] w-[120px] h-[120px] bg-purple-600/40 blur-[40px] rounded-full"></div>
+
+              <div className="w-[85%] h-3 bg-slate-800 rounded-full"></div>
+              <div className="w-[60%] h-3 bg-slate-800 rounded-full"></div>
+
+              <div className="w-full flex-1 bg-slate-900/60 rounded-xl border border-slate-800 mt-2 flex flex-col items-center justify-center p-2 relative">
+                {/* Code Style Text Above Ball */}
+                <div className="font-mono text-[10px] text-center w-full z-10 mb-10 leading-relaxed">
+                  <span className="text-purple-400">{">"}</span>{" "}
+                  <span className="text-emerald-400">build apps</span>
+                  <br />
+                  <span className="text-emerald-400">{"&"} websites!</span>
+                  <br />
+                  <span className="text-slate-500 mt-1 block">
+                    {"//"} stress free,
+                    <br />
+                    {"//"} hassle free
+                  </span>
+                </div>
+
+                {/* CSS Bounce added here! */}
+                <div className="animate-bounce w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 shadow-[0_0_20px_rgba(139,92,246,0.5)] z-10"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -248,7 +273,7 @@ const WorksHero = () => {
 
           {/* Stat 3 */}
           <div className="mobile-float bg-white/90 backdrop-blur-xl border border-slate-100 shadow-lg rounded-2xl p-4 flex flex-col items-center text-center gap-2">
-            <div className="bg-slate-50 text-slate-600 p-2 rounded-full">
+            <div className="bg-purple-50 text-purple-600 p-2 rounded-full">
               <Code2 size={18} strokeWidth={2} />
             </div>
             <div>
@@ -263,7 +288,7 @@ const WorksHero = () => {
 
           {/* Stat 4 */}
           <div className="mobile-float bg-white/90 backdrop-blur-xl border border-slate-100 shadow-lg rounded-2xl p-4 flex flex-col items-center text-center gap-2">
-            <div className="bg-slate-50 text-slate-600 p-2 rounded-full">
+            <div className="bg-purple-50 text-purple-600 p-2 rounded-full">
               <Globe size={18} strokeWidth={2} />
             </div>
             <div>
@@ -297,7 +322,7 @@ const WorksHero = () => {
           THE CENTERPIECE: MASSIVE TYPOGRAPHY
       ------------------------------------------------------- */}
         <div className="hero-title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full text-center flex flex-col items-center justify-center">
-          <h1 className="font-sora font-black text-[18vw] md:text-[16vw] leading-[0.85] tracking-tighter text-slate-200/60 mix-blend-multiply uppercase">
+          <h1 className="font-sora font-black text-[18vw] md:text-[16vw] leading-[0.85] tracking-tighter text-slate-200/80 mix-blend-multiply uppercase">
             Showcase
           </h1>
           <div className="flex items-center gap-4 mt-4 md:mt-8 opacity-60">
@@ -439,7 +464,7 @@ const WorksHero = () => {
               data-speed="50"
             >
               <div className="flex items-center gap-3 bg-white/90 backdrop-blur-xl border border-white shadow-xl rounded-full py-2.5 px-5 w-max hover:scale-110 transition-transform duration-300 ease-out cursor-default">
-                <div className="bg-slate-50 text-slate-600 p-2 rounded-full shrink-0">
+                <div className="bg-purple-50 text-purple-600 p-2 rounded-full shrink-0">
                   <Code2 size={16} strokeWidth={2} />
                 </div>
                 <div className="flex flex-col">
@@ -461,7 +486,7 @@ const WorksHero = () => {
               data-speed="-55"
             >
               <div className="flex items-center gap-3 bg-white/90 backdrop-blur-xl border border-white shadow-xl rounded-full py-2.5 px-5 w-max hover:scale-110 transition-transform duration-300 ease-out cursor-default">
-                <div className="bg-slate-50 text-slate-600 p-2 rounded-full shrink-0">
+                <div className="bg-purple-50 text-purple-600 p-2 rounded-full shrink-0">
                   <Globe size={16} strokeWidth={2} />
                 </div>
                 <div className="flex flex-col">
