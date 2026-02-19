@@ -126,18 +126,20 @@ export default function GrowthHero() {
           </p>
 
           <div className="reveal-text flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-            <button
-              className={`flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9] text-white ${ibmPlexSans.className} font-bold text-base px-8 py-4 rounded-full hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300`}
-            >
-              Apply For Partnership <ArrowRight size={20} />
-            </button>
+            <a href="/contact">
+              <button
+                className={`flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9] text-white ${ibmPlexSans.className} font-bold text-base px-8 py-4 rounded-full hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300 cursor-pointer`}
+              >
+                Book a Call <ArrowRight size={20} />
+              </button>
+            </a>
           </div>
         </div>
 
         {/* Right Column: Premium Visuals */}
         <div className="relative h-full w-full min-h-[450px] hidden lg:block">
           {/* Glass Card 1: Retention Metric */}
-          <div className="premium-card-1 absolute top-25 right-10 w-80 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 shadow-2xl z-20">
+          <div className="premium-card-1 absolute top-25 right-0 w-80 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 shadow-2xl z-20">
             <div className="flex justify-between items-start mb-6">
               <div className="bg-white/10 p-3 rounded-2xl">
                 <PlayCircle className="text-cyan-500" size={24} />
