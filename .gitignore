@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local AI prompt notes
+AI_PAGE_INSTRUCTIONS.md
