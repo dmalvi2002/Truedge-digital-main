@@ -321,16 +321,21 @@ const WorksHero = () => {
         {/* -------------------------------------------------------
           THE CENTERPIECE: MASSIVE TYPOGRAPHY
       ------------------------------------------------------- */}
-        <div className="hero-title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full text-center flex flex-col items-center justify-center">
-          <h1 className="font-sora font-black text-[18vw] md:text-[16vw] leading-[0.85] tracking-tighter text-slate-200/80 mix-blend-multiply uppercase">
-            Showcase
-          </h1>
-          <div className="flex items-center gap-4 mt-4 md:mt-8 opacity-60">
-            <div className="hidden md:block w-12 h-[2px] bg-slate-200"></div>
-            <p className="font-mono text-xs md:text-sm tracking-[0.4em] text-slate-400 uppercase font-bold">
-              Engineering Artifacts
-            </p>
-            <div className="hidden md:block w-12 h-[2px] bg-slate-200"></div>
+        {/* Outer Wrapper: Handles strict absolute centering with Tailwind */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full">
+          {/* Inner Wrapper: Handles the GSAP animation independently */}
+          <div className="hero-title w-full flex flex-col items-center justify-center text-center">
+            <h1 className="font-sora font-black text-[18vw] md:text-[16vw] leading-[0.85] tracking-tighter text-slate-200/80 mix-blend-multiply uppercase">
+              Showcase
+            </h1>
+
+            <div className="flex items-center justify-center gap-4 mt-4 md:mt-8 opacity-60">
+              <div className="hidden md:block w-12 h-[2px] bg-slate-200"></div>
+              <p className="font-mono text-xs md:text-sm tracking-[0.4em] text-slate-400 uppercase font-bold">
+                Engineering Artifacts
+              </p>
+              <div className="hidden md:block w-12 h-[2px] bg-slate-200"></div>
+            </div>
           </div>
         </div>
 
