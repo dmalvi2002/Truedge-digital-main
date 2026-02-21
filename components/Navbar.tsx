@@ -5,6 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SquareTerminal, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { Sora } from "next/font/google";
+
+// Importing Sora font as requested
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -35,7 +42,9 @@ const Navbar = () => {
               // Added a subtle drop shadow to make the icon separate nicely from the glass background
               className="object-contain drop-shadow-sm"
             />
-            <span className="hidden text-xl font-bold text-slate-900 sm:inline-block drop-shadow-sm">
+            <span
+              className={`${sora.className} hidden text-xl font-bold text-slate-900 sm:inline-block drop-shadow-sm`}
+            >
               Truedge Digital
             </span>
           </Link>
