@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
+import Image from "next/image";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const ibmPlexSans = IBM_Plex_Sans({
@@ -12,19 +13,22 @@ const ibmPlexSans = IBM_Plex_Sans({
 export default function MoreProject() {
   const moreProjects = [
     {
-      title: "A2Z Immigration",
+      title: "A2Z Accounting Dubai",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771705118/3571ec1a-6804-45fb-a1e5-26263c03dfdd.png", // Path to your image in /public/projects/
       description:
         "A high-converting lead generation platform tailored for international audiences. We streamlined their user journey, dramatically reducing bounce rates and increasing consultation bookings.",
       tags: ["Next.js", "Tailwind CSS"],
       metrics: [
         { value: "0.8s", label: "Page Load", colour: "text-white" },
-        { value: "+85%", label: "Lead Gen", colour: "text-emerald-400" },
+        { value: "+110%", label: "Lead Gen", colour: "text-emerald-400" },
       ],
-      link: "#",
+      link: "https://www.a2zaccounting-dubai.co.uk/",
       reverse: false,
     },
     {
-      title: "iLearner's Hub",
+      title: "Magic World",
+      image: "/projects/ilearners-more.jpg", // Path to your image in /public/projects/
       description:
         "A bespoke, high-traffic educational portal. We engineered a scalable architecture capable of handling thousands of concurrent users seamlessly, whilst maintaining lightning-fast performance.",
       tags: ["React", "Node.js"],
@@ -63,7 +67,9 @@ export default function MoreProject() {
           {moreProjects.map((project, index) => (
             <div
               key={index}
-              className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#0A0A0A] transition-all duration-500 hover:border-violet-500/30 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.2)] lg:flex-row lg:items-stretch ${project.reverse ? "lg:flex-row-reverse" : ""}`}
+              className={`group relative flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#0A0A0A] transition-all duration-500 hover:border-violet-500/30 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.2)] lg:flex-row lg:items-stretch ${
+                project.reverse ? "lg:flex-row-reverse" : ""
+              }`}
             >
               <div className="flex flex-1 flex-col justify-center p-8 sm:p-12 sm:py-16 z-10">
                 <div className="mb-6 flex flex-wrap gap-2">
@@ -103,6 +109,7 @@ export default function MoreProject() {
 
                 <a
                   href={project.link}
+                  target="_blank"
                   className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-400 transition-colors hover:text-violet-300"
                 >
                   Inspect Project{" "}
@@ -113,21 +120,28 @@ export default function MoreProject() {
                 </a>
               </div>
 
-              {/* Added flex flex-col here */}
-              <div className="relative flex flex-col min-h-[300px] flex-1 overflow-hidden p-6 sm:p-8 lg:min-h-full bg-white/[0.02]">
+              {/* Image Column */}
+              <div className="relative flex flex-col min-h-[250px] sm:min-h-[350px] flex-1 overflow-hidden p-3 sm:p-8 lg:min-h-full bg-white/[0.02]">
                 <div className="absolute inset-0 bg-gradient-to-br from-violet-900/10 via-transparent to-indigo-900/10 opacity-50"></div>
 
-                {/* Changed h-full to flex-1 to allow it to stretch */}
                 <div className="relative flex-1 w-full rounded-xl border border-white/10 bg-black shadow-2xl flex flex-col overflow-hidden transition-transform duration-700 lg:group-hover:scale-[1.03]">
-                  {/* Browser Top Bar with responsive dots */}
-                  <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/5 px-4 py-3">
+                  {/* Browser Top Bar */}
+                  <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/5 px-4 py-3 z-20">
                     <div className="h-2.5 w-2.5 rounded-full transition-colors duration-300 bg-[#FF5F56] lg:bg-slate-600 lg:group-hover:bg-[#FF5F56]"></div>
                     <div className="h-2.5 w-2.5 rounded-full transition-colors duration-300 delay-75 bg-[#FFBD2E] lg:bg-slate-600 lg:group-hover:bg-[#FFBD2E]"></div>
                     <div className="h-2.5 w-2.5 rounded-full transition-colors duration-300 delay-150 bg-[#27C93F] lg:bg-slate-600 lg:group-hover:bg-[#27C93F]"></div>
                   </div>
 
-                  {/* Mockup Image Area with responsive opacity */}
-                  <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/f_webp/14375_c4sbqw')] bg-cover bg-center transition-opacity duration-500 opacity-90 lg:opacity-40 lg:group-hover:opacity-90"></div>
+                  {/* Mockup Image Area */}
+                  <div className="relative flex-1 w-full overflow-hidden transition-opacity duration-500 opacity-90 lg:opacity-80 lg:group-hover:opacity-100">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-contain object-center transition-transform duration-[2s] ease-in-out lg:group-hover:scale-115"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

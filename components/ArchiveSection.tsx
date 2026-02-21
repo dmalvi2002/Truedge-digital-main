@@ -1,19 +1,14 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  Database,
-  Activity,
-  Smartphone,
-  Layers,
-  Server,
-} from "lucide-react";
+import { ArrowUpRight, Layers, Server, TvMinimal } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
+import Image from "next/image";
 
 const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
+
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -23,48 +18,57 @@ export default function ArchiveSection() {
   const projects = [
     {
       id: "01",
-      client: "Aura Global",
-      category: "Bespoke SaaS Architecture",
+      client: "A2Z Immigration UK",
+      category: "Bespoke Web Design",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png", // Add your image to public/projects/
       problem:
-        "Legacy WordPress monolith bleeding £15k/month in server costs and losing enterprise deals due to 4.2s load times.",
+        "A slow, outdated WordPress site plagued by broken navigation and failing page loads, severely damaging brand authority and frustrating prospective clients.",
       solution:
-        "Engineered a headless Next.js & Supabase application with server-side rendering and edge caching.",
+        "Engineered a lightning-fast, SEO-optimised Next.js platform featuring a premium modern UI and flawless user journeys to maximise lead conversions.",
       roi: "+210%",
       roiText: "Conversion Lift",
-      tech: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
-      icon: Database,
+      tech: ["Next.js", "TypeScript", "Tailwind", "Sanity"],
+      icon: TvMinimal,
+      link: "https://a2zimmigrations.co.uk",
     },
     {
       id: "02",
-      client: "Vertex Capital",
-      category: "Fintech Dashboard",
+      client: "iLearner's Hub",
+      category: "Bespoke Web Design",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771634405/c4dd4da1-70ef-443b-9f4f-33d476f85eba.png",
       problem:
-        "Off-the-shelf CRM was bottlenecking analysts. Data fetching took 12 seconds per client profile.",
+        "A static, broken animated & links, low-converting brochure site that created friction for parents trying to discover courses and book tuition sessions, bottlenecking local growth.",
       solution:
-        "Built a lightning-fast React application with a bespoke Node.js microservices backend.",
-      roi: "0.4s",
-      roiText: "Query Time",
-      tech: ["React", "Node.js", "PostgreSQL", "Redis"],
-      icon: Activity,
+        "Engineered an interactive, high-speed platform with a frictionless UI, specifically designed to streamline course discovery and instantly scale student acquisition.",
+      roi: "0.8s",
+      roiText: "Page Load Time",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Motion"],
+      icon: TvMinimal,
+      link: "https://ilearnershub.co.uk",
     },
     {
       id: "03",
-      client: "Lumina Systems",
-      category: "Native Mobile App",
+      client: "Kinesis Subsea",
+      category: "Industry Level Website",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771634697/c3f54d73-40a0-4dcc-9d28-b91ae55623db.png",
       problem:
-        "A clunky hybrid app that constantly crashed on iOS, causing a 1.2-star App Store rating.",
+        "A fragmented, legacy digital presence that undermined their position as an industry leader and failed to effectively communicate complex, enterprise-level subsea capabilities.",
       solution:
-        "A complete native rewrite. Butter-smooth 60fps animations and an immaculate UI.",
-      roi: "4.9★",
-      roiText: "App Store Rating",
-      tech: ["React Native", "Swift", "Kotlin", "AWS"],
-      icon: Smartphone,
+        "Engineered a bespoke, high-performance Next.js architecture to seamlessly structure their massive service portfolio, establishing absolute technical authority to drive global energy contracts.",
+      roi: "100/100",
+      roiText: "Seo Performance",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Motion"],
+      icon: TvMinimal,
+      link: "http://kinesis-subsea-eng-site.vercel.app/",
     },
   ];
 
   return (
-    <section className="relative w-full bg-[#fafafa] py-16 md:py-24">
-      {/* Very subtle background grid */}
+    <section className="relative w-full bg-[#fafafa] py-16 md:py-24 text-slate-900">
+      {/* Background Grid */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-50"></div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
@@ -98,7 +102,6 @@ export default function ArchiveSection() {
                 dominance.
               </p>
 
-              {/* Minimal Filter / Stat Card */}
               <div className="hidden lg:flex flex-col gap-4 rounded-3xl bg-slate-950 p-6 shadow-2xl">
                 <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
                   <Server className="text-emerald-400 h-5 w-5" />
@@ -118,7 +121,7 @@ export default function ArchiveSection() {
             </div>
           </div>
 
-          {/* --- RIGHT COLUMN: Clean, Solid Project Cards --- */}
+          {/* --- RIGHT COLUMN: Project Cards --- */}
           <div className="lg:col-span-8 flex flex-col gap-10">
             {projects.map((project, index) => {
               const Icon = project.icon;
@@ -126,9 +129,9 @@ export default function ArchiveSection() {
               return (
                 <div
                   key={index}
-                  className="flex flex-col overflow-hidden rounded-[2rem] bg-slate-950 border border-slate-800 shadow-xl transition-all hover:border-slate-700"
+                  className="flex flex-col overflow-hidden rounded-[2rem] bg-slate-950 border border-slate-800 shadow-xl transition-all hover:border-slate-700 group"
                 >
-                  {/* Top Section: Text & Narrative */}
+                  {/* Top Content Section */}
                   <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 justify-between border-b border-slate-800">
                     <div className="flex-1">
                       <div className="mb-4 flex items-center gap-3">
@@ -168,7 +171,6 @@ export default function ArchiveSection() {
                         </p>
                       </div>
 
-                      {/* Tech Stack Pills */}
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((t, i) => (
                           <span
@@ -181,7 +183,7 @@ export default function ArchiveSection() {
                       </div>
                     </div>
 
-                    {/* ROI & Action Button */}
+                    {/* Impact & Action */}
                     <div className="flex flex-col items-start md:items-end justify-between shrink-0">
                       <div className="mb-6 md:mb-0 md:text-right">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">
@@ -199,23 +201,32 @@ export default function ArchiveSection() {
                         </p>
                       </div>
 
-                      <button className="flex items-center gap-2 rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-violet-500 w-full md:w-auto justify-center">
-                        Inspect
-                        <ArrowUpRight className="h-4 w-4" />
-                      </button>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <button className="flex items-center gap-2 rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-violet-500 w-full md:w-auto justify-center cursor-pointer">
+                          Inspect <ArrowUpRight className="h-4 w-4" />
+                        </button>
+                      </a>
                     </div>
                   </div>
 
-                  {/* Bottom Section: Safe Image Placeholder */}
-                  {/* Just replace this div with your actual <img /> or next/image tag later */}
-                  <div className="w-full h-64 md:h-80 bg-slate-900 flex items-center justify-center relative overflow-hidden group">
-                    <p
-                      className={`${ibmPlexSans.className} text-slate-600 text-sm font-medium`}
-                    >
-                      Your Massive Screenshot Here
-                    </p>
-                    {/* Hover effect overlay to keep it feeling premium */}
-                    <div className="absolute inset-0 bg-violet-600/0 transition-colors duration-500 group-hover:bg-violet-600/10"></div>
+                  {/* Bottom Image Section */}
+                  <div className="relative w-full h-72 md:h-96 overflow-hidden bg-slate-900">
+                    <Image
+                      src={project.image}
+                      alt={`${project.client} visual`}
+                      fill
+                      className="md:object-cover object-contain md:object-top transition-transform duration-1000 ease-in-out group-hover:scale-103"
+                      sizes="(max-width: 768px) 100vw, 800px"
+                    />
+                    {/* Darker overlay for text legibility and "premium" depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent duration-500" />
+
+                    {/* Subtle Violet Tint on Hover */}
+                    <div className="absolute inset-0 bg-violet-600/0 transition-colors duration-500 group-hover:bg-violet-600/5" />
                   </div>
                 </div>
               );

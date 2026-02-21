@@ -188,8 +188,8 @@ const WorksHero = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150vw] h-[30vh] bg-purple-200/40 blur-[100px] rounded-[100%] pointer-events-none -z-10"></div>
 
         {/* Header Area */}
-        <div className="text-center z-10 mb-8 mt-6">
-          <h1 className="font-sora font-black text-6xl tracking-tighter text-slate-900 uppercase mb-3">
+        <div className="text-center z-10 mb-8">
+          <h1 className="font-sora font-black text-[52px] tracking-tighter text-slate-900 uppercase mb-3">
             Showcase
           </h1>
           <div className="flex items-center justify-center gap-4 opacity-80">

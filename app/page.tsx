@@ -81,7 +81,7 @@ export default function Home() {
             {/* LEFT SIDE: Text & Buttons */}
             <div className="max-w-3xl lg:max-w-[45rem] text-left">
               {/* SVG 1: Security Badge - IN FLOW. Visible on mobile, animates ONLY on sm+ */}
-              <div className="relative z-30 mb-6 flex w-max sm:animate-[bounce_4s_infinite]">
+              <div className="relative z-30 mb-6 flex w-max sm:animate-[bounce_4s_infinite] hidden sm:block">
                 <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.1)] transition-all hover:bg-white/10">
                   <div className="flex items-center justify-center rounded-full bg-cyan-950/30 p-1.5 shadow-[0_0_10px_rgba(34,211,238,0.15)] border border-cyan-500/20">
                     <ShieldCheck size={16} className="text-cyan-300" />

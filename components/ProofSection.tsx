@@ -216,7 +216,7 @@ export default function ProofSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-amber-400"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-emerald-400"></div>
                 </div>
-                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png')] bg-contain bg-no-repeat bg-center md:bg-cover mix-blend-multiply"></div>
+                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png')] bg-contain bg-no-repeat bg-center mix-blend-multiply"></div>
               </div>
             </div>
           </div>
