@@ -26,7 +26,7 @@ export default function ProofSection() {
             100% { transform: translateX(-50%); }
           }
           .animate-marquee {
-            animation: marquee 25s linear infinite;
+            animation: marquee 60s linear infinite;
           }
         `,
         }}
@@ -69,9 +69,21 @@ export default function ProofSection() {
                   </span>
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
+                  <Triangle size={28} />{" "}
+                  <span className="whitespace-nowrap text-xl font-bold tracking-tight">
+                    A2Z Accounting Dubai
+                  </span>
+                </div>
+                <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
                   <Square size={28} />{" "}
                   <span className="whitespace-nowrap text-xl font-bold tracking-tight">
                     Magic World
+                  </span>
+                </div>
+                <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
+                  <Hexagon size={28} />{" "}
+                  <span className="whitespace-nowrap text-xl font-bold tracking-tight">
+                    MyHRspace
                   </span>
                 </div>
               </div>
@@ -97,9 +109,21 @@ export default function ProofSection() {
                   </span>
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
+                  <Triangle size={28} />{" "}
+                  <span className="whitespace-nowrap text-xl font-bold tracking-tight">
+                    A2Z Accounting Dubai
+                  </span>
+                </div>
+                <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
                   <Square size={28} />{" "}
                   <span className="whitespace-nowrap text-xl font-bold tracking-tight">
                     Magic World
+                  </span>
+                </div>
+                <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
+                  <Hexagon size={28} />{" "}
+                  <span className="whitespace-nowrap text-xl font-bold tracking-tight">
+                    MyHRspace
                   </span>
                 </div>
               </div>
@@ -136,7 +160,7 @@ export default function ProofSection() {
                   Next.js
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-                  Tailwind CSS
+                  Sanity CMS
                 </span>
               </div>
 
@@ -148,30 +172,31 @@ export default function ProofSection() {
               <p
                 className={`${ibmPlexSans.className} mb-8 text-slate-600 leading-relaxed`}
               >
-                A high-converting lead generation platform tailored for
-                international audiences. We streamlined their user journey,
-                dramatically reducing bounce rates and increasing consultation
-                bookings.
+                A2Z Immigration required an authoritative platform to streamline
+                UK Sponsor Licence and Skilled Worker Visa services. We
+                engineered a high-converting, compliance-focused digital asset
+                that simplifies complex legal pathways and drives qualified B2B
+                lead generation.
               </p>
 
               {/* Metric Highlights */}
               <div className="mb-8 grid grid-cols-2 gap-4 border-l-2 border-violet-200 pl-4 sm:grid-cols-3">
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">0.8s</p>
+                  <p className="text-2xl font-bold text-slate-900">+85%</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Page Load
+                    Lead Gen
                   </p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-emerald-600">+85%</p>
+                  <p className="text-2xl font-bold text-emerald-600">91/100</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Lead Gen
+                    SEO Score
                   </p>
                 </div>
               </div>
 
               <a
-                href="#"
+                href="https://www.a2zimmigrations.co.uk/"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}
@@ -191,7 +216,7 @@ export default function ProofSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-amber-400"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-emerald-400"></div>
                 </div>
-                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/f_webp/14375_c4sbqw')] bg-cover bg-center opacity-60  mix-blend-multiply"></div>
+                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png')] bg-contain bg-no-repeat bg-center md:bg-cover mix-blend-multiply"></div>
               </div>
             </div>
           </div>
@@ -202,10 +227,10 @@ export default function ProofSection() {
             <div className="flex flex-1 flex-col justify-center p-8 sm:p-12">
               <div className="mb-6 flex flex-wrap gap-2">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-                  React
+                  Next js
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-                  Node.js
+                  Tailwind CSS
                 </span>
               </div>
 
@@ -217,30 +242,29 @@ export default function ProofSection() {
               <p
                 className={`${ibmPlexSans.className} mb-8 text-slate-600 leading-relaxed`}
               >
-                A bespoke, high-traffic educational portal. We engineered a
-                scalable architecture capable of handling thousands of
-                concurrent users seamlessly, whilst maintaining lightning-fast
-                performance.
+                We engineered a high-speed, conversion-focused digital asset to
+                scale this Aberdeen tuition centre. The intuitive UI streamlines
+                parent bookings and maximises local student acquisition.
               </p>
 
               {/* Metric Highlights */}
               <div className="mb-8 grid grid-cols-2 gap-4 border-l-2 border-violet-200 pl-4 sm:grid-cols-3">
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">10k+</p>
+                  <p className="text-2xl font-bold text-blue-500">94/100</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Active Users
+                    Performance
                   </p>
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-emerald-600">100/100</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Performance
+                    SEO Score
                   </p>
                 </div>
               </div>
 
               <a
-                href="#"
+                href="https://www.ilearnershub.co.uk/"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}
@@ -260,7 +284,7 @@ export default function ProofSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-amber-400"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-emerald-400"></div>
                 </div>
-                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/f_webp/14375_c4sbqw')] bg-cover bg-center opacity-60 mix-blend-multiply"></div>
+                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771634405/c4dd4da1-70ef-443b-9f4f-33d476f85eba.png')] bg-contain bg-no-repeat bg-center md:bg-cover mix-blend-multiply"></div>
               </div>
             </div>
           </div>
@@ -286,10 +310,10 @@ export default function ProofSection() {
               <p
                 className={`${ibmPlexSans.className} mb-8 text-slate-600 leading-relaxed`}
               >
-                A corporate showcase for an industrial engineering firm. We
-                transformed a dated, text-heavy website into a premium,
-                interactive experience that effectively communicates their
-                authority.
+                We engineered a high-performance web platform for a global
+                subsea engineering firm. The bespoke Next.js architecture
+                showcases complex energy infrastructure, establishing absolute
+                technical authority to drive enterprise-level contracts.
               </p>
 
               {/* Metric Highlights */}
@@ -297,13 +321,13 @@ export default function ProofSection() {
                 <div>
                   <p className="text-2xl font-bold text-slate-900">2.5x</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Time on Site
+                    Site Loadtime
                   </p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-emerald-600">+120%</p>
+                  <p className="text-2xl font-bold text-emerald-600">100/100</p>
                   <p className="text-xs font-medium uppercase tracking-wider text-slate-500 mt-0.5">
-                    Engagement
+                    SEO Score
                   </p>
                 </div>
               </div>
@@ -329,7 +353,7 @@ export default function ProofSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-amber-400"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-emerald-400"></div>
                 </div>
-                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/f_webp/14375_c4sbqw')] bg-cover bg-center opacity-60 mix-blend-multiply"></div>
+                <div className="flex-1 bg-[url('https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771634697/c3f54d73-40a0-4dcc-9d28-b91ae55623db.png')] bg-cover bg-center mix-blend-multiply"></div>
               </div>
             </div>
           </div>
