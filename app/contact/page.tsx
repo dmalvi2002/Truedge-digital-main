@@ -91,7 +91,10 @@ export default function ContactPage() {
             {/* Premium Contact Mini Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full border-t border-slate-200 pt-8">
               {/* Email Box */}
-              <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200">
+              <a
+                href="mailto:info@truedgedigital.co.uk"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
+              >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-600 group-hover:text-white">
                   <Mail size={20} />
                 </div>
@@ -101,17 +104,19 @@ export default function ContactPage() {
                   >
                     Email Us
                   </p>
-                  <a
-                    href="mailto:info@truedgedigital.co.uk"
-                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors hover:text-purple-600`}
+                  <p
+                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors group-hover:text-purple-600`}
                   >
                     info@truedgedigital.co.uk
-                  </a>
+                  </p>
                 </div>
-              </div>
+              </a>
 
               {/* Call Box */}
-              <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200">
+              <a
+                href="tel:+447832921562"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
+              >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-600 group-hover:text-white">
                   <Phone size={20} />
                 </div>
@@ -121,17 +126,21 @@ export default function ContactPage() {
                   >
                     Call Us
                   </p>
-                  <a
-                    href="tel:+447832921562"
-                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors hover:text-purple-600`}
+                  <p
+                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors group-hover:text-purple-600`}
                   >
                     +44 7832 921562
-                  </a>
+                  </p>
                 </div>
-              </div>
+              </a>
 
               {/* WhatsApp Box */}
-              <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-emerald-200">
+              <a
+                href="https://wa.me/447907901171"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-emerald-200"
+              >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
                   <WhatsAppIcon size={22} />
                 </div>
@@ -141,16 +150,13 @@ export default function ContactPage() {
                   >
                     WhatsApp
                   </p>
-                  <a
-                    href="https://wa.me/447907901171"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors hover:text-emerald-600`}
+                  <p
+                    className={`${ibm.className} text-sm sm:text-base font-semibold text-slate-900 transition-colors group-hover:text-emerald-600`}
                   >
                     +44 7907 901171
-                  </a>
+                  </p>
                 </div>
-              </div>
+              </a>
 
               {/* Address Box (Not clickable, purely informational) */}
               <div className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2 lg:col-span-1">

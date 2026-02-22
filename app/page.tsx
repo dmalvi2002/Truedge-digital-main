@@ -57,7 +57,7 @@ export default function Home() {
 
         {/* --- The "Fade to Clear" Glass Overlay --- */}
         {/* 1. The Dark Color Gradient (Solid dark on left -> transparent on right) */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent md:via-slate-950/60"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950 to-transparent md:via-slate-950/60"></div>
 
         {/* 2. The Blurred Glass Gradient (Blurs the left, stays crisp on the right) */}
         <div className="absolute inset-0 z-0 backdrop-blur-md [mask-image:linear-gradient(to_right,rgba(0,0,0,1)_30%,rgba(0,0,0,0)_70%)]"></div>
