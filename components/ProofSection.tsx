@@ -197,6 +197,7 @@ export default function ProofSection() {
 
               <a
                 href="https://www.a2zimmigrations.co.uk/"
+                target="_blank"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}
@@ -265,6 +266,7 @@ export default function ProofSection() {
 
               <a
                 href="https://www.ilearnershub.co.uk/"
+                target="_blank"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}
@@ -334,6 +336,7 @@ export default function ProofSection() {
 
               <a
                 href="https://kinesis-subsea-eng-site.vercel.app/"
+                target="_blank"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}
