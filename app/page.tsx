@@ -38,11 +38,19 @@ export default function Home() {
         {/* --- Background Image --- */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://res.cloudinary.com/dvvcwzp4n/image/upload/f_webp/14375_c4sbqw"
+            src="https://img.freepik.com/premium-photo/happy-young-business-woman-handshaking-client-meeting_159311-584.jpg?w=1480"
             alt="Truedge Digital Team Collaboration"
             fill
             priority
-            className="object-cover object-[55%_center] md:object-center"
+            className="object-cover object-center md:hidden"
+            quality={100}
+          />
+          <Image
+            src="https://img.freepik.com/premium-photo/happy-young-business-woman-handshaking-client-meeting_159311-584.jpg?w=1480"
+            alt="Truedge Digital Team Collaboration"
+            fill
+            priority
+            className="hidden object-cover md:block md:object-center rotate-y-[180deg]"
             quality={100}
           />
         </div>
@@ -94,7 +102,7 @@ export default function Home() {
 
               {/* Main Headline (Sora - Medium Weight) */}
               <h1
-                className={`${sora.className} mb-6 text-4xl font-medium leading-[1.15] tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150 fill-mode-both`}
+                className={`${sora.className} mt-3 mb-6 text-4xl font-medium leading-[1.15] tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150 fill-mode-both`}
               >
                 Designed for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400">
@@ -164,9 +172,7 @@ export default function Home() {
             {/* Visible on mobile at the end, no animation, compact sizing via md: prefix */}
             <div className="z-30 mt-4 shrink-0 lg:mt-0 lg:block w-full sm:w-auto self start lg:self-end">
               <Link
-                href="YOUR_GOOGLE_REVIEW_LINK"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="group flex flex-col gap-3 rounded-2xl border border-white/60 bg-white/90 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_50px_rgba(0,0,0,0.18)] md:gap-4 md:rounded-3xl md:p-6"
               >
                 {/* Top Section: Logo, Rating, and Stars */}
