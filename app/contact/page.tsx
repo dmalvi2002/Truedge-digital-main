@@ -35,7 +35,7 @@ const services = [
   "Migration",
   "Growth & SEO",
 ];
-const budgets = ["< £5k", "£5k - £10k", "£10k - £20k", "£20k+"];
+const budgets = ["< £500", "£500 - £1500", "£1500 - £5000", "£5000+"];
 
 export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -161,7 +161,7 @@ export default function ContactPage() {
                   <p
                     className={`${ibm.className} text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-1`}
                   >
-                    Headquarters
+                    Address
                   </p>
                   <p
                     className={`${ibm.className} text-sm font-medium text-slate-700 leading-relaxed`}
@@ -361,7 +361,7 @@ export default function ContactPage() {
                 <div>
                   <button
                     type="submit"
-                    className="group cursor-pointer flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-6 py-4 text-md md:px-10 md:py-5 md:text-lg font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"
+                    className="group cursor-pointer flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-6 py-4 text-sm md:text-md md:px-10 md:py-5 md:text-lg font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"
                   >
                     Book a Strategy Call
                     <ArrowRight

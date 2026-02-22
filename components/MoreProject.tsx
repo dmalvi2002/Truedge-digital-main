@@ -20,7 +20,7 @@ export default function MoreProject() {
         "A high-converting lead generation platform tailored for international audiences. We streamlined their user journey, dramatically reducing bounce rates and increasing consultation bookings.",
       tags: ["Next.js", "Tailwind CSS"],
       metrics: [
-        { value: "0.8s", label: "Page Load", colour: "text-white" },
+        { value: "< 1.1s", label: "Page Load", colour: "text-white" },
         { value: "+110%", label: "Lead Gen", colour: "text-emerald-400" },
       ],
       link: "https://www.a2zaccounting-dubai.co.uk/",
@@ -148,6 +148,11 @@ export default function MoreProject() {
           ))}
         </div>
       </div>
+      <h2
+        className={`${sora.className} mt-10 px-4 md:mt-20 text-xl text-center font-semibold leading-tight text-slate-900 md:text-3xl`}
+      >
+        We'll be more than happy if you can become our next success story! 😉
+      </h2>
     </section>
   );
 }
