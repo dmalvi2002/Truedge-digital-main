@@ -223,7 +223,7 @@ export default function ArchiveSection() {
                       sizes="(max-width: 768px) 100vw, 800px"
                     />
                     {/* Darker overlay for text legibility and "premium" depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent duration-500" />
+                    <div className="absoluteduration-500" />
 
                     {/* Subtle Violet Tint on Hover */}
                     <div className="absolute inset-0 bg-violet-600/0 transition-colors duration-500 group-hover:bg-violet-600/5" />

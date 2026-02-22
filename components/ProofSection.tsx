@@ -333,7 +333,7 @@ export default function ProofSection() {
               </div>
 
               <a
-                href="#"
+                href="https://kinesis-subsea-eng-site.vercel.app/"
                 className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-600 transition-colors hover:text-violet-700"
               >
                 View Live Site{" "}

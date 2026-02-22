@@ -80,15 +80,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/portfolios"
+                  href="/projects"
                   className="hover:text-violet-400 transition-colors duration-200"
                 >
-                  Portfolios
+                  Showcases
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/marketing"
+                  href="/growth"
                   className="hover:text-violet-400 transition-colors duration-200"
                 >
                   Marketing

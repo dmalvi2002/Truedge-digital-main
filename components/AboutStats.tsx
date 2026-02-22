@@ -71,7 +71,7 @@ export default function AboutStats() {
           {/* --- RIGHT: The Grounded Bento Stats Grid --- */}
           <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Stat Card 1: Purple Theme */}
-            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-purple-200">
+            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border md:border-[3px] border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-purple-200">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 border border-purple-100 transition-colors duration-500 group-hover:bg-purple-600 group-hover:text-white">
                 <Globe2 size={28} />
               </div>
@@ -90,7 +90,7 @@ export default function AboutStats() {
             </div>
 
             {/* Stat Card 2: Indigo Theme */}
-            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-indigo-200 sm:mt-8">
+            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border md:border-[3px] border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-indigo-200 sm:mt-8">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100 transition-colors duration-500 group-hover:bg-indigo-600 group-hover:text-white">
                 <MapPin size={28} />
               </div>
@@ -109,7 +109,7 @@ export default function AboutStats() {
             </div>
 
             {/* Stat Card 3: Emerald Theme */}
-            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-emerald-200">
+            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border md:border-[3px] border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-emerald-200">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100 transition-colors duration-500 group-hover:bg-emerald-600 group-hover:text-white">
                 <Zap size={28} />
               </div>
@@ -128,7 +128,7 @@ export default function AboutStats() {
             </div>
 
             {/* Stat Card 4: Rose Theme */}
-            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-rose-200 sm:mt-8">
+            <div className="group relative flex flex-col items-start gap-4 rounded-[2rem] border md:border-[3px] border-slate-200 bg-[#fafafa] p-8 transition-all duration-500 hover:bg-white hover:shadow-xl hover:border-rose-200 sm:mt-8">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 border border-rose-100 transition-colors duration-500 group-hover:bg-rose-600 group-hover:text-white">
                 <Code2 size={28} />
               </div>
@@ -136,7 +136,7 @@ export default function AboutStats() {
                 <h3
                   className={`${sora.className} text-xl sm:text-2xl font-bold text-slate-950 mb-1 mt-2`}
                 >
-                  Next.js & WP
+                  Next.js & Wordpress
                 </h3>
                 <p
                   className={`${ibm.className} text-sm font-medium text-slate-600`}

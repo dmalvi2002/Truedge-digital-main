@@ -62,7 +62,7 @@ export default function AboutHero() {
                 href="/projects"
                 className="group flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
               >
-                View Our Archive
+                View Our Work
                 <ArrowRight
                   size={18}
                   className="transition-transform group-hover:translate-x-1"
