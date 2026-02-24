@@ -25,19 +25,22 @@ export default function MoreProject() {
       ],
       link: "https://www.a2zaccounting-dubai.co.uk/",
       reverse: false,
+      desclaimer: false,
     },
     {
       title: "Magic World",
-      image: "/projects/ilearners-more.jpg", // Path to your image in /public/projects/
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771919691/bd26f844-8741-4461-86ca-6099985f1a18.png", // Path to your image in /public/projects/
       description:
         "A bespoke, high-traffic educational portal. We engineered a scalable architecture capable of handling thousands of concurrent users seamlessly, whilst maintaining lightning-fast performance.",
       tags: ["React", "Node.js"],
       metrics: [
-        { value: "10k+", label: "Active Users", colour: "text-white" },
-        { value: "100/100", label: "Performance", colour: "text-emerald-400" },
+        { value: "1k+", label: "Active Users", colour: "text-white" },
+        { value: "< 1s", label: "Load Time", colour: "text-emerald-400" },
       ],
-      link: "#",
+      link: "https://play2-magic-worlds.vercel.app/",
       reverse: true,
+      desclaimer: true,
     },
   ];
 
@@ -107,17 +110,29 @@ export default function MoreProject() {
                   ))}
                 </div>
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-400 transition-colors hover:text-violet-300"
-                >
-                  Inspect Project{" "}
-                  <ArrowUpRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                </a>
+                {project.link && project.link !== "#" && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-max items-center gap-2 text-sm font-bold text-violet-400 transition-colors hover:text-violet-300"
+                  >
+                    Inspect Project{" "}
+                    <ArrowUpRight
+                      size={16}
+                      className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                    />
+                  </a>
+                )}
+
+                {project.desclaimer && (
+                  <p
+                    className={`${ibmPlexSans.className} mt-3 text-sm font-medium text-amber-300`}
+                  >
+                    Sorry for privacy reasons, we can&apos;t show this specific
+                    client&apos;s actual web url!
+                  </p>
+                )}
               </div>
 
               {/* Image Column */}
