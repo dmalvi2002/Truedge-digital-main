@@ -459,7 +459,7 @@ export default function ContactPage() {
 
                   <div className="mt-4 mb-4 px-4 h-12 flex justify-center items-start">
                     <p
-                      className={`${ibm.className} text-center text-xs leading-relaxed transition-all duration-500 max-w-sm ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}`}
+                      className={`${ibm.className} text-center text-xs leading-relaxed max-w-sm ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}`}
                     >
                       {isSubmitted
                         ? "Thank you! We've received your submission and will be in touch within 6 hours."
