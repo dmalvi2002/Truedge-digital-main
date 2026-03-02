@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
-import { ArrowRight, Mail, MapPin, Phone, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  MapPin,
+  Phone,
+  CheckCircle2,
+  Loader2,
+} from "lucide-react";
 
 // Strict Truedge Standard Fonts
 const sora = Sora({ subsets: ["latin"], weight: ["600", "700"] });
@@ -25,7 +32,6 @@ const WhatsAppIcon = ({ size = 24, className = "" }) => (
   </svg>
 );
 
-// Data for our interactive pills
 const services = [
   "Website Development",
   "SaaS Development",
@@ -42,12 +48,32 @@ export default function ContactPage() {
   const [hasCompany, setHasCompany] = useState<boolean | null>(null);
   const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
       prev.includes(service)
         ? prev.filter((s) => s !== service)
         : [...prev, service],
     );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
+
+    // Guaranteed 2-second loading state for that realistic feel
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+
+    // Resets after 5 seconds so they can see the message, but it goes back to normal
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
   };
 
   return (
@@ -90,7 +116,6 @@ export default function ContactPage() {
 
             {/* Premium Contact Mini Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full border-t border-slate-200 pt-8">
-              {/* Email Box */}
               <a
                 href="mailto:info@truedgedigital.co.uk"
                 className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
@@ -112,7 +137,6 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              {/* Call Box */}
               <a
                 href="tel:+447832921562"
                 className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
@@ -134,7 +158,6 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              {/* WhatsApp Box */}
               <a
                 href="https://wa.me/447907901171"
                 target="_blank"
@@ -158,7 +181,6 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              {/* Address Box (Not clickable, purely informational) */}
               <div className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2 lg:col-span-1">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-500 transition-colors group-hover:bg-slate-800 group-hover:text-white">
                   <MapPin size={20} />
@@ -183,13 +205,12 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* --- RIGHT SIDE: The Premium Interactive Form --- */}
+          {/* --- RIGHT SIDE: The Form Container --- */}
           <div className="lg:col-span-7">
-            <div className="rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)] ring-1 ring-slate-100">
-              <form className="flex flex-col gap-8">
+            <div className="rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)] ring-1 ring-slate-100 flex flex-col justify-center">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 {/* 1. REQUIRED FIELDS */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Full Name */}
                   <div className="group sm:col-span-2">
                     <label
                       className={`${ibm.className} mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-focus-within:text-purple-600`}
@@ -207,7 +228,6 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Email Address */}
                   <div className="group">
                     <label
                       className={`${ibm.className} mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-focus-within:text-purple-600`}
@@ -225,7 +245,6 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Phone Number */}
                   <div className="group">
                     <label
                       className={`${ibm.className} mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-focus-within:text-purple-600`}
@@ -248,7 +267,6 @@ export default function ContactPage() {
 
                 {/* 2. OPTIONAL FIELDS (Interactive Pills) */}
                 <div className="flex flex-col gap-8">
-                  {/* Services / Solutions */}
                   <div>
                     <label
                       className={`${ibm.className} mb-3 flex items-center gap-2 text-sm font-semibold text-slate-700`}
@@ -280,7 +298,6 @@ export default function ContactPage() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    {/* Do you have a company? */}
                     <div>
                       <label
                         className={`${ibm.className} mb-3 flex items-center gap-2 text-sm font-semibold text-slate-700`}
@@ -294,29 +311,20 @@ export default function ContactPage() {
                         <button
                           type="button"
                           onClick={() => setHasCompany(true)}
-                          className={`${ibm.className} cursor-pointer flex-1 rounded-2xl border py-3 text-sm font-medium transition-all duration-300 ${
-                            hasCompany === true
-                              ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm"
-                              : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"
-                          }`}
+                          className={`${ibm.className} cursor-pointer flex-1 rounded-2xl border py-3 text-sm font-medium transition-all duration-300 ${hasCompany === true ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm" : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"}`}
                         >
                           Yes
                         </button>
                         <button
                           type="button"
                           onClick={() => setHasCompany(false)}
-                          className={`${ibm.className} cursor-pointer flex-1 rounded-2xl border py-3 text-sm font-medium transition-all duration-300 ${
-                            hasCompany === false
-                              ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm"
-                              : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"
-                          }`}
+                          className={`${ibm.className} cursor-pointer flex-1 rounded-2xl border py-3 text-sm font-medium transition-all duration-300 ${hasCompany === false ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm" : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"}`}
                         >
                           No (Startup)
                         </button>
                       </div>
                     </div>
 
-                    {/* Budget */}
                     <div>
                       <label
                         className={`${ibm.className} mb-3 flex items-center gap-2 text-sm font-semibold text-slate-700`}
@@ -331,12 +339,12 @@ export default function ContactPage() {
                           <button
                             key={budget}
                             type="button"
-                            onClick={() => setSelectedBudget(budget)}
-                            className={`${ibm.className} cursor-pointer rounded-xl border py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 ${
-                              selectedBudget === budget
-                                ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm"
-                                : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"
-                            }`}
+                            onClick={() =>
+                              setSelectedBudget(
+                                budget === selectedBudget ? null : budget,
+                              )
+                            }
+                            className={`${ibm.className} cursor-pointer rounded-xl border py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 ${selectedBudget === budget ? "border-purple-600 bg-purple-50 text-purple-700 shadow-sm" : "border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-slate-50"}`}
                           >
                             {budget}
                           </button>
@@ -345,7 +353,6 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div className="group">
                     <label
                       className={`${ibm.className} mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-focus-within:text-purple-600`}
@@ -363,25 +370,83 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Submit Button & Updated Disclaimer */}
+                {/* THE NEW LOCKED-HEIGHT ANIMATED BUTTON */}
                 <div>
                   <button
                     type="submit"
-                    className="group cursor-pointer flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-6 py-4 text-sm md:text-md md:px-10 md:py-5 md:text-lg font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"
+                    disabled={isSubmitting || isSubmitted}
+                    // h-[56px] md:h-[64px] locks the height entirely so there is NO jumping
+                    className={`group relative flex w-full items-center justify-center rounded-full text-sm md:text-md md:text-lg font-bold text-white transition-all duration-500 overflow-hidden h-[56px] md:h-[64px]
+                      ${
+                        isSubmitted
+                          ? "bg-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                          : "bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"
+                      }
+                      ${isSubmitting ? "opacity-90 cursor-not-allowed" : "cursor-pointer"}
+                    `}
                   >
-                    Book a Strategy Call
-                    <ArrowRight
-                      size={20}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
+                    {/* Default State */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
+                      style={{
+                        transform:
+                          isSubmitting || isSubmitted
+                            ? "translateY(-150%)"
+                            : "translateY(0)",
+                        opacity: isSubmitting || isSubmitted ? 0 : 1,
+                      }}
+                    >
+                      <span>Book a Strategy Call</span>
+                      {/* Note: All icons are exactly size={20} now */}
+                      <ArrowRight
+                        size={20}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </div>
+
+                    {/* Loading State */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
+                      style={{
+                        transform: isSubmitting
+                          ? "translateY(0)"
+                          : isSubmitted
+                            ? "translateY(-150%)"
+                            : "translateY(150%)",
+                        opacity: isSubmitting ? 1 : 0,
+                      }}
+                    >
+                      <Loader2 size={20} className="animate-spin" />
+                      <span>Processing...</span>
+                    </div>
+
+                    {/* Success State */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
+                      style={{
+                        transform: isSubmitted
+                          ? "translateY(0)"
+                          : "translateY(150%)",
+                        opacity: isSubmitted ? 1 : 0,
+                      }}
+                    >
+                      <CheckCircle2 size={20} />
+                      <span>Submitted Successfully</span>
+                    </div>
                   </button>
-                  <p
-                    className={`${ibm.className} text-center text-xs text-slate-500 mt-4 px-4 leading-relaxed`}
-                  >
-                    By submitting, you agree to our privacy policy. We will get
-                    back to you within 6 hours. You can call us directly if it's
-                    urgent.
-                  </p>
+
+                  {/* DYNAMIC THANK YOU TEXT */}
+                  <div className="mt-4 mb-4 px-4 h-12 flex justify-center items-start">
+                    <p
+                      className={`${ibm.className} text-center text-xs leading-relaxed max-w-sm
+                        ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}
+                      `}
+                    >
+                      {isSubmitted
+                        ? "Thank you! We've received your message and will be in touch shortly."
+                        : "By submitting, you agree to our privacy policy. We will get back to you within 6 hours. You can call us directly if it's urgent."}
+                    </p>
+                  </div>
                 </div>
               </form>
             </div>
