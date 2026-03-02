@@ -10,15 +10,14 @@ import {
   CheckCircle2,
   Loader2,
 } from "lucide-react";
+import { submitToGoogleSheet } from "../actions";
 
-// Strict Truedge Standard Fonts
 const sora = Sora({ subsets: ["latin"], weight: ["600", "700"] });
 const ibm = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
 
-// Custom Proper WhatsApp SVG Icon
 const WhatsAppIcon = ({ size = 24, className = "" }) => (
   <svg
     width={size}
@@ -44,10 +43,18 @@ const services = [
 const budgets = ["< £500", "£500 - £1500", "£1500 - £5000", "£5000+"];
 
 export default function ContactPage() {
+  // 1. Text Input States
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [details, setDetails] = useState("");
+
+  // 2. Interactive Pill States
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [hasCompany, setHasCompany] = useState<boolean | null>(null);
   const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
 
+  // 3. Animation States
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -61,29 +68,61 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    // Guaranteed 2-second loading state for that realistic feel
+    // Package the data for your server action
+    const formData = new FormData();
+    formData.append("fullName", fullName);
+    formData.append("email", email);
+
+    // FIX: We add a single quote here to force Google Sheets to read it as text!
+    formData.append("phone", "'" + phone);
+
+    formData.append("services", selectedServices.join(", ") || "None selected");
+    formData.append(
+      "business",
+      hasCompany === true
+        ? "Yes"
+        : hasCompany === false
+          ? "No"
+          : "Not specified",
+    );
+    formData.append("budget", selectedBudget || "Not specified");
+    formData.append("details", details || "No details provided");
+
+    // Securely pass data to the server action
+    try {
+      await submitToGoogleSheet(formData);
+    } catch (error) {
+      console.error("Error submitting via server action:", error);
+    }
+
+    // Keep the premium feel with the 2 second delay
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setIsSubmitting(false);
     setIsSubmitted(true);
 
-    // Resets after 5 seconds so they can see the message, but it goes back to normal
+    // Reset everything after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
+      setFullName("");
+      setEmail("");
+      setPhone("");
+      setDetails("");
+      setSelectedServices([]);
+      setHasCompany(null);
+      setSelectedBudget(null);
     }, 5000);
   };
 
   return (
     <main className="min-h-screen bg-[#fafafa] py-24 lg:py-32 relative overflow-hidden">
-      {/* Subtle Ambient Background */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-purple-400/10 to-transparent blur-[120px] rounded-full pointer-events-none z-0"></div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12">
-          {/* --- LEFT SIDE: The Pitch & Premium Mini Boxes (Sticky) --- */}
+          {/* --- LEFT SIDE: Pitch & Details --- */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-32 h-fit">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-4 py-2 shadow-sm">
               <span className="relative flex h-2 w-2">
@@ -114,7 +153,6 @@ export default function ContactPage() {
               designed for aggressive scaling.
             </p>
 
-            {/* Premium Contact Mini Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full border-t border-slate-200 pt-8">
               <a
                 href="mailto:info@truedgedigital.co.uk"
@@ -136,7 +174,6 @@ export default function ContactPage() {
                   </p>
                 </div>
               </a>
-
               <a
                 href="tel:+447832921562"
                 className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md hover:border-purple-200"
@@ -157,7 +194,6 @@ export default function ContactPage() {
                   </p>
                 </div>
               </a>
-
               <a
                 href="https://wa.me/447907901171"
                 target="_blank"
@@ -180,7 +216,6 @@ export default function ContactPage() {
                   </p>
                 </div>
               </a>
-
               <div className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2 lg:col-span-1">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-500 transition-colors group-hover:bg-slate-800 group-hover:text-white">
                   <MapPin size={20} />
@@ -205,11 +240,10 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* --- RIGHT SIDE: The Form Container --- */}
+          {/* --- RIGHT SIDE: The Form --- */}
           <div className="lg:col-span-7">
             <div className="rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)] ring-1 ring-slate-100 flex flex-col justify-center">
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-                {/* 1. REQUIRED FIELDS */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="group sm:col-span-2">
                     <label
@@ -224,6 +258,8 @@ export default function ContactPage() {
                       type="text"
                       required
                       placeholder="John Doe"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       className={`${ibm.className} w-full rounded-2xl border border-slate-200 bg-[#fafafa] px-5 py-4 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-purple-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 hover:border-slate-300`}
                     />
                   </div>
@@ -241,6 +277,8 @@ export default function ContactPage() {
                       type="email"
                       required
                       placeholder="john@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className={`${ibm.className} w-full rounded-2xl border border-slate-200 bg-[#fafafa] px-5 py-4 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-purple-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 hover:border-slate-300`}
                     />
                   </div>
@@ -258,6 +296,8 @@ export default function ContactPage() {
                       type="tel"
                       required
                       placeholder="07123 456789"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       className={`${ibm.className} w-full rounded-2xl border border-slate-200 bg-[#fafafa] px-5 py-4 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-purple-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 hover:border-slate-300`}
                     />
                   </div>
@@ -265,7 +305,6 @@ export default function ContactPage() {
 
                 <hr className="border-slate-100" />
 
-                {/* 2. OPTIONAL FIELDS (Interactive Pills) */}
                 <div className="flex flex-col gap-8">
                   <div>
                     <label
@@ -282,11 +321,7 @@ export default function ContactPage() {
                           key={service}
                           type="button"
                           onClick={() => toggleService(service)}
-                          className={`${ibm.className} cursor-pointer flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
-                            selectedServices.includes(service)
-                              ? "border-purple-600 bg-purple-600 text-white shadow-[0_4px_12px_rgba(147,51,234,0.25)]"
-                              : "border-slate-200 bg-white text-slate-600 hover:border-purple-300 hover:bg-purple-50"
-                          }`}
+                          className={`${ibm.className} cursor-pointer flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${selectedServices.includes(service) ? "border-purple-600 bg-purple-600 text-white shadow-[0_4px_12px_rgba(147,51,234,0.25)]" : "border-slate-200 bg-white text-slate-600 hover:border-purple-300 hover:bg-purple-50"}`}
                         >
                           {service}
                           {selectedServices.includes(service) && (
@@ -365,27 +400,19 @@ export default function ContactPage() {
                     <textarea
                       rows={4}
                       placeholder="Tell us about your current infrastructure and what you want to build..."
+                      value={details}
+                      onChange={(e) => setDetails(e.target.value)}
                       className={`${ibm.className} w-full resize-y rounded-2xl border border-slate-200 bg-[#fafafa] px-5 py-4 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-purple-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 hover:border-slate-300`}
                     ></textarea>
                   </div>
                 </div>
 
-                {/* THE NEW LOCKED-HEIGHT ANIMATED BUTTON */}
                 <div>
                   <button
                     type="submit"
                     disabled={isSubmitting || isSubmitted}
-                    // h-[56px] md:h-[64px] locks the height entirely so there is NO jumping
-                    className={`group relative flex w-full items-center justify-center rounded-full text-sm md:text-md md:text-lg font-bold text-white transition-all duration-500 overflow-hidden h-[56px] md:h-[64px]
-                      ${
-                        isSubmitted
-                          ? "bg-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)]"
-                          : "bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"
-                      }
-                      ${isSubmitting ? "opacity-90 cursor-not-allowed" : "cursor-pointer"}
-                    `}
+                    className={`group relative flex w-full items-center justify-center rounded-full text-sm md:text-md md:text-lg font-bold text-white transition-all duration-500 overflow-hidden h-[56px] md:h-[64px] ${isSubmitted ? "bg-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)]" : "bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"} ${isSubmitting ? "opacity-90 cursor-not-allowed" : "cursor-pointer"}`}
                   >
-                    {/* Default State */}
                     <div
                       className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
                       style={{
@@ -397,14 +424,11 @@ export default function ContactPage() {
                       }}
                     >
                       <span>Book a Strategy Call</span>
-                      {/* Note: All icons are exactly size={20} now */}
                       <ArrowRight
                         size={20}
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </div>
-
-                    {/* Loading State */}
                     <div
                       className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
                       style={{
@@ -419,8 +443,6 @@ export default function ContactPage() {
                       <Loader2 size={20} className="animate-spin" />
                       <span>Processing...</span>
                     </div>
-
-                    {/* Success State */}
                     <div
                       className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500"
                       style={{
@@ -435,15 +457,12 @@ export default function ContactPage() {
                     </div>
                   </button>
 
-                  {/* DYNAMIC THANK YOU TEXT */}
                   <div className="mt-4 mb-4 px-4 h-12 flex justify-center items-start">
                     <p
-                      className={`${ibm.className} text-center text-xs leading-relaxed max-w-sm
-                        ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}
-                      `}
+                      className={`${ibm.className} text-center text-xs leading-relaxed transition-all duration-500 max-w-sm ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}`}
                     >
                       {isSubmitted
-                        ? "Thank you! We've received your message and will be in touch shortly."
+                        ? "Thank you! We've received your submission and will be in touch within 6 hours."
                         : "By submitting, you agree to our privacy policy. We will get back to you within 6 hours. You can call us directly if it's urgent."}
                     </p>
                   </div>
