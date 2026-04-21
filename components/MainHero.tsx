@@ -194,7 +194,7 @@ export default function MainHero() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className={`relative flex min-h-[calc(100vh-5rem)] pt-6 pb-12 md:py-20 w-full items-center overflow-hidden bg-slate-950 ${sora.className}`}>
+    <div ref={containerRef} className={`relative flex min-h-[calc(100vh-5rem)] pt-6 pb-12 md:py-32 w-full items-center overflow-hidden bg-slate-950 ${sora.className}`}>
       
       {/* Background Ambient Layers (Brand Colors) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
