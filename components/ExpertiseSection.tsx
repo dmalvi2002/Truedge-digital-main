@@ -1,4 +1,4 @@
-import { Code2, LayoutTemplate, Smartphone } from "lucide-react";
+import { Code2, LayoutTemplate, Smartphone, BrainCircuit } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
@@ -33,19 +33,27 @@ export default function ExpertiseSection() {
             
             {/* Left Content */}
             <div className="relative z-10 max-w-2xl lg:w-3/5">
-              <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/20 shadow-[0_0_20px_rgba(139,92,246,0.2)]">
-                <Code2 size={28} className="text-violet-400" />
-              </div>
-              <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>SaaS & Bespoke Web Engineering</h3>
-              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-lg`}>
-                We abandon slow, bloated templates. We architect custom SaaS platforms, cloud applications, and lightning-fast enterprise websites using Next.js and modern tech stacks.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-5 py-2 text-xs font-bold tracking-wide text-violet-300 shadow-sm">Next.js & Python</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">Custom Web Apps</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">Cloud Architecture</span>
-              </div>
-            </div>
+  <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/20 shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+    <BrainCircuit size={28} className="text-violet-400" />
+  </div>
+  <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>
+    Enterprise AI & Agentic Solutions
+  </h3>
+  <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-md lg:text-lg`}>
+    We engineer infinitely scalable AI SaaS platforms, autonomous agentic workflows, and high-performance cloud applications deployed on enterprise-grade LLM infrastructure.
+  </p>
+  <div className="flex flex-wrap gap-3">
+    <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-5 py-2 text-xs font-bold tracking-wide text-violet-300 shadow-sm">
+      RAG & LLM Pipelines
+    </span>
+    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
+      Agentic Workflows
+    </span>
+    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
+      Distributed Cloud
+    </span>
+  </div>
+</div>
 
             {/* Right Abstract Graphic: Code Terminal Fade */}
             <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 perspective-1000">
@@ -69,20 +77,30 @@ export default function ExpertiseSection() {
           <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 sm:p-12 lg:flex-row-reverse lg:items-center lg:justify-between transition-all duration-500 hover:border-emerald-500/40 hover:bg-white/[0.04]">
             
             {/* Right Content (appears on left on mobile, right on desktop due to flex-row-reverse) */}
-            <div className="relative z-10 max-w-2xl lg:w-3/5">
-              <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-                <LayoutTemplate size={28} className="text-emerald-400" />
-              </div>
-              <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>Conversion-Driven UI/UX</h3>
-              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-lg`}>
-                Beautiful design is useless if it doesn't sell. We engineer user journeys based on hard data and cognitive psychology to turn your passive traffic into paying clients.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5 py-2 text-xs font-bold tracking-wide text-emerald-300 shadow-sm">User Psychology</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">Framer Motion</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">Interactive Prototyping</span>
-              </div>
-            </div>
+            {/* Bespoke service content */}
+// Content updated, original formatting retained
+<div className="relative z-10 max-w-2xl lg:w-3/5">
+  <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+    <Code2 size={28} className="text-emerald-400" />
+  </div>
+  <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>
+    Bespoke Web Development
+  </h3>
+  <p className={`${ibmPlexSans.className} mb-8 text-md lg:text-lg leading-relaxed text-slate-400`}>
+    We build bespoke, high-performance websites tailored to your exact business needs. We do not use standard templates, focusing instead on clean code and engaging design to ensure your brand stands out and is fully optimised for growth.
+  </p>
+  <div className="flex flex-wrap gap-3">
+    <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5 py-2 text-xs font-bold tracking-wide text-emerald-300 shadow-sm">
+      Custom Next.js
+    </span>
+    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
+      Tailored Design
+    </span>
+    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
+      Fully Optimised
+    </span>
+  </div>
+</div>
 
             {/* Left Abstract Graphic: Floating UI Wireframes */}
             <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0">
@@ -110,7 +128,7 @@ export default function ExpertiseSection() {
                 <Smartphone size={28} className="text-cyan-400" />
               </div>
               <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>Mobile App Development</h3>
-              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-lg`}>
+              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-md lg:text-lg`}>
                 Put your business directly into the pockets of your customers. We build flawless, native-feeling iOS and Android applications that scale effortlessly.
               </p>
               <div className="flex flex-wrap gap-3">
