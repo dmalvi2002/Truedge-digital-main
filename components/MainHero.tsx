@@ -217,14 +217,14 @@ export default function MainHero() {
             
             <div className="contents lg:flex lg:flex-col lg:w-[45%] lg:justify-center">
                
-               <div className="order-1 lg:order-none w-full flex flex-col mt-4 lg:mt-0">
+               <div className="order-1 lg:order-none w-full flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left mt-4 lg:mt-0">
                   <div className="stagger-text inline-flex mb-4 md:mb-6">
                      <span className="rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 md:px-4 text-[10px] md:text-xs font-semibold tracking-wide text-violet-300 backdrop-blur-sm">
                         {activeSlide.tag}
                      </span>
                   </div>
 
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.1] tracking-tight text-white mb-4 md:mb-6 pr-0 md:pr-4">
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.1] tracking-tight text-white mb-4 md:mb-6 pr-0 lg:pr-4">
                      <div className="stagger-text font-light text-slate-300">{activeSlide.titleLight}</div>
                      <div className="stagger-text font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-slate-400">
                         {activeSlide.titleBold}
@@ -236,8 +236,8 @@ export default function MainHero() {
                   </p>
                </div>
 
-               <div className="order-3 lg:order-none w-full flex flex-col justify-start mt-6 lg:mt-10">
-                  <div className="stagger-text flex flex-col sm:flex-row items-center sm:items-start gap-4">
+               <div className="order-3 lg:order-none w-full flex flex-col items-start md:items-center lg:items-start justify-start mt-6 lg:mt-10">
+                  <div className="stagger-text flex flex-col sm:flex-row items-center sm:items-start md:justify-center lg:justify-start gap-4 w-full sm:w-auto">
                      <Link
                         href="/contact"
                         className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-6 py-3.5 md:px-8 md:py-4 text-sm md:text-base font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(124,58,237,0.6)]"
@@ -253,7 +253,7 @@ export default function MainHero() {
                      </Link>
                   </div>
 
-                  <div className="stagger-text mt-8 md:mt-12 flex items-center gap-3 w-full">
+                  <div className="stagger-text mt-8 md:mt-12 flex items-center justify-start md:justify-center lg:justify-start gap-3 w-full">
                      {slides.map((_, idx) => (
                         <button
                            key={idx}
