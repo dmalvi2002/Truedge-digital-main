@@ -42,3 +42,4 @@ next-env.d.ts
 
 # local AI prompt notes
 AI_PAGE_INSTRUCTIONS.md
+.claude/worktrees/frosty-chebyshev-8ea138/

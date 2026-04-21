@@ -281,11 +281,10 @@ export default function StackRevealSection() {
           </div>
 
           {/* Headline */}
-          <h2 className="srs-head w-full text-[2rem] min-[400px]:text-4xl md:text-5xl lg:text-[3.75rem] font-semibold leading-[1.15] text-slate-900 tracking-tight break-words">
-            The infrastructure powering
-            <br className="hidden md:block" />
+          <h2 className="srs-head w-full text-[2rem] min-[400px]:text-4xl md:text-5xl font-semibold leading-[1.15] text-slate-900 tracking-tight break-words">
+            Built on the Infrastructure That Powers
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-600 via-violet-500 to-indigo-600">
-              {" "}enterprise AI solutions.
+              {" "}The World's Most Advanced Software
             </span>
           </h2>
 
@@ -297,7 +296,7 @@ export default function StackRevealSection() {
         </div>
 
         {/* ── LAYER CONNECTOR (Now fully responsive) ── */}
-        <div className="flex items-center gap-0 mt-4 lg:-mt-10 mb-2 px-4 sm:px-12 lg:px-[calc(100%/6-1rem)]">
+        <div className="hidden lg:flex items-center gap-0 mt-4 lg:-mt-10 mb-2 px-4 sm:px-12 lg:px-[calc(100%/6-1rem)]">
           <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
             <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
             <span className="font-mono text-[8px] uppercase tracking-widest text-emerald-600/50">L1</span>
