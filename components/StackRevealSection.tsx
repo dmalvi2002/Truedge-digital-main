@@ -46,7 +46,7 @@ const tiers = [
     },
     description: "Multi-layered agentic workflows and dynamic semantic routing at enterprise scale.",
     tech: [
-      { name: "GPT-4o",           on: true  },
+      { name: "GPT-4o",          on: true  },
       { name: "Claude 3.5 Sonnet",on: true  },
       { name: "Gemini 1.5 Pro",   on: true  },
       { name: "LangChain",        on: false },
@@ -132,25 +132,20 @@ const tiers = [
 // ─── ABSTRACT SVG GRAPHICS ───────────────────────────────────────────────────
 const NeuralGraphic = () => (
   <svg viewBox="0 0 180 160" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1">
-    {/* Input nodes */}
     {[30, 70, 110].map((cy, i) => (
       <circle key={i} cx="24" cy={cy} r="6" strokeOpacity="0.9" />
     ))}
-    {/* Hidden nodes */}
     {[20, 55, 90, 125].map((cy, i) => (
       <circle key={i} cx="90" cy={cy} r="6" strokeOpacity="0.9" />
     ))}
-    {/* Output nodes */}
     {[45, 95].map((cy, i) => (
       <circle key={i} cx="156" cy={cy} r="6" strokeOpacity="0.9" />
     ))}
-    {/* Input → Hidden connections */}
     {[30, 70, 110].flatMap((sy) =>
       [20, 55, 90, 125].map((ey, j) => (
         <line key={`${sy}-${ey}`} x1="30" y1={sy} x2="84" y2={ey} strokeOpacity="0.35" />
       ))
     )}
-    {/* Hidden → Output connections */}
     {[20, 55, 90, 125].flatMap((sy) =>
       [45, 95].map((ey) => (
         <line key={`${sy}-${ey}`} x1="96" y1={sy} x2="150" y2={ey} strokeOpacity="0.35" />
@@ -262,27 +257,31 @@ export default function StackRevealSection() {
       />
       {/* Radial vignette masks the grid at edges */}
       <div className="absolute inset-0 pointer-events-none z-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_50%,transparent_20%,#F8FAFF_80%)]" />
-      {/* Ambient center bloom */}
-      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] rounded-full bg-violet-400/[0.06] blur-[140px] pointer-events-none z-0" />
+      
+      {/* ── RESPONSIVE AMBIENT BLOOM ── */}
+      <div className="absolute left-1/2 top-1/4 sm:top-1/3 -translate-x-1/2 -translate-y-1/2 w-[120vw] sm:w-[900px] h-[300px] sm:h-[500px] rounded-full bg-violet-400/[0.06] blur-[100px] sm:blur-[140px] pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-20 lg:gap-28">
+      {/* ── RESPONSIVE HEADER GAP ── */}
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-12 sm:gap-20 lg:gap-28">
 
-        {/* ── HEADER ── */}
-        <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
+        {/* ── HEADER (Untouched alignment per directive) ── */}
+        {/* ── HEADER (Responsive Patch Deployed) ── */}
+        <div className="flex flex-col items-start text-left gap-5 sm:gap-6 w-full max-w-3xl mx-auto sm:items-center sm:text-center">
 
           {/* Status pill */}
-          <div className="srs-head inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-sm font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500 w-max">
+          {/* Status pill */}
+          <div className="srs-head inline-flex items-center whitespace-nowrap gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-slate-200/80 shadow-sm font-mono text-[8px] min-[375px]:text-[9px] sm:text-[10px] uppercase tracking-wider sm:tracking-[0.2em] text-slate-500 w-fit max-w-full overflow-hidden">
             <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40 animate-ping" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
             </span>
-            <span>System Architecture</span>
-            <span className="text-slate-300">·</span>
-            <span className="text-emerald-600">All Systems Operational</span>
+            <span className="truncate">System Architecture</span>
+            <span className="text-slate-300 flex-shrink-0">·</span>
+            <span className="text-emerald-600 truncate">All Systems Operational</span>
           </div>
 
           {/* Headline */}
-          <h2 className="srs-head text-4xl md:text-5xl lg:text-[3.75rem] font-semibold leading-[1.06] tracking-tight text-slate-900">
+          <h2 className="srs-head w-full text-[2rem] min-[400px]:text-4xl md:text-5xl lg:text-[3.75rem] font-semibold leading-[1.15] text-slate-900 tracking-tight break-words">
             The infrastructure powering
             <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-600 via-violet-500 to-indigo-600">
@@ -291,14 +290,14 @@ export default function StackRevealSection() {
           </h2>
 
           {/* Subtext */}
-          <p className="srs-head text-lg md:text-[1.2rem] text-slate-500 leading-relaxed font-light max-w-2xl">
+          <p className="srs-head w-full text-sm min-[400px]:text-base sm:text-lg md:text-[1.2rem] text-slate-500 leading-relaxed font-light max-w-xl sm:max-w-2xl">
             We engineer on the exact same foundation used by the world&apos;s most advanced software
             companies. No templates. No shortcuts. No compromise.
           </p>
         </div>
 
-        {/* ── LAYER CONNECTOR (desktop) ── */}
-        <div className="hidden lg:flex items-center gap-0 -mt-10 mb-2 px-[calc(100%/6-1rem)]">
+        {/* ── LAYER CONNECTOR (Now fully responsive) ── */}
+        <div className="flex items-center gap-0 mt-4 lg:-mt-10 mb-2 px-4 sm:px-12 lg:px-[calc(100%/6-1rem)]">
           <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
             <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
             <span className="font-mono text-[8px] uppercase tracking-widest text-emerald-600/50">L1</span>
@@ -320,7 +319,7 @@ export default function StackRevealSection() {
         </div>
 
         {/* ── CARDS ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 xl:gap-7 w-full -mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 xl:gap-7 w-full mt-4 lg:-mt-12">
           {tiers.map((tier) => {
             const { c } = tier;
             const Graphic = graphics[tier.id];
