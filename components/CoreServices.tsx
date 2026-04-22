@@ -1,7 +1,7 @@
 "use client";
 
 import { Sora, IBM_Plex_Sans } from "next/font/google";
-import { Code2, Database, Smartphone, CheckCircle2, Terminal, Zap, Layers } from "lucide-react";
+import { Code2, Smartphone, CheckCircle2, Terminal, Zap, Layers } from "lucide-react";
 import Link from "next/link";
 
 const sora = Sora({ subsets: ["latin"], weight: ["600", "700"] });
@@ -23,57 +23,83 @@ export default function CoreServices() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-24 md:mb-32 max-w-2xl">
+        <div className="mb-6 md:mb-32 max-w-2xl">
           <h2 className={`${sora.className} text-3xl md:text-5xl font-bold tracking-tight text-white mb-6`}>
             The Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400">Trinity.</span>
           </h2>
           <p className={`${ibm.className} text-lg text-slate-400 leading-relaxed`}>
-            We do not use drag-and-drop builders. Every digital asset is hand-coded using modern, 
-            scalable architectures to ensure maximum speed, bulletproof security, and aggressive conversion rates.
+            No templates. No page builders. No shortcuts. Every line of code is hand-crafted using battle-tested architectures — engineered to deliver the speed, security, and scalable ROI that off-the-shelf solutions simply cannot.
           </p>
         </div>
 
         {/* --- THE CARDS --- */}
         <div className="flex flex-col gap-24 lg:gap-32">
 
-          {/* 1. BESPOKE WEB ENGINEERING */}
-          <div className="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            
+          {/* 1. SAAS & CLOUD SOFTWARE (Reversed Layout) */}
+          <div className="group relative flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+
+            {/* Visual Right: Pure CSS Node Graph */}
+            <div className="w-full lg:w-1/2 relative h-[400px] flex items-center justify-center">
+              <div className="relative w-64 h-64 flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
+                {/* Central Server Node */}
+                <div className="relative z-20 h-20 w-20 rounded-2xl border border-indigo-400/50 bg-indigo-900/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_50px_rgba(99,102,241,0.3)]">
+                  <span className="text-indigo-400 text-2xl font-black animate-pulse tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>AI</span>
+                </div>
+                
+                {/* Orbiting Nodes (CSS magic) */}
+                <div className="absolute inset-0 border border-slate-700 rounded-full animate-[spin_10s_linear_infinite]">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-slate-800 border border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-slate-800 border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)]"></div>
+                </div>
+                <div className="absolute inset-[-2rem] border border-slate-800 rounded-full animate-[spin_15s_linear_infinite_reverse]">
+                  <div className="absolute top-1/2 -left-3 -translate-y-1/2 h-6 w-6 rounded-full bg-slate-800 border border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                </div>
+                
+                {/* Connecting Laser Lines */}
+                <div className="absolute z-0 w-[200%] h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent rotate-45"></div>
+                <div className="absolute z-0 w-[200%] h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent -rotate-45"></div>
+              </div>
+            </div>
+
             {/* Content Left */}
             <div className="w-full lg:w-1/2 flex flex-col items-start space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2">
-                <Code2 size={16} className="text-purple-400" />
-                <span className={`${ibm.className} text-xs font-bold tracking-wider text-purple-300 uppercase`}>Next.js & Bespoke CMS</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2">
+                <span className="text-indigo-400 text-xs font-black tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>AI</span>
+                <span className={`${ibm.className} text-xs font-bold tracking-wider text-indigo-300 uppercase`}>Enterprise AI & Cloud</span>
               </div>
-              
+
               <h3 className={`${sora.className} text-3xl sm:text-4xl font-bold`}>
-                High-Performance Web Assets
+                AI-Powered SaaS Platforms
               </h3>
-              
+
               <p className={`${ibm.className} text-slate-400 text-lg leading-relaxed`}>
-                Your website is your primary revenue engine. We build lightning-fast, highly optimised web applications that score 99+ on Core Web Vitals. We strip away the bloat so your users get exactly what they want, instantly.
+                From autonomous agentic workflows to multi-tenant SaaS platforms — we engineer the LLM pipelines, RAG systems, and custom APIs that power software handling thousands of concurrent users without breaking a sweat.
               </p>
 
               {/* The "Engineering Standard" Grid */}
               <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-white/10 pt-8">
                 <div className="flex items-start gap-3">
-                  <Terminal size={18} className="text-purple-400 mt-1" />
+                  <Layers size={18} className="text-indigo-400 mt-1" />
                   <div>
-                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Strict Type Safety</h4>
-                    <p className="text-sm text-slate-500 mt-1">100% TypeScript. Zero runtime errors.</p>
+                    <h4 className={`${ibm.className} font-bold text-slate-200`}>RAG & LLM Pipelines</h4>
+                    <p className="text-sm text-slate-500 mt-1">Custom retrieval-augmented generation built on your data.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Zap size={18} className="text-amber-400 mt-1" />
+                  <CheckCircle2 size={18} className="text-emerald-400 mt-1" />
                   <div>
-                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Edge Rendering</h4>
-                    <p className="text-sm text-slate-500 mt-1">Server-side execution for instant loads.</p>
+                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Zero-Downtime Scaling</h4>
+                    <p className="text-sm text-slate-500 mt-1">Auto-scaling cloud infrastructure that grows with you.</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          
+          {/* 2. BESPOKE WEB ENGINEERING */}
+          <div className="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
-            {/* Visual Right: Floating Code Editor (Pure CSS) */}
+            {/* Visual Left: Floating Code Editor (Pure CSS) */}
             <div className="w-full lg:w-1/2 relative h-[400px] perspective-[1000px] flex items-center justify-center">
               {/* Outer Glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent blur-2xl rounded-full transition-opacity duration-500 group-hover:opacity-100 opacity-50"></div>
@@ -102,65 +128,38 @@ export default function CoreServices() {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* 2. SAAS & CLOUD SOFTWARE (Reversed Layout) */}
-          <div className="group relative flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
-            
             {/* Content Right */}
             <div className="w-full lg:w-1/2 flex flex-col items-start space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2">
-                <Database size={16} className="text-indigo-400" />
-                <span className={`${ibm.className} text-xs font-bold tracking-wider text-indigo-300 uppercase`}>Cloud Architecture</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2">
+                <Code2 size={16} className="text-purple-400" />
+                <span className={`${ibm.className} text-xs font-bold tracking-wider text-purple-300 uppercase`}>Next.js & Bespoke CMS</span>
               </div>
-              
+
               <h3 className={`${sora.className} text-3xl sm:text-4xl font-bold`}>
-                Scalable SaaS Platforms
+                High-Performance Websites
               </h3>
-              
+
               <p className={`${ibm.className} text-slate-400 text-lg leading-relaxed`}>
-                From bespoke B2B2C reseller architectures to multi-tenant HR systems. We engineer the complex logic, secure databases, and custom APIs required to build software that handles thousands of concurrent users flawlessly.
+                Your website is your hardest-working salesperson. We engineer lightning-fast, meticulously optimised web applications that score 99+ on Core Web Vitals — stripping every byte of bloat so your audience converts, not bounces.
               </p>
 
               {/* The "Engineering Standard" Grid */}
               <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-white/10 pt-8">
                 <div className="flex items-start gap-3">
-                  <Layers size={18} className="text-indigo-400 mt-1" />
+                  <Terminal size={18} className="text-purple-400 mt-1" />
                   <div>
-                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Multi-Tenant Logic</h4>
-                    <p className="text-sm text-slate-500 mt-1">Isolated data schemas for elite security.</p>
+                    <h4 className={`${ibm.className} font-bold text-slate-200`}>100% TypeScript</h4>
+                    <p className="text-sm text-slate-500 mt-1">Strict type safety with zero runtime surprises.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="text-emerald-400 mt-1" />
+                  <Zap size={18} className="text-amber-400 mt-1" />
                   <div>
-                    <h4 className={`${ibm.className} font-bold text-slate-200`}>O(1) Optimisation</h4>
-                    <p className="text-sm text-slate-500 mt-1">Database queries built to scale infinitely.</p>
+                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Edge-First Rendering</h4>
+                    <p className="text-sm text-slate-500 mt-1">Pages served globally in under 100ms.</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Visual Left: Pure CSS Node Graph */}
-            <div className="w-full lg:w-1/2 relative h-[400px] flex items-center justify-center">
-              <div className="relative w-64 h-64 flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
-                {/* Central Server Node */}
-                <div className="relative z-20 h-20 w-20 rounded-2xl border border-indigo-400/50 bg-indigo-900/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_50px_rgba(99,102,241,0.3)]">
-                  <Database size={32} className="text-indigo-400 animate-pulse" />
-                </div>
-                
-                {/* Orbiting Nodes (CSS magic) */}
-                <div className="absolute inset-0 border border-slate-700 rounded-full animate-[spin_10s_linear_infinite]">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-slate-800 border border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-6 w-6 rounded-full bg-slate-800 border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)]"></div>
-                </div>
-                <div className="absolute inset-[-2rem] border border-slate-800 rounded-full animate-[spin_15s_linear_infinite_reverse]">
-                  <div className="absolute top-1/2 -left-3 -translate-y-1/2 h-6 w-6 rounded-full bg-slate-800 border border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
-                </div>
-                
-                {/* Connecting Laser Lines */}
-                <div className="absolute z-0 w-[200%] h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent rotate-45"></div>
-                <div className="absolute z-0 w-[200%] h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent -rotate-45"></div>
               </div>
             </div>
           </div>
@@ -172,15 +171,15 @@ export default function CoreServices() {
             <div className="w-full lg:w-1/2 flex flex-col items-start space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
                 <Smartphone size={16} className="text-emerald-400" />
-                <span className={`${ibm.className} text-xs font-bold tracking-wider text-emerald-300 uppercase`}>Native iOS & Android</span>
+                <span className={`${ibm.className} text-xs font-bold tracking-wider text-emerald-300 uppercase`}>iOS & Android</span>
               </div>
-              
+
               <h3 className={`${sora.className} text-3xl sm:text-4xl font-bold`}>
                 Pocket-Sized Powerhouses
               </h3>
-              
+
               <p className={`${ibm.className} text-slate-400 text-lg leading-relaxed`}>
-                We do not build clunky web-wrappers. We engineer true native applications utilizing React Native and Swift to deliver high fps gesture-driven experiences that feel right at home on flagship devices.
+                We don't ship glorified web wrappers. We engineer true native experiences with React Native — fluid gesture-driven UIs, seamless API integrations, and buttery-smooth performance that feels right at home on any device.
               </p>
 
               {/* The "Engineering Standard" Grid */}
@@ -188,15 +187,15 @@ export default function CoreServices() {
                 <div className="flex items-start gap-3">
                   <Smartphone size={18} className="text-emerald-400 mt-1" />
                   <div>
-                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Native Threading</h4>
-                    <p className="text-sm text-slate-500 mt-1">Direct bridge to device hardware.</p>
+                    <h4 className={`${ibm.className} font-bold text-slate-200`}>Cross-Platform Native</h4>
+                    <p className="text-sm text-slate-500 mt-1">One codebase, full native feel on iOS and Android.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Zap size={18} className="text-rose-400 mt-1" />
                   <div>
                     <h4 className={`${ibm.className} font-bold text-slate-200`}>60fps UI/UX</h4>
-                    <p className="text-sm text-slate-500 mt-1">Silky smooth transitions and gestures.</p>
+                    <p className="text-sm text-slate-500 mt-1">Hardware-accelerated animations, no compromises.</p>
                   </div>
                 </div>
               </div>

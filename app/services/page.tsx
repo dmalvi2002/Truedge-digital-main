@@ -11,6 +11,14 @@ import ServicesCTA from "@/components/ServicesCTA";
 import FaqSection from "@/components/FaqSection";
 import { servicesFaqs } from "@/data/servicesFaqs";
 
+const serviceSnippets = [
+  'buildProject({ type: "SaaS" })',
+  'deployApp({ target: "cloud" })',
+  'engineerUI({ perf: "A+" })',
+  'scaleInfra({ nodes: "auto" })',
+  'shipFaster({ quality: true })',
+];
+
 // Font Configuration
 const sora = Sora({
   subsets: ["latin"],
@@ -26,6 +34,27 @@ export default function ServicesHero() {
   // Simple state for hydration check to ensure animations match server/client
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => setIsMounted(true), []);
+
+  const [lineIndex, setLineIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentLine = serviceSnippets[lineIndex];
+    let t: ReturnType<typeof setTimeout>;
+    if (!isDeleting && charIndex < currentLine.length) {
+      t = setTimeout(() => { setDisplayText(currentLine.slice(0, charIndex + 1)); setCharIndex(c => c + 1); }, 65);
+    } else if (!isDeleting && charIndex === currentLine.length) {
+      t = setTimeout(() => setIsDeleting(true), 1800);
+    } else if (isDeleting && charIndex > 0) {
+      t = setTimeout(() => { setDisplayText(currentLine.slice(0, charIndex - 1)); setCharIndex(c => c - 1); }, 35);
+    } else {
+      setIsDeleting(false);
+      setLineIndex(i => (i + 1) % serviceSnippets.length);
+    }
+    return () => clearTimeout(t);
+  }, [charIndex, isDeleting, lineIndex]);
 
   return (
     <div>
@@ -108,7 +137,7 @@ export default function ServicesHero() {
             </div>
 
             {/* --- RIGHT COLUMN: The 3D Tech Ecosystem --- */}
-            <div className="lg:col-span-6 xl:col-span-7 relative w-full md:w-[90%] h-[400px] sm:h-[500px] lg:h-[550px] group cursor-pointer perspective-[1200px] flex items-center justify-center lg:justify-end mt-8 lg:ml-20 lg:mt-0 scale-[0.9] sm:scale-100 origin-center lg:origin-right transition-transform duration-500">
+            <div className="lg:col-span-6 xl:col-span-7 relative w-full md:w-[90%] h-[400px] sm:h-[500px] lg:h-[550px] group perspective-[1200px] flex items-center justify-center lg:justify-end mt-8 lg:ml-20 lg:mt-0 scale-[0.9] sm:scale-100 origin-center lg:origin-right transition-transform duration-500">
               {/* The Main Web Dashboard (Glassmorphism) - Scaled Down */}
               <div className="absolute right-2 sm:right-8 lg:right-12 top-4 sm:top-20 w-[85%] sm:w-2/3 h-60 sm:h-72 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all duration-700 ease-out [transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] group-hover:[transform:rotateY(-10deg)_rotateX(2deg)_translateY(-10px)_translateZ(20px)] group-hover:shadow-[0_30px_60px_rgba(147,51,234,0.1)] z-10">
                 {/* macOS Style Browser Header */}
@@ -118,12 +147,46 @@ export default function ServicesHero() {
                   <div className="h-3 w-3 rounded-full bg-emerald-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]"></div>
                 </div>
 
-                {/* Dashboard Wireframe Elements */}
-                <div className="p-4 sm:p-5 flex gap-4 h-[calc(100%-3rem)]">
-                  <div className="w-1/3 h-full rounded-lg bg-white/50 border border-white/40"></div>
-                  <div className="w-2/3 h-full flex flex-col gap-3">
-                    <div className="w-full h-1/3 rounded-lg bg-purple-500/10 border border-purple-500/20 animate-pulse"></div>
-                    <div className="w-full h-2/3 rounded-lg bg-white/50 border border-white/40"></div>
+                {/* Code Editor — light mode */}
+                <div className="flex h-[calc(100%-3rem)] overflow-hidden rounded-b-2xl">
+                  {/* File sidebar */}
+                  <div className="w-[30%] bg-slate-50 border-r border-slate-200 p-2 flex flex-col gap-1">
+                    <div className="text-[7px] text-slate-400 font-mono px-1 mb-1 tracking-widest">EXPLORER</div>
+                    {[["index.tsx", true], ["api.ts", false], ["styles.css", false]].map(([f, active]) => (
+                      <div key={String(f)} className={`flex items-center gap-1.5 px-1.5 py-1 rounded text-[8px] font-mono ${active ? "bg-purple-100 text-purple-700" : "text-slate-400"}`}>
+                        <div className={`h-1.5 w-1.5 rounded-sm shrink-0 ${active ? "bg-purple-500" : "bg-slate-300"}`}></div>
+                        {String(f)}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Code content */}
+                  <div className="w-[70%] bg-white p-3 font-mono text-[9px] leading-relaxed space-y-1.5 overflow-hidden">
+                    <div className="flex gap-2">
+                      <span className="text-slate-300 select-none">1</span>
+                      <span><span className="text-purple-600">import </span><span className="text-slate-700">&#123; build &#125;</span><span className="text-purple-600"> from </span><span className="text-amber-600">&apos;truedge&apos;</span></span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-slate-300 select-none">2</span>
+                      <div className="h-1.5 w-14 rounded bg-slate-100 mt-1"></div>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-slate-300 select-none">3</span>
+                      <span>
+                        <span className="text-purple-600">const </span>
+                        <span className="text-blue-600">app</span>
+                        <span className="text-slate-500"> = </span>
+                        <span className="text-emerald-600">{displayText}</span>
+                        <span className="inline-block w-[2px] h-[9px] bg-purple-500 animate-pulse align-middle ml-px"></span>
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-slate-300 select-none">4</span>
+                      <div className="h-1.5 w-10 rounded bg-slate-100 mt-1"></div>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-slate-300 select-none">5</span>
+                      <div className="h-1.5 w-20 rounded bg-slate-100 mt-1"></div>
+                    </div>
                   </div>
                 </div>
 
@@ -149,12 +212,18 @@ export default function ServicesHero() {
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 p-3 pt-10 sm:pt-12 flex flex-col gap-3">
                     <div className="h-24 sm:h-28 w-full rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 p-3 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
                       <div className="absolute -right-4 -bottom-4 h-16 sm:h-20 w-16 sm:w-20 rounded-full bg-white/10 blur-xl"></div>
-                      <div className="h-3 w-1/2 bg-white/20 rounded mb-2"></div>
-                      <div className="h-6 w-3/4 bg-white/30 rounded"></div>
+                      <p className="text-[9px] sm:text-[10px] font-semibold text-white/60 mb-1 tracking-widest uppercase">TruEdge App</p>
+                      <p className="text-[15px] sm:text-lg font-black text-white leading-tight">Grow<br/>Faster.</p>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="h-14 sm:h-16 rounded-xl bg-white/5"></div>
-                      <div className="h-14 sm:h-16 rounded-xl bg-white/5"></div>
+                      <div className="h-14 sm:h-16 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center justify-center gap-0.5">
+                        <span className="text-[10px] sm:text-xs font-black text-white">12.4k</span>
+                        <span className="text-[7px] sm:text-[8px] text-white/40 font-medium">Users</span>
+                      </div>
+                      <div className="h-14 sm:h-16 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center justify-center gap-0.5">
+                        <span className="text-[10px] sm:text-xs font-black text-white">£48k</span>
+                        <span className="text-[7px] sm:text-[8px] text-white/40 font-medium">Revenue</span>
+                      </div>
                     </div>
                   </div>
                 </div>
