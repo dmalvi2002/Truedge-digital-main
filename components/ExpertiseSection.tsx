@@ -77,8 +77,6 @@ export default function ExpertiseSection() {
           <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 sm:p-12 lg:flex-row-reverse lg:items-center lg:justify-between transition-all duration-500 hover:border-emerald-500/40 hover:bg-white/[0.04]">
             
             {/* Right Content (appears on left on mobile, right on desktop due to flex-row-reverse) */}
-            {/* Bespoke service content */}
-// Content updated, original formatting retained
 <div className="relative z-10 max-w-2xl lg:w-3/5">
   <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
     <Code2 size={28} className="text-emerald-400" />
