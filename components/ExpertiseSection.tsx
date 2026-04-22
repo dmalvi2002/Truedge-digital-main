@@ -380,7 +380,7 @@ export default function ExpertiseSection() {
     Enterprise AI & Agentic Solutions
   </h3>
   <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-md lg:text-lg`}>
-    We engineer infinitely scalable AI SaaS platforms, autonomous agentic workflows, and high-performance cloud applications deployed on enterprise-grade LLM infrastructure.
+    We engineer AI-powered smart software, autonomous agentic solutions, and smart kiosk hardware installations. All built on enterprise-grade infrastructure and designed to scale without limits.
   </p>
   <div className="flex flex-wrap gap-3">
     <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-5 py-2 text-xs font-bold tracking-wide text-violet-300 shadow-sm">

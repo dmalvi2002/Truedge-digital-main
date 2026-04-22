@@ -30,7 +30,7 @@ const slides: SlideData[] = [
     tag: "AI Architecture",
     titleLight: "Intelligent AI",
     titleBold: "Automation.",
-    description: "Deploy autonomous conversational agents and AI sales assistants. We engineer intelligent systems that scale your operations infinitely.",
+    description: "From AI-powered smart software and autonomous agentic solutions to smart kiosk hardware installations — we engineer intelligent systems that scale your operations infinitely.",
     icons: [<Bot key="1" size={20} />, <Sparkles key="2" size={20} />, <Fingerprint key="3" size={20} />],
     imageType: "single",
     image: "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1776742034/slider-1_kfz1u2.webp",
