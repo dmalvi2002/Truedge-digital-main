@@ -87,6 +87,148 @@ function TypingAnimation() {
   );
 }
 
+function ChipGraphic() {
+  return (
+    <div className="relative flex items-center justify-center w-full h-full">
+      <div className="absolute h-52 w-52 rounded-full bg-violet-600/20 blur-[60px] animate-pulse"></div>
+      <svg viewBox="0 0 340 260" className="w-full max-w-[340px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="chip-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="text-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="7" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="dot-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        {/* Circuit traces */}
+        <g stroke="#6d28d9" strokeWidth="1.2" strokeOpacity="0.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M 145 80 L 145 55 L 90 55" />
+          <path d="M 170 80 L 170 20" />
+          <path d="M 195 80 L 195 55 L 250 55" />
+          <path d="M 145 180 L 145 215 L 85 215" />
+          <path d="M 170 180 L 170 245" />
+          <path d="M 195 180 L 195 215 L 255 215" />
+          <path d="M 120 100 L 65 100 L 65 45" />
+          <path d="M 120 130 L 30 130" />
+          <path d="M 120 160 L 65 160 L 65 215" />
+          <path d="M 220 100 L 275 100 L 275 45" />
+          <path d="M 220 130 L 310 130" />
+          <path d="M 220 160 L 275 160 L 275 215" />
+        </g>
+
+        {/* Endpoint pads */}
+        <g fill="#7c3aed" fillOpacity="0.8" filter="url(#chip-glow)">
+          <rect x="87" y="52" width="6" height="6" rx="1.5" />
+          <rect x="167" y="17" width="6" height="6" rx="1.5" />
+          <rect x="247" y="52" width="6" height="6" rx="1.5" />
+          <rect x="82" y="212" width="6" height="6" rx="1.5" />
+          <rect x="167" y="242" width="6" height="6" rx="1.5" />
+          <rect x="252" y="212" width="6" height="6" rx="1.5" />
+          <rect x="62" y="42" width="6" height="6" rx="1.5" />
+          <rect x="27" y="127" width="6" height="6" rx="1.5" />
+          <rect x="62" y="212" width="6" height="6" rx="1.5" />
+          <rect x="272" y="42" width="6" height="6" rx="1.5" />
+          <rect x="307" y="127" width="6" height="6" rx="1.5" />
+          <rect x="272" y="212" width="6" height="6" rx="1.5" />
+        </g>
+
+        {/* Outer pulsing ring */}
+        <rect x="112" y="72" width="116" height="116" rx="12" fill="none" stroke="#8b5cf6" strokeWidth="1">
+          <animate attributeName="stroke-opacity" values="0.08;0.45;0.08" dur="2.8s" repeatCount="indefinite" />
+          <animate attributeName="stroke-width" values="1;2;1" dur="2.8s" repeatCount="indefinite" />
+        </rect>
+
+        {/* Chip body */}
+        <rect x="120" y="80" width="100" height="100" rx="8" fill="#0c0a1e" stroke="#7c3aed" strokeWidth="1.5" />
+
+        {/* Inner die grid */}
+        <g stroke="#1e1b4b" strokeWidth="0.6" strokeOpacity="0.9">
+          <line x1="140" y1="82" x2="140" y2="178" />
+          <line x1="160" y1="82" x2="160" y2="178" />
+          <line x1="180" y1="82" x2="180" y2="178" />
+          <line x1="200" y1="82" x2="200" y2="178" />
+          <line x1="122" y1="100" x2="218" y2="100" />
+          <line x1="122" y1="120" x2="218" y2="120" />
+          <line x1="122" y1="140" x2="218" y2="140" />
+          <line x1="122" y1="160" x2="218" y2="160" />
+        </g>
+
+        {/* Chip pins */}
+        <g fill="#4c1d95">
+          <rect x="142" y="77" width="7" height="5" rx="1" />
+          <rect x="167" y="77" width="7" height="5" rx="1" />
+          <rect x="192" y="77" width="7" height="5" rx="1" />
+          <rect x="142" y="178" width="7" height="5" rx="1" />
+          <rect x="167" y="178" width="7" height="5" rx="1" />
+          <rect x="192" y="178" width="7" height="5" rx="1" />
+          <rect x="117" y="97" width="5" height="7" rx="1" />
+          <rect x="117" y="127" width="5" height="7" rx="1" />
+          <rect x="117" y="157" width="5" height="7" rx="1" />
+          <rect x="218" y="97" width="5" height="7" rx="1" />
+          <rect x="218" y="127" width="5" height="7" rx="1" />
+          <rect x="218" y="157" width="5" height="7" rx="1" />
+        </g>
+
+        {/* "AI" glow layer */}
+        <text x="170" y="132" textAnchor="middle" dominantBaseline="middle"
+          fill="#8b5cf6" fontSize="38" fontWeight="900" fontFamily="Inter, sans-serif"
+          filter="url(#text-glow)" opacity="0.75">AI</text>
+        {/* "AI" crisp layer */}
+        <text x="170" y="132" textAnchor="middle" dominantBaseline="middle"
+          fill="#c4b5fd" fontSize="38" fontWeight="900" fontFamily="Inter, sans-serif">
+          AI
+          <animate attributeName="fill" values="#c4b5fd;#ede9fe;#c4b5fd" dur="3s" repeatCount="indefinite" />
+        </text>
+
+        {/* Animated signal dots — one per trace */}
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"   path="M 145 80 L 145 55 L 90 55" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s" path="M 170 80 L 170 20" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.8s" path="M 195 80 L 195 55 L 250 55" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="2s"   repeatCount="indefinite" begin="0.2s" path="M 85 215 L 145 215 L 145 180" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.6s" repeatCount="indefinite" begin="1s"   path="M 170 180 L 170 245" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.6s" path="M 255 215 L 195 215 L 195 180" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="2s"   repeatCount="indefinite" begin="0.3s" path="M 65 45 L 65 100 L 120 100" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.7s" path="M 30 130 L 120 130" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="2s"   repeatCount="indefinite" begin="1.1s" path="M 120 160 L 65 160 L 65 215" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="2s"   repeatCount="indefinite" begin="0.5s" path="M 275 45 L 275 100 L 220 100" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.9s" path="M 220 130 L 310 130" />
+        </circle>
+        <circle r="2.5" fill="#a78bfa" filter="url(#dot-glow)">
+          <animateMotion dur="2s"   repeatCount="indefinite" begin="1.3s" path="M 220 160 L 275 160 L 275 215" />
+        </circle>
+      </svg>
+    </div>
+  );
+}
+
 export default function ExpertiseSection() {
   return (
     <section className="relative w-full bg-slate-950 py-24 sm:py-32 overflow-hidden">
@@ -140,18 +282,8 @@ export default function ExpertiseSection() {
 
             {/* Right Abstract Graphic: Code Terminal Fade */}
             <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 perspective-1000">
-              <div className="absolute right-0 top-1/2 w-full max-w-[350px] -translate-y-1/2 transform rotate-y-[-15deg] rotate-x-[5deg] rounded-2xl bg-slate-900/80 p-6 border border-white/10 shadow-2xl backdrop-blur-md transition-transform duration-700 group-hover:scale-105 group-hover:rotate-y-[0deg] group-hover:rotate-x-[0deg]">
-                <div className="flex gap-2 mb-4">
-                  <div className="h-3 w-3 rounded-full bg-red-500/80"></div>
-                  <div className="h-3 w-3 rounded-full bg-amber-500/80"></div>
-                  <div className="h-3 w-3 rounded-full bg-emerald-500/80"></div>
-                </div>
-                <div className="space-y-4">
-                  <div className="h-2 w-3/4 rounded-full bg-violet-500/80"></div>
-                  <div className="h-2 w-full rounded-full bg-slate-700"></div>
-                  <div className="h-2 w-5/6 rounded-full bg-slate-700"></div>
-                  <div className="h-2 w-1/2 rounded-full bg-emerald-500/80"></div>
-                </div>
+              <div className="absolute right-0 top-1/2 w-full max-w-[340px] -translate-y-1/2 transition-transform duration-700 group-hover:scale-105">
+                <ChipGraphic />
               </div>
             </div>
           </div>
