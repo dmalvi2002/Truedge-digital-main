@@ -217,14 +217,14 @@ export default function MainHero() {
             
             <div className="contents lg:flex lg:flex-col lg:w-[45%] lg:justify-center">
                
-               <div className="order-1 lg:order-none w-full flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left mt-4 lg:mt-0">
+               <div className="order-1 lg:order-none w-full flex flex-col items-start md:items-center lg:items-start text-left md:text-center lg:text-left mt-4 lg:mt-0 min-h-[15.5rem] sm:min-h-[16.5rem] md:min-h-0">
                   <div className="stagger-text inline-flex mb-4 md:mb-6">
                      <span className="rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 md:px-4 text-[10px] md:text-xs font-semibold tracking-wide text-violet-300 backdrop-blur-sm">
                         {activeSlide.tag}
                      </span>
                   </div>
 
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.1] tracking-tight text-white mb-4 md:mb-6 pr-0 lg:pr-4">
+                  <h1 className="text-4xl md:text-6xl leading-[1.1] md:leading-[1.1] tracking-tight text-white mb-4 md:mb-6 pr-0 lg:pr-4">
                      <div className="stagger-text font-light text-slate-300">{activeSlide.titleLight}</div>
                      <div className="stagger-text font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-slate-400">
                         {activeSlide.titleBold}
