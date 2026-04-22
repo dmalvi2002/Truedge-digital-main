@@ -229,6 +229,121 @@ function ChipGraphic() {
   );
 }
 
+function PhoneGraphic() {
+  const r = 26;
+  const circ = 2 * Math.PI * r;
+
+  return (
+    <div className="absolute right-10 top-1/2 h-[260px] w-[130px] -translate-y-1/2 rounded-[2rem] border-[6px] border-slate-800 bg-slate-900 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:rotate-6">
+      <div className="absolute inset-1 rounded-[1.5rem] border border-white/5 bg-slate-950 overflow-hidden flex flex-col">
+
+        {/* Status bar */}
+        <div className="flex items-center justify-between px-3 pt-2.5 pb-0.5 shrink-0">
+          <span className="text-[7px] font-semibold text-slate-400 tracking-wide">9:41</span>
+          <div className="flex items-center gap-0.5">
+            <div className="h-1 w-0.5 rounded-full bg-slate-600"></div>
+            <div className="h-1.5 w-0.5 rounded-full bg-slate-500"></div>
+            <div className="h-2 w-0.5 rounded-full bg-slate-400"></div>
+            <div className="ml-1 flex items-center h-2 w-3.5 rounded-sm border border-slate-600 p-px">
+              <div className="h-full w-2/3 rounded-sm bg-cyan-400/80"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* App header */}
+        <div className="flex items-center justify-between px-3 py-1.5 shrink-0">
+          <div className="flex items-center gap-1.5">
+            <div className="h-5 w-5 rounded-full bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+              <div className="h-2 w-1.5 rounded-sm bg-white/90"></div>
+            </div>
+            <span className="text-[9px] font-bold text-white tracking-tight">Truedge</span>
+          </div>
+          <div className="relative">
+            <div className="h-4 w-4 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+              <div className="h-2 w-2 rounded-full border border-slate-500"></div>
+            </div>
+            <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_4px_rgba(6,182,212,0.8)]"></span>
+          </div>
+        </div>
+
+        {/* Animated progress ring */}
+        <div className="flex items-center justify-center shrink-0 mt-0.5">
+          <div className="relative w-[66px] h-[66px]">
+            <svg width="66" height="66" viewBox="0 0 66 66" fill="none">
+              <defs>
+                <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#67e8f9" />
+                  <stop offset="100%" stopColor="#0891b2" />
+                </linearGradient>
+              </defs>
+              {/* Track */}
+              <circle cx="33" cy="33" r={r} stroke="#164e63" strokeWidth="5" />
+              {/* Animated fill */}
+              <circle cx="33" cy="33" r={r}
+                stroke="url(#ring-grad)" strokeWidth="5"
+                strokeLinecap="round"
+                strokeDasharray={circ}
+                strokeDashoffset={circ * 0.28}
+                transform="rotate(-90 33 33)">
+                <animate attributeName="stroke-dashoffset"
+                  values={`${circ};${circ * 0.28};${circ}`}
+                  dur="4s" repeatCount="indefinite"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.2 1;0.4 0 0.2 1" />
+              </circle>
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-[15px] font-black text-white leading-none">72%</span>
+              <span className="text-[6px] text-cyan-400 font-semibold tracking-widest">SCORE</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Metric cards */}
+        <div className="flex gap-1.5 px-2.5 mt-2 shrink-0">
+          <div className="flex-1 rounded-xl bg-cyan-500/10 border border-cyan-500/25 p-1.5">
+            <div className="text-[6px] text-cyan-400/80 font-semibold tracking-widest mb-0.5">USERS</div>
+            <div className="text-[13px] font-black text-white leading-none">2.4k</div>
+          </div>
+          <div className="flex-1 rounded-xl bg-white/[0.04] border border-white/10 p-1.5">
+            <div className="text-[6px] text-slate-400 font-semibold tracking-widest mb-0.5">RATING</div>
+            <div className="text-[13px] font-black text-white leading-none">4.9★</div>
+          </div>
+        </div>
+
+        {/* Mini bar chart */}
+        <div className="flex items-end gap-[3px] px-2.5 mt-2.5 h-9 shrink-0">
+          {[50, 70, 45, 90, 60, 85, 55].map((h, i) => (
+            <div
+              key={i}
+              className={`flex-1 rounded-t-sm ${
+                i === 3 || i === 5
+                  ? "bg-cyan-400/70 border-t border-cyan-300/50"
+                  : "bg-white/10 border-t border-white/5"
+              }`}
+              style={{ height: `${h}%` }}
+            />
+          ))}
+        </div>
+        <div className="px-2.5 shrink-0">
+          <div className="h-px w-full bg-white/5"></div>
+        </div>
+
+        {/* Bottom nav */}
+        <div className="mt-auto flex items-center justify-around px-3 pt-1.5 pb-2 border-t border-white/5 shrink-0">
+          <div className="flex flex-col items-center gap-0.5">
+            <div className="h-3 w-3 rounded-md bg-cyan-500/30 border border-cyan-400/50 shadow-[0_0_4px_rgba(6,182,212,0.4)]"></div>
+            <div className="h-0.5 w-3 rounded-full bg-cyan-400"></div>
+          </div>
+          <div className="h-3 w-3 rounded-md bg-white/5 border border-white/10"></div>
+          <div className="h-3 w-3 rounded-md bg-white/5 border border-white/10"></div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 export default function ExpertiseSection() {
   return (
     <section className="relative w-full bg-slate-950 py-24 sm:py-32 overflow-hidden">
@@ -347,15 +462,7 @@ export default function ExpertiseSection() {
 
             {/* Right Abstract Graphic: Mobile Phone Silhouette */}
             <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0">
-               <div className="absolute right-10 top-1/2 h-[260px] w-[130px] -translate-y-1/2 rounded-[2rem] border-[6px] border-slate-800 bg-slate-900 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:rotate-6">
-                 {/* Glowing Phone Screen */}
-                 <div className="absolute inset-1 rounded-[1.5rem] border border-white/5 bg-gradient-to-b from-cyan-900/40 to-slate-900 p-3 overflow-hidden">
-                    <div className="mx-auto h-1 w-8 rounded-full bg-slate-800 mb-4"></div>
-                    <div className="h-16 w-full rounded-xl bg-cyan-500/20 border border-cyan-500/30 mb-3"></div>
-                    <div className="h-6 w-full rounded-md bg-white/5 mb-2"></div>
-                    <div className="h-6 w-3/4 rounded-md bg-white/5"></div>
-                 </div>
-               </div>
+               <PhoneGraphic />
             </div>
           </div>
 
