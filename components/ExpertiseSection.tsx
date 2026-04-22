@@ -1,8 +1,91 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Code2, LayoutTemplate, Smartphone, BrainCircuit } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+const codeSnippets = [
+  'buildPage({ perf: "A+" })',
+  'deployToEdge("global")',
+  'optimise({ seo: true })',
+  'launchSite({ live: true })',
+  'renderUI({ custom: true })',
+];
+
+function TypingAnimation() {
+  const [lineIndex, setLineIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentLine = codeSnippets[lineIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && charIndex < currentLine.length) {
+      timeout = setTimeout(() => {
+        setDisplayText(currentLine.slice(0, charIndex + 1));
+        setCharIndex((c) => c + 1);
+      }, 65);
+    } else if (!isDeleting && charIndex === currentLine.length) {
+      timeout = setTimeout(() => setIsDeleting(true), 1800);
+    } else if (isDeleting && charIndex > 0) {
+      timeout = setTimeout(() => {
+        setDisplayText(currentLine.slice(0, charIndex - 1));
+        setCharIndex((c) => c - 1);
+      }, 35);
+    } else {
+      setIsDeleting(false);
+      setLineIndex((i) => (i + 1) % codeSnippets.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, lineIndex]);
+
+  return (
+    <div className="relative z-10 flex flex-col rounded-2xl bg-slate-900/90 border border-white/10 shadow-2xl backdrop-blur-md transition-transform duration-700 group-hover:-translate-y-2 overflow-hidden">
+      {/* Editor title bar */}
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-slate-800/50">
+        <div className="h-2.5 w-2.5 rounded-full bg-red-500/80"></div>
+        <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80"></div>
+        <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/80"></div>
+        <span className="ml-2 text-[11px] text-slate-500 font-mono tracking-wide">index.tsx</span>
+      </div>
+      {/* Code lines */}
+      <div className="p-4 font-mono text-[11px] leading-relaxed space-y-1.5">
+        <div className="flex gap-3 text-slate-600">
+          <span className="select-none w-3">1</span>
+          <span><span className="text-slate-500">import </span><span className="text-emerald-400">&#123; build &#125;</span><span className="text-slate-500"> from </span><span className="text-amber-400/70">&apos;truedge&apos;</span></span>
+        </div>
+        <div className="flex gap-3 text-slate-600">
+          <span className="select-none w-3">2</span>
+          <div className="h-2 w-20 rounded bg-slate-800 mt-1"></div>
+        </div>
+        <div className="flex gap-3">
+          <span className="select-none w-3 text-slate-600">3</span>
+          <span>
+            <span className="text-slate-500">const </span>
+            <span className="text-blue-400">result</span>
+            <span className="text-slate-400"> = </span>
+            <span className="text-emerald-300">{displayText}</span>
+            <span className="inline-block w-[5px] h-[12px] bg-emerald-400 animate-pulse align-middle ml-[1px]"></span>
+          </span>
+        </div>
+        <div className="flex gap-3 text-slate-600">
+          <span className="select-none w-3">4</span>
+          <div className="h-2 w-20 rounded bg-slate-800 mt-1"></div>
+        </div>
+        <div className="flex gap-3 text-slate-600">
+          <span className="select-none w-3">5</span>
+          <div className="h-2 w-28 rounded bg-slate-800 mt-1"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ExpertiseSection() {
   return (
@@ -105,14 +188,8 @@ export default function ExpertiseSection() {
               <div className="absolute left-0 top-1/2 w-full max-w-[350px] -translate-y-1/2">
                 {/* Back Wireframe Box */}
                 <div className="absolute -right-4 -top-8 h-32 w-48 rounded-xl bg-slate-800/50 border border-white/5 backdrop-blur-sm transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4"></div>
-                {/* Front Wireframe Box */}
-                <div className="relative z-10 flex flex-col gap-3 rounded-2xl bg-slate-900/90 p-5 border border-white/10 shadow-2xl backdrop-blur-md transition-transform duration-700 group-hover:-translate-y-2">
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                    <div className="h-8 w-8 rounded-full bg-emerald-500/20 border border-emerald-500/30"></div>
-                    <div className="h-3 w-24 rounded bg-slate-700"></div>
-                  </div>
-                  <div className="h-20 w-full rounded bg-white/5 border border-white/5"></div>
-                </div>
+                {/* Front Wireframe Box with Typing Animation */}
+                <TypingAnimation />
               </div>
             </div>
           </div>
