@@ -1,118 +1,90 @@
 import Link from "next/link";
-import { ArrowRight, Swords, Flame, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 
-const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
-const ibmPlexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const sora = Sora({ subsets: ["latin"], weight: ["400", "600", "700", "800"] });
+const ibmPlexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
+
+const trustSignals = [
+  "No templates. Ever.",
+  "UK-Based Engineering Team",
+  "Delivered on Time, Always",
+];
 
 export default function CtaSection() {
   return (
-    <section className="relative w-full bg-white py-24 sm:py-32 lg:py-44 overflow-hidden">
-      
-      {/* --- CSS Animation Injection for Floating --- */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(5deg); }
-          }
-          @keyframes float-reverse {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(25px) rotate(-5deg); }
-          }
-          .animate-float { animation: float ease-in-out infinite; }
-          .animate-float-reverse { animation: float-reverse ease-in-out infinite; }
-        `
-      }} />
+    <section className="relative w-full bg-white py-28 sm:py-36 overflow-hidden">
 
-      {/* --- LAYER 1: Architectural Grid Background --- */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8b5cf615_1px,transparent_1px),linear-gradient(to_bottom,#8b5cf615_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+      {/* Subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8b5cf608_1px,transparent_1px),linear-gradient(to_bottom,#8b5cf608_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
 
-      {/* --- LAYER 2: Large Ambient Gradient Blobs --- */}
-      <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-violet-200/40 blur-[120px] mix-blend-multiply pointer-events-none"></div>
-      <div className="absolute -bottom-40 -left-40 h-[600px] w-[600px] rounded-full bg-indigo-200/40 blur-[120px] mix-blend-multiply pointer-events-none"></div>
+      {/* Top & bottom ruled lines */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-      {/* --- LAYER 3: The Cheeky Floating Texture Emojis (Maximum Density!) --- */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none font-emoji">
-        
-        {/* Top area */}
-        <div className="absolute top-10 left-10 text-6xl opacity-30 mix-blend-multiply animate-float" style={{animationDuration: '12s', animationDelay: '0s'}}>🚀</div>
-        <div className="absolute top-24 right-1/4 text-5xl opacity-25 mix-blend-multiply animate-float-reverse" style={{animationDuration: '15s', animationDelay: '-2s'}}>💸</div>
-        <div className="absolute top-1/3 left-1/3 text-4xl opacity-20 mix-blend-multiply animate-float" style={{animationDuration: '10s', animationDelay: '-5s'}}>✨</div>
-        <div className="absolute top-8 right-16 text-4xl opacity-25 mix-blend-multiply animate-float" style={{animationDuration: '13s', animationDelay: '-4s'}}>💡</div>
-        <div className="absolute top-40 left-1/4 text-5xl opacity-20 mix-blend-multiply animate-float-reverse rotate-12" style={{animationDuration: '18s', animationDelay: '-1s'}}>📈</div>
-        
-        {/* Middle area - Near the card */}
-        <div className="absolute top-1/2 right-12 text-7xl opacity-30 mix-blend-multiply animate-float-reverse -rotate-12" style={{animationDuration: '14s', animationDelay: '-1s'}}>🔥</div>
-        <div className="absolute top-[55%] left-20 text-5xl opacity-25 mix-blend-multiply animate-float" style={{animationDuration: '11s', animationDelay: '-7s'}}>🎯</div>
-        <div className="absolute top-[40%] right-1/3 text-4xl opacity-20 mix-blend-multiply animate-float" style={{animationDuration: '16s', animationDelay: '-3s'}}>💻</div>
-        <div className="absolute top-[60%] left-[28%] text-6xl opacity-[0.15] mix-blend-multiply animate-float-reverse rotate-[25deg]" style={{animationDuration: '19s', animationDelay: '-6s'}}>⚙️</div>
-        
-        {/* Bottom area */}
-        <div className="absolute bottom-32 left-1/4 text-6xl opacity-30 mix-blend-multiply animate-float" style={{animationDuration: '13s', animationDelay: '-3s'}}>⚡️</div>
-        <div className="absolute bottom-10 right-1/3 text-5xl opacity-25 mix-blend-multiply animate-float-reverse" style={{animationDuration: '16s', animationDelay: '-8s'}}>👀</div>
-        <div className="absolute bottom-1/4 right-10 text-4xl opacity-20 mix-blend-multiply animate-float" style={{animationDuration: '9s', animationDelay: '-4s'}}>💎</div>
-        <div className="absolute bottom-20 left-10 text-5xl opacity-25 mix-blend-multiply animate-float-reverse -rotate-6" style={{animationDuration: '17s', animationDelay: '-2s'}}>🏆</div>
-        <div className="absolute bottom-40 right-1/4 text-4xl opacity-[0.22] mix-blend-multiply animate-float" style={{animationDuration: '12s', animationDelay: '-9s'}}>🧠</div>
-        <div className="absolute -bottom-4 left-1/2 text-5xl opacity-20 mix-blend-multiply animate-float rotate-12" style={{animationDuration: '15s', animationDelay: '-5s'}}>📱</div>
-      </div>
+      {/* Ambient centre glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[520px] w-[900px] rounded-full bg-violet-100/60 blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-        
-        {/* --- THE MASSIVE PRISTINE CARD --- */}
-        <div className="relative w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-violet-100/80 bg-white/70 p-8 text-center shadow-[0_30px_80px_-20px_rgba(139,92,246,0.15)] backdrop-blur-2xl sm:p-16 lg:p-24 transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_40px_100px_-20px_rgba(139,92,246,0.25)]">
-          
-          {/* Subtle inner glow for the card */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-violet-50/30 pointer-events-none"></div>
-          
-          <div className="relative z-10 flex flex-col items-center">
-            
-            {/* The "Unfair Advantage" Tag */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md">
-              <Swords size={16} className="text-violet-600" />
-              <span className={`${ibmPlexSans.className} text-xs font-bold uppercase tracking-widest text-violet-700`}>
-                The Unfair Advantage
-              </span>
-            </div>
+      {/* Corner accents */}
+      <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-indigo-100/50 blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-violet-100/50 blur-[80px] pointer-events-none" />
 
-            {/* The Flex Headline */}
-            <h2 className={`${sora.className} mb-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl`}>
-              Let's build something your competitors will <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 drop-shadow-sm">
-                try to copy.
-              </span>
-            </h2>
+      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 
-            {/* The Cheeky Sub-headline */}
-            <p className={`${ibmPlexSans.className} mx-auto mb-12 max-w-2xl text-lg font-medium text-slate-500 sm:text-xl leading-relaxed`}>
-              (And fail, obviously. Because they don't have us.) <br className="hidden sm:block" />
-              Stop leaving money on the table with a slow, outdated website.
-            </p>
-
-            {/* --- THE BUTTON WITH TOOLTIP --- */}
-            <div className="relative group inline-flex flex-col items-center">
-              
-              {/* Cheeky Hover Tooltip */}
-              <div className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none whitespace-nowrap rounded-xl bg-slate-900 px-4 py-2 text-sm font-black text-white opacity-0 shadow-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:opacity-100">
-                <div className="flex items-center gap-1.5">
-                  🔥 Do it. We dare you.
-                </div>
-                <div className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-slate-900"></div>
-              </div>
-
-              {/* The Main Action Button */}
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-3 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] p-5 lg:px-10 lg:py-5 text-lg font-bold text-white shadow-[0_10px_30px_rgba(124,58,237,0.3),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.4)]"
-              >
-                Start Your Project
-                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-          </div>
+        {/* Badge */}
+        <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 shadow-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
+          <span className={`${ibmPlexSans.className} text-[11px] font-semibold tracking-widest text-slate-500 uppercase`}>
+            Let&apos;s Build Together
+          </span>
         </div>
-        
+
+        {/* Headline */}
+        <h2 className={`${sora.className} mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.75rem]`}>
+          Ready to engineer your{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
+            competitive edge?
+          </span>
+        </h2>
+
+        {/* Sub-copy */}
+        <p className={`${ibmPlexSans.className} mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-500`}>
+          Whether it&apos;s a high-performance web app, an AI-powered platform, or a native mobile experience — we build it right, fast, and engineered to last.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="mb-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Link
+            href="/contact"
+            className="group flex items-center gap-2.5 rounded-full bg-gradient-to-b from-violet-500 to-violet-700 px-8 py-4 text-base font-bold text-white shadow-[0_8px_30px_rgba(124,58,237,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(124,58,237,0.35)]"
+          >
+            Start a Project
+            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+
+          <Link
+            href="/work"
+            className={`${ibmPlexSans.className} flex items-center gap-2 rounded-full border border-slate-200 bg-white px-8 py-4 text-base font-semibold text-slate-700 transition-all duration-300 hover:border-slate-300 hover:bg-slate-50`}
+          >
+            View Our Work
+          </Link>
+        </div>
+
+        {/* Divider */}
+        <div className="mx-auto mb-10 h-px w-24 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+
+        {/* Trust signals */}
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-10">
+          {trustSignals.map((item) => (
+            <div key={item} className="flex items-center gap-2">
+              <CheckCircle size={14} className="shrink-0 text-violet-500" />
+              <span className={`${ibmPlexSans.className} text-sm font-medium text-slate-500`}>
+                {item}
+              </span>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
