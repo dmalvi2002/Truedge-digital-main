@@ -27,24 +27,23 @@ export default function ServicesCTA() {
               <span
                 className={`${ibm.className} text-xs font-bold tracking-widest text-purple-700 uppercase`}
               >
-                Project Discovery
+                Start Your Project
               </span>
             </div>
 
             <h2
               className={`${sora.className} text-4xl sm:text-5xl md:text-6xl font-bold text-slate-950 tracking-tight leading-[1.15] lg:leading-[1.1]`}
             >
-              Ready to build the <br />
+              Let&apos;s engineer your next{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
-                real thing?
+                Big thing.
               </span>
             </h2>
 
             <p
               className={`${ibm.className} mt-6 mb-10 text-lg text-slate-600 max-w-md`}
             >
-              Stop wasting budget on slow templates and bloated agencies. Let's
-              engineer a digital asset your competitors will try to copy.
+              Whether it&apos;s an AI-powered platform, a bespoke web app, or a smart kiosk installation — we turn ambitious ideas into high-performance digital assets, built to last.
             </p>
 
             <Link

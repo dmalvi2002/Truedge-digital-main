@@ -139,18 +139,18 @@ export default function ContactPage() {
             <h1
               className={`${sora.className} text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 leading-[1.1] mb-6`}
             >
-              Let's build your <br />
+              Let&apos;s engineer your next{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
-                unfair advantage.
+                Big thing.
               </span>
             </h1>
 
             <p
               className={`${ibm.className} text-lg text-slate-600 leading-relaxed mb-8 max-w-md`}
             >
-              Fill out the form to initiate a discovery call. We'll audit your
-              current digital infrastructure and map out a bespoke architecture
-              designed for aggressive scaling.
+              Fill out the form and we&apos;ll be in touch to discuss your project.
+              Whether it&apos;s an AI solution, a bespoke web app, or a smart kiosk
+              installation — we&apos;re ready to build it right.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full border-t border-slate-200 pt-8">
