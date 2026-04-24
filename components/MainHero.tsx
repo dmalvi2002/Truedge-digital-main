@@ -68,10 +68,11 @@ export default function MainHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  
-  // Use imperative refs to avoid React JS stale closures during deep GSAP onComplete callbacks
+
+  // Refs to avoid stale closures inside GSAP onComplete callbacks
   const indexRef = useRef(0);
   const animatingRef = useRef(false);
+  const isPlayingRef = useRef(true);
 
   const slideDuration = 6.5;
 
@@ -93,9 +94,11 @@ export default function MainHero() {
   const togglePlay = () => {
     if (isPlaying) {
       setIsPlaying(false);
+      isPlayingRef.current = false;
       progressTweenRef.current?.pause();
     } else {
       setIsPlaying(true);
+      isPlayingRef.current = true;
       progressTweenRef.current?.play();
     }
   };
@@ -155,7 +158,7 @@ export default function MainHero() {
        });
 
        // If paused globally, ensure the new tween is paused too
-       if (!isPlaying) {
+       if (!isPlayingRef.current) {
          progressTweenRef.current.pause();
        }
 
@@ -188,10 +191,18 @@ export default function MainHero() {
         }
      });
 
-     if (!isPlaying) {
+     if (!isPlayingRef.current) {
        progressTweenRef.current.pause();
      }
   }, { scope: containerRef });
+
+  // Kill the progress tween on unmount to prevent ghost tweens after navigation
+  useEffect(() => {
+    return () => {
+      progressTweenRef.current?.kill();
+      progressTweenRef.current = null;
+    };
+  }, []);
 
   return (
     <div ref={containerRef} className={`relative flex min-h-[calc(100vh-5rem)] pt-6 pb-12 md:py-32 w-full items-center overflow-hidden bg-slate-950 ${sora.className}`}>
@@ -253,7 +264,7 @@ export default function MainHero() {
                      </Link>
                   </div>
 
-                  <div className="stagger-text mt-8 md:mt-12 flex items-center justify-start md:justify-center lg:justify-start gap-3 w-full">
+                  <div className="mt-8 md:mt-12 flex items-center justify-start md:justify-center lg:justify-start gap-3 w-full">
                      {slides.map((_, idx) => (
                         <button
                            key={idx}
