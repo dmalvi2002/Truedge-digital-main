@@ -60,11 +60,11 @@ export default function Footer() {
             <div className="flex items-start gap-3 mt-2 text-sm text-slate-400">
               <MapPin size={18} className="text-orange-500 shrink-0 mt-0.5" />
               <p>
-                82 Dunlin Road, Cove Bay
+                Suite 2b, Lower Ground Floor
                 <br />
-                Aberdeen, United Kingdom
+                1-3 Albyn Terrace, Aberdeen
                 <br />
-                AB12 3WD
+                United Kingdom, AB10 1YP
               </p>
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function Footer() {
 
         {/* Bottom Section: Legal & Copyright */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500">
-          <p>© {currentYear} Truedge Digital. All rights reserved.</p>
+          <p>© {currentYear} Truedge Digital Ltd. All rights reserved. Company No. SC890845</p>
           <div className="flex items-center gap-6">
             <Link
               href="/terms"

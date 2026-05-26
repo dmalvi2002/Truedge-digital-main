@@ -229,11 +229,11 @@ export default function ContactPage() {
                   <p
                     className={`${ibm.className} text-sm font-medium text-slate-700 leading-relaxed`}
                   >
-                    82 Dunlin Road, Cove Bay
+                    Suite 2b, Lower Ground Floor
                     <br />
-                    Aberdeen, United Kingdom
+                    1-3 Albyn Terrace, Aberdeen
                     <br />
-                    AB12 3WD
+                    United Kingdom, AB10 1YP
                   </p>
                 </div>
               </div>
