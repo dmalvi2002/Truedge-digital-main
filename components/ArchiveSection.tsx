@@ -18,22 +18,38 @@ export default function ArchiveSection() {
   const projects = [
     {
       id: "01",
-      client: "A2Z Immigration UK",
-      category: "Bespoke Web Design",
+      client: "Sanchez Watt",
+      category: "Personal Brand & Coaching",
       image:
-        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png", // Add your image to public/projects/
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1786092267/6d9b2559-1c68-463f-a498-ef3301229f87.png",
       problem:
-        "A slow, outdated WordPress site plagued by broken navigation and failing page loads, severely damaging brand authority and frustrating prospective clients.",
+        "A low-quality, single-page site built on a generic builder. It lacked proper navigation, professional aesthetics, and functionality, severely limiting his digital presence.",
       solution:
-        "Engineered a lightning-fast, SEO-optimised Next.js platform featuring a premium modern UI and flawless user journeys to maximise lead conversions.",
-      roi: "+210%",
-      roiText: "Conversion Lift",
-      tech: ["Next.js", "TypeScript", "Tailwind", "Sanity"],
+        "Engineered a premium, dynamic web experience featuring custom GSAP animations and a fully integrated, seamless booking system for his coaching and mentoring sessions.",
+      roi: "Fully",
+      roiText: "Booked Sessions",
+      tech: ["Next.js", "GSAP", "Tailwind"],
       icon: TvMinimal,
-      link: "https://a2zimmigrations.co.uk",
+      link: "https://www.sanchezwatt.com/",
     },
     {
       id: "02",
+      client: "DigiTech World UK",
+      category: "Bespoke Web Design",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1786092155/31022d6e-b014-44f4-8d5c-dcbfd47f4324.png",
+      problem:
+        "An outdated, slow, and unresponsive website with broken design elements, poor content alignment, and lacking a proper visual hierarchy.",
+      solution:
+        "Engineered a high-converting, business-focused digital platform utilizing modern storytelling aesthetics to maximize user engagement and conversions.",
+      roi: "+300%",
+      roiText: "Engagement Lift",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Motion"],
+      icon: TvMinimal,
+      link: "https://digitechworlduk.com",
+    },
+    {
+      id: "03",
       client: "iLearner's Hub",
       category: "Bespoke Web Design",
       image:
@@ -49,7 +65,7 @@ export default function ArchiveSection() {
       link: "https://ilearnershub.co.uk",
     },
     {
-      id: "03",
+      id: "04",
       client: "Kinesis Subsea",
       category: "Industry Level Website",
       image:
@@ -63,6 +79,22 @@ export default function ArchiveSection() {
       tech: ["Next.js", "TypeScript", "Tailwind", "Motion"],
       icon: TvMinimal,
       link: "http://kinesis-subsea-eng-site.vercel.app/",
+    },
+    {
+      id: "05",
+      client: "A2Z Immigration UK",
+      category: "Bespoke Web Design",
+      image:
+        "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771632608/881bb1b0-fdc5-4d23-b193-ce556319128e.png", // Add your image to public/projects/
+      problem:
+        "A slow, outdated WordPress site plagued by broken navigation and failing page loads, severely damaging brand authority and frustrating prospective clients.",
+      solution:
+        "Engineered a lightning-fast, SEO-optimised Next.js platform featuring a premium modern UI and flawless user journeys to maximise lead conversions.",
+      roi: "+210%",
+      roiText: "Conversion Lift",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Sanity"],
+      icon: TvMinimal,
+      link: "https://a2zimmigrations.co.uk",
     },
   ];
 
