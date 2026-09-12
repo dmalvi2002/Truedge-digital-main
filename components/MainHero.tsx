@@ -359,7 +359,7 @@ export default function MainHero() {
               <div className="flex items-center justify-center whitespace-nowrap">
                 <span>Crafting Flagship</span>
 
-                {/* Lively Rocket Icon: Smooth expansion without stutter on hover */}
+                {/* Startup Rocket Icon: Smooth expansion without stutter on hover */}
                 <span 
                   className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
                   style={{
@@ -370,19 +370,21 @@ export default function MainHero() {
                     transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
                   }}
                 >
-                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 ml-2 rounded-xl bg-emerald-100/90 border border-emerald-300/90 text-base sm:text-xl shadow-xs">
-                    🚀
-                  </span>
+                  <img 
+                    src="/startup.svg" 
+                    alt="Startup Rocket" 
+                    className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                  />
                 </span>
 
                 <span className="ml-2 sm:ml-2.5">Websites</span>
               </div>
 
-              {/* LINE 2: & Growth [🔥 reveals & pushes text smoothly] Systems That Scale */}
+              {/* LINE 2: & Growth [🎯 reveals & pushes text smoothly] Systems That Scale */}
               <div className="flex items-center justify-center whitespace-nowrap mt-1 sm:mt-2.5">
                 <span>&amp; Growth</span>
 
-                {/* Lively Fire Icon: Smooth expansion without stutter on hover */}
+                {/* Target Hero Icon: Smooth expansion without stutter on hover */}
                 <span 
                   className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
                   style={{
@@ -393,9 +395,11 @@ export default function MainHero() {
                     transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
                   }}
                 >
-                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 ml-2 rounded-xl bg-orange-100/90 border border-orange-300/90 text-base sm:text-xl shadow-xs">
-                    🔥
-                  </span>
+                  <img 
+                    src="/target-hero-title.svg" 
+                    alt="Growth Target" 
+                    className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                  />
                 </span>
 
                 <span className="ml-2 sm:ml-2.5">Systems That Scale</span>
