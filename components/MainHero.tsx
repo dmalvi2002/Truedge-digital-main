@@ -4,8 +4,7 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  ArrowRight, 
-  Star 
+  ArrowRight 
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import { gsap } from "gsap";
@@ -256,38 +255,24 @@ export default function MainHero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ─── 1. TOP TRUST BADGE (Rating & Safety Indicator) ─── */}
-        <div className="hero-top-badge flex flex-col items-center justify-center gap-1.5 mb-6">
-          {/* 5 Small Red Stars */}
-          <div className="flex items-center gap-1 text-[#EF4444]">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} size={13} fill="#EF4444" strokeWidth={0} />
-            ))}
-          </div>
-
-          {/* Calming Trust Pill */}
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-slate-200/80 bg-white/90 px-4 py-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.03)] backdrop-blur-md">
+        <div className="hero-top-badge flex items-center justify-center mb-6">
+          <div className="inline-flex items-center gap-2.5 sm:gap-3 rounded-full border border-slate-200/80 bg-white/95 px-4 sm:px-5 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.04)] backdrop-blur-md">
             <span className="text-xs font-semibold text-slate-700 tracking-tight">
               4.9/5 Average Client Rating
             </span>
 
-            <span className="h-3 w-px bg-slate-200"></span>
+            <span className="h-3.5 w-px bg-slate-200"></span>
 
-            {/* Subtle avatar stack */}
-            <div className="flex items-center -space-x-1.5">
-              <div className="w-5 h-5 rounded-full bg-emerald-500 border border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
-                ✓
-              </div>
-              <div className="w-5 h-5 rounded-full bg-indigo-500 border border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
-                ★
-              </div>
-              <div className="w-5 h-5 rounded-full bg-amber-500 border border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
-                ⚡
-              </div>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <img 
+                src="/google-logo.webp" 
+                alt="Google" 
+                className="h-3.5 sm:h-4 w-auto object-contain"
+              />
+              <span className="text-xs font-bold text-slate-900 tracking-tight">
+                10+ Google Reviews
+              </span>
             </div>
-
-            <span className="text-xs font-bold text-slate-800 flex items-center gap-1">
-              <span>80+ UK Brands Scaled</span>
-            </span>
           </div>
         </div>
 
