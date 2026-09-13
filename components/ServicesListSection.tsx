@@ -13,11 +13,13 @@ if (typeof window !== 'undefined') {
 }
 
 const sora = Sora({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'] });
+import ScrollRippleTitle from '@/components/ScrollRippleTitle';
 
 interface ServiceItem {
   id: string;
   number: string;
-  title: string;
+  line1: string;
+  line2: string;
   category: string;
   description: string;
   image: string;
@@ -28,7 +30,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'seo-marketing',
     number: '01',
-    title: 'SEO & AI Search Growth',
+    line1: 'SEO & AI',
+    line2: 'Search Growth',
     category: 'Discovery & Rankings',
     description:
       'We immerse ourselves in your market architecture, dominating generative answer engines, voice search, and organic conversion pipelines.',
@@ -38,7 +41,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'paid-media',
     number: '02',
-    title: 'Paid Media & Social Ads',
+    line1: 'Paid Media &',
+    line2: 'Social Ads',
     category: 'Performance Acquisition',
     description:
       'Algorithmic multi-channel advertising across Meta, Google Ads, TikTok, and YouTube driving predictable, compounding ROAS.',
@@ -48,7 +52,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'web-architecture',
     number: '03',
-    title: 'Website & UX Architecture',
+    line1: 'Website & UX',
+    line2: 'Architecture',
     category: 'Conversion Engineering',
     description:
       'Custom web platforms built on modern Next.js architecture, engineered for sub-second speeds and maximum transaction velocity.',
@@ -58,7 +63,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'video-production',
     number: '04',
-    title: 'Video Production & Motion',
+    line1: 'Cinematic Video &',
+    line2: 'Motion Creative',
     category: 'Commercial Creative',
     description:
       'Cinematic brand commercials, viral short-form reels, kinetic product animations, and video ads crafted to capture instant attention.',
@@ -68,7 +74,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'marketing-leaflets',
     number: '05',
-    title: 'Marketing Leaflets & Print',
+    line1: 'Marketing Leaflets &',
+    line2: 'Print Collateral',
     category: 'Tangible Collateral',
     description:
       'Luxury tactile print collateral, promotional brand leaflets, brochures, packaging, and high-impact physical assets that leave a lasting mark.',
@@ -78,7 +85,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'content-marketing',
     number: '06',
-    title: 'Content Marketing & Copy',
+    line1: 'Content Marketing &',
+    line2: 'Copywriting',
     category: 'Editorial Authority',
     description:
       'Conversion-focused copywriting, authority-building industry reports, and viral editorial storytelling that positions you as the market leader.',
@@ -88,7 +96,8 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'email-crm',
     number: '07',
-    title: 'Email Marketing & Retention',
+    line1: 'Email & CRM',
+    line2: 'Retention Funnels',
     category: 'Lifecycle Automation',
     description:
       'Automated customer lifecycle workflows, personalized SMS sequences, and behavioral VIP funnels scaling lifetime customer value.',
@@ -100,36 +109,86 @@ const SERVICES: ServiceItem[] = [
 export default function ServicesListSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Staggered slide from left to right on scroll, one time only
+  // TRUE DYNAMIC SCROLL ANIMATION:
+  // Each row slides in from left to right as the user scrolls down, one-by-one.
+  // Once a row completes its loaded state, its scroll animation ends permanently (one time only).
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    const validRows = rowsRef.current.filter(Boolean);
-    if (validRows.length === 0) return;
-
-    // Set initial off-screen state
-    gsap.set(validRows, {
-      x: -70,
-      opacity: 0,
-    });
-
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 75%',
-        once: true, // Animation triggers only once, then ends
-        onEnter: () => {
-          gsap.to(validRows, {
-            x: 0,
-            opacity: 1,
-            duration: 0.85,
-            stagger: 0.1,
-            ease: 'power3.out',
-            clearProps: 'transform', // Clean up after loaded
+      SERVICES.forEach((_, index) => {
+        const row = rowsRef.current[index];
+        const line = lineRefs.current[index];
+        if (!row) return;
+
+        // Initial state: shifted left, blurred, low opacity, kinetic skew
+        gsap.set(row, {
+          x: -160,
+          opacity: 0,
+          skewX: -5,
+          filter: 'blur(6px)',
+        });
+
+        if (line) {
+          gsap.set(line, {
+            scaleX: 0,
+            transformOrigin: 'left center',
           });
-        },
+        }
+
+        let maxProgress = 0;
+
+        // Individual ScrollTrigger per row: directly driven by user scroll!
+        const trigger = ScrollTrigger.create({
+          trigger: row,
+          start: 'top 92%',
+          end: 'top 60%',
+          scrub: 0.6, // Smooth momentum scrub linked to user scrolling
+          onUpdate: (self) => {
+            // Forward-only progress: never rewinds if user scrolls back up
+            if (self.progress > maxProgress) {
+              maxProgress = self.progress;
+              const p = maxProgress;
+
+              // Dynamic interpolation from left to right
+              const currentX = -160 * (1 - p);
+              const currentOpacity = Math.min(1, p * 1.3);
+              const currentSkew = -5 * (1 - p);
+              const currentBlur = 6 * (1 - p);
+
+              gsap.set(row, {
+                x: currentX,
+                opacity: currentOpacity,
+                skewX: currentSkew,
+                filter: `blur(${currentBlur.toFixed(1)}px)`,
+              });
+
+              if (line) {
+                gsap.set(line, {
+                  scaleX: p,
+                });
+              }
+
+              // Once fully loaded (reaches threshold), finalize and end scroll animation
+              if (p >= 0.98) {
+                gsap.set(row, {
+                  x: 0,
+                  opacity: 1,
+                  skewX: 0,
+                  filter: 'blur(0px)',
+                  clearProps: 'transform,skewX,filter',
+                });
+                if (line) {
+                  gsap.set(line, { scaleX: 1, clearProps: 'transform' });
+                }
+                trigger.kill(); // The scroll animation ends permanently for this row!
+              }
+            }
+          },
+        });
       });
     }, el);
 
@@ -145,13 +204,16 @@ export default function ServicesListSection() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <h2
-            className={`${sora.className} text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.15] mb-6`}
-          >
-            It’s big challenge to grow-up your sales by providing best services
-          </h2>
+          <ScrollRippleTitle
+            text="It’s big challenge to grow-up your sales by providing best services"
+            as="h2"
+            className={`${sora.className} text-3xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold tracking-tight leading-[1.14] mb-6 block`}
+            baseColor="rgba(15, 23, 42, 0.22)"
+            activeColor="#020617"
+            accentColor="#a855f7"
+          />
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            From high-conversion digital architecture and cinematic commercial video to tactile marketing leaflets—we engineer every touchpoint your brand needs to scale.
+            From high-converting web architecture and performance ads to commercial video and tactile marketing leaflets—we engineer unified growth across every touchpoint.
           </p>
         </div>
 
@@ -160,57 +222,71 @@ export default function ServicesListSection() {
           {SERVICES.map((service, index) => (
             <div
               key={service.id}
-              ref={(node) => {
-                rowsRef.current[index] = node;
-              }}
-              className="group relative border-b border-slate-200/90 transition-colors duration-300 hover:bg-slate-50/70"
+              className="relative"
             >
-              <Link
-                href={service.href}
-                className="flex flex-col lg:flex-row lg:items-center justify-between py-7 sm:py-9 px-2 sm:px-4 cursor-pointer gap-6 lg:gap-8"
+              {/* Animated Row Content */}
+              <div
+                ref={(node) => {
+                  rowsRef.current[index] = node;
+                }}
+                className="group relative transition-colors duration-300 hover:bg-slate-50/80 rounded-2xl will-change-transform"
               >
-                {/* Left Side: Number, Hover Image Pill, and Title */}
-                <div className="flex items-center min-w-0 flex-1">
-                  
-                  {/* Number */}
-                  <span className="font-mono text-sm sm:text-base font-semibold text-slate-400 group-hover:text-slate-950 transition-colors w-10 shrink-0">
-                    {service.number}
-                  </span>
+                <Link
+                  href={service.href}
+                  className="flex flex-col lg:flex-row lg:items-center justify-between py-7 sm:py-9 px-3 sm:px-6 cursor-pointer gap-6 lg:gap-8"
+                >
+                  {/* Left Side: Number, Hover Image Pill, and 2-Line Stacked Title */}
+                  <div className="flex items-center min-w-0 flex-1">
+                    
+                    {/* Number */}
+                    <span className="font-mono text-sm sm:text-base font-bold text-slate-400 group-hover:text-slate-950 transition-colors w-10 sm:w-12 shrink-0">
+                      {service.number}
+                    </span>
 
-                  {/* Smooth Hover Image Pill: smoothly appears and expands on hover */}
-                  <div className="relative overflow-hidden h-12 sm:h-14 lg:h-16 rounded-full w-0 max-w-0 opacity-0 -translate-x-3 scale-95 group-hover:w-28 sm:group-hover:w-36 lg:group-hover:w-44 group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 group-hover:mr-5 group-hover:ml-2 transition-all duration-400 ease-out shrink-0 shadow-md border-2 border-white bg-slate-100">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 120px, 180px"
-                    />
+                    {/* Smooth Hover Image Pill: expands and appears on hover */}
+                    <div className="relative overflow-hidden h-12 sm:h-14 lg:h-16 rounded-full w-0 max-w-0 opacity-0 -translate-x-3 scale-95 group-hover:w-28 sm:group-hover:w-36 lg:group-hover:w-44 group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 group-hover:mr-5 group-hover:ml-2 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shrink-0 shadow-md border-2 border-white bg-slate-100">
+                      <Image
+                        src={service.image}
+                        alt={`${service.line1} ${service.line2}`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 120px, 180px"
+                      />
+                    </div>
+
+                    {/* 2-Line Stacked Title matching reference design */}
+                    <h3
+                      className={`${sora.className} text-xl sm:text-2xl lg:text-[28px] font-bold text-slate-900 tracking-tight leading-[1.2] group-hover:text-slate-950 group-hover:translate-x-1 transition-all duration-300`}
+                    >
+                      <span className="block">{service.line1}</span>
+                      <span className="block">{service.line2}</span>
+                    </h3>
                   </div>
 
-                  {/* Service Title */}
-                  <h3
-                    className={`${sora.className} text-xl sm:text-2xl lg:text-[28px] font-bold text-slate-900 tracking-tight group-hover:text-slate-950 group-hover:translate-x-1 transition-all duration-300 whitespace-pre-line`}
-                  >
-                    {service.title}
-                  </h3>
-                </div>
+                  {/* Right Side: Description and Arrow Circle Button */}
+                  <div className="flex items-center justify-between lg:justify-end gap-6 sm:gap-10 lg:w-[48%] shrink-0 pl-10 lg:pl-0">
+                    
+                    {/* Service Description */}
+                    <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed max-w-md group-hover:text-slate-700 transition-colors">
+                      {service.description}
+                    </p>
 
-                {/* Right Side: Description and Arrow Circle Button */}
-                <div className="flex items-center justify-between lg:justify-end gap-6 sm:gap-10 lg:w-[50%] shrink-0 pl-10 lg:pl-0">
-                  
-                  {/* Service Description */}
-                  <p className="text-sm sm:text-base text-slate-500 font-normal leading-relaxed max-w-md group-hover:text-slate-700 transition-colors">
-                    {service.description}
-                  </p>
+                    {/* Circular Action Arrow Button */}
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 group-hover:border-slate-950 group-hover:bg-slate-950 group-hover:text-[#d2f83a] group-hover:scale-105 transition-all duration-300 shrink-0 shadow-sm">
+                      <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
+                    </div>
 
-                  {/* Circular Action Arrow Button */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 group-hover:border-slate-950 group-hover:bg-slate-950 group-hover:text-[#d2f83a] group-hover:scale-105 transition-all duration-300 shrink-0 shadow-sm">
-                    <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
                   </div>
+                </Link>
+              </div>
 
-                </div>
-              </Link>
+              {/* Dynamic Divider Line: expands from left to right with scroll */}
+              <div
+                ref={(node) => {
+                  lineRefs.current[index] = node;
+                }}
+                className="w-full h-[1px] bg-slate-200/90"
+              />
             </div>
           ))}
         </div>

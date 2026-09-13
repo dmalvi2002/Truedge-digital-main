@@ -52,20 +52,20 @@ export default function ScrollRippleTitle({
         const dist = cursor - i;
 
         if (dist <= 0) {
-          // Unrevealed: dark grey translucent
+          // Unrevealed: translucent state
           el.style.color = baseColor;
-          el.style.opacity = '0.35';
+          el.style.opacity = baseColor.startsWith('rgba') ? '1' : '0.35';
           el.style.textShadow = 'none';
           el.style.transform = 'translateY(0)';
         } else if (dist < 2.2) {
-          // Leading edge: vibrant green accent ripple wave
+          // Leading edge: vibrant accent ripple wave with intense glow
           const peak = Math.sin((dist / 2.2) * Math.PI);
-          el.style.color = peak > 0.4 ? accentColor : (dist > 1.1 ? activeColor : baseColor);
-          el.style.opacity = `${0.65 + 0.35 * peak}`;
-          el.style.textShadow = peak > 0.3 ? `0 0 16px ${accentColor}, 0 0 28px ${accentColor}90` : 'none';
+          el.style.color = peak > 0.35 ? accentColor : (dist > 1.1 ? activeColor : baseColor);
+          el.style.opacity = '1';
+          el.style.textShadow = peak > 0.3 ? `0 0 16px ${accentColor}, 0 0 30px ${accentColor}` : 'none';
           el.style.transform = `translateY(${-2 * peak}px)`;
         } else {
-          // Revealed: crisp pure white
+          // Revealed: crisp active color
           el.style.color = activeColor;
           el.style.opacity = '1';
           el.style.textShadow = 'none';
@@ -86,7 +86,7 @@ export default function ScrollRippleTitle({
       const node = letterRefs.current[i];
       if (node) {
         node.style.color = baseColor;
-        node.style.opacity = '0.35';
+        node.style.opacity = baseColor.startsWith('rgba') ? '1' : '0.35';
         node.style.textShadow = 'none';
         node.style.transform = 'translateY(0)';
       }
