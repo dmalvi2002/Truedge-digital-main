@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
+import SectionCursor from "@/components/SectionCursor";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -65,8 +66,15 @@ const SERVICES: ServiceCard[] = [
 ];
 
 export default function PasSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
   return (
-    <section className={`relative w-full py-24 sm:py-32 lg:py-36 bg-gradient-to-b from-[#241a63] via-[#21175c] to-[#120d36] text-white overflow-hidden ${sora.className}`}>
+    <section
+      ref={sectionRef}
+      className={`relative w-full py-24 sm:py-32 lg:py-36 bg-gradient-to-b from-[#241a63] via-[#21175c] to-[#120d36] text-white overflow-hidden ${sora.className}`}
+    >
+      {/* ─── Transparent Green Moving Cursor ─── */}
+      <SectionCursor targetRef={sectionRef} />
       {/* ─── Ambient Lighting & Glow Halos ─── */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-gradient-to-b from-indigo-400/25 via-violet-600/15 to-transparent blur-[160px] rounded-full" />
       <div className="pointer-events-none absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-[#d2f83a]/10 blur-[180px] rounded-full" />
@@ -112,25 +120,25 @@ export default function PasSection() {
               className="group relative flex flex-col transition-all duration-300 hover:-translate-y-2"
             >
               {/* ── TOP DECK: Floating Lime Badge Cutout + Inverted Scooped White Title Tab ── */}
-              <div className="relative flex items-end h-[76px] z-10">
+              <div className="relative flex items-end h-[74px] z-10">
                 
                 {/* 1. Left Cutout Notch: The purple page background shows cleanly around the badge */}
-                <div className="w-[84px] h-full relative flex items-start justify-start pt-0.5 pl-0.5">
-                  <div className="w-14 h-14 sm:w-15 sm:h-15 rounded-[18px] sm:rounded-[20px] bg-[#d2f83a] flex items-center justify-center text-slate-950 shadow-[0_10px_25px_rgba(210,248,58,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
+                <div className="w-[74px] h-full relative flex items-start justify-start pt-1 pl-1">
+                  <div className="w-14 h-14 rounded-[18px] bg-[#d2f83a] flex items-center justify-center text-slate-950 shadow-[0_10px_25px_rgba(210,248,58,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
                     {card.icon}
                   </div>
                 </div>
 
-                {/* 2. Right Upper Tab: Pure White Background housing the Title */}
-                <div className="relative flex-1 h-full bg-white rounded-tr-[28px] rounded-tl-[24px] flex items-center px-5 sm:px-6 pt-1">
+                {/* 2. Right Upper Tab: Pure White Background housing the Title (Spot 3: Rounded Top-Left) */}
+                <div className="relative flex-1 h-full bg-white rounded-tr-[28px] rounded-tl-[32px] flex items-center px-5 sm:px-6 pt-1">
                   
                   {/* Precision Inverted Concave Curve Fillet joining tab to lower shelf */}
                   <svg
-                    className="absolute bottom-0 -left-[24px] w-[24px] h-[24px] pointer-events-none"
-                    viewBox="0 0 24 24"
+                    className="absolute bottom-0 -left-[16px] w-[16px] h-[16px] pointer-events-none"
+                    viewBox="0 0 16 16"
                     fill="none"
                   >
-                    <path d="M 24 0 A 24 24 0 0 1 0 24 L 24 24 Z" fill="#ffffff" />
+                    <path d="M 16 0 A 16 16 0 0 1 0 16 L 16 16 Z" fill="#ffffff" />
                   </svg>
 
                   <h3 className="text-xl sm:text-[22px] font-bold text-slate-950 tracking-tight leading-snug">

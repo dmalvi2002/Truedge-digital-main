@@ -2,7 +2,7 @@ import MainHero from "@/components/MainHero";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import PasSection from "@/components/PasSection";
 import ServicesListSection from "@/components/ServicesListSection";
-import ProofSection from "../components/ProofSection";
+import OurWorksSection from "@/components/OurWorksSection";
 import ExpertiseSection from "@/components/ExpertiseSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialSection from "@/components/TestimonialSection";
@@ -17,7 +17,7 @@ export default function Home() {
       <ClientLogosSection />
       <PasSection />
       <ServicesListSection />
-      <ProofSection />
+      <OurWorksSection />
       <ExpertiseSection />
       <ProcessSection />
       <TestimonialSection />
