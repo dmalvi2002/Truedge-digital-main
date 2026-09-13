@@ -135,13 +135,13 @@ export default function Navbar() {
           {/* Purple Button with gliding circle-arrow hover animation */}
           <Link
             href="/contact"
-            className="relative hidden sm:inline-flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 hover:ps-[58px] hover:pe-6 w-fit overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#7c3aed_0%,#6d28d9_100%)] hover:bg-[linear-gradient(135deg,#6d28d9_0%,#5b21b6_100%)] shadow-[0_4px_20px_rgba(124,58,237,0.35)] hover:shadow-[0_6px_25px_rgba(124,58,237,0.5)] active:scale-[0.98]"
+            className="relative hidden sm:inline-flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-[58px] hover:pe-6 w-fit overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#7c3aed_0%,#6d28d9_100%)] hover:bg-[linear-gradient(135deg,#6d28d9_0%,#5b21b6_100%)] shadow-[0_4px_20px_rgba(124,58,237,0.35)] hover:shadow-[0_6px_25px_rgba(124,58,237,0.5)] active:scale-[0.98] select-none transform-gpu"
           >
-            <span className="relative z-10 transition-all duration-500 whitespace-nowrap">
+            <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap">
               Start a Project
             </span>
-            <div className="absolute right-1 w-9 h-9 bg-white text-purple-700 rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-40px)] group-hover:rotate-45 shadow-sm">
-              <ArrowUpRight size={16} className="stroke-[2.5]" />
+            <div className="pointer-events-none absolute right-1 w-9 h-9 bg-white text-purple-700 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-40px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
+              <ArrowUpRight size={16} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
             </div>
           </Link>
 
@@ -184,14 +184,14 @@ export default function Navbar() {
           <div className="pt-2 border-t border-slate-100">
             <Link
               href="/contact"
-              className="relative flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 hover:ps-[58px] hover:pe-6 w-full overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#7c3aed_0%,#6d28d9_100%)] shadow-[0_4px_20px_rgba(124,58,237,0.35)]"
+              className="relative flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-[58px] hover:pe-6 w-full overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#7c3aed_0%,#6d28d9_100%)] shadow-[0_4px_20px_rgba(124,58,237,0.35)] select-none transform-gpu"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className="relative z-10 transition-all duration-500">
+              <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                 Start a Project
               </span>
-              <div className="absolute right-1 w-9 h-9 bg-white text-purple-700 rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-40px)] group-hover:rotate-45 shadow-sm">
-                <ArrowUpRight size={16} className="stroke-[2.5]" />
+              <div className="pointer-events-none absolute right-1 w-9 h-9 bg-white text-purple-700 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-40px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
+                <ArrowUpRight size={16} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
               </div>
             </Link>
           </div>
