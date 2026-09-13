@@ -1,7 +1,7 @@
 import MainHero from "@/components/MainHero";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import PasSection from "@/components/PasSection";
-import ContrastSection from "../components/ContrastSection";
+import ServicesListSection from "@/components/ServicesListSection";
 import ProofSection from "../components/ProofSection";
 import ExpertiseSection from "@/components/ExpertiseSection";
 import ProcessSection from "@/components/ProcessSection";
@@ -16,7 +16,7 @@ export default function Home() {
       <MainHero />
       <ClientLogosSection />
       <PasSection />
-      <ContrastSection />
+      <ServicesListSection />
       <ProofSection />
       <ExpertiseSection />
       <ProcessSection />
