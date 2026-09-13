@@ -21,7 +21,6 @@ interface ServiceCard {
   title: string;
   category: string;
   description: string;
-  metricBadge: string;
   icon: React.ReactNode;
   imageSrc: string;
   imageAlt: string;
@@ -35,7 +34,6 @@ const SERVICES: ServiceCard[] = [
     title: "Website Design",
     category: "Conversion Architecture",
     description: "Generic templates fail to convert modern visitors. We build bespoke, lightning-fast digital flagships engineered to capture attention, build trust, and maximize sales conversions.",
-    metricBadge: "Bespoke · Sub-1s Speed",
     icon: <Laptop className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-laptop.jpg",
     imageAlt: "Website Design and Development Laptop Display",
@@ -47,7 +45,6 @@ const SERVICES: ServiceCard[] = [
     title: "Paid Media & Ads",
     category: "Performance Acquisition",
     description: "Unfocused campaigns burn through ad budgets. We deploy algorithmic Search, Meta, and Social funnels designed to capture high-intent buyers and scale customer acquisition profitably.",
-    metricBadge: "Search · Meta · Social",
     icon: <Megaphone className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-tablet.jpg",
     imageAlt: "Paid Media Strategy Tablet Display",
@@ -59,7 +56,6 @@ const SERVICES: ServiceCard[] = [
     title: "SEO / AEO / GEO",
     category: "AI & Search Authority",
     description: "Standard rankings aren't enough in the AI search era. We optimize your brand for Google search, Answer Engines (AEO), and Generative discovery (GEO) so your business gets recommended first.",
-    metricBadge: "Google · AI Answers · GEO",
     icon: <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-phone.jpg",
     imageAlt: "Search and AI Engine Optimization Display",
@@ -181,10 +177,6 @@ export default function PasSection() {
                       <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                     </div>
                   </Link>
-
-                  <span className="text-xs font-bold text-slate-400">
-                    {card.metricBadge}
-                  </span>
                 </div>
 
               </div>
