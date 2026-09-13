@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  ArrowRight 
+  ArrowUpRight 
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import { gsap } from "gsap";
@@ -413,15 +413,17 @@ export default function MainHero() {
             We engineer high-converting websites, scale profitable paid search &amp; social funnels, and build digital authority for UK businesses.
           </p>
 
-          {/* Single High-Conversion CTA Button */}
+          {/* Single High-Conversion Kinetic Sliding CTA Button (Black) */}
           <div className="hero-cta-btn mt-8 flex justify-center">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-3 rounded-full bg-slate-950 px-8 py-3.5 text-sm sm:text-base font-bold text-white shadow-[0_12px_30px_-6px_rgba(15,23,42,0.35)] transition-all duration-300 hover:bg-slate-800 hover:shadow-[0_18px_35px_-5px_rgba(15,23,42,0.45)] hover:-translate-y-0.5 active:translate-y-0"
+              className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-7 pe-16 group transition-all duration-500 hover:ps-16 hover:pe-7 w-fit overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98]"
             >
-              <span>Get Started</span>
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-slate-950 transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRight size={14} strokeWidth={2.5} />
+              <span className="relative z-10 transition-all duration-500 whitespace-nowrap">
+                Get Started
+              </span>
+              <div className="absolute right-1 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45 shadow-sm">
+                <ArrowUpRight size={18} className="stroke-[2.5]" />
               </div>
             </Link>
           </div>
