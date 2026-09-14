@@ -58,3 +58,31 @@ body {
   animation: marquee-right 35s linear infinite;
 }
 
+@keyframes hero-flow-glide {
+  0% {
+    stroke-dashoffset: 360;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-flow-glow-path {
+  stroke-dasharray: 70 290;
+  animation: hero-flow-glide 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hero-flow-pulse {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-flow-line-animated {
+  stroke-dasharray: 70 290;
+  animation: hero-flow-glide 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+

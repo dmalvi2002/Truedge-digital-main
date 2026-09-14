@@ -4,7 +4,13 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  ArrowUpRight 
+  ArrowUpRight,
+  Monitor,
+  Search,
+  Megaphone,
+  BarChart2,
+  Pencil,
+  Target
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import { gsap } from "gsap";
@@ -42,7 +48,8 @@ export default function MainHero() {
   const cardMiddleRef = useRef<HTMLDivElement>(null);
   const cardRightRef = useRef<HTMLDivElement>(null);
 
-  // Animated SVG Icons: Container refs for intro blossom & scroll glide; Inner refs for continuous organic floating
+  // [COMMENTED OUT FOR REDESIGN] Animated SVG Icons: Container refs & inner refs
+  /*
   const penToolContainerRef = useRef<HTMLDivElement>(null);
   const penToolInnerRef = useRef<HTMLDivElement>(null);
   const megaphoneContainerRef = useRef<HTMLDivElement>(null);
@@ -51,6 +58,7 @@ export default function MainHero() {
   const magnetInnerRef = useRef<HTMLDivElement>(null);
   const arrowContainerRef = useRef<HTMLDivElement>(null);
   const arrowInnerRef = useRef<HTMLDivElement>(null);
+  */
 
   // Hover state for rock-solid, fluid title expansion physics
   const [isTitleHovered, setIsTitleHovered] = useState(false);
@@ -69,7 +77,8 @@ export default function MainHero() {
       "-=0.3"
     );
 
-    // ── MOTION ARTIST INTRO: 4 Icons smoothly glide outward from the heart of the title ──
+    // ── [COMMENTED OUT FOR REDESIGN] MOTION ARTIST INTRO: 4 Icons smoothly glide outward ──
+    /*
     loadTl
       .fromTo(penToolContainerRef.current,
         { x: 150, y: 50, scale: 0.18, opacity: 0 },
@@ -91,6 +100,14 @@ export default function MainHero() {
         { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.15, ease: "power3.out", force3D: true },
         "<" // perfectly simultaneous with bottom-left for bilateral symmetry
       );
+    */
+
+    // Reveal Connected Flow Service Wings smoothly
+    loadTl.fromTo(".hero-service-wing", 
+      { opacity: 0, y: 15 }, 
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 
+      "-=0.3"
+    );
 
     loadTl.fromTo(".hero-subhead", 
       { opacity: 0, y: 20 }, 
@@ -108,7 +125,8 @@ export default function MainHero() {
       "-=0.3"
     );
 
-    // 2. Ambient organic floating for the 4 compact icons
+    // [COMMENTED OUT FOR REDESIGN] 2. Ambient organic floating for the 4 compact icons
+    /*
     gsap.to(penToolInnerRef.current, {
       y: -7,
       rotation: -3,
@@ -147,6 +165,7 @@ export default function MainHero() {
       ease: "sine.inOut",
       delay: 0.3,
     });
+    */
 
     // 3. Desktop-Only Option 5 Scroll Animation: "3D Perspective Fan-Out" & Icons Gliding Up
     const mm = gsap.matchMedia();
@@ -212,7 +231,8 @@ export default function MainHero() {
           yPercent: -4,
           ease: "power2.out",
         }, 0)
-        // All 4 compact icons smoothly glide UPWARDS on scroll
+        // [COMMENTED OUT FOR REDESIGN] All 4 compact icons smoothly glide UPWARDS on scroll
+        /*
         .to(penToolContainerRef.current, {
           y: -42,
           immediateRender: false,
@@ -233,6 +253,7 @@ export default function MainHero() {
           immediateRender: false,
           ease: "power1.out",
         }, 0);
+        */
     });
 
     return () => mm.revert();
@@ -252,7 +273,48 @@ export default function MainHero() {
       {/* Subtle bottom fade into page background */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ── Universal SVG Linear Gradient Definitions for Lucide Icons (Cohesive Brand Palette) ── */}
+      <svg className="absolute w-0 h-0 pointer-events-none opacity-0 overflow-hidden" aria-hidden="true">
+        <defs>
+          {/* 1. Web Development: Royal Blue to Electric Indigo */}
+          <linearGradient id="heroGradWeb" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#4f46e5" />
+          </linearGradient>
+
+          {/* 2. SEO: Cobalt to Indigo */}
+          <linearGradient id="heroGradSeo" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </linearGradient>
+
+          {/* 3. Social Media: Royal Blue to Violet */}
+          <linearGradient id="heroGradSocial" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#7c3aed" />
+          </linearGradient>
+
+          {/* 4. Analytics: Indigo to Royal Blue */}
+          <linearGradient id="heroGradAnalytics" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#4f46e5" />
+            <stop offset="100%" stopColor="#2563eb" />
+          </linearGradient>
+
+          {/* 5. Content Creation: Violet to Electric Blue */}
+          <linearGradient id="heroGradContent" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#6366f1" />
+            <stop offset="100%" stopColor="#3b82f6" />
+          </linearGradient>
+
+          {/* 6. Paid Ads: Indigo to Deep Royal Blue */}
+          <linearGradient id="heroGradAds" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#4f46e5" />
+            <stop offset="100%" stopColor="#1d4ed8" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ─── 1. TOP TRUST BADGE (Rating & Safety Indicator) ─── */}
         <div className="hero-top-badge flex items-center justify-center mb-6">
@@ -276,156 +338,319 @@ export default function MainHero() {
           </div>
         </div>
 
-        {/* ─── 2. HEADLINE & CTA WITH 4 COMPACT ANIMATED ICONS IN EXACT POSITIONS ─── */}
-        <div className="relative text-center max-w-5xl mx-auto select-none py-2">
+        {/* ─── 2. HEADLINE & CTA WITH FLANKING CONNECTED FLOW SERVICES ─── */}
+        <div className="relative max-w-[1400px] 2xl:max-w-[1480px] mx-auto py-2">
           
-          {/* ── ICON 1 (Top-Left): Pen Tool ── */}
-          <div 
-            ref={penToolContainerRef}
-            className="hero-compact-icon hidden sm:block absolute top-1 md:top-3 left-2 sm:left-4 md:-left-4 lg:-left-12 xl:-left-16 z-20 pointer-events-none select-none"
-          >
-            <div 
-              ref={penToolInnerRef}
-              className="w-13 h-13 sm:w-15 sm:h-15 lg:w-[80px] lg:h-[80px] filter drop-shadow-[0_8px_18px_rgba(255,102,0,0.22)]"
+          {/* ── LEFT WING: Web -> SEO -> Social (Connected Flow Arc) ── */}
+          <div className="hero-service-wing hidden lg:block absolute left-0 xl:left-2 2xl:left-4 top-1/2 -translate-y-1/2 w-[230px] xl:w-[250px] h-[290px] pointer-events-auto select-none z-20">
+            {/* Connecting SVG Flow Curve - Smooth continuous hairline arc with elegant light pulse */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
+              viewBox="0 0 250 290"
+              fill="none"
             >
-              <img 
-                src="/pen-tool.svg" 
-                alt="Design Pen Tool" 
-                className="w-full h-full object-contain"
+              <defs>
+                <linearGradient id="heroFlowGradLeft" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2563eb" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#6366f1" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#2563eb" stopOpacity="0.8" />
+                </linearGradient>
+              </defs>
+              {/* 1. Base Hairline Curve */}
+              <path 
+                d="M 60 34 C 12 78, 12 208, 60 252" 
+                stroke="#e2e8f0" 
+                strokeWidth="1.2" 
               />
-            </div>
-          </div>
-
-          {/* ── ICON 2 (Top-Right): Megaphone ── */}
-          <div 
-            ref={megaphoneContainerRef}
-            className="hero-compact-icon hidden sm:block absolute top-1 md:top-3 right-2 sm:right-4 md:-right-4 lg:-right-12 xl:-right-16 z-20 pointer-events-none select-none"
-          >
-            <div 
-              ref={megaphoneInnerRef}
-              className="w-13 h-13 sm:w-15 sm:h-15 lg:w-[66px] lg:h-[66px] filter drop-shadow-[0_8px_18px_rgba(239,68,68,0.22)] transform rotate-12"
-            >
-              <img 
-                src="/megaphone.svg" 
-                alt="Megaphone Broadcast" 
-                className="w-full h-full object-contain"
+              {/* 2. Soft Animated Flow Pulse */}
+              <path 
+                d="M 60 34 C 12 78, 12 208, 60 252" 
+                stroke="url(#heroFlowGradLeft)" 
+                strokeWidth="1.6" 
+                strokeLinecap="round"
+                className="hero-flow-glow-path"
               />
-            </div>
-          </div>
+            </svg>
 
-          {/* ── ICON 3 (Bottom-Left): Magnet ── */}
-          <div 
-            ref={magnetContainerRef}
-            className="hero-compact-icon hidden sm:block absolute bottom-0 sm:bottom-1 md:bottom-2 left-6 sm:left-12 md:left-8 lg:left-6 xl:left-2 z-20 pointer-events-none select-none"
-          >
-            <div 
-              ref={magnetInnerRef}
-              className="w-13 h-13 sm:w-15 sm:h-15 lg:w-[64px] lg:h-[64px] filter drop-shadow-[0_8px_18px_rgba(37,103,157,0.24)] transform -rotate-12"
-            >
-              <img 
-                src="/magnet.svg" 
-                alt="Lead Magnet" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-
-          {/* ── ICON 4 (Bottom-Right): Target & Arrow ── */}
-          <div 
-            ref={arrowContainerRef}
-            className="hero-compact-icon hidden sm:block absolute bottom-0 sm:bottom-1 md:bottom-2 right-6 sm:right-12 md:right-8 lg:right-6 xl:right-2 z-20 pointer-events-none select-none"
-          >
-            <div 
-              ref={arrowInnerRef}
-              className="w-13 h-13 sm:w-15 sm:h-15 lg:w-[75px] lg:h-[75px] filter drop-shadow-[0_8px_18px_rgba(247,77,77,0.24)]"
-            >
-              <img 
-                src="/arrow.svg" 
-                alt="Target & Arrow" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-
-          {/* Title hover trigger box: rock-solid React state management prevents rapid hover stutter */}
-          <div 
-            className="inline-block relative py-2 px-4 sm:px-6 cursor-default"
-            onMouseEnter={() => setIsTitleHovered(true)}
-            onMouseLeave={() => setIsTitleHovered(false)}
-          >
-            <h1 className="hero-headline text-3xl sm:text-5xl lg:text-[62px] font-extrabold tracking-tight text-slate-950 leading-[1.2]">
-              
-              {/* LINE 1: Crafting Flagship [🚀 reveals & pushes text smoothly] Websites */}
-              <div className="flex items-center justify-center whitespace-nowrap">
-                <span>Crafting Flagship</span>
-
-                {/* Startup Rocket Icon: Smooth expansion without stutter on hover */}
-                <span 
-                  className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
-                  style={{
-                    width: isTitleHovered ? 48 : 0,
-                    opacity: isTitleHovered ? 1 : 0,
-                    transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
-                    marginRight: isTitleHovered ? 8 : 0,
-                    transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
-                  }}
-                >
-                  <img 
-                    src="/startup.svg" 
-                    alt="Startup Rocket" 
-                    className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
-                  />
+            {/* Node 1: Web Development */}
+            <div className="absolute top-[10px] left-[36px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <Monitor className="w-5 h-5" stroke="url(#heroGradWeb)" strokeWidth={2.2} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  Web Development
                 </span>
-
-                <span className="ml-2 sm:ml-2.5">Websites</span>
-              </div>
-
-              {/* LINE 2: & Growth [🎯 reveals & pushes text smoothly] Systems That Scale */}
-              <div className="flex items-center justify-center whitespace-nowrap mt-1 sm:mt-2.5">
-                <span>&amp; Growth</span>
-
-                {/* Target Hero Icon: Smooth expansion without stutter on hover */}
-                <span 
-                  className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
-                  style={{
-                    width: isTitleHovered ? 48 : 0,
-                    opacity: isTitleHovered ? 1 : 0,
-                    transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
-                    marginRight: isTitleHovered ? 8 : 0,
-                    transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
-                  }}
-                >
-                  <img 
-                    src="/target-hero-title.svg" 
-                    alt="Growth Target" 
-                    className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
-                  />
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Build better
                 </span>
-
-                <span className="ml-2 sm:ml-2.5">Systems That Scale</span>
               </div>
+            </div>
 
-            </h1>
+            {/* Node 2: SEO Strategy (Pushed outward to create the convex curve) */}
+            <div className="absolute top-[119px] left-[6px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <Search className="w-5 h-5" stroke="url(#heroGradSeo)" strokeWidth={2.3} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  SEO Strategy
+                </span>
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Rank higher
+                </span>
+              </div>
+            </div>
+
+            {/* Node 3: Social Media */}
+            <div className="absolute top-[228px] left-[36px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <Megaphone className="w-5 h-5" stroke="url(#heroGradSocial)" strokeWidth={2.2} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  Social Media
+                </span>
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Grow your audience
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Subheading */}
-          <p className="hero-subhead mt-6 text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
-            We engineer high-converting websites, scale profitable paid search &amp; social funnels, and build digital authority for UK businesses.
-          </p>
-
-          {/* Single High-Conversion Kinetic Sliding CTA Button (Black) */}
-          <div className="hero-cta-btn mt-8 flex justify-center">
-            <Link
-              href="/contact"
-              className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-7 pe-16 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-16 hover:pe-7 w-fit overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98] select-none transform-gpu"
+          {/* ── RIGHT WING: Analytics -> Content -> Paid Ads (Connected Flow Arc) ── */}
+          <div className="hero-service-wing hidden lg:block absolute right-0 xl:right-2 2xl:right-4 top-1/2 -translate-y-1/2 w-[250px] xl:w-[270px] h-[290px] pointer-events-auto select-none z-20">
+            {/* Connecting SVG Flow Curve - Smooth continuous hairline arc with elegant light pulse */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
+              viewBox="0 0 270 290"
+              fill="none"
             >
-              <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap">
-                Book a Free Strategy Call
-              </span>
-              <div className="pointer-events-none absolute right-1 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-44px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
-                <ArrowUpRight size={18} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
+              <defs>
+                <linearGradient id="heroFlowGradRight" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#2563eb" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.8" />
+                </linearGradient>
+              </defs>
+              {/* 1. Base Hairline Curve */}
+              <path 
+                d="M 40 34 C 88 78, 88 208, 40 252" 
+                stroke="#e2e8f0" 
+                strokeWidth="1.2" 
+              />
+              {/* 2. Soft Animated Flow Pulse */}
+              <path 
+                d="M 40 34 C 88 78, 88 208, 40 252" 
+                stroke="url(#heroFlowGradRight)" 
+                strokeWidth="1.6" 
+                strokeLinecap="round"
+                className="hero-flow-glow-path"
+              />
+            </svg>
+
+            {/* Node 1: Analytics */}
+            <div className="absolute top-[10px] left-[16px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <BarChart2 className="w-5 h-5" stroke="url(#heroGradAnalytics)" strokeWidth={2.4} />
               </div>
-            </Link>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  Analytics
+                </span>
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Data-driven decisions
+                </span>
+              </div>
+            </div>
+
+            {/* Node 2: Content Creation (Pushed outward to create the convex curve) */}
+            <div className="absolute top-[119px] left-[46px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <Pencil className="w-5 h-5" stroke="url(#heroGradContent)" strokeWidth={2.2} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  Content Creation
+                </span>
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Tell your story
+                </span>
+              </div>
+            </div>
+
+            {/* Node 3: Paid Ads */}
+            <div className="absolute top-[228px] left-[16px] flex items-center gap-3.5 group cursor-default">
+              <div className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-[0_8px_20px_-3px_rgba(15,23,42,0.06),0_2px_6px_-2px_rgba(15,23,42,0.04)] flex items-center justify-center shrink-0 group-hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.1)] group-hover:scale-105 transition-all duration-300 z-10">
+                <Target className="w-5 h-5" stroke="url(#heroGradAds)" strokeWidth={2.2} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] xl:text-[14px] font-semibold text-slate-900 tracking-tight leading-snug">
+                  Paid Ads
+                </span>
+                <span className="text-[11px] xl:text-xs text-slate-400 font-normal leading-tight mt-0.5">
+                  Get real results
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── CENTER: Headline, Subhead & Kinetic CTA (Preserved 100%) ── */}
+          <div className="relative text-center max-w-2xl lg:max-w-[700px] xl:max-w-[800px] 2xl:max-w-[860px] mx-auto select-none py-2 z-10">
+            
+            {/* [COMMENTED OUT FOR REDESIGN] Old 4 compact animated SVG icons
+            <div ref={penToolContainerRef} className="hidden sm:block absolute ...">...</div>
+            <div ref={megaphoneContainerRef} className="hidden sm:block absolute ...">...</div>
+            <div ref={magnetContainerRef} className="hidden sm:block absolute ...">...</div>
+            <div ref={arrowContainerRef} className="hidden sm:block absolute ...">...</div>
+            */}
+
+            {/* Title hover trigger box: rock-solid React state management prevents rapid hover stutter */}
+            <div 
+              className="inline-block relative py-2 px-4 sm:px-6 cursor-default"
+              onMouseEnter={() => setIsTitleHovered(true)}
+              onMouseLeave={() => setIsTitleHovered(false)}
+            >
+              <h1 className="hero-headline text-3xl sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[50px] 2xl:text-[58px] font-extrabold tracking-tight text-slate-950 leading-[1.2]">
+                
+                {/* LINE 1: Crafting Flagship [🚀 reveals & pushes text smoothly] Websites */}
+                <div className="flex items-center justify-center whitespace-nowrap">
+                  <span>Crafting Flagship</span>
+
+                  {/* Startup Rocket Icon: Smooth expansion without stutter on hover */}
+                  <span 
+                    className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
+                    style={{
+                      width: isTitleHovered ? 48 : 0,
+                      opacity: isTitleHovered ? 1 : 0,
+                      transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
+                      marginRight: isTitleHovered ? 8 : 0,
+                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
+                    }}
+                  >
+                    <img 
+                      src="/startup.svg" 
+                      alt="Startup Rocket" 
+                      className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                    />
+                  </span>
+
+                  <span className="ml-2 sm:ml-2.5">Websites</span>
+                </div>
+
+                {/* LINE 2: & Growth [🎯 reveals & pushes text smoothly] Systems That Scale */}
+                <div className="flex items-center justify-center whitespace-nowrap mt-1 sm:mt-2.5">
+                  <span>&amp; Growth</span>
+
+                  {/* Target Hero Icon: Smooth expansion without stutter on hover */}
+                  <span 
+                    className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
+                    style={{
+                      width: isTitleHovered ? 48 : 0,
+                      opacity: isTitleHovered ? 1 : 0,
+                      transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
+                      marginRight: isTitleHovered ? 8 : 0,
+                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
+                    }}
+                  >
+                    <img 
+                      src="/target-hero-title.svg" 
+                      alt="Growth Target" 
+                      className="w-8 h-8 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                    />
+                  </span>
+
+                  <span className="ml-2 sm:ml-2.5">Systems That Scale</span>
+                </div>
+
+              </h1>
+            </div>
+
+            {/* Subheading */}
+            <p className="hero-subhead mt-6 text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
+              We engineer high-converting websites, scale profitable paid search &amp; social funnels, and build digital authority for UK businesses.
+            </p>
+
+            {/* Single High-Conversion Kinetic Sliding CTA Button (Black) */}
+            <div className="hero-cta-btn mt-8 flex justify-center">
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-7 pe-16 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-16 hover:pe-7 w-fit overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98] select-none transform-gpu"
+              >
+                <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap">
+                  Book a Free Strategy Call
+                </span>
+                <div className="pointer-events-none absolute right-1 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-44px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
+                  <ArrowUpRight size={18} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* ── MOBILE / TABLET RESPONSIVE FLOW (< lg screens, clean minimal grid without pills/cards) ── */}
+          <div className="lg:hidden mt-10 max-w-lg mx-auto px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-4">
+              {/* 1. Web */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <Monitor className="w-4 h-4" stroke="url(#heroGradWeb)" strokeWidth={2.2} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">Web Development</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Build better</span>
+                </div>
+              </div>
+              {/* 2. SEO */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <Search className="w-4 h-4" stroke="url(#heroGradSeo)" strokeWidth={2.3} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">SEO Strategy</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Rank higher</span>
+                </div>
+              </div>
+              {/* 3. Social */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <Megaphone className="w-4 h-4" stroke="url(#heroGradSocial)" strokeWidth={2.2} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">Social Media</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Grow audience</span>
+                </div>
+              </div>
+              {/* 4. Analytics */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <BarChart2 className="w-4 h-4" stroke="url(#heroGradAnalytics)" strokeWidth={2.4} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">Analytics</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Data-driven</span>
+                </div>
+              </div>
+              {/* 5. Content */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <Pencil className="w-4 h-4" stroke="url(#heroGradContent)" strokeWidth={2.2} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">Content Creation</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Tell your story</span>
+                </div>
+              </div>
+              {/* 6. Paid Ads */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-white border border-slate-100 shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex items-center justify-center shrink-0">
+                  <Target className="w-4 h-4" stroke="url(#heroGradAds)" strokeWidth={2.2} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-semibold text-slate-900 leading-tight">Paid Ads</span>
+                  <span className="text-[10px] text-slate-400 leading-tight mt-0.5">Real results</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
