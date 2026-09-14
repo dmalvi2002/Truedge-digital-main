@@ -58,7 +58,7 @@ const PROJECTS: ProjectWork[] = [
   },
 ];
 
-// Star Separator Icon provided by user
+// Star Separator Icon provided by user (optimized into 1 unified compound vector path)
 const StarSeparator = ({ className = "" }: { className?: string }) => (
   <svg
     viewBox="0 0 32 32"
@@ -66,11 +66,7 @@ const StarSeparator = ({ className = "" }: { className?: string }) => (
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M19.845 3.93521C19.845 6.10648 15.9098 11.9955 15.9098 11.9955C15.9098 11.9955 11.9746 6.10648 11.9746 3.93521C11.9746 1.76394 15.9098 0 15.9098 0C15.9098 0 19.845 1.76049 19.845 3.93521Z" />
-    <path d="M3.93521 11.9761C6.10648 11.9761 11.9955 15.9113 11.9955 15.9113C11.9955 15.9113 6.10648 19.8465 3.93521 19.8465C1.76394 19.8465 0 15.9079 0 15.9079C0 15.9079 1.76049 11.9727 3.93521 11.9727V11.9761Z" />
-    <path d="M11.9785 27.8923C11.9785 25.721 15.9137 19.832 15.9137 19.832C15.9137 19.832 19.8489 25.721 19.8489 27.8923C19.8489 30.0636 15.9137 31.8275 15.9137 31.8275C15.9137 31.8275 11.9785 30.067 11.9785 27.8923Z" />
-    <path d="M27.8884 19.8431C25.7171 19.8431 19.8281 15.9079 19.8281 15.9079C19.8281 15.9079 25.7171 11.9727 27.8884 11.9727C30.0597 11.9727 31.8236 15.9079 31.8236 15.9079C31.8236 15.9079 30.0631 19.8431 27.8884 19.8431Z" />
-    <path d="M15.9118 17.4682C16.7736 17.4682 17.4721 16.7697 17.4721 15.9079C17.4721 15.0462 16.7736 14.3477 15.9118 14.3477C15.0501 14.3477 14.3516 15.0462 14.3516 15.9079C14.3516 16.7697 15.0501 17.4682 15.9118 17.4682Z" />
+    <path d="M19.845 3.93521C19.845 6.10648 15.9098 11.9955 15.9098 11.9955C15.9098 11.9955 11.9746 6.10648 11.9746 3.93521C11.9746 1.76394 15.9098 0 15.9098 0C15.9098 0 19.845 1.76049 19.845 3.93521ZM3.93521 11.9761C6.10648 11.9761 11.9955 15.9113 11.9955 15.9113C11.9955 15.9113 6.10648 19.8465 3.93521 19.8465C1.76394 19.8465 0 15.9079 0 15.9079C0 15.9079 1.76049 11.9727 3.93521 11.9727V11.9761ZM11.9785 27.8923C11.9785 25.721 15.9137 19.832 15.9137 19.832C15.9137 19.832 19.8489 25.721 19.8489 27.8923C19.8489 30.0636 15.9137 31.8275 15.9137 31.8275C15.9137 31.8275 11.9785 30.067 11.9785 27.8923ZM27.8884 19.8431C25.7171 19.8431 19.8281 15.9079 19.8281 15.9079C19.8281 15.9079 25.7171 11.9727 27.8884 11.9727C30.0597 11.9727 31.8236 15.9079 31.8236 15.9079C31.8236 15.9079 30.0631 19.8431 27.8884 19.8431ZM15.9118 17.4682C16.7736 17.4682 17.4721 16.7697 17.4721 15.9079C17.4721 15.0462 16.7736 14.3477 15.9118 14.3477C15.0501 14.3477 14.3516 15.0462 14.3516 15.9079C14.3516 16.7697 15.0501 17.4682 15.9118 17.4682Z" />
   </svg>
 );
 
@@ -391,11 +387,11 @@ export default function OurWorksSection() {
       </div>
 
       {/* ─── PART 3: DUAL X-CROSSING TICKER MARQUEE TAPE BANNER ─── */}
-      <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] mt-16 sm:mt-24 flex items-center justify-center overflow-hidden select-none pointer-events-none">
+      <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] mt-16 sm:mt-24 flex items-center justify-center overflow-hidden select-none pointer-events-none [content-visibility:auto] [contain-intrinsic-size:auto_360px]">
         
         {/* Dark Ticker Ribbon (Crossing Behind, sloping downwards +3.5deg) */}
-        <div className="absolute w-[140%] -left-[20%] py-5 sm:py-6 lg:py-7 bg-[#08090e] border-y-2 border-white/10 rotate-[2.5deg] sm:rotate-[3.5deg] flex items-center overflow-hidden z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] [contain:paint] transform-gpu">
-          <div className="animate-marquee-left flex w-max items-center transform-gpu [backface-visibility:hidden]">
+        <div className="absolute w-[140%] -left-[20%] py-5 sm:py-6 lg:py-7 bg-[#08090e] border-y-2 border-white/10 rotate-[2.5deg] sm:rotate-[3.5deg] flex items-center overflow-hidden z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] [contain:paint] transform-gpu [transform:translateZ(0)] isolate">
+          <div className="animate-marquee-left flex w-max items-center transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]">
             {/* Set 1 */}
             <div className="flex shrink-0 items-center">
               {TICKER_SERVICES.concat(TICKER_SERVICES).map((item, i) => (
@@ -426,8 +422,8 @@ export default function OurWorksSection() {
         </div>
 
         {/* Accent Green Ticker Ribbon (Crossing in Front, sloping upwards -5.5deg) */}
-        <div className="absolute w-[140%] -left-[20%] py-5 sm:py-6 lg:py-7 bg-[#d2f83a] -rotate-[4.5deg] sm:-rotate-[5.5deg] flex items-center overflow-hidden z-20 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(210,248,58,0.25)] [contain:paint] transform-gpu">
-          <div className="animate-marquee-right flex w-max items-center transform-gpu [backface-visibility:hidden]">
+        <div className="absolute w-[140%] -left-[20%] py-5 sm:py-6 lg:py-7 bg-[#d2f83a] -rotate-[4.5deg] sm:-rotate-[5.5deg] flex items-center overflow-hidden z-20 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(210,248,58,0.25)] [contain:paint] transform-gpu [transform:translateZ(0)] isolate">
+          <div className="animate-marquee-right flex w-max items-center transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]">
             {/* Set 1 */}
             <div className="flex shrink-0 items-center">
               {TICKER_SERVICES.concat(TICKER_SERVICES).map((item, i) => (
