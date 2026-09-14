@@ -308,7 +308,7 @@ export default function OurWorksSection() {
       </div>
 
       {/* ─── PART 2: OUR WORKS (Screen 3 Header & 2x2 Landing Grid) ─── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-24 sm:pb-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-12 sm:pb-6 lg:pb-8">
         
         {/* Header: "Our Works" with letter-by-letter scroll ripple animation */}
         <div className="w-full mb-8 sm:mb-12 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
@@ -373,7 +373,7 @@ export default function OurWorksSection() {
         </div>
 
         {/* Bottom CTA to view all projects matching PAS button design */}
-        <div className="w-full mt-12 sm:mt-16 flex justify-center">
+        <div className="w-full mt-8 sm:mt-10 flex justify-center">
           <Link
             href="/projects"
             className="group/cta inline-flex items-center gap-3.5 pl-6 pr-2 py-2 rounded-full bg-[#d2f83a] text-slate-950 font-bold shadow-lg shadow-lime-400/20 hover:bg-[#c0e82c] transition-all duration-300 hover:shadow-[0_6px_25px_rgba(210,248,58,0.4)] cursor-pointer"
@@ -386,8 +386,8 @@ export default function OurWorksSection() {
         </div>
       </div>
 
-      {/* ─── PART 3: DUAL X-CROSSING TICKER MARQUEE TAPE BANNER ─── */}
-      <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] mt-16 sm:mt-24 flex items-center justify-center overflow-hidden select-none pointer-events-none [content-visibility:auto] [contain-intrinsic-size:auto_360px]">
+      {/* ─── PART 3: DUAL X-CROSSING TICKER MARQUEE TAPE BANNER (Hidden on mobile, visible on tablet, laptop & PC) ─── */}
+      <div className="hidden sm:flex relative w-full h-[200px] sm:h-[240px] lg:h-[320px] xl:h-[340px] mt-4 sm:mt-6 lg:mt-8 mb-0 lg:mb-16 xl:mb-20 items-center justify-center overflow-hidden select-none pointer-events-none [content-visibility:auto] [contain-intrinsic-size:auto_340px]">
         
         {/* Dark Ticker Ribbon (Crossing Behind, sloping downwards +3.5deg) */}
         <div className="absolute w-[140%] -left-[20%] py-5 sm:py-6 lg:py-7 bg-[#08090e] border-y-2 border-white/10 rotate-[2.5deg] sm:rotate-[3.5deg] flex items-center overflow-hidden z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] [contain:paint] transform-gpu [transform:translateZ(0)] isolate">

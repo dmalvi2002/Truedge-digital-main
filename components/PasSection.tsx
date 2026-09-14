@@ -198,63 +198,76 @@ export default function PasSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* LEFT COLUMN: Layered Team Photography Composition with connecting Dotted Doodle Line */}
-            <div className="lg:col-span-6 relative flex items-center justify-center min-h-[420px] sm:min-h-[500px]">
+            <div className="lg:col-span-6 flex items-center justify-center">
               
-              {/* Long & Wavy Dotted Doodle Connector Line */}
-              <svg 
-                className="absolute inset-0 w-full h-full pointer-events-none z-30 overflow-visible"
-                viewBox="0 0 574 484"
-                fill="none"
-              >
-                <defs>
-                  <marker
-                    id="doodle-arrowhead"
-                    viewBox="0 0 10 10"
-                    refX="6"
-                    refY="5"
-                    markerWidth="7"
-                    markerHeight="7"
-                    orient="auto-start-reverse"
-                  >
-                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d2f83a" />
-                  </marker>
-                </defs>
+              {/* Proportional Composition Box (Strictly matches the 574x484 doodle coordinate system) */}
+              <div className="relative w-full max-w-[560px] aspect-[574/484] mx-auto">
                 
-                {/* Playful Dotted Doodle with Middle Circular Loop connecting to Photo 2 Bottom-Center */}
-                <path 
-                  d="M 130 246 C 90 285, 75 325, 95 360 C 115 400, 165 400, 165 360 C 165 320, 115 320, 95 360 C 80 425, 140 515, 230 515 C 310 515, 365 510, 395 484" 
-                  stroke="#d2f83a" 
-                  strokeWidth="2.8" 
-                  strokeDasharray="6 6" 
-                  strokeLinecap="round"
-                  markerEnd="url(#doodle-arrowhead)"
-                  className="opacity-95"
-                />
+                {/* Long & Wavy Dotted Doodle Connector Line - Placed BELOW images (z-0) */}
+                <svg 
+                  className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
+                  viewBox="0 0 574 484"
+                  fill="none"
+                >
+                  <defs>
+                    <marker
+                      id="doodle-arrowhead"
+                      viewBox="0 0 10 10"
+                      refX="6"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto-start-reverse"
+                    >
+                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d2f83a" />
+                    </marker>
+                  </defs>
+                  
+                  {/* Playful Dotted Doodle with Middle Circular Loop connecting behind Photo 2 */}
+                  <path 
+                    d="M 130 246 C 90 285, 75 325, 95 360 C 115 400, 165 400, 165 360 C 165 320, 115 320, 95 360 C 80 425, 140 515, 230 515 C 310 515, 365 510, 395 484" 
+                    stroke="#d2f83a" 
+                    strokeWidth="2.8" 
+                    strokeDasharray="6 6" 
+                    strokeLinecap="round"
+                    markerEnd="url(#doodle-arrowhead)"
+                    className="opacity-95"
+                  />
 
-                {/* Starting anchor dot on Photo 1 bottom border */}
-                <circle cx="130" cy="246" r="4.5" fill="#d2f83a" />
-              </svg>
+                  {/* Starting anchor dot base */}
+                  <circle cx="130" cy="246" r="4.5" fill="#d2f83a" />
+                </svg>
 
-              {/* Photo 1: Team Collaboration (Top-Left) */}
-              <div className="absolute top-0 left-0 w-[60%] sm:w-[58%] aspect-[4/3] rounded-[26px] sm:rounded-[30px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border-2 border-white/15 z-10">
-                <Image
-                  src="/team-collaboration.jpg"
-                  alt="Truedge Growth Strategy Specialists"
-                  fill
-                  className="object-cover"
-                />
+                {/* Anchor Pin connecting Photo 1 bottom border to the doodle line (z-[15]: above Photo 1 z-10, below Photo 2 z-20) */}
+                <svg 
+                  className="absolute inset-0 w-full h-full pointer-events-none z-[15] overflow-visible"
+                  viewBox="0 0 574 484"
+                  fill="none"
+                >
+                  <circle cx="130" cy="246" r="5" fill="#d2f83a" className="drop-shadow-[0_0_8px_rgba(210,248,58,0.8)]" />
+                </svg>
+
+                {/* Photo 1: Team Collaboration (Top-Left) - Connects with circle dot at (130, 246) */}
+                <div className="absolute top-0 left-0 w-[58%] aspect-[4/3] rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border-2 border-white/15 z-10">
+                  <Image
+                    src="/team-collaboration.jpg"
+                    alt="Truedge Growth Strategy Specialists"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Photo 2: Strategic Funnel Whiteboarding (Bottom-Right, overlapping) */}
+                <div className="absolute bottom-2 sm:bottom-3 right-0 w-[62%] aspect-[4/3] rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)] border-2 border-white/15 z-20">
+                  <Image
+                    src="/team-strategy.jpg"
+                    alt="Revenue Growth Funnel Engineering"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
               </div>
-
-              {/* Photo 2: Strategic Funnel Whiteboarding (Bottom-Right, overlapping) */}
-              <div className="absolute bottom-4 right-0 w-[64%] sm:w-[62%] aspect-[4/3] rounded-[26px] sm:rounded-[30px] overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)] border-2 border-white/15 z-20">
-                <Image
-                  src="/team-strategy.jpg"
-                  alt="Revenue Growth Funnel Engineering"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
             </div>
 
             {/* RIGHT COLUMN: The Clean Problem / Solution Pitch (No Eyebrow) */}

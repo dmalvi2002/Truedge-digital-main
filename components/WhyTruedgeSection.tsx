@@ -73,15 +73,18 @@ export default function WhyTruedgeSection() {
   const imageRef = useRef<HTMLDivElement | null>(null);
   const circleRef = useRef<HTMLDivElement | null>(null);
 
-  // Smooth scroll-reactive animation for both the inner image and the rotating circle seal
+  // Smooth scroll-reactive animation for both the inner image and the rotating circle seal (Tablet/Desktop only)
   useEffect(() => {
     const img = imageRef.current;
     const circle = circleRef.current;
     const container = imageContainerRef.current;
     if (!img || !circle || !container) return;
 
-    const ctx = gsap.context(() => {
-      // 1. Increased strength vertical scroll movement contained strictly inside the fixed container
+    const mm = gsap.matchMedia();
+
+    // Only apply scroll animations on tablet and desktop (>= 768px); disabled on mobile
+    mm.add("(min-width: 768px)", () => {
+      // 1. Vertical scroll movement contained strictly inside the fixed container
       gsap.fromTo(
         img,
         { yPercent: -12 },
@@ -97,7 +100,7 @@ export default function WhyTruedgeSection() {
         }
       );
 
-      // 2. Circle seal has amplified vertical scroll float (clearly noticeable motion)
+      // 2. Circle seal vertical scroll float
       gsap.fromTo(
         circle,
         { y: -65 },
@@ -112,9 +115,9 @@ export default function WhyTruedgeSection() {
           },
         }
       );
-    }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (

@@ -279,22 +279,22 @@ export default function MainHero() {
       <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ─── 1. TOP TRUST BADGE ─── */}
-        <div className="hero-top-badge flex items-center justify-center mb-5 sm:mb-6">
-          <div className="inline-flex items-center gap-2 sm:gap-3 rounded-full border border-slate-200/80 bg-white/95 px-3.5 sm:px-5 py-1.5 sm:py-2 shadow-[0_4px_20px_rgba(0,0,0,0.04)] backdrop-blur-md">
-            <span className="text-[11px] sm:text-xs font-semibold text-slate-700 tracking-tight">
-              4.9/5 Average Client Rating
+        <div className="hero-top-badge flex items-center justify-center mb-5 sm:mb-6 px-2">
+          <div className="inline-flex items-center gap-2 sm:gap-3 rounded-full border border-slate-200/80 bg-white/95 px-3 sm:px-5 py-1.5 sm:py-2 shadow-[0_4px_20px_rgba(0,0,0,0.04)] backdrop-blur-md whitespace-nowrap">
+            <span className="text-[10.5px] sm:text-xs font-semibold text-slate-700 tracking-tight whitespace-nowrap shrink-0">
+              4.9/5 <span className="hidden sm:inline">Average </span>Client Rating
             </span>
 
-            <span className="h-3 sm:h-3.5 w-px bg-slate-200"></span>
+            <span className="h-3 sm:h-3.5 w-px bg-slate-200 shrink-0"></span>
 
-            <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <img 
                 src="/google-logo.webp" 
                 alt="Google" 
-                className="h-3 sm:h-4 w-auto object-contain"
+                className="h-3 sm:h-3.5 w-auto object-contain shrink-0"
               />
-              <span className="text-[11px] sm:text-xs font-bold text-slate-900 tracking-tight">
-                10+ Google Reviews
+              <span className="text-[10.5px] sm:text-xs font-bold text-slate-900 tracking-tight whitespace-nowrap shrink-0">
+                10+ <span className="hidden sm:inline">Google </span>Reviews
               </span>
             </div>
           </div>
@@ -303,9 +303,9 @@ export default function MainHero() {
         {/* ─── 2. HEADLINE & CTA WITH FLANKING WINGS ─── */}
         <div className="relative max-w-[1400px] 2xl:max-w-[1480px] mx-auto py-1 sm:py-2">
           
-          {/* ── LEFT WING: Web -> SEO -> Social (Desktop & Laptop: lg+) ── */}
+          {/* ── LEFT WING: Web -> SEO -> Social (Desktop & Laptop: xl+ 1280px+) ── */}
           <div 
-            className="hero-service-wing hidden lg:block absolute left-0 xl:left-2 2xl:left-6 top-1/2 w-[230px] xl:w-[250px] 2xl:w-[270px] h-[290px] pointer-events-auto select-none z-20"
+            className="hero-service-wing hidden xl:block absolute left-0 xl:left-2 2xl:left-6 top-1/2 w-[230px] xl:w-[250px] 2xl:w-[270px] h-[290px] pointer-events-auto select-none z-20"
             style={{ transform: "translateY(-50%)" }}
           >
             <svg 
@@ -380,9 +380,9 @@ export default function MainHero() {
             </div>
           </div>
 
-          {/* ── RIGHT WING: Analytics -> Content -> Paid Ads (Desktop & Laptop: lg+) ── */}
+          {/* ── RIGHT WING: Analytics -> Content -> Paid Ads (Desktop & Laptop: xl+ 1280px+) ── */}
           <div 
-            className="hero-service-wing hidden lg:block absolute right-0 xl:right-2 2xl:right-6 top-1/2 w-[240px] xl:w-[260px] 2xl:w-[280px] h-[290px] pointer-events-auto select-none z-20"
+            className="hero-service-wing hidden xl:block absolute right-0 xl:right-2 2xl:right-6 top-1/2 w-[240px] xl:w-[260px] 2xl:w-[280px] h-[290px] pointer-events-auto select-none z-20"
             style={{ transform: "translateY(-50%)" }}
           >
             <svg 
@@ -547,8 +547,8 @@ export default function MainHero() {
             </div>
           </div>
 
-          {/* ── RESPONSIVE SERVICES FLOW (< lg screens: tablet & mobile clean card grid) ── */}
-          <div className="lg:hidden mt-8 sm:mt-10 max-w-lg sm:max-w-3xl md:max-w-4xl mx-auto px-4 sm:px-6">
+          {/* ── RESPONSIVE SERVICES FLOW (< xl screens: tablet & mobile clean card grid) ── */}
+          <div className="xl:hidden mt-8 sm:mt-10 max-w-lg sm:max-w-3xl md:max-w-4xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
               
               {/* 1. Web */}
