@@ -173,7 +173,7 @@ export default function PasSection() {
                 </div>
 
                 {/* 3. BESPOKE BUTTON DESIGN: The Magnetic Kinetic Capsule */}
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-2 flex items-center justify-between">
                   <Link
                     href={card.href}
                     className="group/btn inline-flex items-center gap-3 pl-4 pr-1.5 py-1.5 rounded-full bg-slate-950 text-white shadow-md hover:bg-slate-900 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(210,248,58,0.35)] cursor-pointer"

@@ -482,21 +482,21 @@ export default function MainHero() {
                   <span 
                     className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
                     style={{
-                      width: isTitleHovered ? 44 : 0,
+                      width: isTitleHovered ? 40 : 0,
+                      marginLeft: isTitleHovered ? 10 : 0,
                       opacity: isTitleHovered ? 1 : 0,
                       transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
-                      marginRight: isTitleHovered ? 8 : 0,
-                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
+                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), margin-left 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                     }}
                   >
                     <img 
                       src="/startup.svg" 
                       alt="Startup Rocket" 
-                      className="w-7 h-7 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                      className="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-sm"
                     />
                   </span>
 
-                  <span className="ml-1.5 sm:ml-2.5">Websites</span>
+                  <span className="ml-2.5">Websites</span>
                 </div>
 
                 {/* LINE 2: & Growth [🎯 reveals & pushes text smoothly] Systems That Scale */}
@@ -506,21 +506,21 @@ export default function MainHero() {
                   <span 
                     className="inline-flex items-center justify-center align-middle overflow-hidden pointer-events-none"
                     style={{
-                      width: isTitleHovered ? 44 : 0,
+                      width: isTitleHovered ? 40 : 0,
+                      marginLeft: isTitleHovered ? 10 : 0,
                       opacity: isTitleHovered ? 1 : 0,
                       transform: isTitleHovered ? "scale(1)" : "scale(0.4)",
-                      marginRight: isTitleHovered ? 8 : 0,
-                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), margin-right 350ms ease",
+                      transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), margin-left 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                     }}
                   >
                     <img 
                       src="/target-hero-title.svg" 
                       alt="Growth Target" 
-                      className="w-7 h-7 sm:w-10 sm:h-10 ml-2 object-contain filter drop-shadow-sm"
+                      className="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-sm"
                     />
                   </span>
 
-                  <span className="ml-1.5 sm:ml-2.5">Systems That Scale</span>
+                  <span className="ml-2.5">Systems That Scale</span>
                 </div>
 
               </h1>
