@@ -321,7 +321,7 @@ export default function PasSection() {
                   href="/contact"
                   className="group/cta inline-flex items-center gap-3.5 pl-6 pr-2 py-2 rounded-full bg-[#d2f83a] text-slate-950 font-bold shadow-lg shadow-lime-400/20 hover:bg-[#c0e82c] transition-all duration-300 hover:shadow-[0_6px_25px_rgba(210,248,58,0.4)] cursor-pointer"
                 >
-                  <span className="text-sm sm:text-base">Book Discovery Call</span>
+                  <span className="text-sm sm:text-base">Book a Free Strategy Call</span>
                   <div className="w-8 h-8 rounded-full bg-slate-950 text-[#d2f83a] flex items-center justify-center transition-transform duration-300 group-hover/cta:rotate-45">
                     <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                   </div>

@@ -124,67 +124,67 @@ export default function ServicesListSection() {
         const line = lineRefs.current[index];
         if (!row) return;
 
-        // Initial state: shifted left, blurred, low opacity, kinetic skew
-        gsap.set(row, {
-          x: -160,
-          opacity: 0,
-          skewX: -5,
-          filter: 'blur(6px)',
-        });
+        // Hardware-accelerated timeline: pre-compiled, GPU composited (zero blur filter overhead)
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo(
+          row,
+          {
+            x: -70,
+            opacity: 0,
+            force3D: true,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            ease: 'power2.out',
+            duration: 1,
+            force3D: true,
+          }
+        );
 
         if (line) {
-          gsap.set(line, {
-            scaleX: 0,
-            transformOrigin: 'left center',
-          });
+          tl.fromTo(
+            line,
+            {
+              scaleX: 0,
+              transformOrigin: 'left center',
+              force3D: true,
+            },
+            {
+              scaleX: 1,
+              ease: 'none',
+              duration: 1,
+              force3D: true,
+            },
+            0
+          );
         }
+
+        // Initialize at progress 0
+        tl.progress(0);
 
         let maxProgress = 0;
 
-        // Individual ScrollTrigger per row: directly driven by user scroll!
-        const trigger = ScrollTrigger.create({
+        // Driven directly by user scroll with forward-only locking
+        ScrollTrigger.create({
           trigger: row,
           start: 'top 92%',
-          end: 'top 60%',
-          scrub: 0.6, // Smooth momentum scrub linked to user scrolling
+          end: 'top 65%',
+          scrub: 0.35,
           onUpdate: (self) => {
-            // Forward-only progress: never rewinds if user scrolls back up
             if (self.progress > maxProgress) {
               maxProgress = self.progress;
-              const p = maxProgress;
+              tl.progress(maxProgress);
 
-              // Dynamic interpolation from left to right
-              const currentX = -160 * (1 - p);
-              const currentOpacity = Math.min(1, p * 1.3);
-              const currentSkew = -5 * (1 - p);
-              const currentBlur = 6 * (1 - p);
-
-              gsap.set(row, {
-                x: currentX,
-                opacity: currentOpacity,
-                skewX: currentSkew,
-                filter: `blur(${currentBlur.toFixed(1)}px)`,
-              });
-
-              if (line) {
-                gsap.set(line, {
-                  scaleX: p,
-                });
-              }
-
-              // Once fully loaded (reaches threshold), finalize and end scroll animation
-              if (p >= 0.98) {
-                gsap.set(row, {
-                  x: 0,
-                  opacity: 1,
-                  skewX: 0,
-                  filter: 'blur(0px)',
-                  clearProps: 'transform,skewX,filter',
-                });
+              // Once fully arrived, snap to 1, clear transform props so hover states work cleanly, and kill trigger
+              if (maxProgress >= 0.98) {
+                tl.progress(1);
+                gsap.set(row, { clearProps: 'transform' });
                 if (line) {
                   gsap.set(line, { scaleX: 1, clearProps: 'transform' });
                 }
-                trigger.kill(); // The scroll animation ends permanently for this row!
+                self.kill();
               }
             }
           },
@@ -202,19 +202,34 @@ export default function ServicesListSection() {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
-          <ScrollRippleTitle
-            text="It’s big challenge to grow-up your sales by providing best services"
-            as="h2"
-            className={`${sora.className} text-3xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold tracking-tight leading-[1.14] mb-6 block`}
-            baseColor="rgba(15, 23, 42, 0.22)"
-            activeColor="#020617"
-            accentColor="#a855f7"
-          />
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            From high-converting web architecture and performance ads to commercial video and tactile marketing leaflets—we engineer unified growth across every touchpoint.
-          </p>
+        {/* Section Header with Top-Corner CTA */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-16 sm:mb-20">
+          <div className="max-w-3xl">
+            <ScrollRippleTitle
+              text="It’s big challenge to grow-up your sales by providing best services"
+              as="h2"
+              className={`${sora.className} text-3xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold tracking-tight leading-[1.14] mb-6 block`}
+              baseColor="rgba(15, 23, 42, 0.22)"
+              activeColor="#020617"
+              accentColor="#a855f7"
+            />
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              From high-converting web architecture and performance ads to commercial video and tactile marketing leaflets—we engineer unified growth across every touchpoint.
+            </p>
+          </div>
+
+          {/* Top Corner Purple CTA Button (PAS Section Style) */}
+          <div className="shrink-0 lg:pt-2">
+            <Link
+              href="/contact"
+              className="group/cta inline-flex items-center gap-3.5 pl-6 pr-2 py-2 rounded-full bg-[linear-gradient(135deg,#7c3aed_0%,#6d28d9_100%)] hover:bg-[linear-gradient(135deg,#6d28d9_0%,#5b21b6_100%)] text-white font-bold shadow-[0_4px_20px_rgba(124,58,237,0.35)] hover:shadow-[0_6px_25px_rgba(124,58,237,0.5)] transition-all duration-300 cursor-pointer"
+            >
+              <span className="text-sm sm:text-base">Book a Free Strategy Call</span>
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white text-purple-700 flex items-center justify-center transition-transform duration-300 group-hover/cta:rotate-45 shadow-sm">
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* 7-Service Interactive List */}

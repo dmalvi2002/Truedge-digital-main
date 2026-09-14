@@ -420,7 +420,7 @@ export default function MainHero() {
               className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-7 pe-16 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-16 hover:pe-7 w-fit overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98] select-none transform-gpu"
             >
               <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap">
-                Get Started
+                Book a Free Strategy Call
               </span>
               <div className="pointer-events-none absolute right-1 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-44px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
                 <ArrowUpRight size={18} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
