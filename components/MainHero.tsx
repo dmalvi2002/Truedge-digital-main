@@ -26,21 +26,21 @@ if (typeof window !== "undefined") {
 const WEBSITES = [
   {
     id: "left",
-    shortLabel: "AI Platform",
+    shortLabel: "Live 1",
     title: "AI Architecture & Platform",
     tag: "Next.js 15 · Performance",
     src: "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789243091/c357bc35-216c-4acb-8ecc-a42844ac0f37.png",
   },
   {
     id: "middle",
-    shortLabel: "Flagship Growth",
+    shortLabel: "Live 2",
     title: "Digital Growth & Flagship Experience",
     tag: "Conversion-Engineered",
     src: "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789243124/ebc13b6a-bd14-4520-a10d-b21d8d4abc64.png",
   },
   {
     id: "right",
-    shortLabel: "Bespoke SaaS",
+    shortLabel: "Live 3",
     title: "Bespoke SaaS & Web Application",
     tag: "High-ROAS Funnel",
     src: "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789243194/b329a832-b375-4778-a34d-7007ebfe995e.png",
@@ -460,9 +460,16 @@ export default function MainHero() {
           {/* ── CENTER: Headline, Subhead & Kinetic CTA ── */}
           <div className="relative text-center w-full max-w-2xl lg:max-w-[780px] xl:max-w-[880px] 2xl:max-w-[960px] mx-auto select-none py-1 sm:py-2 z-10">
             
-            {/* Title hover trigger box */}
+            {/* ── MOBILE-ONLY STATIC HEADLINE (No hover effect, line-broken so it never cuts off) ── */}
+            <h1 className="hero-headline sm:hidden text-3xl font-extrabold tracking-tight text-slate-950 leading-[1.22] px-2 text-center">
+              Crafting Flagship<br />
+              Websites &amp; Growth<br />
+              Systems That Scale
+            </h1>
+
+            {/* ── DESKTOP, LAPTOP & TABLET HEADLINE (Interactive hover effect) ── */}
             <div 
-              className="inline-block relative py-1 sm:py-2 px-2 sm:px-6 cursor-default"
+              className="hidden sm:inline-block relative py-1 sm:py-2 px-2 sm:px-6 cursor-default"
               onMouseEnter={() => setIsTitleHovered(true)}
               onMouseLeave={() => setIsTitleHovered(false)}
             >
@@ -774,14 +781,7 @@ export default function MainHero() {
               })}
             </div>
 
-            {/* Active Card Information Pill */}
-            <div className="mt-4 flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950/5 border border-slate-200/80">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="text-xs font-bold text-slate-900">{WEBSITES[activeMobileCard].title}</span>
-              </div>
-              <span className="text-[11px] text-slate-500 mt-1 font-medium">{WEBSITES[activeMobileCard].tag}</span>
-            </div>
+
 
           </div>
 
