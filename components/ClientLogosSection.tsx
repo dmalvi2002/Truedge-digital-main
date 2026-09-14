@@ -126,18 +126,18 @@ const CLIENT_LOGOS: ClientLogo[] = [
 export default function ClientLogosSection() {
   return (
     <section className="relative w-full py-12 sm:py-16 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden border-y border-slate-100 select-none">
-      {/* Subtle edge fade gradients */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-14 text-center">
-        <p className="text-xs sm:text-sm font-semibold tracking-wider text-slate-400 uppercase">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 text-center">
+        <p className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider text-slate-500 uppercase leading-relaxed">
           Trusted by high-growth UK brands &amp; fast-scaling companies
         </p>
       </div>
 
       {/* Infinite Smooth Logo Ribbon */}
-      <div className="relative w-full flex overflow-hidden group">
+      <div className="relative w-full flex overflow-hidden group py-1">
+        {/* Subtle edge fade gradients applied ONLY to the scrolling logo ribbon */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-28 md:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 md:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
         <div className="flex items-center gap-14 sm:gap-20 shrink-0 animate-marquee group-hover:[animation-play-state:paused]">
           {CLIENT_LOGOS.map((logo, idx) => (
             <div

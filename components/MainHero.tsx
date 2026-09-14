@@ -230,7 +230,7 @@ export default function MainHero() {
   return (
     <section 
       ref={containerRef} 
-      className={`relative w-full overflow-hidden text-slate-900 pt-8 pb-20 sm:pt-12 sm:pb-28 md:pt-16 md:pb-36 ${sora.className}`}
+      className={`relative w-full overflow-hidden text-slate-900 pt-8 pb-12 sm:pt-12 sm:pb-16 md:pt-16 md:pb-20 ${sora.className}`}
       style={{
         backgroundImage: "url('/hero-thumb-1.jpg')",
         backgroundSize: "cover",
@@ -625,7 +625,7 @@ export default function MainHero() {
         <div ref={stageRef} className="hero-deck-stage relative mt-12 sm:mt-16 md:mt-24 max-w-6xl mx-auto">
 
           {/* ── TABLET & DESKTOP SHOWCASE (>= 640px): 3D Perspective Stage ── */}
-          <div className="hidden sm:flex relative min-h-[380px] sm:min-h-[440px] md:min-h-[480px] lg:min-h-[540px] xl:min-h-[580px] w-full items-center justify-center perspective-[1400px]">
+          <div className="hidden sm:flex relative min-h-[350px] sm:min-h-[400px] md:min-h-[440px] lg:min-h-[480px] xl:min-h-[520px] w-full items-center justify-center perspective-[1400px]">
             
             {/* ── CARD LEFT (Sanchez Watt Coaching) ── */}
             <div 
@@ -783,6 +783,21 @@ export default function MainHero() {
 
 
 
+          </div>
+
+          {/* ── 4. EXPLORE COMPLETE ARCHIVE BUTTON (All Devices) ── */}
+          <div className="mt-8 sm:mt-10 md:mt-12 flex justify-center px-4 relative z-40">
+            <Link
+              href="/projects"
+              className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-6 sm:ps-7 pe-14 sm:pe-16 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-14 sm:hover:ps-16 hover:pe-6 sm:hover:pe-7 w-fit max-w-full overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98] select-none transform-gpu"
+            >
+              <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap text-xs sm:text-base">
+                Explore Complete Archive
+              </span>
+              <div className="pointer-events-none absolute right-1 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-44px)] group-hover:rotate-45 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
+                <ArrowUpRight size={18} className="stroke-[2.5] shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
+              </div>
+            </Link>
           </div>
 
         </div>
