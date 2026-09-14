@@ -3,6 +3,7 @@ import ClientLogosSection from "@/components/ClientLogosSection";
 import PasSection from "@/components/PasSection";
 import ServicesListSection from "@/components/ServicesListSection";
 import OurWorksSection from "@/components/OurWorksSection";
+import WhyTruedgeSection from "@/components/WhyTruedgeSection";
 import ExpertiseSection from "@/components/ExpertiseSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialSection from "@/components/TestimonialSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <PasSection />
       <ServicesListSection />
       <OurWorksSection />
+      <WhyTruedgeSection />
       <ExpertiseSection />
       <ProcessSection />
       <TestimonialSection />
