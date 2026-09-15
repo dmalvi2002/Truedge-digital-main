@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BrainCircuit, Cloud, Smartphone, Clapperboard } from "lucide-react";
+import Link from "next/link";
+import { BrainCircuit, Cloud, Smartphone, Clapperboard, ArrowUpRight } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
 
@@ -517,20 +518,11 @@ function VideoTimelineGraphic() {
 
 export default function ExpertiseSection() {
   return (
-    <section className="relative w-full bg-[#0c0d10] py-24 sm:py-32 overflow-hidden select-none">
-      {/* Top subtle dividing hairline with orange center glow */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/25 to-transparent" />
-
-      {/* Atmospheric Ambient Glows with Orange Accent */}
-      <div className="absolute left-1/4 top-16 -translate-x-1/2 h-[450px] w-[550px] rounded-full bg-violet-600/[0.06] blur-[140px] pointer-events-none" />
-      <div className="absolute right-1/4 top-1/3 -translate-y-1/2 h-[500px] w-[600px] rounded-full bg-orange-500/[0.06] blur-[160px] pointer-events-none" />
-      <div className="absolute left-1/3 top-2/3 h-[450px] w-[550px] rounded-full bg-cyan-600/[0.05] blur-[140px] pointer-events-none" />
-      <div className="absolute right-1/3 bottom-10 h-[450px] w-[550px] rounded-full bg-orange-600/[0.06] blur-[150px] pointer-events-none" />
-
-      {/* Subtle Dot Matrix Architectural Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_60%,transparent_100%)] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="relative mt-28 sm:mt-36 lg:mt-40 select-none">
+      {/* Atmospheric Ambient Glows for Expertise Zone */}
+      <div className="pointer-events-none absolute -left-20 top-16 w-[550px] h-[450px] bg-violet-600/[0.05] blur-[140px] rounded-full" />
+      <div className="pointer-events-none absolute -right-20 top-1/3 w-[600px] h-[500px] bg-orange-500/[0.05] blur-[160px] rounded-full" />
+      <div className="pointer-events-none absolute left-1/4 bottom-10 w-[550px] h-[450px] bg-cyan-600/[0.05] blur-[140px] rounded-full" />
         
         {/* ─── SECTION HEADER: Exact Same Animated Ripple Title as ProcessSection ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start mb-16 sm:mb-20">
@@ -754,7 +746,26 @@ export default function ExpertiseSection() {
           </div>
 
         </div>
-      </div>
-    </section>
+
+        {/* ─── BOTTOM CTA BANNER: Matching ProcessSection ─── */}
+        <div className="mt-14 sm:mt-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-10">
+          <div className="max-w-2xl">
+            <h2 className={`${sora.className} text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight`}>
+              Not sure which service is perfect for you?
+            </h2>
+          </div>
+
+          {/* Signature Truedge Kinetic Pill CTA */}
+          <Link
+            href="/contact"
+            className="group/cta shrink-0 inline-flex items-center gap-3.5 pl-6 pr-2 py-2 rounded-full bg-[#d2f83a] text-slate-950 font-bold shadow-lg shadow-lime-400/20 hover:bg-[#c0e82c] transition-all duration-300 hover:shadow-[0_6px_25px_rgba(210,248,58,0.4)] cursor-pointer"
+          >
+            <span className="text-sm sm:text-base font-bold">Book a Free Consultation</span>
+            <div className="w-8 h-8 rounded-full bg-slate-950 text-[#d2f83a] flex items-center justify-center transition-transform duration-300 group-hover/cta:rotate-45">
+              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+            </div>
+          </Link>
+        </div>
+    </div>
   );
 }

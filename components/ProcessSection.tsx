@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
 import SectionCursor from "@/components/SectionCursor";
+import ExpertiseSection from "@/components/ExpertiseSection";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -486,17 +487,6 @@ export default function ProcessSection() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* ─── TOP EYEBROW PILL: With Green Accent Asterisk Star ─── */}
-        <div className="mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md shadow-inner">
-            <ProcessStar className="w-3.5 h-3.5 text-[#d2f83a]" />
-            <span className="text-xs font-semibold tracking-wide text-slate-200">
-              Our Process
-            </span>
-          </div>
-        </div>
-
         {/* ─── SECTION HEADER: Title & Paragraph Aligned at the Exact Same Level (items-start) ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start mb-16 sm:mb-20">
           
@@ -604,6 +594,8 @@ export default function ProcessSection() {
           ))}
         </div>
 
+        {/* ─── MERGED: OTHER EXPERTISE (Flows seamlessly inside the same master dark section) ─── */}
+        <ExpertiseSection />
       </div>
     </section>
   );

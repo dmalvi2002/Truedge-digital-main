@@ -4,7 +4,6 @@ import PasSection from "@/components/PasSection";
 import ServicesListSection from "@/components/ServicesListSection";
 import OurWorksSection from "@/components/OurWorksSection";
 import WhyTruedgeSection from "@/components/WhyTruedgeSection";
-import ExpertiseSection from "@/components/ExpertiseSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaSection from "@/components/CtaSection";
@@ -21,7 +20,6 @@ export default function Home() {
       <OurWorksSection />
       <WhyTruedgeSection />
       <ProcessSection />
-      <ExpertiseSection />
       <TestimonialSection />
       <CtaSection />
       <FaqSection faqs={homeFaqs} />
