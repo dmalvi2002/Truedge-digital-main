@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
 import SectionCursor from "@/components/SectionCursor";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const sora = Sora({
   subsets: ["latin"],
@@ -211,7 +217,6 @@ function CrmIcon({ className = "w-12 h-12 sm:w-14 sm:h-14" }: { className?: stri
 
 interface ProcessStep {
   number: string;
-  category: string;
   title: string;
   icon: React.ComponentType<{ className?: string }>;
   isActive?: boolean;
@@ -219,44 +224,38 @@ interface ProcessStep {
 
 const PROCESS_STEPS: ProcessStep[] = [
   {
-    number: ".01",
-    category: "Research",
-    title: "Research & Strategic Discovery Phase",
+    number: "i",
+    title: "Listening to Your Problems & Discovery",
     icon: ResearchIcon,
     isActive: true,
   },
   {
-    number: ".02",
-    category: "Strategy",
-    title: "Customized Strategy Development",
+    number: "ii",
+    title: "Custom Strategy & Action Roadmap",
     icon: StrategyIcon,
     isActive: false,
   },
   {
-    number: ".03",
-    category: "Creative Solutions",
-    title: "Creative Design & Development",
+    number: "iii",
+    title: "High-Converting Creative Design",
     icon: DesignIcon,
     isActive: false,
   },
   {
-    number: ".04",
-    category: "Web Engineering",
-    title: "Full-Stack Web Development & Engineering",
+    number: "iv",
+    title: "Fast, Responsive Web Development",
     icon: DevelopmentIcon,
     isActive: false,
   },
   {
-    number: ".05",
-    category: "Project Launch",
-    title: "Launch & Growth Optimization",
+    number: "v",
+    title: "Testing, Launch & Live Deployment",
     icon: LaunchIcon,
     isActive: false,
   },
   {
-    number: ".06",
-    category: "CRM & Automation",
-    title: "CRM Management & Pipeline Setup",
+    number: "vi",
+    title: "CRM Setup & Automated Lead Capture",
     icon: CrmIcon,
     isActive: false,
   },
@@ -264,6 +263,173 @@ const PROCESS_STEPS: ProcessStep[] = [
 
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const cardsContainerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const laserRefs = useRef<(SVGRectElement | null)[]>([]);
+  const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const watermarkRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mm = gsap.matchMedia();
+
+    // Helper to update a card's visual state given progress (0..1)
+    const setCardState = (idx: number, p: number) => {
+      const laser = laserRefs.current[idx];
+      const dot = dotRefs.current[idx];
+      const watermark = watermarkRefs.current[idx];
+      const card = cardRefs.current[idx];
+
+      if (laser) {
+        if (p > 0.01) {
+          laser.style.opacity = "1";
+          laser.setAttribute("stroke-dashoffset", String(Math.max(0, 100 - p * 100)));
+          laser.style.filter =
+            p > 0.08
+              ? "drop-shadow(0 0 6px rgba(210,248,58,0.8)) drop-shadow(0 0 14px rgba(210,248,58,0.4))"
+              : "none";
+        } else {
+          laser.style.opacity = "0";
+          laser.setAttribute("stroke-dashoffset", "100");
+          laser.style.filter = "none";
+        }
+      }
+
+      if (dot) {
+        if (p > 0.15) {
+          dot.style.backgroundColor = "#d2f83a";
+          dot.style.boxShadow = `0 0 10px #d2f83a, 0 0 20px rgba(210,248,58,0.5)`;
+        } else {
+          dot.style.backgroundColor = "transparent";
+          dot.style.boxShadow = "none";
+        }
+      }
+
+      if (watermark) {
+        if (p > 0.3) {
+          const glowRatio = Math.min(1, (p - 0.3) / 0.7);
+          watermark.style.color = "#d2f83a";
+          watermark.style.opacity = String(0.45 + 0.55 * glowRatio);
+          watermark.style.textShadow = `0 0 ${Math.round(20 * glowRatio)}px rgba(210,248,58,0.45)`;
+        } else {
+          watermark.style.color = "rgba(255, 255, 255, 0.09)";
+          watermark.style.opacity = "1";
+          watermark.style.textShadow = "none";
+        }
+      }
+
+      if (card) {
+        if (p > 0.08) {
+          card.style.borderColor = `rgba(210, 248, 58, ${0.22 * p})`;
+          card.style.boxShadow = `0 20px 50px rgba(0,0,0,0.8), inset 0 1px 1px 0 rgba(255,255,255,0.18), 0 0 ${Math.round(35 * p)}px rgba(210,248,58,${0.12 * p})`;
+        } else {
+          card.style.borderColor = "rgba(255, 255, 255, 0.07)";
+          card.style.boxShadow =
+            "0 20px 50px rgba(0,0,0,0.7), inset 0 1px 1px 0 rgba(255,255,255,0.14)";
+        }
+      }
+    };
+
+    // ─── DESKTOP & LAPTOPS (>= 1024px): 2-Wave Sequence (Row 1 first 3, then Row 2 last 3) ───
+    mm.add("(min-width: 1024px)", () => {
+      const container = cardsContainerRef.current;
+      if (!container) return;
+
+      const ranges = [
+        { start: 0.00, end: 0.22 }, // Card i
+        { start: 0.14, end: 0.36 }, // Card ii
+        { start: 0.28, end: 0.50 }, // Card iii (completes Row 1!)
+        { start: 0.50, end: 0.72 }, // Card iv (starts Row 2!)
+        { start: 0.64, end: 0.86 }, // Card v
+        { start: 0.78, end: 1.00 }, // Card vi (completes Row 2!)
+      ];
+
+      const st = ScrollTrigger.create({
+        trigger: container,
+        start: "top 72%",
+        end: "bottom 75%",
+        scrub: 0.7,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          ranges.forEach((range, idx) => {
+            let p = 0;
+            if (progress <= range.start) p = 0;
+            else if (progress >= range.end) p = 1;
+            else p = (progress - range.start) / (range.end - range.start);
+            setCardState(idx, p);
+          });
+        },
+      });
+
+      return () => {
+        st.kill();
+      };
+    });
+
+    // ─── TABLETS (640px to 1023px): 3-Wave Sequence (2 Cards per row) ───
+    mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
+      const container = cardsContainerRef.current;
+      if (!container) return;
+
+      const ranges = [
+        { start: 0.00, end: 0.24 }, // Card i
+        { start: 0.10, end: 0.36 }, // Card ii
+        { start: 0.32, end: 0.56 }, // Card iii
+        { start: 0.42, end: 0.68 }, // Card iv
+        { start: 0.64, end: 0.88 }, // Card v
+        { start: 0.76, end: 1.00 }, // Card vi
+      ];
+
+      const st = ScrollTrigger.create({
+        trigger: container,
+        start: "top 72%",
+        end: "bottom 75%",
+        scrub: 0.7,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          ranges.forEach((range, idx) => {
+            let p = 0;
+            if (progress <= range.start) p = 0;
+            else if (progress >= range.end) p = 1;
+            else p = (progress - range.start) / (range.end - range.start);
+            setCardState(idx, p);
+          });
+        },
+      });
+
+      return () => {
+        st.kill();
+      };
+    });
+
+    // ─── SMARTPHONES (< 640px): Per-Card Viewport Trigger ───
+    mm.add("(max-width: 639px)", () => {
+      const triggers: ScrollTrigger[] = [];
+
+      cardRefs.current.forEach((el, idx) => {
+        if (!el) return;
+        const st = ScrollTrigger.create({
+          trigger: el,
+          start: "top 82%",
+          end: "top 38%",
+          scrub: 0.5,
+          onUpdate: (self) => {
+            setCardState(idx, self.progress);
+          },
+        });
+        triggers.push(st);
+      });
+
+      return () => {
+        triggers.forEach((t) => t.kill());
+      };
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
 
   return (
     <section
@@ -333,52 +499,80 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* ─── 3D TACTILE PROCESS CARDS GRID (Exact Reference Replica) ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {PROCESS_STEPS.map((step) => (
+        {/* ─── 3D TACTILE PROCESS CARDS GRID (Dynamic Scroll Powered, Zero Hover Jumps) ─── */}
+        <div
+          ref={cardsContainerRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {PROCESS_STEPS.map((step, index) => (
             <div
               key={step.number}
-              className="group relative rounded-[32px] sm:rounded-[36px] p-8 sm:p-9 bg-gradient-to-b from-[#1b1c20] to-[#141518] border border-white/[0.07] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_0_rgba(255,255,255,0.14)] hover:border-white/20 hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),inset_0_1px_1px_0_rgba(255,255,255,0.25)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between min-h-[440px] sm:min-h-[460px] lg:min-h-[480px] overflow-hidden"
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              className="relative rounded-[32px] sm:rounded-[36px] p-8 sm:p-9 bg-gradient-to-b from-[#1b1c20] to-[#141518] border border-white/[0.07] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_0_rgba(255,255,255,0.14)] transition-all duration-300 flex flex-col justify-between min-h-[440px] sm:min-h-[460px] lg:min-h-[480px] overflow-hidden select-none"
             >
-              {/* Top Content: Standalone Line Icon, Category Eyebrow, Process Title */}
-              <div>
-                {/* Standalone Vector Illustration with Electric Lime Accent (No bounding box) */}
-                <div className="mb-10 sm:mb-12 transition-transform duration-500 group-hover:scale-105">
+              {/* ─── Dynamic Electric Laser Border Overlay (Option 1 + 2) ─── */}
+              <svg
+                className="pointer-events-none absolute inset-0 w-full h-full z-20"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <rect
+                  ref={(el) => {
+                    laserRefs.current[index] = el;
+                  }}
+                  x="0.8"
+                  y="0.8"
+                  width="98.4"
+                  height="98.4"
+                  rx="9"
+                  ry="9"
+                  fill="none"
+                  stroke="#d2f83a"
+                  strokeWidth="1.8"
+                  vectorEffect="non-scaling-stroke"
+                  pathLength="100"
+                  strokeDasharray="100"
+                  strokeDashoffset="100"
+                  style={{
+                    opacity: 0,
+                    transition: "opacity 0.2s ease-out",
+                  }}
+                />
+              </svg>
+
+              {/* Top Content: Standalone Line Icon & Bold Descriptive Process Title */}
+              <div className="relative z-10">
+                {/* Standalone Vector Illustration with Electric Lime Accent */}
+                <div className="mb-8 sm:mb-10">
                   <step.icon className="w-12 h-12 sm:w-14 sm:h-14" />
                 </div>
 
-                {/* Category Eyebrow */}
-                <div className="text-sm sm:text-[15px] font-normal text-[#8e929a] mb-3">
-                  {step.category}
-                </div>
-
-                {/* Main Process Title */}
-                <h3 className="text-xl sm:text-[23px] font-bold text-white tracking-tight leading-[1.25] max-w-[280px]">
+                {/* Main Process Title (Explaining the process directly to visitors) */}
+                <h3 className="text-xl sm:text-[23px] lg:text-[24px] font-bold text-white tracking-tight leading-[1.25] max-w-[280px]">
                   {step.title}
                 </h3>
               </div>
 
-              {/* Bottom Row: Lime Status Dot on Left, Huge Watermark Number on Right */}
-              <div className="flex items-end justify-between mt-auto pt-8">
-                
+              {/* Bottom Row: Lime Status Dot on Left, Huge Roman Numeral Watermark on Right */}
+              <div className="relative z-10 flex items-end justify-between mt-auto pt-8">
                 {/* Left: Electric Lime Indicator Dot */}
                 <div className="pb-1.5">
                   <span
-                    className={`inline-block w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      step.isActive
-                        ? "bg-[#d2f83a] shadow-[0_0_10px_#d2f83a]"
-                        : "bg-transparent group-hover:bg-[#d2f83a] group-hover:shadow-[0_0_10px_#d2f83a]"
-                    }`}
+                    ref={(el) => {
+                      dotRefs.current[index] = el;
+                    }}
+                    className="inline-block w-2.5 h-2.5 rounded-full transition-all duration-300 bg-transparent"
                   />
                 </div>
 
-                {/* Right: Stylized Watermark Number (.01 in lime for active card, dark graphite for rest, illuminates on hover) */}
+                {/* Right: Stylized Roman Numeral Watermark (i through vi) */}
                 <span
-                  className={`text-6xl sm:text-7xl font-bold tracking-tighter leading-none select-none transition-colors duration-300 ${
-                    step.isActive
-                      ? "text-[#d2f83a]"
-                      : "text-white/[0.09] group-hover:text-white/20"
-                  }`}
+                  ref={(el) => {
+                    watermarkRefs.current[index] = el;
+                  }}
+                  className="text-6xl sm:text-7xl font-bold tracking-tighter leading-none select-none transition-colors duration-300 text-white/[0.09]"
                 >
                   {step.number}
                 </span>

@@ -20,8 +20,8 @@ export default function Home() {
       <ServicesListSection />
       <OurWorksSection />
       <WhyTruedgeSection />
-      <ExpertiseSection />
       <ProcessSection />
+      <ExpertiseSection />
       <TestimonialSection />
       <CtaSection />
       <FaqSection faqs={homeFaqs} />
