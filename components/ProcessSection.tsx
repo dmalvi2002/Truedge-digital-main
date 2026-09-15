@@ -266,212 +266,196 @@ export default function ProcessSection() {
   const titleWrapperRef = useRef<HTMLDivElement | null>(null);
   const cardsContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const laserRefs = useRef<(SVGRectElement | null)[]>([]);
+  const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const watermarkRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const titleFinishedRef = useRef(false);
 
-  // Helper to reset all cards to pristine dormant state
-  const resetAllCards = () => {
-    for (let i = 0; i < 6; i++) {
-      const laser = laserRefs.current[i];
-      const dot = dotRefs.current[i];
-      const watermark = watermarkRefs.current[i];
-      const card = cardRefs.current[i];
+  // Helper to activate a single card into full active status (full accent color on dot and numerals!)
+  const activateCard = (idx: number) => {
+    const card = cardRefs.current[idx];
+    const title = titleRefs.current[idx];
+    const dot = dotRefs.current[idx];
+    const watermark = watermarkRefs.current[idx];
 
-      if (laser) {
-        laser.style.opacity = "0";
-        laser.setAttribute("stroke-dashoffset", "100");
-        laser.style.filter = "none";
-      }
-      if (dot) {
-        dot.style.backgroundColor = "transparent";
-        dot.style.boxShadow = "none";
-      }
-      if (watermark) {
-        watermark.style.color = "rgba(255, 255, 255, 0.09)";
-        watermark.style.opacity = "1";
-        watermark.style.textShadow = "none";
-      }
-      if (card) {
-        card.style.borderColor = "rgba(255, 255, 255, 0.07)";
-        card.style.boxShadow =
-          "0 20px 50px rgba(0,0,0,0.7), inset 0 1px 1px 0 rgba(255,255,255,0.14)";
-      }
+    // 1. 3D elevate card into clean luxury presence
+    if (card) {
+      gsap.to(card, {
+        transform: "perspective(1200px) translateY(0px) translateZ(0px) rotateX(0deg)",
+        opacity: 1,
+        borderColor: "rgba(255, 255, 255, 0.14)",
+        boxShadow: "0 26px 60px rgba(0,0,0,0.85), inset 0 1px 1px 0 rgba(255,255,255,0.2)",
+        duration: 0.45,
+        ease: "power2.out",
+      });
+    }
+
+    // 2. Title slides in smoothly from left to right
+    if (title) {
+      gsap.to(title, {
+        x: 0,
+        opacity: 1,
+        duration: 0.45,
+        ease: "power2.out",
+      });
+    }
+
+    // 3. Status dot: FULL ACCENT ELECTRIC LIME (#d2f83a) with neon bloom
+    if (dot) {
+      gsap.to(dot, {
+        backgroundColor: "#d2f83a",
+        boxShadow: "0 0 10px #d2f83a, 0 0 20px rgba(210, 248, 58, 0.65)",
+        duration: 0.35,
+        ease: "power1.out",
+      });
+    }
+
+    // 4. Roman Numeral: FULL ACCENT ELECTRIC LIME (#d2f83a) with neon text glow
+    if (watermark) {
+      gsap.to(watermark, {
+        color: "#d2f83a",
+        opacity: 1,
+        textShadow: "0 0 20px rgba(210, 248, 58, 0.5)",
+        scale: 1.02,
+        duration: 0.4,
+        ease: "power1.out",
+      });
     }
   };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const mm = gsap.matchMedia();
-
-    // Helper to update a card's visual state given progress (0..1)
-    const setCardState = (idx: number, p: number) => {
-      const laser = laserRefs.current[idx];
-      const dot = dotRefs.current[idx];
-      const watermark = watermarkRefs.current[idx];
-      const card = cardRefs.current[idx];
-
-      if (laser) {
-        if (p > 0.01) {
-          laser.style.opacity = "1";
-          laser.setAttribute("stroke-dashoffset", String(Math.max(0, 100 - p * 100)));
-          laser.style.filter =
-            p > 0.08
-              ? "drop-shadow(0 0 6px rgba(210,248,58,0.8)) drop-shadow(0 0 14px rgba(210,248,58,0.4))"
-              : "none";
-        } else {
-          laser.style.opacity = "0";
-          laser.setAttribute("stroke-dashoffset", "100");
-          laser.style.filter = "none";
-        }
-      }
-
-      if (dot) {
-        if (p > 0.15) {
-          dot.style.backgroundColor = "#d2f83a";
-          dot.style.boxShadow = `0 0 10px #d2f83a, 0 0 20px rgba(210,248,58,0.5)`;
-        } else {
-          dot.style.backgroundColor = "transparent";
-          dot.style.boxShadow = "none";
-        }
-      }
-
-      if (watermark) {
-        if (p > 0.3) {
-          const glowRatio = Math.min(1, (p - 0.3) / 0.7);
-          watermark.style.color = "#d2f83a";
-          watermark.style.opacity = String(0.45 + 0.55 * glowRatio);
-          watermark.style.textShadow = `0 0 ${Math.round(20 * glowRatio)}px rgba(210,248,58,0.45)`;
-        } else {
-          watermark.style.color = "rgba(255, 255, 255, 0.09)";
-          watermark.style.opacity = "1";
-          watermark.style.textShadow = "none";
-        }
-      }
+    // Set initial recessed dormant state on all 6 cards
+    for (let i = 0; i < 6; i++) {
+      const card = cardRefs.current[i];
+      const title = titleRefs.current[i];
+      const dot = dotRefs.current[i];
+      const watermark = watermarkRefs.current[i];
 
       if (card) {
-        if (p > 0.08) {
-          card.style.borderColor = `rgba(210, 248, 58, ${0.22 * p})`;
-          card.style.boxShadow = `0 20px 50px rgba(0,0,0,0.8), inset 0 1px 1px 0 rgba(255,255,255,0.18), 0 0 ${Math.round(35 * p)}px rgba(210,248,58,${0.12 * p})`;
-        } else {
-          card.style.borderColor = "rgba(255, 255, 255, 0.07)";
-          card.style.boxShadow =
-            "0 20px 50px rgba(0,0,0,0.7), inset 0 1px 1px 0 rgba(255,255,255,0.14)";
-        }
+        gsap.set(card, {
+          transform: "perspective(1200px) translateY(36px) translateZ(-28px) rotateX(4.5deg)",
+          opacity: 0.55,
+          borderColor: "rgba(255, 255, 255, 0.07)",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.7), inset 0 1px 1px 0 rgba(255,255,255,0.14)",
+        });
       }
-    };
+      if (title) {
+        gsap.set(title, { x: -28, opacity: 0 });
+      }
+      if (dot) {
+        gsap.set(dot, { backgroundColor: "transparent", boxShadow: "none" });
+      }
+      if (watermark) {
+        gsap.set(watermark, {
+          color: "rgba(255, 255, 255, 0.09)",
+          opacity: 1,
+          textShadow: "none",
+          scale: 1,
+        });
+      }
+    }
 
-    // ─── DESKTOP & LAPTOPS (>= 1024px): 2-Wave Sequence strictly AFTER title finishes ───
+    const mm = gsap.matchMedia();
+
+    // ─── DESKTOP & LAPTOPS (>= 1024px): One-Time Sequential Timeline ───
     mm.add("(min-width: 1024px)", () => {
-      const container = cardsContainerRef.current;
       const titleWrapper = titleWrapperRef.current;
-      if (!container || !titleWrapper) return;
+      const cardRow2 = cardRefs.current[3];
+      if (!titleWrapper) return;
 
-      const ranges = [
-        { start: 0.00, end: 0.22 }, // Card i
-        { start: 0.14, end: 0.36 }, // Card ii
-        { start: 0.28, end: 0.50 }, // Card iii (completes Row 1!)
-        { start: 0.50, end: 0.72 }, // Card iv (starts Row 2!)
-        { start: 0.64, end: 0.86 }, // Card v
-        { start: 0.78, end: 1.00 }, // Card vi (completes Row 2!)
-      ];
-
-      const st = ScrollTrigger.create({
-        trigger: titleWrapper,
-        start: "top 38%", // Executes strictly AFTER the title finishes its animation at top 42%!
-        endTrigger: container,
-        end: "bottom 78%",
-        scrub: 0.6,
-        onUpdate: (self) => {
-          if (!titleFinishedRef.current) {
-            resetAllCards();
-            return;
-          }
-          const progress = self.progress;
-          ranges.forEach((range, idx) => {
-            let p = 0;
-            if (progress <= range.start) p = 0;
-            else if (progress >= range.end) p = 1;
-            else p = (progress - range.start) / (range.end - range.start);
-            setCardState(idx, p);
-          });
+      // Row 1 (Cards 0, 1, 2) plays ONE TIME strictly after section headline finishes
+      const tlRow1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: titleWrapper,
+          start: "top 38%",
+          once: true, // One-time execution: card animation stops & stays permanently active!
         },
       });
 
-      return () => {
-        st.kill();
-      };
-    });
+      tlRow1.call(() => activateCard(0));
+      tlRow1.to({}, { duration: 0.36 }); // Wait for Card 0 to finish slide
+      tlRow1.call(() => activateCard(1)); // Card 1 checks that Card 0 is done!
+      tlRow1.to({}, { duration: 0.36 }); // Wait for Card 1 to finish slide
+      tlRow1.call(() => activateCard(2)); // Card 2 checks that Card 1 is done!
 
-    // ─── TABLETS (640px to 1023px): 3-Wave Sequence strictly AFTER title finishes ───
-    mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
-      const container = cardsContainerRef.current;
-      const titleWrapper = titleWrapperRef.current;
-      if (!container || !titleWrapper) return;
-
-      const ranges = [
-        { start: 0.00, end: 0.24 }, // Card i
-        { start: 0.10, end: 0.36 }, // Card ii
-        { start: 0.32, end: 0.56 }, // Card iii
-        { start: 0.42, end: 0.68 }, // Card iv
-        { start: 0.64, end: 0.88 }, // Card v
-        { start: 0.76, end: 1.00 }, // Card vi
-      ];
-
-      const st = ScrollTrigger.create({
-        trigger: titleWrapper,
-        start: "top 38%", // Executes strictly AFTER the title finishes!
-        endTrigger: container,
-        end: "bottom 78%",
-        scrub: 0.6,
-        onUpdate: (self) => {
-          if (!titleFinishedRef.current) {
-            resetAllCards();
-            return;
-          }
-          const progress = self.progress;
-          ranges.forEach((range, idx) => {
-            let p = 0;
-            if (progress <= range.start) p = 0;
-            else if (progress >= range.end) p = 1;
-            else p = (progress - range.start) / (range.end - range.start);
-            setCardState(idx, p);
-          });
-        },
-      });
-
-      return () => {
-        st.kill();
-      };
-    });
-
-    // ─── SMARTPHONES (< 640px): Per-Card Viewport Trigger strictly AFTER title finishes ───
-    mm.add("(max-width: 639px)", () => {
-      const triggers: ScrollTrigger[] = [];
-
-      cardRefs.current.forEach((el, idx) => {
-        if (!el) return;
-        const st = ScrollTrigger.create({
-          trigger: el,
-          start: "top 72%",
-          end: "top 28%",
-          scrub: 0.5,
-          onUpdate: (self) => {
-            if (!titleFinishedRef.current) {
-              setCardState(idx, 0);
-              return;
-            }
-            setCardState(idx, self.progress);
+      // Row 2 (Cards 3, 4, 5) plays ONE TIME as user scrolls to Row 2
+      if (cardRow2) {
+        const tlRow2 = gsap.timeline({
+          scrollTrigger: {
+            trigger: cardRow2,
+            start: "top 80%",
+            once: true, // One-time execution!
           },
         });
-        triggers.push(st);
-      });
 
-      return () => {
-        triggers.forEach((t) => t.kill());
-      };
+        tlRow2.call(() => activateCard(3));
+        tlRow2.to({}, { duration: 0.36 }); // Wait for Card 3 to finish slide
+        tlRow2.call(() => activateCard(4)); // Card 4 checks that Card 3 is done!
+        tlRow2.to({}, { duration: 0.36 }); // Wait for Card 4 to finish slide
+        tlRow2.call(() => activateCard(5)); // Card 5 checks that Card 4 is done!
+      }
+    });
+
+    // ─── TABLETS (640px to 1023px): One-Time Sequential In Pairs ───
+    mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
+      const titleWrapper = titleWrapperRef.current;
+      const cardRow2 = cardRefs.current[2];
+      const cardRow3 = cardRefs.current[4];
+      if (!titleWrapper) return;
+
+      // Pair 1 (Cards 0, 1)
+      const tl1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: titleWrapper,
+          start: "top 38%",
+          once: true,
+        },
+      });
+      tl1.call(() => activateCard(0));
+      tl1.to({}, { duration: 0.36 });
+      tl1.call(() => activateCard(1));
+
+      // Pair 2 (Cards 2, 3)
+      if (cardRow2) {
+        const tl2 = gsap.timeline({
+          scrollTrigger: {
+            trigger: cardRow2,
+            start: "top 80%",
+            once: true,
+          },
+        });
+        tl2.call(() => activateCard(2));
+        tl2.to({}, { duration: 0.36 });
+        tl2.call(() => activateCard(3));
+      }
+
+      // Pair 3 (Cards 4, 5)
+      if (cardRow3) {
+        const tl3 = gsap.timeline({
+          scrollTrigger: {
+            trigger: cardRow3,
+            start: "top 80%",
+            once: true,
+          },
+        });
+        tl3.call(() => activateCard(4));
+        tl3.to({}, { duration: 0.36 });
+        tl3.call(() => activateCard(5));
+      }
+    });
+
+    // ─── SMARTPHONES (< 640px): One-Time Activation As Each Card Rolls In ───
+    mm.add("(max-width: 639px)", () => {
+      cardRefs.current.forEach((el, idx) => {
+        if (!el) return;
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 78%",
+          once: true, // One-time execution!
+          onEnter: () => activateCard(idx),
+        });
+      });
     });
 
     return () => {
@@ -528,13 +512,6 @@ export default function ProcessSection() {
               triggerStart="top 85%"
               triggerEnd="top 42%"
               scrub={0.3}
-              onProgress={(p) => {
-                const finished = p >= 0.999;
-                titleFinishedRef.current = finished;
-                if (!finished) {
-                  resetAllCards();
-                }
-              }}
               className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight leading-[1.14] text-white"
             />
           </div>
@@ -558,9 +535,10 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* ─── 3D TACTILE PROCESS CARDS GRID (Dynamic Scroll Powered, Zero Hover Jumps) ─── */}
+        {/* ─── 3D TACTILE PROCESS CARDS GRID (Option 2 + 3: 3D Elevation & Sequential Power-Up) ─── */}
         <div
           ref={cardsContainerRef}
+          style={{ perspective: "1400px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {PROCESS_STEPS.map((step, index) => (
@@ -569,38 +547,12 @@ export default function ProcessSection() {
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
-              className="relative rounded-[32px] sm:rounded-[36px] p-8 sm:p-9 bg-gradient-to-b from-[#1b1c20] to-[#141518] border border-white/[0.07] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_0_rgba(255,255,255,0.14)] transition-all duration-300 flex flex-col justify-between min-h-[440px] sm:min-h-[460px] lg:min-h-[480px] overflow-hidden select-none"
+              style={{
+                transformStyle: "preserve-3d",
+                willChange: "transform, opacity, box-shadow, border-color",
+              }}
+              className="relative rounded-[32px] sm:rounded-[36px] p-8 sm:p-9 bg-gradient-to-b from-[#1b1c20] to-[#141518] border border-white/[0.07] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_0_rgba(255,255,255,0.14)] transition-[border-color,box-shadow] duration-300 flex flex-col justify-between min-h-[440px] sm:min-h-[460px] lg:min-h-[480px] overflow-hidden select-none"
             >
-              {/* ─── Dynamic Electric Laser Border Overlay (Option 1 + 2) ─── */}
-              <svg
-                className="pointer-events-none absolute inset-0 w-full h-full z-20"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-              >
-                <rect
-                  ref={(el) => {
-                    laserRefs.current[index] = el;
-                  }}
-                  x="0.8"
-                  y="0.8"
-                  width="98.4"
-                  height="98.4"
-                  rx="9"
-                  ry="9"
-                  fill="none"
-                  stroke="#d2f83a"
-                  strokeWidth="1.8"
-                  vectorEffect="non-scaling-stroke"
-                  pathLength="100"
-                  strokeDasharray="100"
-                  strokeDashoffset="100"
-                  style={{
-                    opacity: 0,
-                    transition: "opacity 0.2s ease-out",
-                  }}
-                />
-              </svg>
-
               {/* Top Content: Standalone Line Icon & Bold Descriptive Process Title */}
               <div className="relative z-10">
                 {/* Standalone Vector Illustration with Electric Lime Accent */}
@@ -608,10 +560,22 @@ export default function ProcessSection() {
                   <step.icon className="w-12 h-12 sm:w-14 sm:h-14" />
                 </div>
 
-                {/* Main Process Title (Explaining the process directly to visitors) */}
-                <h3 className="text-xl sm:text-[23px] lg:text-[24px] font-bold text-white tracking-tight leading-[1.25] max-w-[280px]">
-                  {step.title}
-                </h3>
+                {/* Main Process Title with Left-to-Right Slide-In Animation */}
+                <div className="overflow-hidden">
+                  <h3
+                    ref={(el) => {
+                      titleRefs.current[index] = el;
+                    }}
+                    style={{
+                      willChange: "transform, opacity",
+                      transform: "translateX(-28px)",
+                      opacity: 0,
+                    }}
+                    className="text-xl sm:text-[23px] lg:text-[24px] font-bold text-white tracking-tight leading-[1.25] max-w-[280px]"
+                  >
+                    {step.title}
+                  </h3>
+                </div>
               </div>
 
               {/* Bottom Row: Lime Status Dot on Left, Huge Roman Numeral Watermark on Right */}
@@ -631,7 +595,7 @@ export default function ProcessSection() {
                   ref={(el) => {
                     watermarkRefs.current[index] = el;
                   }}
-                  className="text-6xl sm:text-7xl font-bold tracking-tighter leading-none select-none transition-colors duration-300 text-white/[0.09]"
+                  className="text-6xl sm:text-7xl font-bold tracking-tighter leading-none select-none transition-all duration-300 text-white/[0.09]"
                 >
                   {step.number}
                 </span>
