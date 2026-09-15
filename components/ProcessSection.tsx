@@ -504,7 +504,7 @@ export default function ProcessSection() {
           <div ref={titleWrapperRef} className="lg:col-span-7">
             <ScrollRippleTitle
               id="process-title"
-              text="creative strategy & smart execution for growth"
+              text="Creative strategy & smart execution for growth"
               as="h2"
               accentColor="#d2f83a"
               baseColor="rgba(255, 255, 255, 0.22)"

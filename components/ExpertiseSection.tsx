@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Code2, LayoutTemplate, Smartphone, BrainCircuit } from "lucide-react";
+import { BrainCircuit, Cloud, Smartphone, Clapperboard } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
+import ScrollRippleTitle from "@/components/ScrollRippleTitle";
 
-const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 const codeSnippets = [
@@ -344,125 +345,411 @@ function PhoneGraphic() {
   );
 }
 
+function VideoTimelineGraphic() {
+  return (
+    <div className="relative z-10 flex flex-col w-full max-w-[370px] rounded-2xl bg-[#0e0f14]/95 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_0_rgba(255,255,255,0.12)] backdrop-blur-md overflow-hidden group-hover:-translate-y-2 transition-transform duration-700">
+      {/* Scoped Keyframes for 60fps playhead scrub and purple iOS cursor motion */}
+      <style>{`
+        @keyframes timelineScrubMove {
+          0% { left: 24px; }
+          28% { left: 115px; }
+          55% { left: 195px; }
+          78% { left: 70px; }
+          100% { left: 24px; }
+        }
+        @keyframes iosPurpleCursorMove {
+          0% { transform: translate(30px, 32px) scale(1); }
+          22% { transform: translate(116px, 42px) scale(0.88); }
+          48% { transform: translate(180px, 12px) scale(1); }
+          74% { transform: translate(72px, 50px) scale(0.88); }
+          100% { transform: translate(30px, 32px) scale(1); }
+        }
+      `}</style>
+
+      {/* Editor Title Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/10 bg-[#14161f]/80">
+        {/* macOS Style Traffic Dots */}
+        <div className="flex items-center gap-1.5">
+          <div className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+          <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+          <span className="ml-2 text-[10px] text-slate-400 font-mono tracking-tight truncate max-w-[130px]">
+            Commercial_4K.prproj
+          </span>
+        </div>
+
+        {/* Premiere Pro & After Effects Badges */}
+        <div className="flex items-center gap-1.5">
+          {/* Adobe Premiere Pro (Pr) */}
+          <div className="flex items-center justify-center h-5 w-5 rounded bg-[#00005b] border border-[#9999ff]/60 shadow-[0_0_8px_rgba(153,153,255,0.3)]">
+            <span className="text-[10px] font-black tracking-tighter text-[#ea77ff] leading-none">Pr</span>
+          </div>
+          {/* Adobe After Effects (Ae) */}
+          <div className="flex items-center justify-center h-5 w-5 rounded bg-[#00005b] border border-[#d291ff]/60 shadow-[0_0_8px_rgba(210,145,255,0.3)]">
+            <span className="text-[10px] font-black tracking-tighter text-[#d291ff] leading-none">Ae</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Mini Video Monitor / Canvas Preview */}
+      <div className="relative px-3.5 pt-3 pb-2 bg-[#090a0d]">
+        <div className="relative h-24 w-full rounded-lg bg-gradient-to-tr from-[#120f1e] via-[#1a1429] to-[#2a1320] border border-white/10 overflow-hidden flex items-center justify-center">
+          {/* Animated color grade ambient light */}
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-purple-500/20 to-cyan-500/20 animate-pulse" />
+          
+          {/* Centered cinematic frame simulation */}
+          <div className="relative z-10 flex flex-col items-center gap-1">
+            <div className="flex items-center gap-2">
+              <div className="h-1.5 w-1.5 rounded-full bg-red-500 animate-ping" />
+              <span className="text-[9px] font-mono font-bold text-red-400 uppercase tracking-widest">REC 4K</span>
+            </div>
+            <span className="text-[11px] font-mono font-bold text-white/90 tracking-wider">
+              00:01:24:18
+            </span>
+          </div>
+
+          {/* Safe frame boundary overlays */}
+          <div className="absolute inset-2 border border-white/10 border-dashed rounded pointer-events-none" />
+        </div>
+      </div>
+
+      {/* Timeline Controls & Timecode Ruler */}
+      <div className="px-3.5 py-1.5 bg-[#12131a] border-y border-white/5 flex items-center justify-between text-[9px] font-mono text-slate-500">
+        <span className="text-orange-400 font-bold">00:00:00</span>
+        <span>00:00:05</span>
+        <span>00:00:10</span>
+        <span>00:00:15</span>
+        <span>00:00:20</span>
+      </div>
+
+      {/* Multi-Track Timeline Workspace */}
+      <div className="relative p-3 space-y-1.5 bg-[#0b0c10] min-h-[115px] overflow-hidden">
+        
+        {/* Track V2: Motion Graphics / VFX Clip (After Effects Theme) */}
+        <div className="flex items-center gap-1.5">
+          <span className="text-[8px] font-mono text-slate-500 w-4 select-none">V2</span>
+          <div className="relative flex-1 h-6 rounded bg-slate-900/80 border border-white/5 overflow-hidden">
+            <div className="absolute left-8 w-28 h-full rounded bg-gradient-to-r from-purple-600/80 to-indigo-600/80 border border-purple-400/50 flex items-center px-2 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+              <span className="text-[8px] font-bold text-purple-100 font-sans truncate">Ae_3D_Motion.aep</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Track V1: Main Video Cut (Signature Orange Theme) */}
+        <div className="flex items-center gap-1.5">
+          <span className="text-[8px] font-mono text-slate-500 w-4 select-none">V1</span>
+          <div className="relative flex-1 h-7 rounded bg-slate-900/80 border border-white/5 overflow-hidden">
+            {/* Clip A */}
+            <div className="absolute left-0 w-16 h-full rounded-l bg-gradient-to-r from-orange-600/70 to-amber-600/70 border-r border-white/20 flex items-center px-1.5">
+              <span className="text-[8px] font-bold text-orange-100 font-sans truncate">Cam_A_01</span>
+            </div>
+            {/* Clip B (Active editing clip) */}
+            <div className="absolute left-16 w-32 h-full bg-gradient-to-r from-orange-500 to-amber-500 border border-orange-300/60 flex items-center justify-between px-2 shadow-[0_0_12px_rgba(249,115,22,0.35)]">
+              <span className="text-[8px] font-extrabold text-slate-950 font-sans truncate">Commercial_Cut</span>
+              <div className="h-3 w-1 rounded-full bg-white/70" />
+            </div>
+            {/* Clip C */}
+            <div className="absolute left-48 w-24 h-full rounded-r bg-gradient-to-r from-orange-700/60 to-amber-700/60 flex items-center px-1.5">
+              <span className="text-[8px] font-bold text-orange-200 font-sans truncate">B_Roll_VFX</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Track A1: Audio Waveforms */}
+        <div className="flex items-center gap-1.5">
+          <span className="text-[8px] font-mono text-slate-500 w-4 select-none">A1</span>
+          <div className="relative flex-1 h-5 rounded bg-slate-900/80 border border-white/5 overflow-hidden flex items-center px-2 gap-0.5">
+            {[40, 70, 90, 60, 80, 100, 45, 85, 95, 60, 40, 75, 90, 50, 70, 85, 65, 45, 80, 95, 60, 75, 90, 50].map((h, i) => (
+              <div
+                key={i}
+                className="w-1 bg-cyan-400/60 rounded-full"
+                style={{ height: `${h}%` }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Animated Playhead Line with Orange Scrubber Head */}
+        <div
+          style={{ animation: "timelineScrubMove 4.5s ease-in-out infinite" }}
+          className="absolute top-0 bottom-0 z-20 pointer-events-none"
+        >
+          <div className="relative h-full flex flex-col items-center">
+            {/* Orange Playhead Scrubber Diamond */}
+            <div className="w-2.5 h-2.5 bg-orange-500 rotate-45 -mt-1 shadow-[0_0_8px_#f97316]" />
+            {/* Vertical Playhead Line */}
+            <div className="w-[1.5px] h-full bg-orange-500/90 shadow-[0_0_6px_#f97316]" />
+          </div>
+        </div>
+
+        {/* Animated Purple iOS Cursor Moving & Editing */}
+        <div
+          style={{ animation: "iosPurpleCursorMove 4.5s ease-in-out infinite" }}
+          className="absolute top-0 left-0 z-30 pointer-events-none"
+        >
+          <div className="relative">
+            {/* iOS Style Purple Pointer SVG */}
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-[0_4px_12px_rgba(168,85,247,0.75)]"
+            >
+              <path
+                d="M5.5 3.5L18.5 10.5L12 13L9.5 19.5L5.5 3.5Z"
+                fill="#a855f7"
+                stroke="#ffffff"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {/* Action Ripple Ring */}
+            <div className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-purple-400/30 animate-ping pointer-events-none" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 export default function ExpertiseSection() {
   return (
-    <section className="relative w-full bg-slate-950 py-24 sm:py-32 overflow-hidden">
-      {/* Subtle Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-white/5"></div>
+    <section className="relative w-full bg-[#0c0d10] py-24 sm:py-32 overflow-hidden select-none">
+      {/* Top subtle dividing hairline with orange center glow */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/25 to-transparent" />
 
-      {/* Ambient background glow */}
-      <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-violet-600/5 blur-[150px] pointer-events-none"></div>
+      {/* Atmospheric Ambient Glows with Orange Accent */}
+      <div className="absolute left-1/4 top-16 -translate-x-1/2 h-[450px] w-[550px] rounded-full bg-violet-600/[0.06] blur-[140px] pointer-events-none" />
+      <div className="absolute right-1/4 top-1/3 -translate-y-1/2 h-[500px] w-[600px] rounded-full bg-orange-500/[0.06] blur-[160px] pointer-events-none" />
+      <div className="absolute left-1/3 top-2/3 h-[450px] w-[550px] rounded-full bg-cyan-600/[0.05] blur-[140px] pointer-events-none" />
+      <div className="absolute right-1/3 bottom-10 h-[450px] w-[550px] rounded-full bg-orange-600/[0.06] blur-[150px] pointer-events-none" />
+
+      {/* Subtle Dot Matrix Architectural Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_60%,transparent_100%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="mb-16 max-w-3xl text-left md:mb-24">
-          <h2 className={`${sora.className} mb-6 text-4xl font-semibold leading-tight text-white sm:text-5xl`}>
-            Our Core <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent drop-shadow-sm">Expertise.</span>
-          </h2>
-          <p className={`${ibmPlexSans.className} text-lg text-slate-400 sm:text-xl leading-relaxed max-w-2xl`}>
-            We don't offer a menu of generic services. We focus exclusively on the core digital pillars that actually move the needle for ambitious brands.
-          </p>
+        {/* ─── SECTION HEADER: Exact Same Animated Ripple Title as ProcessSection ─── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start mb-16 sm:mb-20">
+          
+          {/* Left Column: Lowercase Headline with Scroll Ripple Animation */}
+          <div className="lg:col-span-7">
+            <ScrollRippleTitle
+              id="other-expertise-title"
+              text="Our other expertise"
+              as="h2"
+              accentColor="#d2f83a"
+              baseColor="rgba(255, 255, 255, 0.22)"
+              activeColor="#ffffff"
+              triggerStart="top 85%"
+              triggerEnd="top 42%"
+              scrub={0.3}
+              className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight leading-[1.14] text-white"
+            />
+          </div>
+
+          {/* Right Column: Strategic Thesis Paragraph */}
+          <div className="lg:col-span-5 flex flex-col items-start pt-1 sm:pt-1.5">
+            <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed max-w-md">
+              Beyond core software engineering, we deliver specialized digital capabilities engineered to accelerate growth, engagement, and enterprise valuation.
+            </p>
+          </div>
         </div>
 
-        {/* 100% Width Stacked Cards Container */}
-        <div className="flex flex-col gap-10">
+        {/* ─── 4 EXPERTISE PILLARS ─── */}
+        <div className="flex flex-col gap-10 sm:gap-12">
           
-          {/* --- PILLAR 1: SaaS & Web Engineering (Violet Theme) --- */}
-          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between transition-all duration-500 hover:border-violet-500/40 hover:bg-white/[0.04]">
+          {/* ════════ CARD 1: ENTERPRISE AI & AGENTIC SOLUTIONS (Cyber-Violet Theme) ════════ */}
+          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#181622]/90 via-[#13121b]/95 to-[#0e0d14] border border-violet-500/20 p-8 sm:p-12 lg:p-14 lg:flex-row lg:items-center lg:justify-between transition-all duration-500 hover:border-violet-500/50 hover:shadow-[0_25px_70px_rgba(139,92,246,0.18)] hover:-translate-y-1">
             
-            {/* Left Content */}
-            <div className="relative z-10 max-w-2xl lg:w-3/5">
-  <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/20 shadow-[0_0_20px_rgba(139,92,246,0.2)]">
-    <BrainCircuit size={28} className="text-violet-400" />
-  </div>
-  <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>
-    Enterprise AI & Agentic Solutions
-  </h3>
-  <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-md lg:text-lg`}>
-    We engineer AI-powered smart software, autonomous agentic solutions, and smart kiosk hardware installations. All built on enterprise-grade infrastructure and designed to scale without limits.
-  </p>
-  <div className="flex flex-wrap gap-3">
-    <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-5 py-2 text-xs font-bold tracking-wide text-violet-300 shadow-sm">
-      RAG & LLM Pipelines
-    </span>
-    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
-      Agentic Workflows
-    </span>
-    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
-      Distributed Cloud
-    </span>
-  </div>
-</div>
+            {/* Ambient Radial Spotlight inside Card */}
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-violet-600/15 blur-[80px] pointer-events-none group-hover:bg-violet-600/25 transition-all duration-700" />
+            <div className="absolute left-0 bottom-0 h-48 w-48 rounded-full bg-violet-900/10 blur-[60px] pointer-events-none" />
 
-            {/* Right Abstract Graphic: Code Terminal Fade */}
-            <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 perspective-1000">
-              <div className="absolute right-0 top-1/2 w-full max-w-[340px] -translate-y-1/2 transition-transform duration-700 group-hover:scale-105">
+            {/* Left Content */}
+            <div className="relative z-10 max-w-2xl lg:w-3/5 flex flex-col items-start">
+              {/* Standalone Icon Badge */}
+              <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/30 text-violet-400 shadow-[0_0_24px_rgba(139,92,246,0.25)] transition-transform duration-300 group-hover:scale-105">
+                <BrainCircuit size={28} />
+              </div>
+
+              {/* Title (Kept Intact) */}
+              <h3 className={`${sora.className} mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight group-hover:text-violet-100 transition-colors`}>
+                Enterprise AI & Agentic Solutions
+              </h3>
+
+              {/* Description (Kept Intact) */}
+              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xl`}>
+                We engineer AI-powered smart software, autonomous agentic solutions, and smart kiosk hardware installations. All built on enterprise-grade infrastructure and designed to scale without limits.
+              </p>
+
+              {/* Feature Tags (Kept Intact) */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="rounded-full border border-violet-500/40 bg-violet-500/15 px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-violet-200 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                  RAG & LLM Pipelines
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-violet-500/30 hover:text-white transition-colors">
+                  Agentic Workflows
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-violet-500/30 hover:text-white transition-colors">
+                  Distributed Cloud
+                </span>
+              </div>
+            </div>
+
+            {/* Right Abstract Graphic: ChipGraphic Asset Intact */}
+            <div className="relative mt-12 h-64 sm:h-72 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 flex items-center justify-center">
+              <div className="relative w-full max-w-[340px] transition-transform duration-700 group-hover:scale-105">
                 <ChipGraphic />
               </div>
             </div>
           </div>
 
-          {/* --- PILLAR 2: UI/UX (Emerald Theme) --- */}
-          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 sm:p-12 lg:flex-row-reverse lg:items-center lg:justify-between transition-all duration-500 hover:border-emerald-500/40 hover:bg-white/[0.04]">
-            
-            {/* Right Content (appears on left on mobile, right on desktop due to flex-row-reverse) */}
-<div className="relative z-10 max-w-2xl lg:w-3/5">
-  <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-    <Code2 size={28} className="text-emerald-400" />
-  </div>
-  <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>
-    Bespoke Web Development
-  </h3>
-  <p className={`${ibmPlexSans.className} mb-8 text-md lg:text-lg leading-relaxed text-slate-400`}>
-    We build bespoke, high-performance websites tailored to your exact business needs. We do not use standard templates, focusing instead on clean code and engaging design to ensure your brand stands out and is fully optimised for growth.
-  </p>
-  <div className="flex flex-wrap gap-3">
-    <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5 py-2 text-xs font-bold tracking-wide text-emerald-300 shadow-sm">
-      Custom Next.js
-    </span>
-    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
-      Tailored Design
-    </span>
-    <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">
-      Fully Optimised
-    </span>
-  </div>
-</div>
 
-            {/* Left Abstract Graphic: Floating UI Wireframes */}
-            <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0">
-              <div className="absolute left-0 top-1/2 w-full max-w-[350px] -translate-y-1/2">
-                {/* Back Wireframe Box */}
-                <div className="absolute -right-4 -top-8 h-32 w-48 rounded-xl bg-slate-800/50 border border-white/5 backdrop-blur-sm transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-4"></div>
-                {/* Front Wireframe Box with Typing Animation */}
+          {/* ════════ CARD 2: CLOUD SOFTWARES & SAAS (Truedge Electric Lime Theme) ════════ */}
+          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#181d14]/90 via-[#131710]/95 to-[#0e110b] border border-[#d2f83a]/25 p-8 sm:p-12 lg:p-14 lg:flex-row-reverse lg:items-center lg:justify-between transition-all duration-500 hover:border-[#d2f83a]/60 hover:shadow-[0_25px_70px_rgba(210,248,58,0.18)] hover:-translate-y-1">
+            
+            {/* Ambient Radial Spotlight inside Card */}
+            <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-[#d2f83a]/12 blur-[80px] pointer-events-none group-hover:bg-[#d2f83a]/20 transition-all duration-700" />
+            <div className="absolute right-0 bottom-0 h-48 w-48 rounded-full bg-lime-900/10 blur-[60px] pointer-events-none" />
+
+            {/* Right Content (appears right on desktop via flex-row-reverse) */}
+            <div className="relative z-10 max-w-2xl lg:w-3/5 flex flex-col items-start">
+              {/* Standalone Icon Badge */}
+              <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#d2f83a]/10 border border-[#d2f83a]/30 text-[#d2f83a] shadow-[0_0_24px_rgba(210,248,58,0.25)] transition-transform duration-300 group-hover:scale-105">
+                <Cloud size={28} />
+              </div>
+
+              {/* Title (Modified to "Cloud Softwares & SaaS" as requested!) */}
+              <h3 className={`${sora.className} mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight group-hover:text-lime-100 transition-colors`}>
+                Cloud Softwares & SaaS
+              </h3>
+
+              {/* Description (Modified for Cloud & SaaS architecture) */}
+              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xl`}>
+                We architect bespoke multi-tenant SaaS platforms, resilient cloud microservices, and high-performance enterprise software. Engineered with automated subscription billing, bulletproof role-based security, and limitless auto-scaling from day one.
+              </p>
+
+              {/* Feature Tags for SaaS & Cloud */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="rounded-full border border-[#d2f83a]/40 bg-[#d2f83a]/15 px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-[#d2f83a] shadow-[0_0_15px_rgba(210,248,58,0.2)]">
+                  Multi-Tenant SaaS
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-[#d2f83a]/30 hover:text-white transition-colors">
+                  Cloud Infrastructure
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-[#d2f83a]/30 hover:text-white transition-colors">
+                  Automated Subscriptions
+                </span>
+              </div>
+            </div>
+
+            {/* Left Abstract Graphic: TypingAnimation Asset Intact */}
+            <div className="relative mt-12 h-64 sm:h-72 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 flex items-center justify-center lg:justify-start">
+              <div className="relative w-full max-w-[360px]">
+                {/* Back Wireframe Floating Card */}
+                <div className="absolute -right-4 -top-6 h-32 w-48 rounded-xl bg-emerald-950/30 border border-[#d2f83a]/20 backdrop-blur-sm transition-transform duration-700 group-hover:translate-x-4 group-hover:-translate-y-3" />
+                {/* Front TypingAnimation Asset (Kept Intact) */}
                 <TypingAnimation />
               </div>
             </div>
           </div>
 
-          {/* --- PILLAR 3: Mobile Apps (Cyan Theme) --- */}
-          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between transition-all duration-500 hover:border-cyan-500/40 hover:bg-white/[0.04]">
+
+          {/* ════════ CARD 3: MOBILE APP DEVELOPMENT (Electric Cyan Theme) ════════ */}
+          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#141b24]/90 via-[#10161d]/95 to-[#0b0f14] border border-cyan-500/20 p-8 sm:p-12 lg:p-14 lg:flex-row lg:items-center lg:justify-between transition-all duration-500 hover:border-cyan-500/50 hover:shadow-[0_25px_70px_rgba(6,182,212,0.18)] hover:-translate-y-1">
             
+            {/* Ambient Radial Spotlight inside Card */}
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-cyan-600/15 blur-[80px] pointer-events-none group-hover:bg-cyan-600/25 transition-all duration-700" />
+            <div className="absolute left-0 bottom-0 h-48 w-48 rounded-full bg-cyan-900/10 blur-[60px] pointer-events-none" />
+
             {/* Left Content */}
-            <div className="relative z-10 max-w-2xl lg:w-3/5">
-              <div className="mb-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-cyan-500/10 border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-                <Smartphone size={28} className="text-cyan-400" />
+            <div className="relative z-10 max-w-2xl lg:w-3/5 flex flex-col items-start">
+              {/* Standalone Icon Badge */}
+              <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shadow-[0_0_24px_rgba(6,182,212,0.25)] transition-transform duration-300 group-hover:scale-105">
+                <Smartphone size={28} />
               </div>
-              <h3 className={`${sora.className} mb-4 text-3xl font-bold text-white sm:text-4xl`}>Mobile App Development</h3>
-              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-md lg:text-lg`}>
+
+              {/* Title (Kept Intact) */}
+              <h3 className={`${sora.className} mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight group-hover:text-cyan-100 transition-colors`}>
+                Mobile App Development
+              </h3>
+
+              {/* Description (Kept Intact) */}
+              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xl`}>
                 Put your business directly into the pockets of your customers. We build flawless, native-feeling iOS and Android applications that scale effortlessly.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5 py-2 text-xs font-bold tracking-wide text-cyan-300 shadow-sm">React Native</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">iOS & Android</span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-bold tracking-wide text-slate-300">API Integration</span>
+
+              {/* Feature Tags (Kept Intact) */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="rounded-full border border-cyan-500/40 bg-cyan-500/15 px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                  React Native
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-cyan-500/30 hover:text-white transition-colors">
+                  iOS & Android
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-cyan-500/30 hover:text-white transition-colors">
+                  API Integration
+                </span>
               </div>
             </div>
 
-            {/* Right Abstract Graphic: Mobile Phone Silhouette */}
-            <div className="relative mt-12 h-64 w-full lg:mt-0 lg:w-2/5 lg:shrink-0">
-               <PhoneGraphic />
+            {/* Right Abstract Graphic: PhoneGraphic Asset Intact */}
+            <div className="relative mt-12 h-64 sm:h-72 w-full lg:mt-0 lg:w-2/5 lg:shrink-0 flex items-center justify-center lg:justify-end">
+              <div className="relative w-full max-w-[280px] h-full">
+                <PhoneGraphic />
+              </div>
+            </div>
+          </div>
+
+
+          {/* ════════ CARD 4: VIDEO & MOTION GRAPHICS EDITING (Vibrant Orange Theme) ════════ */}
+          <div className="group relative flex w-full flex-col overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#1c1612]/90 via-[#15120f]/95 to-[#0e0c0a] border border-orange-500/25 p-8 sm:p-12 lg:p-14 lg:flex-row-reverse lg:items-center lg:justify-between transition-all duration-500 hover:border-orange-500/60 hover:shadow-[0_25px_70px_rgba(249,115,22,0.2)] hover:-translate-y-1">
+            
+            {/* Ambient Radial Spotlight inside Card */}
+            <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-orange-500/15 blur-[80px] pointer-events-none group-hover:bg-orange-500/25 transition-all duration-700" />
+            <div className="absolute right-0 bottom-0 h-48 w-48 rounded-full bg-orange-950/20 blur-[60px] pointer-events-none" />
+
+            {/* Right Content (appears right on desktop via flex-row-reverse) */}
+            <div className="relative z-10 max-w-2xl lg:w-3/5 flex flex-col items-start">
+              {/* Standalone Icon Badge */}
+              <div className="mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400 shadow-[0_0_24px_rgba(249,115,22,0.25)] transition-transform duration-300 group-hover:scale-105">
+                <Clapperboard size={28} />
+              </div>
+
+              {/* Title */}
+              <h3 className={`${sora.className} mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight group-hover:text-orange-100 transition-colors`}>
+                Video & Motion Graphics Editing
+              </h3>
+
+              {/* Description */}
+              <p className={`${ibmPlexSans.className} mb-8 text-slate-400 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xl`}>
+                We produce high-impact commercial video edits, cinematic 3D motion graphics, and viral product stories. Engineered with precision pacing, studio-grade color grading, and bespoke sound design that drive brand authority and exponential conversion.
+              </p>
+
+              {/* Feature Tags for Video & Motion */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="rounded-full border border-orange-500/40 bg-orange-500/15 px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-orange-300 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                  Motion Graphics & 3D
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-orange-500/30 hover:text-white transition-colors">
+                  Commercial Video Editing
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-orange-500/30 hover:text-white transition-colors">
+                  Color Grading & VFX
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 sm:px-5 py-2 text-xs font-bold tracking-wide text-slate-300 hover:border-orange-500/30 hover:text-white transition-colors">
+                  Sound Design
+                </span>
+              </div>
+            </div>
+
+            {/* Left Abstract Graphic: VideoTimelineGraphic Asset */}
+            <div className="relative mt-12 h-auto w-full lg:mt-0 lg:w-2/5 lg:shrink-0 flex items-center justify-center lg:justify-start">
+              <VideoTimelineGraphic />
             </div>
           </div>
 
