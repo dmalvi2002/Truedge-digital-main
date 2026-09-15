@@ -263,11 +263,43 @@ const PROCESS_STEPS: ProcessStep[] = [
 
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const titleWrapperRef = useRef<HTMLDivElement | null>(null);
   const cardsContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const laserRefs = useRef<(SVGRectElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const watermarkRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const titleFinishedRef = useRef(false);
+
+  // Helper to reset all cards to pristine dormant state
+  const resetAllCards = () => {
+    for (let i = 0; i < 6; i++) {
+      const laser = laserRefs.current[i];
+      const dot = dotRefs.current[i];
+      const watermark = watermarkRefs.current[i];
+      const card = cardRefs.current[i];
+
+      if (laser) {
+        laser.style.opacity = "0";
+        laser.setAttribute("stroke-dashoffset", "100");
+        laser.style.filter = "none";
+      }
+      if (dot) {
+        dot.style.backgroundColor = "transparent";
+        dot.style.boxShadow = "none";
+      }
+      if (watermark) {
+        watermark.style.color = "rgba(255, 255, 255, 0.09)";
+        watermark.style.opacity = "1";
+        watermark.style.textShadow = "none";
+      }
+      if (card) {
+        card.style.borderColor = "rgba(255, 255, 255, 0.07)";
+        card.style.boxShadow =
+          "0 20px 50px rgba(0,0,0,0.7), inset 0 1px 1px 0 rgba(255,255,255,0.14)";
+      }
+    }
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -331,10 +363,11 @@ export default function ProcessSection() {
       }
     };
 
-    // ─── DESKTOP & LAPTOPS (>= 1024px): 2-Wave Sequence (Row 1 first 3, then Row 2 last 3) ───
+    // ─── DESKTOP & LAPTOPS (>= 1024px): 2-Wave Sequence strictly AFTER title finishes ───
     mm.add("(min-width: 1024px)", () => {
       const container = cardsContainerRef.current;
-      if (!container) return;
+      const titleWrapper = titleWrapperRef.current;
+      if (!container || !titleWrapper) return;
 
       const ranges = [
         { start: 0.00, end: 0.22 }, // Card i
@@ -346,11 +379,16 @@ export default function ProcessSection() {
       ];
 
       const st = ScrollTrigger.create({
-        trigger: container,
-        start: "top 72%",
-        end: "bottom 75%",
-        scrub: 0.7,
+        trigger: titleWrapper,
+        start: "top 38%", // Executes strictly AFTER the title finishes its animation at top 42%!
+        endTrigger: container,
+        end: "bottom 78%",
+        scrub: 0.6,
         onUpdate: (self) => {
+          if (!titleFinishedRef.current) {
+            resetAllCards();
+            return;
+          }
           const progress = self.progress;
           ranges.forEach((range, idx) => {
             let p = 0;
@@ -367,10 +405,11 @@ export default function ProcessSection() {
       };
     });
 
-    // ─── TABLETS (640px to 1023px): 3-Wave Sequence (2 Cards per row) ───
+    // ─── TABLETS (640px to 1023px): 3-Wave Sequence strictly AFTER title finishes ───
     mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
       const container = cardsContainerRef.current;
-      if (!container) return;
+      const titleWrapper = titleWrapperRef.current;
+      if (!container || !titleWrapper) return;
 
       const ranges = [
         { start: 0.00, end: 0.24 }, // Card i
@@ -382,11 +421,16 @@ export default function ProcessSection() {
       ];
 
       const st = ScrollTrigger.create({
-        trigger: container,
-        start: "top 72%",
-        end: "bottom 75%",
-        scrub: 0.7,
+        trigger: titleWrapper,
+        start: "top 38%", // Executes strictly AFTER the title finishes!
+        endTrigger: container,
+        end: "bottom 78%",
+        scrub: 0.6,
         onUpdate: (self) => {
+          if (!titleFinishedRef.current) {
+            resetAllCards();
+            return;
+          }
           const progress = self.progress;
           ranges.forEach((range, idx) => {
             let p = 0;
@@ -403,7 +447,7 @@ export default function ProcessSection() {
       };
     });
 
-    // ─── SMARTPHONES (< 640px): Per-Card Viewport Trigger ───
+    // ─── SMARTPHONES (< 640px): Per-Card Viewport Trigger strictly AFTER title finishes ───
     mm.add("(max-width: 639px)", () => {
       const triggers: ScrollTrigger[] = [];
 
@@ -411,10 +455,14 @@ export default function ProcessSection() {
         if (!el) return;
         const st = ScrollTrigger.create({
           trigger: el,
-          start: "top 82%",
-          end: "top 38%",
+          start: "top 72%",
+          end: "top 28%",
           scrub: 0.5,
           onUpdate: (self) => {
+            if (!titleFinishedRef.current) {
+              setCardState(idx, 0);
+              return;
+            }
             setCardState(idx, self.progress);
           },
         });
@@ -469,13 +517,24 @@ export default function ProcessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start mb-16 sm:mb-20">
           
           {/* Left Column: Lowercase Headline */}
-          <div className="lg:col-span-7">
+          <div ref={titleWrapperRef} className="lg:col-span-7">
             <ScrollRippleTitle
+              id="process-title"
               text="creative strategy & smart execution for growth"
               as="h2"
               accentColor="#d2f83a"
               baseColor="rgba(255, 255, 255, 0.22)"
               activeColor="#ffffff"
+              triggerStart="top 85%"
+              triggerEnd="top 42%"
+              scrub={0.3}
+              onProgress={(p) => {
+                const finished = p >= 0.999;
+                titleFinishedRef.current = finished;
+                if (!finished) {
+                  resetAllCards();
+                }
+              }}
               className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight leading-[1.14] text-white"
             />
           </div>

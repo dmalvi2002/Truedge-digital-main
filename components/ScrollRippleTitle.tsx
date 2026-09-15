@@ -15,6 +15,11 @@ interface ScrollRippleTitleProps {
   accentColor?: string; // default electric lime #d2f83a
   baseColor?: string;   // default dark grey transparent
   activeColor?: string; // default white
+  id?: string;
+  triggerStart?: string;
+  triggerEnd?: string;
+  scrub?: number | boolean;
+  onProgress?: (progress: number) => void;
 }
 
 export default function ScrollRippleTitle({
@@ -24,6 +29,11 @@ export default function ScrollRippleTitle({
   accentColor = '#d2f83a',
   baseColor = 'rgba(255, 255, 255, 0.22)',
   activeColor = '#ffffff',
+  id,
+  triggerStart = 'top 85%',
+  triggerEnd = 'top 32%',
+  scrub = 0.8,
+  onProgress,
 }: ScrollRippleTitleProps) {
   const containerRef = useRef<HTMLHeadingElement | null>(null);
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -94,21 +104,23 @@ export default function ScrollRippleTitle({
 
     const st = ScrollTrigger.create({
       trigger: el,
-      start: 'top 85%',
-      end: 'top 32%',
-      scrub: 0.8, // Smooth damping for silky inertia
+      start: triggerStart,
+      end: triggerEnd,
+      scrub: scrub, // Smooth damping for silky inertia
       onUpdate: (self) => {
         updateScrollLetters(self.progress);
+        if (onProgress) onProgress(self.progress);
       },
     });
 
     // Check initial position on mount
     updateScrollLetters(st.progress);
+    if (onProgress) onProgress(st.progress);
 
     return () => {
       st.kill();
     };
-  }, [baseColor, totalLetters, updateScrollLetters]);
+  }, [baseColor, totalLetters, updateScrollLetters, triggerStart, triggerEnd, scrub, onProgress]);
 
   // Track global letter index across words
   let globalLetterIndex = 0;
@@ -116,6 +128,7 @@ export default function ScrollRippleTitle({
   return (
     <Component
       ref={containerRef as any}
+      id={id}
       aria-label={text}
       className={`relative inline-block select-none ${className}`}
     >
