@@ -124,21 +124,21 @@ export default function PasSection() {
                 
                 {/* 1. Left Cutout Notch: The purple page background shows cleanly around the badge */}
                 <div className="w-[74px] h-full relative flex items-start justify-start pt-1 pl-1">
-                  <div className="w-14 h-14 rounded-[18px] bg-[#d2f83a] flex items-center justify-center text-slate-950 shadow-[0_10px_25px_rgba(210,248,58,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
+                  <div className="w-14 h-14 rounded-xl bg-[#d2f83a] flex items-center justify-center text-slate-950 shadow-[0_10px_25px_rgba(210,248,58,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
                     {card.icon}
                   </div>
                 </div>
 
                 {/* 2. Right Upper Tab: Pure White Background housing the Title (Spot 3: Rounded Top-Left) */}
-                <div className="relative flex-1 h-full bg-white rounded-tr-[28px] rounded-tl-[32px] flex items-center px-5 sm:px-6 pt-1">
+                <div className="relative flex-1 h-full bg-white rounded-tr-xl rounded-tl-xl flex items-center px-5 sm:px-6 pt-1">
                   
                   {/* Precision Inverted Concave Curve Fillet joining tab to lower shelf */}
                   <svg
-                    className="absolute bottom-0 -left-[16px] w-[16px] h-[16px] pointer-events-none"
-                    viewBox="0 0 16 16"
+                    className="absolute bottom-0 -left-[12px] w-[12px] h-[12px] pointer-events-none"
+                    viewBox="0 0 12 12"
                     fill="none"
                   >
-                    <path d="M 16 0 A 16 16 0 0 1 0 16 L 16 16 Z" fill="#ffffff" />
+                    <path d="M 12 0 A 12 12 0 0 1 0 12 L 12 12 Z" fill="#ffffff" />
                   </svg>
 
                   <h3 className="text-xl sm:text-[22px] font-bold text-slate-950 tracking-tight leading-snug">
@@ -149,10 +149,10 @@ export default function PasSection() {
               </div>
 
               {/* ── MAIN CARD BODY (Pure White Container with smooth top-left curve under notch) ── */}
-              <div className="relative bg-white rounded-b-[32px] rounded-tl-[24px] -mt-[1px] p-6 sm:p-7 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.5)] flex flex-col justify-between flex-1 z-0">
+              <div className="relative bg-white rounded-b-xl rounded-tl-lg -mt-[1px] p-6 sm:p-7 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.5)] flex flex-col justify-between flex-1 z-0">
                 
                 {/* 1. Friendly, Clean Image Mockup (No technical data/confusion) */}
-                <div className="relative w-full aspect-[16/10] rounded-[20px] overflow-hidden mb-6 shadow-sm border border-slate-100/90 bg-slate-100">
+                <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden mb-6 shadow-sm border border-slate-100/90 bg-slate-100">
                   <Image
                     src={card.imageSrc}
                     alt={card.imageAlt}
