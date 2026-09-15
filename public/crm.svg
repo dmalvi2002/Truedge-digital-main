@@ -1,0 +1,15 @@
+<svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line x1="22" y1="14" x2="31" y2="14" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <line x1="17" y1="24" x2="17" y2="29" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <line x1="37" y1="24" x2="37" y2="29" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <line x1="22" y1="34" x2="32" y2="34" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <circle cx="27" cy="24" r="2" fill="white" />
+  <circle cx="17" cy="14" r="4.5" stroke="white" stroke-width="1.8" />
+  <path d="M10 23C10 20.2 13 18.5 17 18.5C21 18.5 24 20.2 24 23" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <circle cx="37" cy="14" r="5.5" fill="#d2f83a" stroke="white" stroke-width="1.8" />
+  <path d="M30 23C30 20.2 33 18.5 37 18.5C41 18.5 44 20.2 44 23" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <circle cx="17" cy="34" r="4.5" stroke="white" stroke-width="1.8" />
+  <path d="M10 43C10 40.2 13 38.5 17 38.5C21 38.5 24 40.2 24 43" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+  <circle cx="37" cy="34" r="4.5" stroke="white" stroke-width="1.8" />
+  <path d="M30 43C30 40.2 33 38.5 37 38.5C41 38.5 44 40.2 44 43" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+</svg>
