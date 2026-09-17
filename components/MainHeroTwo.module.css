@@ -1,4 +1,6 @@
 .hero {
+  -webkit-user-select: none;
+  user-select: none;
   --ink: #f4f1ed;
   --muted: #a4a0ad;
   --accent: #d2f83a;
@@ -58,6 +60,7 @@
 .brandStudy { height: 368px; background: #1c2315; color: #d2f83a; padding: 19px 20px; transform: rotate(10deg) rotateY(-14deg); transform-origin: left center; position: relative; overflow: hidden; box-shadow: 15px 25px 65px #0008; }
 .brandTitle { font-size: clamp(38px, 4.5vw, 65px); line-height: .87; letter-spacing: -.08em; font-weight: 500; margin-top: 29px; margin-left: 25%; position: relative; z-index: 2; }
 .brandTitle em { font-family: Georgia, serif; font-size: 1.15em; font-weight: 400; }
+.brandTitle .calls { font-size: 1.5em; }
 .brandTitle > span { font-size: 20px; vertical-align: top; letter-spacing: 0; }
 .brandMark { position: absolute; width: 155px; left: -21px; bottom: -17px; color: #a0b967; opacity: .7; }
 .brandMark svg { width: 100%; }

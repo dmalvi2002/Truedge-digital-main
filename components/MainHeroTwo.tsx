@@ -63,7 +63,7 @@ function DesignScene() {
         <div className={styles.brandPosition} data-depth="brand">
           <div className={styles.brandStudy}>
             <div className={styles.artMasthead}><span>GROW YOUR BUSINESS</span></div>
-            <div className={styles.brandTitle}>More<br /><em>calls.</em><br />More<br /><em>enquiries.</em></div>
+            <div className={styles.brandTitle}>More<br /><em className={styles.calls}>calls.</em><br />More<br /><em>enquiries.</em></div>
             <div className={styles.brandMark} aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M12 88 88 12M12 12h76v76" stroke="currentColor" strokeWidth="13" /></svg></div>
             <div className={styles.artFooter}><span>MAKE IT EASY TO CHOOSE YOU.</span></div>
           </div>
