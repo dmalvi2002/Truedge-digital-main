@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
+import SectionCursor from "@/components/SectionCursor";
 import styles from "./PasSection.module.css";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
@@ -107,6 +108,7 @@ export default function PasSection() {
 
   return (
     <section ref={sectionRef} className={`${styles.section} ${sora.className}`} aria-labelledby="pas-problem-title">
+      <SectionCursor targetRef={sectionRef} />
       <div className={styles.container}>
         <div className={styles.opening}>
           <ScrollRippleTitle
