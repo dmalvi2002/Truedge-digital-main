@@ -265,7 +265,7 @@ export default function OurWorksSection() {
             <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5 max-w-lg">
               <div className="bg-[#d2f83a] rounded-xl sm:rounded-2xl p-3.5 sm:p-4 shadow-[0_8px_25px_rgba(210,248,58,0.25)] flex flex-col justify-center">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight leading-none">
-                  95%
+                  100%
                 </span>
                 <span className="text-[11px] sm:text-xs text-slate-950/85 font-bold mt-1.5 leading-snug">
                   Customer satisfaction
@@ -273,7 +273,7 @@ export default function OurWorksSection() {
               </div>
               <div className="bg-[#d2f83a] rounded-xl sm:rounded-2xl p-3.5 sm:p-4 shadow-[0_8px_25px_rgba(210,248,58,0.25)] flex flex-col justify-center">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight leading-none">
-                  12+
+                  7+
                 </span>
                 <span className="text-[11px] sm:text-xs text-slate-950/85 font-bold mt-1.5 leading-snug">
                   Years of experience
