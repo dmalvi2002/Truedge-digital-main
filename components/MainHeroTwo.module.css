@@ -177,12 +177,12 @@
 .edgeWord { position: relative; display: inline-block; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .titleAnimationTwo { --title-hover-accent: #a584d4; }
-  .titleAnimationThree { --title-hover-accent: #e79a5f; }
-  .titleAnimationFour { --title-hover-accent: #4da3ff; }
+  .titleAnimationThree { --title-hover-accent: #4da3ff; }
+  .titleAnimationFour { --title-hover-accent: #e79a5f; }
   .titleAnimationOne .letter { animation: letterLift .78s both; animation-delay: calc(var(--letter-index) * 22ms); }
   .titleAnimationTwo .letter { animation: letterElastic 1.05s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--letter-index) * 18ms); }
-  .titleAnimationThree .letter { animation: letterPop .82s cubic-bezier(.2,.85,.25,1.2) both; animation-delay: calc(var(--pop-order) * 24ms); }
-  .titleAnimationFour .letter { animation: letterTide 1.42s cubic-bezier(.45,0,.2,1) both; animation-delay: calc(var(--letter-index) * 13ms); }
+  .titleAnimationThree .letter { animation: letterTide 1.42s cubic-bezier(.45,0,.2,1) both; animation-delay: calc(var(--letter-index) * 13ms); }
+  .titleAnimationFour .letter { animation: letterPop .82s cubic-bezier(.2,.85,.25,1.2) both; animation-delay: calc(var(--pop-order) * 24ms); }
 }
 @keyframes letterLift {
   0%, 100% { transform: translateY(0) rotate(0); }
@@ -308,8 +308,8 @@
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .titleAnimationOne .titleStar { animation: titleStarSpin var(--title-cycle) cubic-bezier(.45, 0, .2, 1) both; }
   .titleAnimationTwo .titleStar { animation: titleStarElastic var(--title-cycle) cubic-bezier(.16,1,.3,1) both; }
-  .titleAnimationThree .titleStar { animation: titleStarPop var(--title-cycle) cubic-bezier(.2,.85,.25,1.2) both; }
-  .titleAnimationFour .titleStar { animation: titleStarTide var(--title-cycle) cubic-bezier(.45,0,.2,1) both; }
+  .titleAnimationThree .titleStar { animation: titleStarTide var(--title-cycle) cubic-bezier(.45,0,.2,1) both; }
+  .titleAnimationFour .titleStar { animation: titleStarPop var(--title-cycle) cubic-bezier(.2,.85,.25,1.2) both; }
 }
 @keyframes titleStarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes titleStarElastic { 0%, 100% { transform: rotate(0) scale(1); filter: none; } 35% { transform: rotate(-28deg) scale(1.18); filter: hue-rotate(200deg) saturate(1.3) brightness(1.02) drop-shadow(0 0 7px rgba(165,132,212,.38)); } 62% { transform: rotate(18deg) scale(.9); filter: hue-rotate(200deg) saturate(1.3) brightness(1.02); } 82% { transform: rotate(-7deg) scale(1.04); filter: hue-rotate(200deg) saturate(1.16); } }

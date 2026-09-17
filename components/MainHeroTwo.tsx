@@ -105,7 +105,7 @@ export default function MainHeroTwo() {
     if (!window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
     const now = performance.now();
     if (now < nextTitleHover.current) return;
-    nextTitleHover.current = now + 2000;
+    nextTitleHover.current = now + 2500;
     const animation = nextTitleAnimation.current;
     nextTitleAnimation.current = (animation + 1) % 4;
     setTitleAnimation(animation);

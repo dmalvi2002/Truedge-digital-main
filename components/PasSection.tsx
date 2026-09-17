@@ -1,6 +1,11 @@
 "use client";
 
 import React, { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -8,12 +13,11 @@ import {
   Megaphone, 
   Globe, 
   ArrowUpRight, 
-  ArrowRight, 
-  CheckCircle2 
+  CircleMinus 
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
-import SectionCursor from "@/components/SectionCursor";
+import styles from "./PasSection.module.css";
 
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -33,91 +37,124 @@ const SERVICES: ServiceCard[] = [
   {
     id: "website-design",
     title: "Website Design",
-    category: "Conversion Architecture",
-    description: "Generic templates fail to convert modern visitors. We build bespoke, lightning-fast digital flagships engineered to capture attention, build trust, and maximize sales conversions.",
+    category: "Make a great first impression",
+    description: "A clear, professional website that shows what you do, works beautifully on phones, and makes it easy for customers to call or send an enquiry.",
     icon: <Laptop className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-laptop.jpg",
     imageAlt: "Website Design and Development Laptop Display",
-    ctaText: "Explore Design",
+    ctaText: "Website Design",
     href: "/services",
   },
   {
     id: "paid-media",
-    title: "Paid Media & Ads",
-    category: "Performance Acquisition",
-    description: "Unfocused campaigns burn through ad budgets. We deploy algorithmic Search, Meta, and Social funnels designed to capture high-intent buyers and scale customer acquisition profitably.",
+    title: "Online Advertising",
+    category: "Reach the right customers",
+    description: "Ads on Google and social media that put your business in front of people likely to need you. We manage the budget and show you what’s bringing enquiries.",
     icon: <Megaphone className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-tablet.jpg",
     imageAlt: "Paid Media Strategy Tablet Display",
-    ctaText: "Explore Funnels",
+    ctaText: "Online Advertising",
     href: "/services",
   },
   {
     id: "seo-aeo-geo",
-    title: "SEO / AEO / GEO",
-    category: "AI & Search Authority",
-    description: "Standard rankings aren't enough in the AI search era. We optimize your brand for Google search, Answer Engines (AEO), and Generative discovery (GEO) so your business gets recommended first.",
+    title: "Get Found Online",
+    category: "Be there when people search",
+    description: "Help customers find you when they search for your services. We improve your website and online presence so more people can discover your business.",
     icon: <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.2]" />,
     imageSrc: "/card-phone.jpg",
     imageAlt: "Search and AI Engine Optimization Display",
-    ctaText: "Explore Search",
+    ctaText: "Search Visibility",
     href: "/services",
   },
+];
+
+
+const PAIN_POINTS = [
+  { title: "A website that doesn’t do you justice.", text: "You’re proud of your business. Your website should give people the same confidence." },
+  { title: "Hard to find on Google.", text: "People nearby are looking for what you offer, but they’re finding someone else first." },
+  { title: "Paying for ads. Still waiting for calls.", text: "Money goes out every month, but you’re not sure what’s actually bringing customers in." },
+  { title: "Competitors getting the attention.", text: "You know your work is just as good. Online, they seem to be the obvious choice." },
+  { title: "Busy one month. Quiet the next.", text: "Word of mouth helps, but you can’t plan ahead when enquiries come and go." },
+  { title: "No time to figure it all out.", text: "Between customers, staff and the day-to-day, marketing keeps slipping down the list." },
 ];
 
 export default function PasSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
+  useGSAP(() => {
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.utils.toArray<HTMLElement>("[data-pas-reveal]").forEach((element) => {
+        gsap.from(element, {
+          y: 22, opacity: 0, duration: .7, ease: "power2.out",
+          scrollTrigger: { trigger: element, start: "top 92%", once: true },
+        });
+      });
+      gsap.fromTo("[data-seen-reveal]",
+        { clipPath: "inset(-4px 100% -4px 0)" },
+        {
+          clipPath: "inset(-4px 0% -4px 0)",
+          duration: 1.35,
+          delay: 1,
+          ease: "power2.inOut",
+          scrollTrigger: { trigger: "[data-seen-word]", start: "top 90%", once: true },
+        },
+      );
+    });
+    return () => media.revert();
+  }, { scope: sectionRef });
+
   return (
-    <section
-      ref={sectionRef}
-      className={`relative w-full py-24 sm:py-32 lg:py-36 bg-gradient-to-b from-[#241a63] via-[#21175c] to-[#120d36] text-white overflow-hidden ${sora.className}`}
-    >
-      {/* ─── Transparent Green Moving Cursor ─── */}
-      <SectionCursor targetRef={sectionRef} />
-      {/* ─── Ambient Lighting & Glow Halos ─── */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-gradient-to-b from-indigo-400/25 via-violet-600/15 to-transparent blur-[160px] rounded-full" />
-      <div className="pointer-events-none absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-[#d2f83a]/10 blur-[180px] rounded-full" />
-      <div className="pointer-events-none absolute top-1/3 left-0 w-[450px] h-[450px] bg-blue-500/10 blur-[150px] rounded-full" />
+    <section ref={sectionRef} className={`${styles.section} ${sora.className}`} aria-labelledby="pas-problem-title">
+      <div className={styles.container}>
+        <div className={styles.opening}>
+          <ScrollRippleTitle
+            id="pas-problem-title"
+            text="Are you struggling with?"
+            as="h2"
+            accentColor="#d2f83a"
+            baseColor="rgba(255, 255, 255, 0.25)"
+            activeColor="#ffffff"
+            className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold tracking-tight leading-[1.12] text-white"
+          />
+          <p>You’re good at what you do.<br />Getting customers online shouldn’t be the hard part.</p>
+        </div>
 
-      {/* Subtle geometric dot grid for tactile depth */}
-      <div 
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
-          backgroundSize: "32px 32px"
-        }}
-      />
+        <ul className={styles.problems}>
+          {PAIN_POINTS.map((point) => (
+            <li key={point.title} className={styles.problem} data-pas-reveal>
+              <CircleMinus size={21} strokeWidth={1.25} aria-hidden="true" />
+              <div><h3>{point.title}</h3><p>{point.text}</p></div>
+            </li>
+          ))}
+        </ul>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ─── 1. TOP HEADER: Clean Asymmetric Split (No Eyebrow, No Stats Line) ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center mb-16 sm:mb-20">
-          
-          {/* Left: Main Headline with Scroll-driven & Hover Green Ripple Letter-by-Letter Animation */}
-          <div className="lg:col-span-7">
-            <ScrollRippleTitle
-              text="We build high-performing digital systems that increase your sales growth"
-              as="h2"
-              className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold tracking-tight leading-[1.12]"
-            />
+        <div className={styles.cost} data-pas-reveal>
+          <div className={styles.costCopy}>
+            <p>It’s the job that went to someone else. The ad spend you can’t get back. Another evening trying to fix it yourself.</p>
+            <p>When people can’t find you—or don’t feel confident enough to call—good work can go unnoticed.</p>
           </div>
-
-          {/* Right: Strategic Narrative */}
-          <div className="lg:col-span-5">
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
-              Most agencies build pretty websites and run siloed ads. Truedge merges conversion architecture, paid acquisition, and AI discovery into one compounding revenue engine.
-            </p>
+          <div className={styles.costHeading}>
+            <h2>Your business<br />deserves to<br /><span className={styles.seenWord} data-seen-word><span className={styles.seenBase}>be seen.</span><span className={styles.seenHighlight} data-seen-reveal aria-hidden="true">be seen.</span></span></h2>
           </div>
+        </div>
 
+        <div className={styles.solutionHeading}>
+          <ScrollRippleTitle
+            text="Let’s help more customers find you and choose you."
+            as="h2"
+            className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold tracking-tight leading-[1.12]"
+          />
+          <p>A website that earns trust. Marketing that reaches the right people. And a clear way for them to get in touch.</p>
         </div>
 
         {/* ─── 2. THE 3 SIGNATURE SCOOPED-NOTCH CARDS ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8 pb-16 sm:pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8 ">
           {SERVICES.map((card) => (
             <div
               key={card.id}
-              className="group relative flex flex-col transition-all duration-300 hover:-translate-y-2"
+              className="group relative flex flex-col transition-all duration-300 motion-safe:hover:-translate-y-2"
             >
               {/* ── TOP DECK: Floating Lime Badge Cutout + Inverted Scooped White Title Tab ── */}
               <div className="relative flex items-end h-[74px] z-10">
@@ -193,17 +230,20 @@ export default function PasSection() {
           ))}
         </div>
 
-        {/* ─── 3. BOTTOM PAS SECTION: Clean Structural Split Showcase (No middle divider line) ─── */}
+
+
+        {/* Archived full-funnel section — retained for reuse, intentionally not rendered.
+        
         <div className="relative mt-4 sm:mt-8 pt-6 sm:pt-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* LEFT COLUMN: Layered Team Photography Composition with connecting Dotted Doodle Line */}
+            
             <div className="lg:col-span-6 flex items-center justify-center">
               
-              {/* Proportional Composition Box (Strictly matches the 574x484 doodle coordinate system) */}
+              
               <div className="relative w-full max-w-[560px] aspect-[574/484] mx-auto">
                 
-                {/* Long & Wavy Dotted Doodle Connector Line - Placed BELOW images (z-0) */}
+                
                 <svg 
                   className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
                   viewBox="0 0 574 484"
@@ -223,7 +263,7 @@ export default function PasSection() {
                     </marker>
                   </defs>
                   
-                  {/* Playful Dotted Doodle with Middle Circular Loop connecting behind Photo 2 */}
+                  
                   <path 
                     d="M 130 246 C 90 285, 75 325, 95 360 C 115 400, 165 400, 165 360 C 165 320, 115 320, 95 360 C 80 425, 140 515, 230 515 C 310 515, 365 510, 395 484" 
                     stroke="#d2f83a" 
@@ -234,11 +274,11 @@ export default function PasSection() {
                     className="opacity-95"
                   />
 
-                  {/* Starting anchor dot base */}
+                  
                   <circle cx="130" cy="246" r="4.5" fill="#d2f83a" />
                 </svg>
 
-                {/* Anchor Pin connecting Photo 1 bottom border to the doodle line (z-[15]: above Photo 1 z-10, below Photo 2 z-20) */}
+                
                 <svg 
                   className="absolute inset-0 w-full h-full pointer-events-none z-[15] overflow-visible"
                   viewBox="0 0 574 484"
@@ -247,7 +287,7 @@ export default function PasSection() {
                   <circle cx="130" cy="246" r="5" fill="#d2f83a" className="drop-shadow-[0_0_8px_rgba(210,248,58,0.8)]" />
                 </svg>
 
-                {/* Photo 1: Team Collaboration (Top-Left) - Connects with circle dot at (130, 246) */}
+                
                 <div className="absolute top-0 left-0 w-[58%] aspect-[4/3] rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border-2 border-white/15 z-10">
                   <Image
                     src="/team-collaboration.jpg"
@@ -257,7 +297,7 @@ export default function PasSection() {
                   />
                 </div>
 
-                {/* Photo 2: Strategic Funnel Whiteboarding (Bottom-Right, overlapping) */}
+                
                 <div className="absolute bottom-2 sm:bottom-3 right-0 w-[62%] aspect-[4/3] rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.7)] border-2 border-white/15 z-20">
                   <Image
                     src="/team-strategy.jpg"
@@ -270,7 +310,7 @@ export default function PasSection() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: The Clean Problem / Solution Pitch (No Eyebrow) */}
+            
             <div className="lg:col-span-6 space-y-6">
 
               <ScrollRippleTitle
@@ -283,7 +323,7 @@ export default function PasSection() {
                 To scale new customer acquisition and customer lifetime value sustainably, we engineer across the entire conversion lifecycle. No fragmented freelancers or unaligned agencies—a unified growth machine built for revenue.
               </p>
 
-              {/* 3 High-Value Pillars */}
+              
               <div className="space-y-3.5 pt-2">
                 <div className="flex items-start gap-3.5">
                   <div className="w-5 h-5 rounded-full bg-[#d2f83a]/15 border border-[#d2f83a]/30 flex items-center justify-center shrink-0 mt-0.5">
@@ -328,7 +368,7 @@ export default function PasSection() {
                 </div>
               </div>
 
-              {/* Action CTAs with Bespoke Button Design */}
+              
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Link
                   href="/contact"
@@ -354,6 +394,7 @@ export default function PasSection() {
           </div>
         </div>
 
+        */}
       </div>
     </section>
   );
