@@ -1,0 +1,251 @@
+.hero {
+  --ink: #f4f1ed;
+  --muted: #a4a0ad;
+  --accent: #d2f83a;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  color: var(--ink);
+  background: #06070b;
+}
+.ambient { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 76% 36%, #a7cc3110, transparent 50%); }
+.intro { width: min(1160px, calc(100% - 128px)); margin: auto; padding-top: 26px; position: relative; z-index: 3; }
+.headingWrap { position: relative; max-width: 990px; margin: auto; }
+.title { margin: 0; font-weight: 500; letter-spacing: -.075em; line-height: .95; }
+.firstLine { display: block; font-size: clamp(100px, 12.5vw, 180px); padding-left: 6%; }
+.fullStop { color: var(--accent); }
+.secondLine { display: block; font-size: clamp(70px, 8vw, 115px); margin-top: -4px; padding-left: 20%; white-space: nowrap; }
+.secondLine em { color: var(--accent); font-family: Georgia, 'Times New Roman', serif; font-size: 1.48em; font-weight: 400; letter-spacing: -.085em; line-height: .9; padding-right: .06em; }
+.marginNote { position: absolute; top: 34%; right: 7%; font-size: 9px; line-height: 1.8; letter-spacing: .13em; color: #8c8798; }
+.introBottom { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin: 28px auto 0; max-width: 920px; }
+.introBottom p { font-size: 16px; line-height: 1.65; color: #aaa6b3; }
+.actions { display: flex; flex-direction: column; align-items: center; gap: 13px; flex-shrink: 0; }
+.cta { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 64px 0 23px; background: #d2f83a; color: #10130a; border-radius: 99px; font-size: 14px; font-weight: 600; transition: padding .45s cubic-bezier(.16,1,.3,1), background .2s; }
+.cta:hover, .cta:focus-visible { padding-left: 64px; padding-right: 23px; background: #e0ff68; }
+.ctaIcon { display: grid; place-items: center; position: absolute; width: 42px; height: 42px; right: 6px; border-radius: 50%; background: #10130a; color: #eaffb1; transition: right .45s cubic-bezier(.16,1,.3,1), transform .45s; }
+.cta:hover .ctaIcon, .cta:focus-visible .ctaIcon { right: calc(100% - 48px); transform: rotate(45deg); }
+.workLink { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #c5c0cf; padding: 5px; transition: color .2s; }
+.workLink:hover { color: #fff; }
+.scene { position: relative; margin: 40px auto 0; width: min(1500px, 100%); height: 420px; pointer-events: none; }
+.light { position: absolute; left: 10%; width: 80%; top: -180px; height: 650px; background: radial-gradient(ellipse, #a1bc3035, #8da82a10 43%, transparent 68%); opacity: .85; }
+.stage { position: absolute; inset: 0; perspective: 1800px; }
+.campaignPosition { position: absolute; width: 28%; left: 3.5%; top: 9%; z-index: 1; }
+.campaign { background: #d2f83a; color: #12160a; height: 350px; position: relative; overflow: hidden; padding: 19px 20px; transform: rotate(-10deg) rotateY(12deg); transform-origin: right center; box-shadow: -15px 25px 65px #0008; }
+.artMasthead, .artFooter { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; font-size: 7px; letter-spacing: .04em; }
+.campaignTitle { position: relative; font-size: clamp(27px, 3vw, 43px); line-height: .98; font-weight: 600; letter-spacing: -.06em; margin-top: 31px; z-index: 2; }
+.campaignTitle > span { font-size: 1.47em; }
+.campaignGraphic { position: absolute; width: 74%; bottom: -5px; right: -46px; filter: drop-shadow(2px 4px 0 #1e2319); }
+.artFooter { position: absolute; bottom: 17px; left: 20px; right: 20px; font-size: 6px; }
+.webPosition { position: absolute; width: 54%; left: 23%; top: 0; z-index: 3; }
+.webStudy { color: #211b2a; background: #efede7; transform: rotate(-2deg) rotateX(5deg); box-shadow: 0 0 0 1px #ffffff40, 0 35px 90px #000b; }
+.webNav { display: flex; justify-content: space-between; align-items: center; padding: 13px 24px; border-bottom: 1px solid #27213118; }
+.studyLogo { font-weight: 600; font-size: 25px; letter-spacing: -.075em; line-height: 1; }
+.studyLogo > span { font-size: 10px; vertical-align: top; margin-left: 3px; }
+.webNav > div { display: flex; align-items: center; gap: 22px; font-size: 7px; }
+.webBody { display: grid; grid-template-columns: 1.15fr 1fr; min-height: 282px; }
+.webCopy { padding: 31px 0 28px 28px; position: relative; z-index: 2; }
+.studyEdition { font-size: 6px; letter-spacing: .08em; color: #6d6476; }
+.webCopy p { font-size: clamp(25px, 3.05vw, 45px); line-height: 1.03; font-weight: 500; letter-spacing: -.055em; margin-top: 22px; }
+.webCopy p em { font-family: Georgia, serif; font-weight: 400; font-size: 1.05em; }
+.studyDescription { font-size: 8px; line-height: 1.6; color: #706775; display: block; margin-top: 16px; }
+.studyButton { display: flex; justify-content: space-between; align-items: center; font-size: 7px; border-bottom: 1px solid #211b2a; padding-bottom: 7px; width: 132px; margin-top: 24px; }
+.webArtwork { background: #dbe5bd; position: relative; overflow: hidden; }
+.webArtwork::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #fff4, transparent 50%, #65703938); pointer-events: none; }
+.webArtwork svg { width: 100%; height: 100%; position: absolute; }
+.objectNumber { font-size: 7px; letter-spacing: .08em; position: absolute; bottom: 14px; right: 14px; color: #68734f; }
+.webFooter { display: flex; justify-content: space-between; padding: 13px 24px; border-top: 1px solid #27213118; font-size: 6px; letter-spacing: .03em; }
+.brandPosition { position: absolute; width: 26%; right: 3%; top: -1%; z-index: 2; }
+.brandStudy { height: 368px; background: #1c2315; color: #d2f83a; padding: 19px 20px; transform: rotate(10deg) rotateY(-14deg); transform-origin: left center; position: relative; overflow: hidden; box-shadow: 15px 25px 65px #0008; }
+.brandTitle { font-size: clamp(38px, 4.5vw, 65px); line-height: .87; letter-spacing: -.08em; font-weight: 500; margin-top: 29px; margin-left: 25%; position: relative; z-index: 2; }
+.brandTitle em { font-family: Georgia, serif; font-size: 1.15em; font-weight: 400; }
+.brandTitle > span { font-size: 20px; vertical-align: top; letter-spacing: 0; }
+.brandMark { position: absolute; width: 155px; left: -21px; bottom: -17px; color: #a0b967; opacity: .7; }
+.brandMark svg { width: 100%; }
+.bottom { width: min(1312px, calc(100% - 128px)); margin: -6px auto 0; padding: 20px 0 26px; position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.scrollLink, .sceneLink { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #ada7bb; }
+.scrollLink svg { color: var(--accent); }
+.studiesCaption { font-size: 9px; color: #77717f; letter-spacing: .025em; }
+.sceneLink { color: #e3ddec; }
+.capabilities { position: relative; z-index: 5; max-width: 1312px; margin: 0 auto; border-top: 1px solid #ffffff21; display: grid; grid-template-columns: repeat(3, 1fr); padding: 23px 0 27px; scroll-margin-top: 110px; }
+.capabilities a { display: flex; align-items: center; gap: 18px; font-size: 13px; color: #ccc6d5; padding: 8px 27px; border-right: 1px solid #ffffff21; }
+.capabilities a:first-child { padding-left: 0; }
+.capabilities a:last-child { border-right: 0; padding-right: 0; }
+.capabilities a > span { font-size: 9px; color: #7c738b; }
+.capabilities a > svg { margin-left: auto; flex-shrink: 0; color: #d2f83a; transition: transform .25s; }
+.capabilities a:hover > svg { transform: translate(2px, -2px); }
+.hero a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+@media (max-width: 1440px) { .capabilities { margin-left: 64px; margin-right: 64px; } }
+@media (max-width: 1199px) {
+  .intro { width: calc(100% - 80px); }
+  .marginNote { right: 4%; font-size: 8px; }
+  .introBottom { max-width: 850px; }
+  .scene { height: 385px; margin-top: 55px; }
+  .campaign { height: 305px; }
+  .brandStudy { height: 328px; }
+  .webBody { min-height: 250px; }
+  .webCopy { padding: 24px 0 24px 21px; }
+  .webCopy p { margin-top: 17px; }
+  .studyButton { margin-top: 18px; }
+  .bottom { width: calc(100% - 80px); }
+  .capabilities { margin-left: 40px; margin-right: 40px; }
+  .capabilities a { padding-left: 18px; padding-right: 18px; font-size: 12px; gap: 12px; }
+}
+@media (max-width: 899px) {
+  .intro { width: calc(100% - 64px); padding-top: 35px; }
+  .firstLine { font-size: 17vw; padding-left: 2%; }
+  .secondLine { font-size: 10.5vw; padding-left: 13%; }
+  .marginNote { top: 27%; right: 1%; font-size: 7px; }
+  .introBottom { margin-top: 35px; align-items: flex-start; }
+  .introBottom p { font-size: 14px; max-width: 290px; }
+  .cta { font-size: 12px; padding-left: 18px; padding-right: 60px; }
+  .scene { height: 340px; margin-top: 52px; }
+  .campaignPosition { width: 30%; left: -2%; top: 8%; }
+  .campaign { height: 260px; padding: 15px; }
+  .campaignTitle { font-size: 3.5vw; margin-top: 29px; }
+  .webPosition { width: 64%; left: 18%; }
+  .webNav { padding: 11px 18px; }
+  .studyLogo { font-size: 22px; }
+  .webBody { min-height: 230px; }
+  .webCopy { padding: 20px 0 20px 18px; }
+  .webCopy p { font-size: 3.8vw; }
+  .studyDescription { font-size: 7px; }
+  .studyEdition { font-size: 5px; }
+  .webFooter { padding: 10px 18px; font-size: 5px; }
+  .brandPosition { width: 29%; right: -2%; top: 2%; }
+  .brandStudy { height: 270px; padding: 15px; }
+  .brandTitle { font-size: 5vw; }
+  .artMasthead { font-size: 5px; }
+  .artFooter { font-size: 5px; left: 15px; right: 15px; }
+  .bottom { width: calc(100% - 64px); }
+  .studiesCaption { display: none; }
+  .capabilities { margin-left: 32px; margin-right: 32px; }
+  .capabilities a { font-size: 11px; gap: 10px; }
+}
+@media (max-width: 599px) {
+  .intro { width: calc(100% - 40px); padding-top: 34px; }
+  .headingWrap { padding-bottom: 6px; }
+  .firstLine { padding-left: 0; font-size: 22vw; }
+  .secondLine { font-size: 12vw; padding-left: 6%; margin-top: 8px; }
+  .marginNote { display: none; }
+  .introBottom { display: block; margin-top: 29px; }
+  .introBottom p { font-size: 14px; line-height: 1.7; max-width: none; }
+  .actions { align-items: flex-start; margin-top: 25px; gap: 13px; }
+  .cta { font-size: 13px; padding-left: 22px; padding-right: 63px; }
+  .workLink { font-size: 12px; padding-left: 0; }
+  .scene { height: 292px; margin-top: 49px; }
+  .light { width: 160%; left: -30%; height: 450px; top: -110px; }
+  .webPosition { width: 84%; left: 8%; top: 25px; }
+  .webNav { padding: 10px 13px; }
+  .studyLogo { font-size: 19px; }
+  .webNav > div { gap: 12px; font-size: 6px; }
+  .webBody { min-height: 175px; }
+  .webCopy { padding: 15px 0 15px 13px; }
+  .studyEdition { font-size: 4px; }
+  .webCopy p { font-size: 5vw; margin-top: 15px; }
+  .studyDescription { font-size: 5px; margin-top: 11px; }
+  .studyButton { font-size: 5px; width: 97px; margin-top: 17px; }
+  .studyButton svg { width: 9px; height: 9px; }
+  .webFooter { padding: 9px 13px; font-size: 4px; }
+  .objectNumber { font-size: 5px; right: 10px; bottom: 10px; }
+  .campaignPosition { width: 46%; left: -15%; top: 10px; }
+  .campaign { height: 214px; padding: 11px; transform: rotate(-13deg); }
+  .campaignTitle { font-size: 23px; margin-top: 25px; }
+  .campaignGraphic { width: 90%; right: -25px; }
+  .brandPosition { width: 42%; right: -11%; top: 0; }
+  .brandStudy { height: 224px; padding: 11px; transform: rotate(13deg); }
+  .brandTitle { font-size: 34px; margin-top: 29px; margin-left: 16%; }
+  .brandTitle > span { font-size: 12px; }
+  .brandMark { width: 100px; }
+  .artMasthead { font-size: 4px; }
+  .artMasthead svg { width: 11px; height: 11px; }
+  .artFooter { font-size: 4px; left: 11px; right: 11px; bottom: 13px; }
+  .bottom { width: calc(100% - 40px); margin-top: -9px; padding: 10px 0 25px; }
+  .scrollLink { font-size: 9px; gap: 7px; }
+  .sceneLink { font-size: 10px; gap: 5px; }
+  .scrollLink svg, .sceneLink svg { width: 14px; }
+  .capabilities { margin-left: 20px; margin-right: 20px; padding: 4px 0 15px; grid-template-columns: 1fr; }
+  .capabilities a, .capabilities a:first-child, .capabilities a:last-child { padding: 15px 0; font-size: 12px; border-right: 0; gap: 17px; border-bottom: 1px solid #ffffff14; }
+  .capabilities a:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .hero *, .hero *::before, .hero *::after { transition: none !important; } }
+
+.titleLine { display: inline-block; }
+.letter { display: inline-block; }
+.edgeWord { position: relative; display: inline-block; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .title:hover .letter { animation: letterLift .75s both; animation-delay: calc(var(--letter-index) * 35ms); }
+}
+@keyframes letterLift {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  40% { transform: translateY(-.12em) rotate(-5deg); color: #d2f83a; }
+  70% { transform: translateY(.015em) rotate(1deg); }
+}
+.capabilities { gap: 0; padding: 0; border-top: 1px solid #d2f83a66; border-bottom: 1px solid #d2f83a30; margin-bottom: 35px; background: #d2f83a; }
+.capabilities a, .capabilities a:first-child, .capabilities a:last-child { position: relative; padding: 27px 25px; gap: 18px; color: #101308; border-right: 1px solid #10130830; transition: background .25s; }
+.capabilities a:last-child { border-right: 0; }
+.capabilities a > span { align-self: flex-start; padding-top: 4px; color: #46531c; font-size: 11px; }
+.capabilities strong { font-size: clamp(17px, 1.6vw, 23px); line-height: 1.25; font-weight: 600; letter-spacing: -.035em; }
+.capabilities a > svg { color: #101308; width: 27px; height: 27px; align-self: flex-end; }
+.capabilities a:hover { background: #e0ff68; }
+.capabilities a:focus-visible { outline: 3px solid white; outline-offset: 3px; z-index: 1; }
+@media (max-width: 899px) {
+  .capabilities a, .capabilities a:first-child, .capabilities a:last-child { padding: 22px 15px; gap: 10px; }
+  .capabilities strong { font-size: 16px; }
+  .capabilities a > svg { width: 19px; height: 19px; }
+}
+@media (max-width: 599px) {
+  .capabilities { margin-bottom: 22px; }
+  .capabilities a, .capabilities a:first-child, .capabilities a:last-child { padding: 20px; border-right: 0; border-bottom: 1px solid #10130830; gap: 18px; }
+  .capabilities a:last-child { border-bottom: 0; }
+  .capabilities strong { font-size: 21px; }
+  .capabilities a > svg { align-self: center; }
+}
+@media (prefers-reduced-motion: reduce) { .hero *, .hero *::after { transition: none !important; } }
+
+/* Readable business benefits, rather than miniature demonstration copy. */
+.firstLine { font-size: clamp(58px, 7.5vw, 108px); padding-left: 0; white-space: nowrap; }
+.secondLine { padding-left: 16%; margin-top: 15px; }
+.introBottom p { max-width: 510px; font-size: 18px; color: #c4c6bf; }
+.webBody { grid-template-columns: 1.3fr 1fr; min-height: 285px; }
+.webCopy { padding: 32px 12px 32px 28px; }
+.webCopy h2 { font-size: clamp(25px, 2.85vw, 42px); line-height: 1.08; font-weight: 500; letter-spacing: -.05em; }
+.webCopy h2 em { font-family: Georgia, serif; font-weight: 400; }
+.webCopy .benefitDescription { margin-top: 23px; font-size: 15px; line-height: 1.6; letter-spacing: 0; font-weight: 400; color: #4d5145; max-width: 285px; }
+.cardIntro { font-size: 12px; color: #5a6050; }
+.objectNumber { font-size: 12px; text-align: center; left: 10px; right: 10px; bottom: 13px; color: #384124; letter-spacing: 0; }
+.webFooter { font-size: 12px; padding: 16px 24px; color: #404635; letter-spacing: 0; }
+.artMasthead { font-size: 9px; }
+.artFooter { font-size: 8px; }
+.brandTitle { font-size: clamp(29px, 3vw, 43px); line-height: .98; margin-left: 23%; }
+.capabilities { margin-top: 25px; }
+@media (max-width: 899px) {
+  .firstLine { font-size: 8.2vw; padding-left: 0; }
+  .secondLine { font-size: 10vw; padding-left: 12%; }
+  .introBottom p { font-size: 16px; max-width: 360px; }
+  .webBody { min-height: 270px; }
+  .webCopy { padding: 26px 10px 26px 20px; }
+  .webCopy h2 { font-size: 3.4vw; }
+  .webCopy .benefitDescription { font-size: 13px; margin-top: 16px; }
+  .cardIntro, .objectNumber, .webFooter { font-size: 10px; }
+  .scene { height: 395px; }
+  .brandTitle { font-size: 3.5vw; }
+}
+@media (max-width: 599px) {
+  .firstLine { font-size: 9.2vw; }
+  .secondLine { font-size: 11.5vw; padding-left: 4%; margin-top: 17px; }
+  .introBottom p { font-size: 16px; max-width: none; }
+  .scene { height: 430px; margin-top: 32px; }
+  .webPosition { width: 92%; left: 4%; }
+  .webBody { grid-template-columns: 1.25fr 1fr; min-height: 278px; }
+  .webCopy { padding: 25px 8px 24px 15px; }
+  .webCopy h2 { font-size: 24px; }
+  .webCopy .benefitDescription { font-size: 13px; line-height: 1.55; margin-top: 18px; }
+  .webNav { padding: 13px 15px; }
+  .webFooter { font-size: 10px; padding: 13px 12px; gap: 6px; }
+  .objectNumber { font-size: 11px; bottom: 18px; }
+  .campaign, .brandStudy { height: 300px; }
+  .brandTitle { font-size: 27px; }
+  .artMasthead { font-size: 6px; }
+  .artFooter { font-size: 5px; }
+  .capabilities { margin-top: 12px; }
+}

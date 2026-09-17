@@ -1,37 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import Image from "next/image";
 import { Sora } from "next/font/google";
+import styles from "./Navbar.module.css";
 
-const sora = Sora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-interface NavLink {
-  name: string;
-  href: string;
-}
-
-// Proper WhatsApp SVG Icon
-const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-  </svg>
-);
-
-const navLinks: NavLink[] = [
+const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
+const links = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
@@ -39,182 +17,67 @@ const navLinks: NavLink[] = [
   { name: "Growth", href: "/growth" },
 ];
 
+function WhatsAppIcon() {
+  return <svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>;
+}
+
+function WhatsAppButton({ onClick }: { onClick?: () => void }) {
+  return <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer" className={styles.contact} onClick={onClick} aria-label="Chat with us on WhatsApp"><span className={styles.contactLabel}>Chat With Us</span><span className={styles.contactIcon}><WhatsAppIcon /></span></a>;
+}
+
 export default function Navbar() {
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openPath, setOpenPath] = useState<string | null>(null);
+  const isOpen = openPath === pathname;
+  const trigger = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
 
-  // Dynamic Liquid Slider Pill state
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [sliderStyle, setSliderStyle] = useState<{ left: number; width: number; opacity: number }>({
-    left: 0,
-    width: 0,
-    opacity: 0,
-  });
-
-  const navContainerRef = useRef<HTMLDivElement | null>(null);
-  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-
-  // Find active route index
-  const activeIndex = navLinks.findIndex((link) => {
-    if (link.href === "/") return pathname === "/";
-    return pathname.startsWith(link.href);
-  });
-
-  // Compute position of the Liquid Slider Pill
   useEffect(() => {
-    const targetIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
-    const targetElement = itemRefs.current[targetIndex];
-    const container = navContainerRef.current;
+    if (!isOpen) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenPath(null);
+        trigger.current?.focus();
+      }
+    };
+    const outside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !header.current?.contains(event.target)) setOpenPath(null);
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const resize = () => { if (desktop.matches) setOpenPath(null); };
+    window.addEventListener("keydown", dismiss);
+    window.addEventListener("pointerdown", outside);
+    desktop.addEventListener("change", resize);
+    return () => {
+      window.removeEventListener("keydown", dismiss);
+      window.removeEventListener("pointerdown", outside);
+      desktop.removeEventListener("change", resize);
+    };
+  }, [isOpen]);
 
-    if (targetElement && container) {
-      const containerRect = container.getBoundingClientRect();
-      const targetRect = targetElement.getBoundingClientRect();
-
-      setSliderStyle({
-        left: targetRect.left - containerRect.left,
-        width: targetRect.width,
-        opacity: 1,
-      });
-    } else {
-      setSliderStyle((prev) => ({ ...prev, opacity: 0 }));
-    }
-  }, [hoveredIndex, activeIndex, pathname]);
+  const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    // Flush sticky header with zero whitespace padding above
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-2xl transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
-      <div className="mx-auto flex h-16 sm:h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        
-        {/* ─── 1. CLEAN BRAND LOGO (No dots or extra infos) ─── */}
-        <Link href="/" className="group flex items-center gap-3 shrink-0 py-1 cursor-pointer">
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771262572/Copy_of_truedge_logo_main_yymyy1.webp"
-              alt="Truedge Digital Logo"
-              fill
-              className="object-contain drop-shadow-sm"
-              sizes="40px"
-              priority
-            />
-          </div>
-
-          <span
-            className={`${sora.className} text-lg sm:text-xl font-bold text-slate-900 tracking-tight transition-colors group-hover:text-black`}
-          >
-            Truedge Digital
-          </span>
+    <header ref={header} className={`${styles.header} ${pathname === "/" ? styles.dark : ""} ${sora.className}`}>
+      <div className={styles.inner}>
+        <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
+          <Image src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771262572/Copy_of_truedge_logo_main_yymyy1.webp" alt="" width={36} height={36} priority />
+          <span>Truedge<span className={styles.brandSecond}>Digital</span></span>
         </Link>
-
-        {/* ─── 2. DYNAMIC LIQUID NAVIGATION TRAY ─── */}
-        <nav className="hidden lg:block">
-          <div
-            ref={navContainerRef}
-            className="relative flex items-center rounded-full bg-slate-100/70 p-1.5 ring-1 ring-slate-900/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm"
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {/* The Liquid Floating Pill Indicator */}
-            <div
-              className="absolute top-1.5 bottom-1.5 rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08),0_1px_1px_rgba(0,0,0,0.04)] ring-1 ring-slate-900/[0.06] pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{
-                left: `${sliderStyle.left}px`,
-                width: `${sliderStyle.width}px`,
-                opacity: sliderStyle.opacity,
-              }}
-            />
-
-            {navLinks.map((link, idx) => {
-              const isActive = activeIndex === idx;
-
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  ref={(el) => {
-                    itemRefs.current[idx] = el;
-                  }}
-                  onMouseEnter={() => setHoveredIndex(idx)}
-                  className={`relative z-10 px-5 py-2 text-sm font-semibold transition-colors duration-200 rounded-full select-none ${
-                    isActive ? "text-slate-950" : "text-slate-600 hover:text-slate-950"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </div>
+        <nav aria-label="Main navigation" className={styles.navigation}>
+          {links.map((link, index) => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? "page" : undefined}><span className={styles.navIndex} aria-hidden="true">0{index + 1}</span>{link.name}</Link>)}
         </nav>
-
-        {/* ─── 3. GREEN WHATSAPP KINETIC SLIDING HOVER CTA BUTTON & MOBILE TRIGGER ─── */}
-        <div className="flex items-center gap-3">
-          {/* Green WhatsApp Button with gliding circle WhatsApp icon animation */}
-          <a
-            href="https://wa.me/447907901171"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative hidden sm:inline-flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-[58px] hover:pe-6 w-fit overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#25D366_0%,#1ebe5d_100%)] hover:bg-[linear-gradient(135deg,#20bd5a_0%,#19a34e_100%)] shadow-[0_4px_20px_rgba(37,211,102,0.38)] hover:shadow-[0_6px_25px_rgba(37,211,102,0.55)] active:scale-[0.98] select-none transform-gpu"
-          >
-            <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap">
-              Chat With Us
-            </span>
-            <div className="pointer-events-none absolute right-1 w-9 h-9 bg-white text-[#25D366] rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-40px)] group-hover:scale-105 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
-              <WhatsAppIcon size={18} className="shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
-            </div>
-          </a>
-
-          {/* Mobile Menu Trigger */}
-          <button
-            type="button"
-            className="inline-flex lg:hidden items-center justify-center w-10 h-10 rounded-full bg-slate-100/90 text-slate-800 border border-slate-200/80 shadow-sm transition hover:bg-slate-200/80 focus:outline-none"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        <div className={styles.right}>
+          <WhatsAppButton />
+          <button ref={trigger} type="button" className={styles.menuButton} aria-expanded={isOpen} aria-controls="mobile-navigation" aria-label={isOpen ? "Close navigation" : "Open navigation"} onClick={() => setOpenPath(isOpen ? null : pathname)}>
+            {isOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
         </div>
       </div>
-
-      {/* ─── 4. MOBILE DROPDOWN DRAWER ─── */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-2xl px-4 py-4 shadow-lg space-y-3">
-          <div className="flex flex-col space-y-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all ${
-                    isActive
-                      ? "bg-purple-50 text-purple-700 shadow-sm"
-                      : "text-slate-700 hover:bg-slate-100/80 hover:text-slate-950"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span>{link.name}</span>
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Mobile Green WhatsApp Kinetic CTA */}
-          <div className="pt-2 border-t border-slate-100">
-            <a
-              href="https://wa.me/447907901171"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative flex items-center justify-center text-sm font-bold text-white rounded-full h-11 p-1 ps-6 pe-[58px] group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-[58px] hover:pe-6 w-full overflow-hidden cursor-pointer bg-[linear-gradient(135deg,#25D366_0%,#1ebe5d_100%)] shadow-[0_4px_20px_rgba(37,211,102,0.38)] select-none transform-gpu"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                Chat With Us
-              </span>
-              <div className="pointer-events-none absolute right-1 w-9 h-9 bg-white text-[#25D366] rounded-full flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:right-[calc(100%-40px)] group-hover:scale-105 shadow-sm transform-gpu will-change-[transform,right] [backface-visibility:hidden] [transform:translateZ(0)]">
-                <WhatsAppIcon size={18} className="shrink-0 transform-gpu [backface-visibility:hidden] [transform:translateZ(0)]" />
-              </div>
-            </a>
-          </div>
-        </div>
-      )}
+      <nav id="mobile-navigation" aria-label="Mobile navigation" hidden={!isOpen} className={styles.mobile}>
+        {links.map((link, index) => <Link key={link.href} href={link.href} onClick={() => setOpenPath(null)} aria-current={isActive(link.href) ? "page" : undefined}><span className={styles.number}>0{index + 1}</span>{link.name}<ArrowUpRight size={21} aria-hidden="true" /></Link>)}
+        <div className={styles.mobileContact}><WhatsAppButton onClick={() => setOpenPath(null)} /></div>
+      </nav>
     </header>
   );
 }

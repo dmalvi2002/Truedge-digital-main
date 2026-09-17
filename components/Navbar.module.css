@@ -1,0 +1,49 @@
+.header { --nav-bg: #fff; --nav-ink: #11150b; --nav-muted: #5c6254; --nav-line: #171d1420; position: sticky; top: 0; z-index: 50; background: var(--nav-bg); color: var(--nav-ink); }
+.dark { --nav-bg: #06070b; --nav-ink: #f6f8ef; --nav-muted: #b2b7a7; --nav-line: #ffffff20; }
+.inner { max-width: 1440px; height: 100px; margin: auto; padding: 0 64px; display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid var(--nav-line); }
+.brand { display: flex; align-items: center; gap: 11px; font-size: 21px; font-weight: 600; letter-spacing: -.06em; flex-shrink: 0; line-height: 1; }
+.brand img { width: 39px; height: 39px; object-fit: contain; }
+.brandSecond { display: block; font-size: 10px; font-weight: 500; letter-spacing: .23em; text-transform: uppercase; margin-top: 7px; }
+.navigation { display: flex; gap: 6px; align-items: stretch; }
+.navigation a { display: flex; flex-direction: column; gap: 7px; position: relative; padding: 12px 17px; font-size: 12px; color: var(--nav-muted); transition: color .2s, background .2s; }
+.navIndex { font-size: 8px; letter-spacing: .08em; opacity: .55; }
+.navigation a::after { content: ''; position: absolute; bottom: 4px; left: 17px; right: 17px; height: 2px; background: #708b10; transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.navigation a:hover, .navigation a[aria-current] { color: var(--nav-ink); }
+.navigation a:hover::after, .navigation a[aria-current]::after { transform: scaleX(1); }
+.dark .navigation a::after { background: #d2f83a; }
+.dark .navigation a[aria-current] { color: #d2f83a; }
+.right { display: flex; align-items: center; gap: 20px; }
+.contact, .mobile .contact { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 57px 0 21px; gap: 0; background: #25d366; color: #052611; border: 0; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: nowrap; transition: padding .45s cubic-bezier(.16,1,.3,1), background .2s; }
+.contactIcon { display: grid; place-items: center; position: absolute; right: 5px; width: 38px; height: 38px; border-radius: 50%; background: #052611; color: #6cf29d; transition: right .45s cubic-bezier(.16,1,.3,1), transform .45s; }
+.contact:hover, .contact:focus-visible, .mobile .contact:hover, .mobile .contact:focus-visible { padding-left: 57px; padding-right: 21px; background: #49e482; }
+.contact:hover .contactIcon, .contact:focus-visible .contactIcon { right: calc(100% - 43px); transform: rotate(-12deg); }
+.menuButton { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer; border: 1px solid var(--nav-line); border-radius: 4px; }
+.mobile { padding: 12px 32px 28px; background: var(--nav-bg); border-bottom: 1px solid var(--nav-line); max-height: calc(100dvh - 76px); overflow-y: auto; }
+.mobile[hidden] { display: none; }
+.mobile > a { display: flex; align-items: center; gap: 20px; padding: 17px 0; border-bottom: 1px solid var(--nav-line); font-size: 19px; }
+.mobile > a > svg { margin-left: auto; }
+.mobile > a[aria-current] { color: #61760e; }
+.dark .mobile > a[aria-current] { color: #d2f83a; }
+.number { color: var(--nav-muted); font-size: 10px; }
+.mobileContact { padding-top: 24px; }
+.mobile .contact { width: 100%; }
+.header a:focus-visible, .header button:focus-visible { outline: 2px solid #748d19; outline-offset: 6px; }
+.dark a:focus-visible, .dark button:focus-visible { outline-color: #d2f83a; }
+@media (min-width: 1024px) { .mobile { display: none; } }
+@media (max-width: 1199px) { .inner { padding: 0 40px; gap: 20px; } .navigation a { padding: 12px; } .navigation a::after { left: 12px; right: 12px; } }
+@media (max-width: 1023px) { .navigation { display: none; } .menuButton { display: flex; } .inner { height: 80px; } }
+@media (max-width: 899px) { .inner { padding: 0 32px; } }
+@media (max-width: 599px) {
+  .inner { padding: 0 20px; height: 76px; gap: 12px; }
+  .brand { font-size: 17px; gap: 8px; }
+  .brand img { width: 30px; height: 30px; }
+  .brandSecond { font-size: 8px; }
+  .right { gap: 12px; }
+  .right .contact { padding: 0; width: 42px; min-height: 42px; }
+  .right .contactLabel { display: none; }
+  .right .contactIcon { width: 32px; height: 32px; right: 5px; }
+  .right .contact:hover .contactIcon, .right .contact:focus-visible .contactIcon { right: 5px; transform: rotate(-12deg); }
+  .menuButton { width: 40px; height: 40px; }
+  .mobile { padding: 8px 20px 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .header * { transition: none !important; } }

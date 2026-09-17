@@ -1,4 +1,4 @@
-import MainHero from "@/components/MainHero";
+import MainHeroTwo from "@/components/MainHeroTwo";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import PasSection from "@/components/PasSection";
 import ServicesListSection from "@/components/ServicesListSection";
@@ -12,8 +12,8 @@ import { homeFaqs } from "@/data/homeFaqs";
 
 export default function Home() {
   return (
-    <main>
-      <MainHero />
+    <div>
+      <MainHeroTwo />
       <ClientLogosSection />
       <PasSection />
       <ServicesListSection />
@@ -23,6 +23,6 @@ export default function Home() {
       <TestimonialSection />
       <CtaSection />
       <FaqSection faqs={homeFaqs} />
-    </main>
+    </div>
   );
 }
