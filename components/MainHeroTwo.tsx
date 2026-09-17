@@ -15,6 +15,18 @@ const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
 const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+const titleLetterStyle = (index: number) => ({
+  "--letter-index": index,
+  "--letter-x": index % 2 ? ".16em" : "-.16em",
+  "--letter-x-back": index % 2 ? "-.072em" : ".072em",
+  "--letter-x-settle": index % 2 ? ".029em" : "-.029em",
+  "--letter-rotation": index % 2 ? "7deg" : "-7deg",
+  "--float-y": index % 3 === 0 ? "-.11em" : index % 3 === 1 ? "-.055em" : ".025em",
+  "--float-rotation": index % 2 ? "2deg" : "-2deg",
+  "--float-return-rotation": index % 2 ? "-.7deg" : ".7deg",
+  "--pop-order": (index * 7) % 27,
+} as CSSProperties);
+
 /** Business benefits presented in the established layered visual style. */
 function DesignScene() {
   return (
@@ -78,10 +90,11 @@ export default function MainHeroTwo() {
   const root = useRef<HTMLElement>(null);
   const titleEntranceComplete = useRef(false);
   const titleEntering = useRef(false);
-  const [titleAnimating, setTitleAnimating] = useState(false);
+  const [titleAnimation, setTitleAnimation] = useState<number | null>(null);
+  const nextTitleAnimation = useRef(0);
   const nextTitleHover = useRef(0);
   const titleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const titleCycleMs = 1275; // 750ms letter lift + 15 stagger steps of 35ms.
+  const titleCycleMs = 1800;
 
   useEffect(() => () => {
     if (titleTimer.current) clearTimeout(titleTimer.current);
@@ -93,9 +106,11 @@ export default function MainHeroTwo() {
     const now = performance.now();
     if (now < nextTitleHover.current) return;
     nextTitleHover.current = now + 2000;
-    setTitleAnimating(true);
+    const animation = nextTitleAnimation.current;
+    nextTitleAnimation.current = (animation + 1) % 4;
+    setTitleAnimation(animation);
     titleTimer.current = setTimeout(() => {
-      setTitleAnimating(false);
+      setTitleAnimation(null);
       titleTimer.current = null;
     }, titleCycleMs);
   };
@@ -122,25 +137,14 @@ export default function MainHeroTwo() {
         }, .05)
         .from("[data-title-second]", {
           x: 52, opacity: 0,
-          clipPath: "inset(0 0 0 100%)",
           duration: 1.2,
-          clearProps: "transform,opacity,clipPath",
+          clearProps: "transform,opacity",
         }, .22)
         .from("[data-enter-star]", {
           rotation: -220, scale: 0, opacity: 0,
           duration: 1.35, ease: "back.out(1.25)",
           clearProps: "transform,opacity",
-        }, .3)
-        .from("[data-edge-word]", {
-          scale: .9, filter: "brightness(2) drop-shadow(0 0 22px rgba(210,248,58,.9))",
-          duration: .9, ease: "back.out(1.5)",
-          clearProps: "transform,filter",
-        }, .68)
-        .fromTo("[data-title-flare]",
-          { x: 0, opacity: 0 },
-          { x: () => (root.current?.clientWidth ?? 1200) + 180, opacity: .72, duration: .85, ease: "power2.inOut" },
-          .5)
-        .to("[data-title-flare]", { opacity: 0, duration: .18 }, 1.15);
+        }, .3);
       return () => { titleEntering.current = false; };
     });
     return () => entranceMedia.revert();
@@ -203,10 +207,9 @@ export default function MainHeroTwo() {
       />
       <div className={styles.intro}>
         <div className={styles.headingWrap} data-heading>
-          <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className} ${titleAnimating ? styles.titleAnimating : ""}`} onPointerEnter={animateTitle} style={{ "--title-cycle": `${titleCycleMs}ms` } as CSSProperties}>
-            <span className={styles.firstLine} aria-hidden="true"><span data-title-first className={styles.titleLine}>{"Digital Presence".split("").map((letter, i) => <span key={i} data-enter-first className={styles.letter} style={{ "--letter-index": i } as CSSProperties}>{letter === " " ? " " : letter}</span>)}</span></span>
-            <span className={styles.secondLine} aria-hidden="true"><span data-title-second className={styles.titleLine}><Image src="/hero-star.png" alt="" width={60} height={60} data-enter-star className={styles.titleStar} draggable={false} /><span className={styles.titleLine}>With an</span>{" "}<em data-edge-word className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i + 3 } as CSSProperties}>{letter}</span>)}</em></span></span>
-            <span data-title-flare className={styles.titleFlare} aria-hidden="true" />
+          <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className} ${titleAnimation !== null ? styles.titleAnimating : ""} ${titleAnimation === 0 ? styles.titleAnimationOne : ""} ${titleAnimation === 1 ? styles.titleAnimationTwo : ""} ${titleAnimation === 2 ? styles.titleAnimationThree : ""} ${titleAnimation === 3 ? styles.titleAnimationFour : ""}`} onPointerEnter={animateTitle} style={{ "--title-cycle": `${titleCycleMs}ms` } as CSSProperties}>
+            <span className={styles.firstLine} aria-hidden="true"><span data-title-first className={styles.titleLine}>{"Digital Presence".split("").map((letter, i) => <span key={i} data-enter-first className={styles.letter} style={titleLetterStyle(i)}>{letter === " " ? " " : letter}</span>)}</span></span>
+            <span className={styles.secondLine} aria-hidden="true"><span data-title-second className={styles.titleLine}><Image src="/hero-star.png" alt="" width={60} height={60} data-enter-star className={styles.titleStar} draggable={false} />{"With an".split("").map((letter, i) => <span key={i} className={styles.letter} style={titleLetterStyle(i + 16)}>{letter === " " ? " " : letter}</span>)}{" "}<em data-edge-word className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={titleLetterStyle(i + 23)}>{letter}</span>)}</em></span></span>
           </h1>
         </div>
         <div className={styles.introBottom} data-intro>
