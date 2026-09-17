@@ -176,7 +176,7 @@
 .letter { display: inline-block; }
 .edgeWord { position: relative; display: inline-block; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .title:hover .letter { animation: letterLift .75s both; animation-delay: calc(var(--letter-index) * 35ms); }
+  .titleAnimating .letter { animation: letterLift .75s both; animation-delay: calc(var(--letter-index) * 35ms); }
 }
 @keyframes letterLift {
   0%, 100% { transform: translateY(0) rotate(0); }
@@ -277,4 +277,14 @@
   .webPosition { width: 86%; left: 7%; }
   .brandTitle { margin-left: 16%; font-size: 27px; }
   .scene { margin-bottom: 40px; }
+}
+
+.titleStar { display: inline-block; width: 60px; height: 60px; object-fit: contain; vertical-align: middle; margin-right: .2em; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .titleAnimating .titleStar { animation: titleStarSpin var(--title-cycle) cubic-bezier(.45, 0, .2, 1) both; }
+}
+@keyframes titleStarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (max-width: 599px) {
+  .secondLine { font-size: 9vw; padding-left: 0; }
+  .titleStar { margin-right: 10px; }
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { gsap } from "gsap";
@@ -75,6 +76,26 @@ function DesignScene() {
 
 export default function MainHeroTwo() {
   const root = useRef<HTMLElement>(null);
+  const [titleAnimating, setTitleAnimating] = useState(false);
+  const nextTitleHover = useRef(0);
+  const titleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const titleCycleMs = 1275; // 750ms letter lift + 15 stagger steps of 35ms.
+
+  useEffect(() => () => {
+    if (titleTimer.current) clearTimeout(titleTimer.current);
+  }, []);
+
+  const animateTitle = () => {
+    if (!window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
+    const now = performance.now();
+    if (now < nextTitleHover.current) return;
+    nextTitleHover.current = now + 2000;
+    setTitleAnimating(true);
+    titleTimer.current = setTimeout(() => {
+      setTitleAnimating(false);
+      titleTimer.current = null;
+    }, titleCycleMs);
+  };
 
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -132,9 +153,9 @@ export default function MainHeroTwo() {
       />
       <div className={styles.intro}>
         <div className={styles.headingWrap} data-heading>
-          <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className}`}>
+          <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className} ${titleAnimating ? styles.titleAnimating : ""}`} onPointerEnter={animateTitle} style={{ "--title-cycle": `${titleCycleMs}ms` } as CSSProperties}>
             <span className={styles.firstLine} data-intro aria-hidden="true"><span data-title-first className={styles.titleLine}>{"Digital Presence".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i } as CSSProperties}>{letter === " " ? " " : letter}</span>)}</span></span>
-            <span className={styles.secondLine} data-intro aria-hidden="true"><span data-title-second className={styles.titleLine}>With an <em className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i + 3 } as CSSProperties}>{letter}</span>)}</em></span></span>
+            <span className={styles.secondLine} data-intro aria-hidden="true"><span data-title-second className={styles.titleLine}><Image src="/hero-star.png" alt="" width={60} height={60} className={styles.titleStar} draggable={false} />With an <em className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i + 3 } as CSSProperties}>{letter}</span>)}</em></span></span>
           </h1>
         </div>
         <div className={styles.introBottom} data-intro>
