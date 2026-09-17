@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Sora } from "next/font/google";
 import styles from "./Navbar.module.css";
 
@@ -25,8 +25,16 @@ function WhatsAppButton({ onClick }: { onClick?: () => void }) {
   return <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer" className={styles.contact} onClick={onClick} aria-label="Chat with us on WhatsApp"><span className={styles.contactLabel}>Chat With Us</span><span className={styles.contactIcon}><WhatsAppIcon /></span></a>;
 }
 
+function subscribeToScroll(callback: () => void) {
+  window.addEventListener("scroll", callback, { passive: true });
+  return () => window.removeEventListener("scroll", callback);
+}
+const getScrolled = () => window.scrollY > 40;
+const getServerScrolled = () => false;
+
 export default function Navbar() {
   const pathname = usePathname();
+  const scrolled = useSyncExternalStore(subscribeToScroll, getScrolled, getServerScrolled);
   const [openPath, setOpenPath] = useState<string | null>(null);
   const isOpen = openPath === pathname;
   const trigger = useRef<HTMLButtonElement>(null);
@@ -58,14 +66,14 @@ export default function Navbar() {
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header ref={header} className={`${styles.header} ${pathname === "/" ? styles.dark : ""} ${sora.className}`}>
+    <header ref={header} className={`${styles.header} ${pathname === "/" && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
       <div className={styles.inner}>
         <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
           <Image src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771262572/Copy_of_truedge_logo_main_yymyy1.webp" alt="" width={36} height={36} priority />
           <span>Truedge<span className={styles.brandSecond}>Digital</span></span>
         </Link>
         <nav aria-label="Main navigation" className={styles.navigation}>
-          {links.map((link, index) => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? "page" : undefined}><span className={styles.navIndex} aria-hidden="true">0{index + 1}</span>{link.name}</Link>)}
+          {links.map((link) => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}</Link>)}
         </nav>
         <div className={styles.right}>
           <WhatsAppButton />
@@ -75,7 +83,7 @@ export default function Navbar() {
         </div>
       </div>
       <nav id="mobile-navigation" aria-label="Mobile navigation" hidden={!isOpen} className={styles.mobile}>
-        {links.map((link, index) => <Link key={link.href} href={link.href} onClick={() => setOpenPath(null)} aria-current={isActive(link.href) ? "page" : undefined}><span className={styles.number}>0{index + 1}</span>{link.name}<ArrowUpRight size={21} aria-hidden="true" /></Link>)}
+        {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpenPath(null)} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}</Link>)}
         <div className={styles.mobileContact}><WhatsAppButton onClick={() => setOpenPath(null)} /></div>
       </nav>
     </header>

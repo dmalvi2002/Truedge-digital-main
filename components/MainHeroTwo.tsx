@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./MainHeroTwo.module.css";
+import SplashCursor from "./SplashCursor";
 
 const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
 const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -24,10 +25,12 @@ function DesignScene() {
             <div className={styles.artMasthead}><span>REACH THE RIGHT PEOPLE</span></div>
             <div className={styles.campaignTitle}>Get found.<br /><span>Get</span><br /><span>chosen.</span></div>
             <svg className={styles.campaignGraphic} aria-hidden="true" viewBox="0 0 240 240" fill="none">
+              <g transform="rotate(90 120 120)">
               <circle cx="94" cy="94" r="66" stroke="white" strokeWidth="18" />
               <circle cx="94" cy="94" r="49" fill="white" fillOpacity=".08" />
               <path d="m143 143 76 76" stroke="white" strokeWidth="27" strokeLinecap="round" />
               <path d="M54 91a40 40 0 0 1 37-37" stroke="white" strokeOpacity=".45" strokeWidth="5" strokeLinecap="round" />
+              </g>
             </svg>
             <div className={styles.artFooter}><span>HELP CUSTOMERS FIND YOU.</span></div>
           </div>
@@ -114,6 +117,19 @@ export default function MainHeroTwo() {
   return (
     <section ref={root} className={`${styles.hero} ${plex.className}`} aria-labelledby="hero-two-title">
       <div className={styles.ambient} aria-hidden="true" />
+      <SplashCursor
+        scopeRef={root}
+        DENSITY_DISSIPATION={4.5}
+        VELOCITY_DISSIPATION={1.5}
+        PRESSURE={0.2}
+        CURL={0}
+        SPLAT_RADIUS={0.06}
+        SPLAT_FORCE={2500}
+        COLOR_UPDATE_SPEED={10}
+        SHADING
+        RAINBOW_MODE={false}
+        COLOR="#c1fb00"
+      />
       <div className={styles.intro}>
         <div className={styles.headingWrap} data-heading>
           <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className}`}>
