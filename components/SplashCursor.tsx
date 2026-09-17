@@ -34,6 +34,7 @@ interface SplashCursorProps {
   TRANSPARENT?: boolean;
   RAINBOW_MODE?: boolean;
   COLOR?: string;
+  COLOR_INTENSITY?: number;
 }
 
 interface Pointer {
@@ -86,7 +87,8 @@ export default function SplashCursor({
   BACK_COLOR = DEFAULT_BACK_COLOR,
   TRANSPARENT = true,
   RAINBOW_MODE = true,
-  COLOR = '#ff0000'
+  COLOR = '#ff0000',
+  COLOR_INTENSITY = 1
 }: SplashCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -125,7 +127,8 @@ export default function SplashCursor({
       BACK_COLOR,
       TRANSPARENT,
       RAINBOW_MODE,
-      COLOR
+      COLOR,
+      COLOR_INTENSITY
     };
 
     const context = (() => {
@@ -1200,7 +1203,8 @@ export default function SplashCursor({
       const r = parseInt(val.slice(0, 2), 16) / 255;
       const g = parseInt(val.slice(2, 4), 16) / 255;
       const b = parseInt(val.slice(4, 6), 16) / 255;
-      return { r: r * 0.15, g: g * 0.15, b: b * 0.15 };
+      const intensity = 0.15 * config.COLOR_INTENSITY;
+      return { r: r * intensity, g: g * intensity, b: b * intensity };
     }
 
     function generateColor(): ColorRGB {
@@ -1208,9 +1212,10 @@ export default function SplashCursor({
         return hexToRGB(config.COLOR!);
       }
       const c = HSVtoRGB(Math.random(), 1.0, 1.0);
-      c.r *= 0.15;
-      c.g *= 0.15;
-      c.b *= 0.15;
+      const intensity = 0.15 * config.COLOR_INTENSITY;
+      c.r *= intensity;
+      c.g *= intensity;
+      c.b *= intensity;
       return c;
     }
 
@@ -1348,7 +1353,8 @@ export default function SplashCursor({
     BACK_COLOR,
     TRANSPARENT,
     RAINBOW_MODE,
-    COLOR
+    COLOR,
+    COLOR_INTENSITY
   ]);
 
   return (

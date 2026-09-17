@@ -76,6 +76,8 @@ function DesignScene() {
 
 export default function MainHeroTwo() {
   const root = useRef<HTMLElement>(null);
+  const titleEntranceComplete = useRef(false);
+  const titleEntering = useRef(false);
   const [titleAnimating, setTitleAnimating] = useState(false);
   const nextTitleHover = useRef(0);
   const titleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -86,6 +88,7 @@ export default function MainHeroTwo() {
   }, []);
 
   const animateTitle = () => {
+    if (titleEntering.current) return;
     if (!window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
     const now = performance.now();
     if (now < nextTitleHover.current) return;
@@ -96,6 +99,52 @@ export default function MainHeroTwo() {
       titleTimer.current = null;
     }, titleCycleMs);
   };
+
+  useGSAP(() => {
+    // Independent of viewport breakpoints: resizing must not replay the entrance.
+    const entranceMedia = gsap.matchMedia();
+    entranceMedia.add("(prefers-reduced-motion: no-preference)", () => {
+      if (titleEntranceComplete.current) return;
+      titleEntering.current = true;
+      const entrance = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        onComplete: () => {
+          titleEntranceComplete.current = true;
+          titleEntering.current = false;
+        },
+      });
+      entrance
+        .from("[data-title-first]", {
+          x: -52, opacity: 0,
+          clipPath: "inset(0 100% 0 0)",
+          duration: 1.15,
+          clearProps: "transform,opacity,clipPath",
+        }, .05)
+        .from("[data-title-second]", {
+          x: 52, opacity: 0,
+          clipPath: "inset(0 0 0 100%)",
+          duration: 1.2,
+          clearProps: "transform,opacity,clipPath",
+        }, .22)
+        .from("[data-enter-star]", {
+          rotation: -220, scale: 0, opacity: 0,
+          duration: 1.35, ease: "back.out(1.25)",
+          clearProps: "transform,opacity",
+        }, .3)
+        .from("[data-edge-word]", {
+          scale: .9, filter: "brightness(2) drop-shadow(0 0 22px rgba(210,248,58,.9))",
+          duration: .9, ease: "back.out(1.5)",
+          clearProps: "transform,filter",
+        }, .68)
+        .fromTo("[data-title-flare]",
+          { x: 0, opacity: 0 },
+          { x: () => (root.current?.clientWidth ?? 1200) + 180, opacity: .72, duration: .85, ease: "power2.inOut" },
+          .5)
+        .to("[data-title-flare]", { opacity: 0, duration: .18 }, 1.15);
+      return () => { titleEntering.current = false; };
+    });
+    return () => entranceMedia.revert();
+  }, { scope: root });
 
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -148,14 +197,16 @@ export default function MainHeroTwo() {
         SPLAT_FORCE={2500}
         COLOR_UPDATE_SPEED={10}
         SHADING
-        RAINBOW_MODE={false}
+        RAINBOW_MODE
         COLOR="#c1fb00"
+        COLOR_INTENSITY={2.4}
       />
       <div className={styles.intro}>
         <div className={styles.headingWrap} data-heading>
           <h1 id="hero-two-title" aria-label="Digital Presence With an Edge" className={`${styles.title} ${sora.className} ${titleAnimating ? styles.titleAnimating : ""}`} onPointerEnter={animateTitle} style={{ "--title-cycle": `${titleCycleMs}ms` } as CSSProperties}>
-            <span className={styles.firstLine} data-intro aria-hidden="true"><span data-title-first className={styles.titleLine}>{"Digital Presence".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i } as CSSProperties}>{letter === " " ? " " : letter}</span>)}</span></span>
-            <span className={styles.secondLine} data-intro aria-hidden="true"><span data-title-second className={styles.titleLine}><Image src="/hero-star.png" alt="" width={60} height={60} className={styles.titleStar} draggable={false} />With an <em className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i + 3 } as CSSProperties}>{letter}</span>)}</em></span></span>
+            <span className={styles.firstLine} aria-hidden="true"><span data-title-first className={styles.titleLine}>{"Digital Presence".split("").map((letter, i) => <span key={i} data-enter-first className={styles.letter} style={{ "--letter-index": i } as CSSProperties}>{letter === " " ? " " : letter}</span>)}</span></span>
+            <span className={styles.secondLine} aria-hidden="true"><span data-title-second className={styles.titleLine}><Image src="/hero-star.png" alt="" width={60} height={60} data-enter-star className={styles.titleStar} draggable={false} /><span className={styles.titleLine}>With an</span>{" "}<em data-edge-word className={styles.edgeWord}>{"edge".split("").map((letter, i) => <span key={i} className={styles.letter} style={{ "--letter-index": i + 3 } as CSSProperties}>{letter}</span>)}</em></span></span>
+            <span data-title-flare className={styles.titleFlare} aria-hidden="true" />
           </h1>
         </div>
         <div className={styles.introBottom} data-intro>
