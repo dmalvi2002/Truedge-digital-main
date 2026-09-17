@@ -34,7 +34,7 @@
 .artMasthead, .artFooter { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; font-size: 7px; letter-spacing: .04em; }
 .campaignTitle { position: relative; font-size: clamp(27px, 3vw, 43px); line-height: .98; font-weight: 600; letter-spacing: -.06em; margin-top: 31px; z-index: 2; }
 .campaignTitle > span { font-size: 1.47em; }
-.campaignGraphic { position: absolute; width: 74%; bottom: -5px; right: -46px; filter: drop-shadow(2px 4px 0 #1e2319); }
+.campaignGraphic { position: absolute; width: 54%; bottom: -36px; right: -32px; filter: drop-shadow(2px 4px 0 #1e2319); }
 .artFooter { position: absolute; bottom: 17px; left: 20px; right: 20px; font-size: 6px; }
 .webPosition { position: absolute; width: 54%; left: 23%; top: 0; z-index: 3; }
 .webStudy { color: #211b2a; background: #efede7; transform: rotate(-2deg) rotateX(5deg); box-shadow: 0 0 0 1px #ffffff40, 0 35px 90px #000b; }
@@ -150,7 +150,7 @@
   .campaignPosition { width: 46%; left: -15%; top: 10px; }
   .campaign { height: 214px; padding: 11px; transform: rotate(-13deg); }
   .campaignTitle { font-size: 23px; margin-top: 25px; }
-  .campaignGraphic { width: 90%; right: -25px; }
+  .campaignGraphic { width: 64%; right: -20px; bottom: -20px; }
   .brandPosition { width: 42%; right: -11%; top: 0; }
   .brandStudy { height: 224px; padding: 11px; transform: rotate(13deg); }
   .brandTitle { font-size: 34px; margin-top: 29px; margin-left: 16%; }
@@ -248,4 +248,30 @@
   .artMasthead { font-size: 6px; }
   .artFooter { font-size: 5px; }
   .capabilities { margin-top: 12px; }
+}
+
+/* Keep the three-card overlap while exposing the side-card messages. */
+.webPosition { width: 46%; left: 27%; }
+.campaign { background: linear-gradient(140deg, #8b5cf6 0%, #6d28d9 52%, #3b176c 100%); color: #fff; }
+.campaignGraphic { filter: drop-shadow(2px 4px 0 #ffffff26); opacity: .8; }
+.campaignGraphic path { stroke: #fff; }
+.brandTitle { margin-left: 37%; font-size: clamp(26px, 2.6vw, 39px); }
+.brandStudy > .artMasthead { justify-content: flex-end; }
+.brandStudy > .artFooter { justify-content: flex-end; }
+.scene { margin-bottom: 50px; }
+@media (min-width: 900px) and (max-width: 1199px) {
+  .scene { height: 445px; }
+  .webCopy { padding-left: 22px; }
+  .webCopy h2 { font-size: 29px; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .webPosition { width: 56%; left: 22%; }
+  .brandPosition { width: 32%; right: -1%; }
+  .brandTitle { margin-left: 43%; font-size: 3vw; }
+  .scene { margin-bottom: 45px; }
+}
+@media (max-width: 599px) {
+  .webPosition { width: 86%; left: 7%; }
+  .brandTitle { margin-left: 16%; font-size: 27px; }
+  .scene { margin-bottom: 40px; }
 }
