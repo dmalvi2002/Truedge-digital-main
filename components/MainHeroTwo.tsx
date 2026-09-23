@@ -37,14 +37,7 @@ function DesignScene() {
           <div className={styles.campaign}>
             <div className={styles.artMasthead}><span>REACH THE RIGHT PEOPLE</span></div>
             <div className={styles.campaignTitle}>Get found.<br /><span>Get</span><br /><span>chosen.</span></div>
-            <svg className={styles.campaignGraphic} aria-hidden="true" viewBox="0 0 240 240" fill="none">
-              <g transform="rotate(90 120 120)">
-              <circle cx="94" cy="94" r="66" stroke="white" strokeWidth="18" />
-              <circle cx="94" cy="94" r="49" fill="white" fillOpacity=".08" />
-              <path d="m143 143 76 76" stroke="white" strokeWidth="27" strokeLinecap="round" />
-              <path d="M54 91a40 40 0 0 1 37-37" stroke="white" strokeOpacity=".45" strokeWidth="5" strokeLinecap="round" />
-              </g>
-            </svg>
+            <div className={styles.discoveryArt} aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m7 16 6 6L26 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
             <div className={styles.artFooter}><span>HELP CUSTOMERS FIND YOU.</span></div>
           </div>
         </div>

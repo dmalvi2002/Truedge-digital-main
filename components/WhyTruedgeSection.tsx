@@ -51,19 +51,19 @@ const WHY_TRUEDGE_POINTS = [
     id: "on-time-delivery",
     icon: Clock,
     title: "100% On-Time Delivery",
-    description: "Strict milestone roadmaps with transparent sprint tracking. You launch on schedule every single time—no excuses.",
+    description: "Clear deadlines and regular updates, so you always know what’s happening and when to expect it.",
   },
   {
     id: "quality-delivery",
     icon: ShieldCheck,
     title: "Quality of Delivery",
-    description: "Engineered exclusively by senior architects and designers. Clean code, high conversion rates, and long-term scalability.",
+    description: "Thoughtful design and careful testing, so your website looks professional and works properly for your customers.",
   },
   {
     id: "dedicated-team",
     icon: Users,
     title: "Dedicated Team",
-    description: "Collaborate directly with the engineers and strategists building your product. Zero middleman bureaucracy.",
+    description: "Speak directly with the people doing your work. Get helpful answers, honest advice and support along the way.",
   },
 ];
 
@@ -214,12 +214,12 @@ export default function WhyTruedgeSection() {
             {/* Eyebrow Capsule: "Why Truedge" with Premium Purple Accent */}
             <div className="mb-5 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-purple-50/90 border border-purple-200/80 text-purple-900 text-xs sm:text-sm font-bold tracking-wide w-fit shadow-xs">
               <BrandStar className="w-3.5 h-3.5 text-purple-600" />
-              <span>Why Truedge</span>
+              <span>Our Guarantee</span>
             </div>
 
             {/* Dynamic Scroll-Ripple Title Animation matching ServicesListSection */}
             <ScrollRippleTitle
-              text="Smart digital strategy that deliver real results"
+              text="Work you’re proud of. A team you can count on."
               as="h2"
               className={`${sora.className} text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-extrabold tracking-tight leading-[1.14] mb-5 block`}
               baseColor="rgba(15, 23, 42, 0.22)"
@@ -229,7 +229,7 @@ export default function WhyTruedgeSection() {
 
             {/* Lead Descriptive Paragraph */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-10 max-w-2xl">
-              We combine creativity, technology, and strategic thinking to deliver digital solutions that help businesses grow and succeed online.
+              You deserve to know where you stand. Here’s what you can expect from us, from the first conversation to the finished work.
             </p>
 
             {/* ─── 4 Signature PAS-Style Cards (Decreased radius, crisp visible borders/shadow, NO hover animation) ─── */}

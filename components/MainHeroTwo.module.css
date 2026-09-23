@@ -180,9 +180,9 @@
   .titleAnimationThree { --title-hover-accent: #4da3ff; }
   .titleAnimationFour { --title-hover-accent: #e79a5f; }
   .titleAnimationOne .letter { animation: letterLift .78s both; animation-delay: calc(var(--letter-index) * 22ms); }
-  .titleAnimationTwo .letter { animation: letterElastic 1.05s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--letter-index) * 18ms); }
+  .titleAnimationTwo .letter { animation: letterElastic 1.42s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--letter-index) * 18ms); }
   .titleAnimationThree .letter { animation: letterTide 1.42s cubic-bezier(.45,0,.2,1) both; animation-delay: calc(var(--letter-index) * 13ms); }
-  .titleAnimationFour .letter { animation: letterPop .82s cubic-bezier(.2,.85,.25,1.2) both; animation-delay: calc(var(--pop-order) * 24ms); }
+  .titleAnimationFour .letter { animation: letterPop 1.42s cubic-bezier(.45,0,.2,1) both; animation-delay: calc(var(--letter-index) * 12ms); }
 }
 @keyframes letterLift {
   0%, 100% { transform: translateY(0) rotate(0); }
@@ -190,17 +190,14 @@
   70% { transform: translateY(.015em) rotate(1deg); }
 }
 @keyframes letterElastic {
-  0%, 100% { transform: translate(0, 0) rotate(0) scale(1); }
-  28% { transform: translate(var(--letter-x), -.18em) rotate(var(--letter-rotation)) scale(1.07); color: var(--title-hover-accent); }
-  52% { transform: translate(var(--letter-x-back), .06em) rotate(0) scale(.94); }
-  74% { transform: translate(var(--letter-x-settle), -.025em) scale(1.025); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-.065em) scale(1.018); color: var(--title-hover-accent); }
+  72% { transform: translateY(-.018em) scale(1.004); color: var(--title-hover-accent); }
 }
 @keyframes letterPop {
-  0%, 100% { transform: translateY(0) scale(1); filter: none; }
-  24% { transform: translateY(.08em) scale(.72); }
-  48% { transform: translateY(-.2em) scale(1.34); color: var(--title-hover-accent); filter: drop-shadow(0 0 9px rgba(231,154,95,.48)); }
-  68% { transform: translateY(.025em) scale(.9); }
-  84% { transform: translateY(-.025em) scale(1.06); filter: none; }
+  0%, 100% { transform: translateX(0) rotate(0); }
+  40% { transform: translateX(.035em) rotate(-1deg); color: var(--title-hover-accent); }
+  72% { transform: translateX(.012em) rotate(-.3deg); color: var(--title-hover-accent); }
 }
 @keyframes letterTide {
   0%, 100% { transform: translateY(0) rotate(0) scale(1); color: inherit; }
@@ -309,13 +306,24 @@
   .titleAnimationOne .titleStar { animation: titleStarSpin var(--title-cycle) cubic-bezier(.45, 0, .2, 1) both; }
   .titleAnimationTwo .titleStar { animation: titleStarElastic var(--title-cycle) cubic-bezier(.16,1,.3,1) both; }
   .titleAnimationThree .titleStar { animation: titleStarTide var(--title-cycle) cubic-bezier(.45,0,.2,1) both; }
-  .titleAnimationFour .titleStar { animation: titleStarPop var(--title-cycle) cubic-bezier(.2,.85,.25,1.2) both; }
+  .titleAnimationFour .titleStar { animation: titleStarPop var(--title-cycle) cubic-bezier(.45,0,.2,1) both; }
 }
 @keyframes titleStarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes titleStarElastic { 0%, 100% { transform: rotate(0) scale(1); filter: none; } 35% { transform: rotate(-28deg) scale(1.18); filter: hue-rotate(200deg) saturate(1.3) brightness(1.02) drop-shadow(0 0 7px rgba(165,132,212,.38)); } 62% { transform: rotate(18deg) scale(.9); filter: hue-rotate(200deg) saturate(1.3) brightness(1.02); } 82% { transform: rotate(-7deg) scale(1.04); filter: hue-rotate(200deg) saturate(1.16); } }
-@keyframes titleStarPop { 0%, 100% { transform: scale(1) rotate(0); filter: none; } 30% { transform: scale(.55) rotate(-30deg); filter: hue-rotate(-48deg) saturate(1.35) brightness(1.02); } 52% { transform: scale(1.42) rotate(20deg); filter: hue-rotate(-48deg) saturate(1.45) brightness(1.05) drop-shadow(0 0 10px rgba(231,154,95,.52)); } 75% { transform: scale(.92) rotate(-6deg); filter: hue-rotate(-48deg) saturate(1.25); } }
+@keyframes titleStarElastic { 0%,100% { transform: rotate(0) scale(1); filter: none; } 50% { transform: rotate(90deg) scale(1.04); filter: hue-rotate(200deg) saturate(1.15); } }
+@keyframes titleStarPop { 0%,100% { transform: rotate(0); filter: none; } 50% { transform: rotate(-90deg); filter: hue-rotate(-48deg) saturate(1.2); } }
 @keyframes titleStarTide { 0%, 100% { transform: translateY(0) rotate(0) scale(1); filter: none; } 32% { transform: translateY(-7px) rotate(85deg) scale(1.08); filter: hue-rotate(140deg) saturate(2) brightness(1.08) drop-shadow(0 0 10px rgba(77,163,255,.55)); } 62% { transform: translateY(3px) rotate(145deg) scale(.96); filter: hue-rotate(140deg) saturate(1.9) brightness(1.05); } 82% { transform: translateY(-1px) rotate(172deg) scale(1.02); filter: hue-rotate(140deg) saturate(1.45); } }
 @media (max-width: 599px) {
   .secondLine { font-size: 9vw; padding-left: 0; }
   .titleStar { margin-right: 10px; }
 }
+
+
+/* Editorial discovery card; the original stacked positioning is preserved. */
+.campaign { background: linear-gradient(145deg,#eee9f7,#d4c4ed); color: #241535; border: 1px solid #fff7; }
+.campaignTitle { font-weight: 500; letter-spacing: -.065em; }
+.campaignTitle > span { font-size: 1.24em; }
+.campaignTitle > span:last-child { font-family: Georgia,serif; font-style: italic; }
+.discoveryArt { position: absolute; right: 7%; bottom: 14%; width: 42%; aspect-ratio: 1; color: #79569c; }
+.discoveryArt::before,.discoveryArt::after { content:""; position:absolute; inset:0; border:1px solid currentColor; border-radius:50%; }
+.discoveryArt::after { inset:18%; }
+.discoveryArt svg { position:absolute; inset:35%; width:30%; height:30%; }

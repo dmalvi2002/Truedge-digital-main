@@ -43,3 +43,12 @@
   .costHeading { justify-content: flex-start; }
   .solutionHeading { grid-template-columns: 1fr; gap: 24px; margin-bottom: 36px; }
 }
+
+
+.problemLayout { display:grid; grid-template-columns:1.1fr .9fr; gap:80px; align-items:center; }
+.problemLayout .problems { display:flex; flex-direction:column; gap:0; }
+.problemLayout .problem { align-items:center; padding:27px 0; gap:20px; }
+.problemLayout .problem h3 { font-size:clamp(19px,1.7vw,24px); line-height:1.4; font-weight:500; }
+.struggleFrame { position:relative; overflow:hidden; aspect-ratio:4/5; border-radius:4px 4px 80px 4px; }
+.struggleImage { position:absolute; inset:-20% 0; }
+@media(max-width:767px) { .problemLayout { grid-template-columns:1fr; gap:36px; } .struggleFrame { aspect-ratio:5/4; border-radius:4px 4px 48px 4px; } }

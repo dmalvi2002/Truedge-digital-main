@@ -103,6 +103,12 @@ export default function PasSection() {
         },
       );
     });
+    media.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo("[data-struggle-image]", { yPercent: -12 }, {
+        yPercent: 12, ease: "none",
+        scrollTrigger: { trigger: "[data-struggle-frame]", start: "top bottom", end: "bottom top", scrub: 1.2 },
+      });
+    });
     return () => media.revert();
   }, { scope: sectionRef });
 
@@ -123,14 +129,21 @@ export default function PasSection() {
           <p>You’re good at what you do.<br />Getting customers online shouldn’t be the hard part.</p>
         </div>
 
+        <div className={styles.problemLayout}>
         <ul className={styles.problems}>
           {PAIN_POINTS.map((point) => (
             <li key={point.title} className={styles.problem} data-pas-reveal>
               <CircleMinus size={21} strokeWidth={1.25} aria-hidden="true" />
-              <div><h3>{point.title}</h3><p>{point.text}</p></div>
+              <h3>{point.title}</h3>
             </li>
           ))}
         </ul>
+        <div className={styles.struggleFrame} data-struggle-frame>
+          <div className={styles.struggleImage} data-struggle-image>
+            <Image src="/pas-business-owner.png" alt="A business owner taking a worried pause beside a quiet phone and unfinished work" fill sizes="(max-width: 767px) 100vw, 45vw" className="object-cover" />
+          </div>
+        </div>
+        </div>
 
         <div className={styles.cost} data-pas-reveal>
           <div className={styles.costCopy}>

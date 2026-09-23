@@ -1,9 +1,10 @@
-import { Star, Quote, CheckCircle2 } from "lucide-react";
-import { Sora, IBM_Plex_Sans } from "next/font/google";
-
-const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const ibmPlexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
-
+"use client";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { Sora } from "next/font/google";
+import ScrollRippleTitle from "./ScrollRippleTitle";
+import styles from "./ClosingSections.module.css";
+const sora = Sora({ subsets: ["latin"], weight: ["400","500","600","700","800"] });
 export default function TestimonialSection() {
   const testimonials = [
     {
@@ -44,88 +45,30 @@ export default function TestimonialSection() {
     },
   ];
 
-  return (
-    <section className="relative w-full bg-slate-950 py-24 sm:py-32 overflow-hidden">
-      {/* Subtle Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-white/5"></div>
-
-      {/* Ambient background glows */}
-      <div className="absolute left-0 top-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-violet-600/10 blur-[120px] pointer-events-none"></div>
-      <div className="absolute right-0 bottom-1/4 h-96 w-96 translate-x-1/2 rounded-full bg-emerald-600/10 blur-[120px] pointer-events-none"></div>
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="mb-16 md:mb-20 text-center">
-          <h2 className={`${sora.className} mb-6 text-4xl font-semibold leading-tight text-white sm:text-5xl`}>
-            Don't just take our <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent drop-shadow-sm">word for it.</span>
-          </h2>
-          <p className={`${ibmPlexSans.className} text-lg text-slate-400 sm:text-xl leading-relaxed max-w-2xl mx-auto`}>
-            We partner with ambitious brands to engineer digital assets that drive real, measurable ROI. Here is what they have to say.
-          </p>
-        </div>
-
-        {/* Masonry Grid Layout */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index} 
-              // break-inside-avoid prevents the cards from being split in half across columns
-              className="group relative break-inside-avoid flex flex-col overflow-hidden rounded-[2rem] bg-white/[0.02] border border-white/10 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04] shadow-[0_0_30px_rgba(0,0,0,0.2)]"
-            >
-              {/* Giant Watermark Quote Icon */}
-              <Quote className="absolute -left-4 -top-4 h-24 w-24 rotate-12 text-white/5 transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-0" />
-
-              <div className="relative z-10">
-                {/* Stars & Verified Badge */}
-                <div className="mb-6 flex items-center justify-between">
-                  <div className="flex gap-1 text-amber-400">
-                    <Star size={16} fill="currentColor" strokeWidth={0} />
-                    <Star size={16} fill="currentColor" strokeWidth={0} />
-                    <Star size={16} fill="currentColor" strokeWidth={0} />
-                    <Star size={16} fill="currentColor" strokeWidth={0} />
-                    <Star size={16} fill="currentColor" strokeWidth={0} />
-                  </div>
-                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 border border-emerald-500/20">
-                    <CheckCircle2 size={12} className="text-emerald-400" />
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-300">Verified</span>
-                  </div>
-                </div>
-
-                {/* The Review Text */}
-                <p className={`${ibmPlexSans.className} text-slate-300 leading-relaxed mb-8 text-base sm:text-lg`}>
-                  "{testimonial.text}"
-                </p>
-
-                {/* Highlight Tag */}
-                <div className="mb-6 inline-block rounded-lg bg-white/5 px-3 py-1.5 border border-white/10">
-                  <span className="text-xs font-bold tracking-wide text-white/90">
-                    <span className="text-violet-400 mr-1.5">↳</span>
-                    {testimonial.highlight}
-                  </span>
-                </div>
-
-                {/* Client Info Line */}
-                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 text-sm font-bold text-white shadow-inner">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className={`${sora.className} text-sm font-bold text-white leading-tight mb-0.5`}>
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs font-medium text-slate-400">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
+  const [active, setActive] = useState(0);
+  const review = testimonials[active];
+  return <section className={`${styles.testimonials} ${sora.className}`} aria-labelledby="testimonials-title">
+    <div className={styles.container}>
+      <div className={styles.sectionHeading}>
+        <ScrollRippleTitle id="testimonials-title" text="Good work. In their words." className={styles.heading} activeColor="#17151d" baseColor="rgba(23,21,29,.22)" accentColor="#8b5cf6" />
+        <p>Behind every project is a business, and people who put their trust in us.</p>
       </div>
-    </section>
-  );
+      <div className={styles.reviewStage}>
+        <div className={styles.quoteMark} aria-hidden="true"><Quote size={74} strokeWidth={1} /></div>
+        <div aria-live="polite" aria-atomic="true" className={styles.reviewBody}>
+          <figure key={active} className={styles.review}>
+            <blockquote>{review.text}</blockquote>
+            <figcaption><strong>{review.name}</strong><span>{review.role}</span></figcaption>
+          </figure>
+        </div>
+        <div className={styles.reviewControls}>
+          <span>{String(active + 1).padStart(2,"0")} <span>/ {testimonials.length}</span></span>
+          <div><button type="button" aria-label="Previous testimonial" onClick={() => setActive((active + testimonials.length - 1) % testimonials.length)}><ArrowLeft /></button><button type="button" aria-label="Next testimonial" onClick={() => setActive((active + 1) % testimonials.length)}><ArrowRight /></button></div>
+        </div>
+      </div>
+      <div className={styles.clientSelector} aria-label="Choose a testimonial">
+        {testimonials.map((item,index) => <button key={item.name} type="button" aria-pressed={active === index} onClick={() => setActive(index)}><strong>{item.role.split(", ")[1]}</strong><span>{item.name}</span></button>)}
+      </div>
+    </div>
+  </section>;
 }

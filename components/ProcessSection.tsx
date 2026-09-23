@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Sora } from "next/font/google";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
@@ -219,6 +220,7 @@ function CrmIcon({ className = "w-12 h-12 sm:w-14 sm:h-14" }: { className?: stri
 interface ProcessStep {
   number: string;
   title: string;
+  image: string;
   icon: React.ComponentType<{ className?: string }>;
   isActive?: boolean;
 }
@@ -227,36 +229,42 @@ const PROCESS_STEPS: ProcessStep[] = [
   {
     number: "i",
     title: "Listening to Your Problems & Discovery",
+    image: "/team-collaboration.jpg",
     icon: ResearchIcon,
     isActive: true,
   },
   {
     number: "ii",
     title: "Custom Strategy & Action Roadmap",
+    image: "/team-strategy.jpg",
     icon: StrategyIcon,
     isActive: false,
   },
   {
     number: "iii",
     title: "High-Converting Creative Design",
+    image: "/card-tablet.jpg",
     icon: DesignIcon,
     isActive: false,
   },
   {
     number: "iv",
     title: "Fast, Responsive Web Development",
+    image: "/card-laptop.jpg",
     icon: DevelopmentIcon,
     isActive: false,
   },
   {
     number: "v",
     title: "Testing, Launch & Live Deployment",
+    image: "/card-phone.jpg",
     icon: LaunchIcon,
     isActive: false,
   },
   {
     number: "vi",
     title: "CRM Setup & Automated Lead Capture",
+    image: "/why-truedge-strategist.jpg",
     icon: CrmIcon,
     isActive: false,
   },
@@ -546,7 +554,7 @@ export default function ProcessSection() {
               {/* Top Content: Standalone Line Icon & Bold Descriptive Process Title */}
               <div className="relative z-10">
                 {/* Standalone Vector Illustration with Electric Lime Accent */}
-                <div className="mb-8 sm:mb-10">
+                <div className="mb-5 sm:mb-6">
                   <step.icon className="w-12 h-12 sm:w-14 sm:h-14" />
                 </div>
 
@@ -568,8 +576,12 @@ export default function ProcessSection() {
                 </div>
               </div>
 
+              <div className="relative z-10 mt-6 h-[104px] w-full shrink-0 overflow-hidden rounded-xl border border-white/10">
+                <Image src={step.image} alt="" fill sizes="(max-width: 639px) 85vw, (max-width: 1023px) 40vw, 28vw" className="object-cover opacity-80 saturate-[.65]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141518]/40 to-transparent" />
+              </div>
               {/* Bottom Row: Lime Status Dot on Left, Huge Roman Numeral Watermark on Right */}
-              <div className="relative z-10 flex items-end justify-between mt-auto pt-8">
+              <div className="relative z-10 flex items-end justify-between mt-auto pt-5">
                 {/* Left: Electric Lime Indicator Dot */}
                 <div className="pb-1.5">
                   <span
