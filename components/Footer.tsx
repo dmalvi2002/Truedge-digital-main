@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -7,12 +8,16 @@ import {
   Facebook,
   Linkedin,
 } from "lucide-react";
-import { Sora } from "next/font/google";
+import { Barlow_Semi_Condensed, Sora } from "next/font/google";
 
 // Importing Sora font as requested
 const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+const brandFont = Barlow_Semi_Condensed({
+  subsets: ["latin"],
+  weight: ["600"],
 });
 
 // Custom Proper WhatsApp SVG Icon
@@ -45,12 +50,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Column 1: Brand & Address (Takes up more space on desktop) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <Link href="/" className="inline-block">
-              <span className="text-2xl font-extrabold tracking-tight text-white">
-                Truedge{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400">
-                  Digital.
-                </span>
+            <Link href="/" aria-label="Truedge Digital home" className="inline-flex items-center gap-5 w-fit text-white">
+              <Image src="/truedge-logo.webp" alt="" width={70} height={79} className="h-[79px] w-[70px] object-contain" />
+              <span className={`${brandFont.className} flex items-baseline gap-2 text-[25px] font-semibold leading-none tracking-[0.045em]`}>
+                <span>TRUEDGE</span>
+                <span>DIGITAL</span>
               </span>
             </Link>
             <p className="text-slate-400 leading-relaxed max-w-sm text-sm sm:text-base">

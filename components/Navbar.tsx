@@ -5,10 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { Sora } from "next/font/google";
+import { Barlow_Semi_Condensed, Sora } from "next/font/google";
 import styles from "./Navbar.module.css";
 
 const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
+const brandFont = Barlow_Semi_Condensed({ subsets: ["latin"], weight: ["600"] });
 const links = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -69,8 +70,8 @@ export default function Navbar() {
     <header ref={header} className={`${styles.header} ${pathname === "/" && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
       <div className={styles.inner}>
         <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
-          <Image src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771262572/Copy_of_truedge_logo_main_yymyy1.webp" alt="" width={36} height={36} priority />
-          <span>Truedge<span className={styles.brandSecond}>Digital</span></span>
+          <Image src="/truedge-logo.webp" alt="" width={64} height={72} priority />
+          <span className={`${styles.wordmark} ${brandFont.className}`}><span>TRUEDGE</span><span>DIGITAL</span></span>
         </Link>
         <nav aria-label="Main navigation" className={styles.navigation}>
           {links.map((link) => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}</Link>)}
