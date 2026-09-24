@@ -9,7 +9,7 @@ import {
   BookOpen, 
   Clock, 
   ShieldCheck, 
-  Users 
+  MessageCircleReply 
 } from "lucide-react";
 import { Sora } from "next/font/google";
 import { gsap } from "gsap";
@@ -60,10 +60,10 @@ const WHY_TRUEDGE_POINTS = [
     description: "Thoughtful design and careful testing, so your website looks professional and works properly for your customers.",
   },
   {
-    id: "dedicated-team",
-    icon: Users,
-    title: "Dedicated Team",
-    description: "Speak directly with the people doing your work. Get helpful answers, honest advice and support along the way.",
+    id: "same-day-response",
+    icon: MessageCircleReply,
+    title: "Same-Day Response Guarantee",
+    description: "Send us a question during the working day and our team will respond that same day with a clear answer or a useful next step.",
   },
 ];
 

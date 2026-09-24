@@ -15,7 +15,7 @@ const links = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Works", href: "/projects" },
-  { name: "Growth", href: "/growth" },
+  { name: "Marketing", href: "/marketing" },
 ];
 
 function WhatsAppIcon() {
@@ -67,7 +67,7 @@ export default function Navbar() {
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header ref={header} className={`${styles.header} ${pathname === "/" && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
+    <header ref={header} className={`${styles.header} ${(pathname === "/" || pathname === "/marketing") && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
       <div className={styles.inner}>
         <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
           <Image src="/truedge-logo.webp" alt="" width={64} height={72} priority />

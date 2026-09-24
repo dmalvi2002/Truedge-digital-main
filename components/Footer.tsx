@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/growth"
+                  href="/marketing"
                   className="hover:text-violet-400 transition-colors duration-200"
                 >
                   Marketing

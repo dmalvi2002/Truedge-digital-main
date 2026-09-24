@@ -217,7 +217,7 @@ export default function MainHeroTwo() {
 
       <div id="hero-capabilities" className={styles.capabilities}>
         <Link href="/services" data-capability><span>01</span><strong>Web design &amp; development</strong></Link>
-        <Link href="/growth" data-capability><span>02</span><strong>Digital marketing</strong></Link>
+        <Link href="/marketing" data-capability><span>02</span><strong>Digital marketing</strong></Link>
         <Link href="/services" data-capability><span>03</span><strong>Search &amp; brand visibility</strong></Link>
       </div>
     </section>
