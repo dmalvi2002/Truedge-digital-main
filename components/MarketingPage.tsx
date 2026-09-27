@@ -10,6 +10,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import styles from "./MarketingPage.module.css";
+import heroStyles from "./MainHeroTwo.module.css";
+import ScrollRippleTitle from "./ScrollRippleTitle";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
@@ -63,9 +65,14 @@ function JourneyVisual({ stage }: { stage: number }) {
     <div className={styles.visualHalo} />
     <div className={styles.visualCaption}>{["Your next customer is looking.", "Make a lasting impression.", "Turn interest into a conversation.", "A good enquiry deserves a reply."][stage]}</div>
     <div className={styles.scene} data-visible={stage === 0}>
-      <div className={styles.searchBox}><Search size={20} /><span>A trusted business near me</span></div>
-      <div className={styles.searchResult}><span className={styles.brandMark}>t.</span><small>Your business</small><h3>The right people.<br />The right place.</h3><p>Clear answers. Local expertise.<br />A business worth discovering.</p><div className={styles.resultTags}><span>Search</span><span>Social</span><span>AI answers</span></div></div>
-      <div className={styles.floatingNote}><Check size={18} /> Be part of their search.</div>
+      <div className={styles.searchBackdrop} />
+      <div className={styles.searchBox}><Image src="/marketing-google.svg" alt="" width={28} height={28} /><span className={styles.searchQuery}>A trusted business near me<span className={styles.searchCaret} /></span></div>
+      <div className={styles.searchResult}>
+        <div className={styles.searchIdentity}><span className={styles.brandMark}>t.</span><div><strong>Your business</strong><small>Expertise close to home.</small></div><ArrowUpRight size={23} /></div>
+        <h3>They’re searching.<br /><em>Be the discovery.</em></h3>
+        <p>Show up with clear answers.<br />Give people a reason to choose you.</p>
+        <div className={styles.searchFooter}><span>From searching to choosing.</span><span className={styles.searchCheck}><Check size={19} /></span></div>
+      </div>
     </div>
     <div className={styles.scene} data-visible={stage === 1}>
       <div className={styles.creativeBack}><span>Your story,<br />well told.</span><FileText size={44} /></div>
@@ -81,7 +88,6 @@ function JourneyVisual({ stage }: { stage: number }) {
       <div className={styles.workflowCard}><ContactRound size={26} /><div><small>Organised in your CRM</small><strong>The right person is notified.</strong></div></div>
       <div className={styles.workflowCard}><Check size={26} /><div><small>Ready to follow up</small><strong>A conversation worth having.</strong></div></div>
     </div>
-    <div className={styles.visualDots}>{chapters.map((chapter, index) => <span key={chapter.id} data-active={stage === index} />)}</div>
   </div>;
 }
 
@@ -136,7 +142,7 @@ export default function MarketingPage() {
         <h1 id="marketing-title"><span className={styles.wordMask}><span data-hero-word>Good business.</span></span><span className={styles.wordMask}><span data-hero-word>Deserves to</span></span><span className={styles.wordMask}><span data-hero-word className={styles.lime}>be seen.</span></span></h1>
         <div className={styles.heroBottom}>
           <p data-hero-reveal>Marketing that brings the right people to your business — and gives them a reason to choose you.</p>
-          <div className={styles.heroActions} data-hero-reveal><Link href="/contact" className={styles.button}>Book a Free Strategy Call <ArrowUpRight size={21} aria-hidden="true" /></Link><a href="#marketing-services" onClick={event => scrollToSection(event, "marketing-services")} className={styles.explore}>Explore your next step <ArrowDown size={18} aria-hidden="true" /></a></div>
+          <div className={styles.heroActions} data-hero-reveal><Link href="/contact" className={heroStyles.cta}><span>Book a Free Strategy Call</span><span className={heroStyles.ctaIcon} aria-hidden="true"><ArrowUpRight size={21} /></span></Link><a href="#marketing-services" onClick={event => scrollToSection(event, "marketing-services")} className={styles.explore}>Explore your next step <ArrowDown size={18} aria-hidden="true" /></a></div>
         </div>
       </div>
       <span className={styles.heroSide} aria-hidden="true">Built around your business.</span>
@@ -144,7 +150,7 @@ export default function MarketingPage() {
 
     <section className={styles.intro} aria-labelledby="marketing-intro">
       <div className={styles.container}>
-        <div className={styles.headingRow}><h2 id="marketing-intro" data-scroll-title><span>Not just more marketing.</span><span>More of it working together.</span></h2><p data-reveal>A great ad needs a useful landing page. A new enquiry needs a timely reply. We connect the whole journey, so your marketing has somewhere to go.</p></div>
+        <div className={styles.headingRow}><ScrollRippleTitle id="marketing-intro" text="Not just more marketing. More of it working together." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p data-reveal>A great ad needs a useful landing page. A new enquiry needs a timely reply. We connect the whole journey, so your marketing has somewhere to go.</p></div>
         <div className={styles.journey}>
           {chapters.map((chapter, index) => { const Icon = [Search, FileText, MessageSquare, Workflow][index]; return <a href={`#${chapter.id}`} onClick={event => scrollToSection(event, chapter.id)} key={chapter.id} data-reveal><Icon size={30} strokeWidth={1.4} aria-hidden="true" /><strong>{chapter.label}</strong><p>{["Reach the people looking for you.", "Show why you’re the right choice.", "Make it easy to get in touch.", "Keep every opportunity moving."][index]}</p><ArrowDown className={styles.journeyArrow} size={21} aria-hidden="true" /></a>; })}
         </div>
@@ -155,7 +161,6 @@ export default function MarketingPage() {
       <div className={`${styles.container} ${styles.serviceLayout}`}>
         <aside className={styles.guide}>
           <JourneyVisual stage={activeChapter} />
-          <nav aria-label="Marketing service stages" className={styles.chapterNav}>{chapters.map((chapter, index) => <a key={chapter.id} href={`#${chapter.id}`} onClick={event => scrollToSection(event, chapter.id)} aria-current={activeChapter === index ? "location" : undefined}>{chapter.label}</a>)}</nav>
         </aside>
         <div className={styles.chapters}>
           {chapters.map((chapter, index) => <section id={chapter.id} tabIndex={-1} key={chapter.id} className={styles.chapter} data-marketing-chapter aria-labelledby={`${chapter.id}-title`}>
@@ -172,7 +177,7 @@ export default function MarketingPage() {
 
     <section className={styles.approach} data-approach aria-labelledby="marketing-approach">
       <div className={`${styles.container} ${styles.approachLayout}`}>
-        <div className={styles.approachIntro}><h2 id="marketing-approach" data-scroll-title><span>A clear plan.</span><span>No guesswork.</span></h2><p>You shouldn’t have to chase updates or decode a report. You’ll know what we’re doing, why it matters and what comes next.</p><div className={styles.approachImage}><Image data-approach-image src="/team-collaboration.jpg" alt="Colleagues working through a marketing plan together" fill sizes="(max-width: 767px) 90vw, 45vw" /></div></div>
+        <div className={styles.approachIntro}><ScrollRippleTitle id="marketing-approach" text="A clear plan. No guesswork." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p>You shouldn’t have to chase updates or decode a report. You’ll know what we’re doing, why it matters and what comes next.</p><div className={styles.approachImage}><Image data-approach-image src="/team-collaboration.jpg" alt="Colleagues working through a marketing plan together" fill sizes="(max-width: 767px) 90vw, 45vw" /></div></div>
         <div className={styles.approachSteps}>
           {[
             ["We listen first.", "Your business isn’t a template. We get to know your customers, your goals and what’s holding you back."],
@@ -189,6 +194,6 @@ export default function MarketingPage() {
       <div className={styles.container}><h2 id="marketing-close">Make your<br /><span className={styles.closeWord}>next move.<span data-close-word aria-hidden="true">next move.</span></span></h2><div className={styles.closeBottom}><p>Your business has potential.<br />Let’s put a plan behind it.</p><Link href="/contact" className={styles.button}>Book a Free Strategy Call <ArrowUpRight size={21} aria-hidden="true" /></Link></div></div>
     </section>
 
-    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><h2 id="marketing-faq" data-scroll-title><span>Good questions.</span><span>Clear answers.</span></h2><p>A few things you might be wondering before we talk.</p></div><div>{faqs.map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><ScrollRippleTitle id="marketing-faq" text="Good questions. Clear answers." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p>A few things you might be wondering before we talk.</p></div><div>{faqs.map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
   </div>;
 }

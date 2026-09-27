@@ -30,20 +30,18 @@
 .reviewControls button { width:52px; height:52px; border:0; border-radius:50%; display:grid; place-items:center; color:#fff; background:#17151d; box-shadow:0 12px 28px rgba(23,21,29,.16); transition:background .25s,transform .25s,color .25s; cursor:pointer; }
 .reviewControls button:hover { background:#c1fb00; color:#171d09; }
 .reviewControls button:disabled,.stackDots button:disabled { cursor:default; }
-.cta { position:relative; isolation:isolate; overflow:hidden; background:#0a0c09; color:#fff; padding:52px 0 0; }
-.ctaIntro { display:flex; justify-content:space-between; color:#b2b7a8; font-size:12px; border-bottom:1px solid #ffffff20; padding-bottom:30px; }
-.ctaTitle { max-width:1000px; font-size:clamp(48px,7.6vw,106px); font-weight:800; line-height:1.04; letter-spacing:-.07em; margin:92px 0 68px; }
-.invitation { display:flex; justify-content:space-between; align-items:center; gap:40px; padding-bottom:90px; }
-.invitation p { font-size:18px; line-height:1.8; color:#b8beae; }
-.ctaButton { background:#d2f83a; color:#151c08; min-height:80px; padding:22px 28px; display:flex; align-items:center; gap:45px; font-weight:600; border-radius:5px; transition:background .3s,box-shadow .3s; }
-.ctaButton svg { width:28px; height:28px; transition:transform .4s; }
+.cta { position:relative; isolation:isolate; overflow:hidden; background:#090d09; color:#fff; padding:150px 0; }
+.cta > .container { width:min(1320px,calc(100% - 96px)); }
+.ctaTitle { position:relative; font-size:clamp(65px,9vw,132px); font-weight:500; line-height:1.04; letter-spacing:-.075em; margin:0; }
+.ctaTitleLine { position:relative; display:inline-block; white-space:nowrap; color:#354023; }
+.ctaTitleLine > span { position:absolute; inset:0; color:#c1fb00; white-space:nowrap; }
+.invitation { display:flex; justify-content:space-between; align-items:center; gap:30px; max-width:950px; margin-top:55px; }
+.invitation p { font-size:18px; line-height:1.7; color:#b4bdab; }
+.ctaButton { background:#c1fb00; color:#151b03; padding:22px 25px; display:flex; align-items:center; gap:25px; font-size:14px; font-weight:600; border-radius:7px; transition:background .3s,box-shadow .3s; }
+.ctaButton svg { width:21px; height:21px; flex-shrink:0; transition:transform .4s; }
 .ctaButton:hover { background:#e0ff6b; box-shadow:0 12px 50px #c1fb0017; }
 .ctaButton:hover svg { transform:translate(3px,-3px); }
-.ctaFooter { display:flex; justify-content:space-between; gap:20px; border-top:1px solid #ffffff20; padding:30px 0; color:#939b85; font-size:12px; }
-.orbit { pointer-events:none; position:absolute; z-index:0; width:750px; height:750px; top:0; right:-330px; border:1px solid #c1fb0026; border-radius:50%; }
-.orbit span { position:absolute; inset:65px; border:1px solid #c1fb0022; border-radius:50%; }
-.orbit span:nth-child(2) { inset:130px; }
-.orbit span:nth-child(3) { inset:195px; background:radial-gradient(ellipse at 80% 50%,#d2f83a0a,transparent 70%); }
+.orbit { pointer-events:none; position:absolute; z-index:0; width:640px; height:640px; top:20px; right:-180px; border-radius:50%; background:radial-gradient(ellipse at 25% 25%,#9da97b33,#202b1166 40%,#121c0888 70%); box-shadow:inset 25px 15px 60px #c1fb000a; }
 .faqLayout { display:grid; grid-template-columns:.85fr 1.15fr; gap:110px; }
 .faqIntro > p { margin-top:28px; }
 .faqContact { display:flex; flex-direction:column; gap:12px; margin-top:60px; font-size:14px; }
@@ -80,9 +78,10 @@
  .review figcaption { align-items:flex-start; margin-top:auto; padding-top:25px; text-align:left; }
  .stackNavigation { padding:0 2px; }
  .reviewControls button { width:46px; height:46px; }
- .ctaIntro span:last-child { display:none; }
- .ctaTitle { margin:70px 0 44px; } .ctaButton { width:100%; gap:24px; justify-content:space-between; font-size:14px; padding:20px; }
- .invitation { padding-bottom:65px; gap:30px; } .invitation p { font-size:16px; }
- .ctaFooter { flex-direction:column; gap:13px; } .faqContact { margin-top:30px; margin-bottom:15px; }
+ .cta { padding:95px 0; } .cta > .container { width:calc(100% - 40px); }
+ .ctaTitle { font-size:clamp(55px,11vw,85px); } .ctaButton { width:100%; gap:24px; justify-content:space-between; font-size:14px; padding:20px; }
+ .invitation { margin-top:35px; gap:28px; } .invitation p { font-size:16px; }
+ .orbit { width:380px; height:380px; right:-200px; top:0; }
+ .faqContact { margin-top:30px; margin-bottom:15px; }
  .question h3 button { padding:24px 12px; font-size:16px; gap:18px; } .answer { padding:0 25px 24px 12px; }
 }

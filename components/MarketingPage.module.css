@@ -24,6 +24,8 @@
 .headingRow{display:grid;grid-template-columns:1.4fr 1fr;gap:85px;align-items:end}
 .page h2{font-size:clamp(34px,3.7vw,54px);line-height:1.17;font-weight:500;letter-spacing:-.065em}
 .page h2>span{display:block}
+.page h2.rippleTitle{font-size:clamp(32px,3.5vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.055em}
+.page h2.rippleTitle>span{display:inline-block;color:inherit}
 .headingRow h2>span+span{color:#767b70}
 .headingRow>p,.approachIntro>p,.faqLayout>div>p{font-size:15px;line-height:1.9;color:#676d62}
 .journey{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:65px}
@@ -43,9 +45,21 @@
 .visualCaption{font-size:20px;font-weight:400;letter-spacing:-.035em;color:#d8dbd0;text-align:center;position:absolute;top:0;width:100%}
 .scene{position:absolute;inset:60px 20px 40px;opacity:0;transform:translateY(40px) rotateX(8deg) scale(.92);transition:opacity .65s,transform .9s cubic-bezier(.2,.75,.25,1);pointer-events:none;visibility:hidden}
 .scene[data-visible="true"]{opacity:1;transform:translateY(0) rotateX(0) scale(1);visibility:visible}
-.searchBox{background:#fcfcf7;color:#777d70;border-radius:12px;display:flex;align-items:center;gap:15px;padding:20px 24px;box-shadow:0 20px 60px #0004;font-size:13px;position:relative;z-index:2;transform:rotate(-3deg)}
-.searchBox svg{color:#242c1b}
-.searchResult{background:linear-gradient(125deg,#eef2df,#ccd8ac);color:#27311a;padding:30px;border-radius:14px;margin:12px 18px;box-shadow:0 24px 70px #0005;transform:rotate(2deg)}
+.searchBackdrop{position:absolute;inset:52px 0 8px 32px;background:linear-gradient(145deg,#c1fb00,#627e19);border-radius:22px;transform:rotate(6deg);box-shadow:0 18px 40px #0003}
+.searchBox{width:calc(100% - 24px);box-sizing:border-box;margin-inline:12px;background:#fff;color:#585b62;border-radius:16px;display:flex;align-items:center;gap:15px;padding:20px 24px;box-shadow:0 8px 30px #0002;font-size:13px;position:relative;z-index:2;transform:rotate(-3deg)}
+.searchBox img{flex-shrink:0;object-fit:contain}
+.searchQuery{display:inline-flex;align-items:center}
+.searchCaret{display:inline-block;height:17px;width:2px;background:#62685d;margin-left:3px;animation:search-caret-blink .9s steps(1,end) infinite}
+@keyframes search-caret-blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+.searchResult{position:relative;background:linear-gradient(135deg,#fff 35%,#eef3e2);color:#20251b;padding:30px;border-radius:20px;margin:15px 12px 0;box-shadow:0 4px 8px #0002,0 24px 45px #0003;transform:rotate(-2deg)}
+.searchIdentity{display:flex;align-items:center;gap:12px}
+.searchIdentity .brandMark{margin:0;flex-shrink:0}
+.searchIdentity strong{font-size:13px;font-weight:600}
+.searchIdentity small{display:block;margin-top:3px;color:#7b8172;font-size:10px}
+.searchIdentity>svg{margin-left:auto;color:#697656}
+.searchResult h3 em{font-style:normal;color:#5f742e}
+.searchFooter{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:22px;font-size:10px;color:#66734c}
+.searchCheck{display:grid;place-items:center;background:#d8f899;color:#2d3c13;width:32px;height:32px;border-radius:50%}
 .brandMark{background:#283717;color:var(--lime);font-size:22px;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;font-weight:600;margin-right:12px}
 .searchResult small{font-size:12px}.searchResult h3{font-size:30px;line-height:1.18;letter-spacing:-.06em;font-weight:500;margin-top:18px}
 .searchResult p{font-size:12px;line-height:1.8;margin-top:12px;color:#5b6948}
@@ -68,9 +82,6 @@
 .workflowCard:nth-child(2){transform:translateX(18px) rotate(2deg);background:#343b30}
 .workflowCard:nth-child(3){transform:translateX(-8px) rotate(-2deg);background:#d9edb9;color:#29351d}
 .workflowCard small{display:block;font-size:10px;opacity:.7;margin-bottom:7px}.workflowCard strong{font-size:13px;font-weight:500}
-.chapterNav{display:flex;justify-content:center;gap:5px;margin-top:25px;flex-wrap:wrap}
-.chapterNav a{font-size:11px;padding:12px 13px;border-radius:6px;color:#909489;text-decoration:none;transition:background .3s,color .3s}
-.chapterNav a[aria-current]{background:#c1fb00;color:#1b220b}.chapterNav a:hover{color:#f6fff0;background:#343b28}
 .chapter{min-height:85vh;padding:110px 0 100px;scroll-margin-top:115px;display:flex;flex-direction:column;justify-content:center}
 .chapterHeading h2{font-size:clamp(34px,3.5vw,49px)}
 .chapterHeading>p{color:#a0a29f;font-size:14px;line-height:1.85;margin:25px 0 32px}
@@ -114,10 +125,10 @@
 .faqItem[open]{background:#eaf0df}.faqItem[open] summary svg{transform:rotate(45deg)}
 .faqItem>p{padding:0 25px 26px;font-size:13px;line-height:1.9;color:#616953}
 @media(min-width:1600px){.chapter{min-height:800px}}
-@media(max-width:1100px){.container{width:calc(100% - 64px)}.serviceLayout{gap:40px;grid-template-columns:.95fr 1.05fr}.visual{height:430px}.scene{inset:60px 0 40px}.visualCaption{font-size:16px}.searchResult{padding:24px}.searchResult h3{font-size:26px}.workflowCard{padding:20px;gap:10px}.workflowCard strong{font-size:11px}.journey>a{padding:26px 20px}.headingRow,.approachLayout{gap:45px}.faqLayout{gap:40px}.chapterNav a{padding:10px 8px;font-size:10px}}
+@media(max-width:1100px){.container{width:calc(100% - 64px)}.serviceLayout{gap:40px;grid-template-columns:.95fr 1.05fr}.visual{height:430px}.scene{inset:60px 0 40px}.visualCaption{font-size:16px}.searchResult{padding:24px}.searchResult h3{font-size:26px}.workflowCard{padding:20px;gap:10px}.workflowCard strong{font-size:11px}.journey>a{padding:26px 20px}.headingRow,.approachLayout{gap:45px}.faqLayout{gap:40px}}
 @media(max-width:767px){
 .container{width:calc(100% - 40px)}.hero{padding:100px 0 70px;min-height:780px}.hero h1{font-size:clamp(51px,10.4vw,79px)}.heroShade{background:linear-gradient(90deg,#07100ce8,#07100c65),linear-gradient(0deg,#0b0b10,transparent)}.heroBottom{flex-direction:column;align-items:flex-start;gap:30px;margin-top:35px}.heroBottom>p{font-size:15px;max-width:340px}.heroSide{display:none}.heroActions{gap:22px}.button{font-size:12px;padding:20px;gap:18px}.intro,.approach,.faq{padding:75px 0}.headingRow,.approachLayout,.faqLayout{grid-template-columns:1fr;gap:28px}.page h2{font-size:37px}.headingRow>p{max-width:480px}.journey{grid-template-columns:1fr 1fr;margin-top:36px;gap:12px}.journey>a{min-height:205px;padding:23px 19px}.journey strong{font-size:18px}.journey p{font-size:11px;padding-right:0}.journeyArrow{display:none}
-.services{padding:40px 0}.serviceLayout{display:flex;flex-direction:column;gap:15px}.guide{position:relative;top:0;width:100%;padding-top:0}.visual{height:405px;width:min(440px,100%);margin:auto}.scene{inset:48px 22px 42px}.visualCaption{font-size:17px}.searchResult{padding:22px}.searchResult h3{font-size:26px}.searchResult p{font-size:11px}.searchBox{font-size:11px;padding:16px}.floatingNote{bottom:0;font-size:10px;padding:14px}.creativeFront{height:250px;top:25px}.creativeBack{height:255px}.enquiryMock{padding:20px 25px}.enquiryMock h3{font-size:23px}.workflowCard{padding:22px}.chapterNav{margin:15px 0 5px}.chapterNav a{padding:12px 10px;font-size:11px}.chapters{width:100%}.chapter{min-height:0;padding:60px 0}.chapterHeading h2{font-size:36px;max-width:490px}.chapterHeading>p{margin:20px 0 23px}.serviceDetail h3{font-size:14px}.serviceDetail summary{padding:22px 18px;gap:13px}.serviceCopy{padding-left:25px}.approachIntro{position:static}.approachImage{height:260px}.approachSteps{gap:15px}.approachSteps article{padding:30px 25px 30px 65px}.stepSymbol{left:24px;top:31px}.approachSteps h3{font-size:21px}.closing{padding:95px 0}.closing h2{font-size:clamp(55px,11vw,85px)}.closeBottom{align-items:flex-start;flex-direction:column;gap:28px;margin-top:35px}.closeBottom>p{font-size:16px}.closeOrbit{width:380px;height:380px;right:-200px;top:0}.faqLayout{gap:35px}.faqItem summary{font-size:13px;padding:22px}
+.services{padding:40px 0}.serviceLayout{display:flex;flex-direction:column;gap:15px}.guide{position:relative;top:0;width:100%;padding-top:0}.visual{height:405px;width:min(440px,100%);margin:auto}.scene{inset:48px 22px 42px}.visualCaption{font-size:17px}.searchResult{padding:22px}.searchResult h3{font-size:26px}.searchResult p{font-size:11px}.searchBox{font-size:11px;padding:16px}.floatingNote{bottom:0;font-size:10px;padding:14px}.creativeFront{height:250px;top:25px}.creativeBack{height:255px}.enquiryMock{padding:20px 25px}.enquiryMock h3{font-size:23px}.workflowCard{padding:22px}.chapters{width:100%}.chapter{min-height:0;padding:60px 0}.chapterHeading h2{font-size:36px;max-width:490px}.chapterHeading>p{margin:20px 0 23px}.serviceDetail h3{font-size:14px}.serviceDetail summary{padding:22px 18px;gap:13px}.serviceCopy{padding-left:25px}.approachIntro{position:static}.approachImage{height:260px}.approachSteps{gap:15px}.approachSteps article{padding:30px 25px 30px 65px}.stepSymbol{left:24px;top:31px}.approachSteps h3{font-size:21px}.closing{padding:95px 0}.closing h2{font-size:clamp(55px,11vw,85px)}.closeBottom{align-items:flex-start;flex-direction:column;gap:28px;margin-top:35px}.closeBottom>p{font-size:16px}.closeOrbit{width:380px;height:380px;right:-200px;top:0}.faqLayout{gap:35px}.faqItem summary{font-size:13px;padding:22px}
 }
-@media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto!important;transition:none!important}.closeWord>span{clip-path:none!important}}
-.mobileVisual{display:none}@media(max-width:767px){.guide>.visual{display:none}.mobileVisual{display:block;margin-bottom:35px}.chapterNav{margin-top:0}.chapter{padding:35px 0 55px}}
+@media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto!important;transition:none!important}.closeWord>span{clip-path:none!important}.searchCaret{animation:none}}
+.mobileVisual{display:none}@media(max-width:767px){.guide>.visual{display:none}.mobileVisual{display:block;margin-bottom:35px}.chapter{padding:35px 0 55px}}
