@@ -6,10 +6,11 @@
 .sectionHeading p,.faqIntro > p { color:#726e79; font-size:17px; line-height:1.8; max-width:390px; }
 .stackStage { position:relative; width:min(100% - 40px,1040px); min-height:570px; margin:0 auto; perspective:1400px; }
 .testimonialCard { position:absolute; inset:0 0 90px; min-height:455px; overflow:hidden; display:flex; flex-direction:column; padding:34px 42px 38px; background:linear-gradient(135deg,#fbfafc 0%,#f6f2f8 54%,#eee7f3 100%); border-radius:28px; box-shadow:inset 0 0 0 1px rgba(105,87,119,.12); pointer-events:none; }
-.testimonialCard[data-position="1"] { background:#f4f0f7; }
-.testimonialCard[data-position="2"] { background:#eee8f3; }
-.testimonialCard[data-position="0"] { pointer-events:auto; box-shadow:0 9px 22px rgba(35,24,43,.055); }
-.reviewAccent { position:absolute; inset:auto -110px -180px auto; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle at 35% 32%,rgba(193,251,0,.42),rgba(139,92,246,.16) 43%,transparent 70%); pointer-events:none; }
+.testimonialCard[data-position="1"] { background:#e9e5ed; box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 4px 5px -3px rgba(35,24,43,.2); }
+.testimonialCard[data-position="2"] { background:#dcd6e2; box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 3px 4px -2px rgba(35,24,43,.16),0 10px 20px -10px rgba(35,24,43,.1); }
+.testimonialCard[data-position="0"] { pointer-events:auto; box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 5px 6px -3px rgba(35,24,43,.22),0 9px 22px rgba(35,24,43,.045); }
+.reviewAccent { position:absolute; inset:auto -110px -180px auto; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle at 35% 32%,rgba(193,251,0,.2),rgba(139,92,246,.07) 43%,transparent 70%); pointer-events:none; }
+.testimonialCard:not([data-position="0"]) .reviewAccent { visibility:hidden; }
 .cardMeta { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; }
 .companyLogo { min-width:190px; min-height:68px; width:fit-content; padding:10px 18px 10px 10px; display:flex; align-items:center; gap:14px; border-radius:14px; background:rgba(255,255,255,.72); box-shadow:0 10px 30px rgba(67,44,79,.07); color:#28222d; }
 .companyLogo > span { width:48px; height:48px; flex:0 0 48px; display:grid; place-items:center; border-radius:11px; background:#17151d; color:#c1fb00; font-size:22px; font-weight:700; }
