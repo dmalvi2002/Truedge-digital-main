@@ -33,6 +33,11 @@
 .stage { position: absolute; inset: 0; perspective: 1800px; }
 .campaignPosition { position: absolute; width: 28%; left: 3.5%; top: 9%; z-index: 1; }
 .campaign { background: #d2f83a; color: #12160a; height: 350px; position: relative; overflow: hidden; padding: 19px 20px; transform: rotate(-10deg) rotateY(12deg); transform-origin: right center; box-shadow: -15px 25px 65px #0008; }
+.latestProjectCard { padding: 0; background: #11150d; border: 1px solid #ffffff4d; }
+.webStudy.latestProjectWebCard { position: relative; height: auto; aspect-ratio: 8 / 5; background: #11150d; }
+.latestProjectImage { object-fit: contain; object-position: center; }
+.latestProjectEyebrow { position: absolute; z-index: 2; top: 15px; left: 15px; display: inline-flex; align-items: center; gap: 8px; min-height: 30px; padding: 7px 10px; color: #11150b; background: #d2f83a; border: 1px solid #f0ffad; border-radius: 2px; box-shadow: 5px 5px 0 #171c0e; font-size: 8px; line-height: 1; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.latestProjectEyebrow > span { width: 7px; height: 7px; flex: 0 0 auto; background: #11150b; box-shadow: 3px 3px 0 #8ba425; }
 .artMasthead, .artFooter { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; font-size: 7px; letter-spacing: .04em; }
 .campaignTitle { position: relative; font-size: clamp(27px, 3vw, 43px); line-height: .98; font-weight: 600; letter-spacing: -.06em; margin-top: 31px; z-index: 2; }
 .campaignTitle > span { font-size: 1.47em; }

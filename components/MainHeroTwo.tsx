@@ -43,26 +43,19 @@ function DesignScene() {
         </div>
 
         <div className={styles.webPosition} data-depth="web">
-          <div className={styles.webStudy}>
-            <div className={styles.webNav}><span className={styles.studyLogo}>Your Brand</span><span className={styles.cardIntro}>Your business, online.</span></div>
-            <div className={styles.webBody}>
-              <div className={styles.webCopy}><h2>Your business.<br /><em>Their first choice.</em></h2><p className={styles.benefitDescription}>A professional website that builds trust and makes it easy for customers to get in touch.</p></div>
-              <div className={styles.webArtwork}>
-                <svg data-object aria-hidden="true" viewBox="0 0 320 380" fill="none">
-                  <defs>
-                    <linearGradient id="hero-study-metal" x1="56" y1="78" x2="261" y2="300" gradientUnits="userSpaceOnUse"><stop stopColor="#f7ffe5" /><stop offset=".2" stopColor="#9daf65" /><stop offset=".39" stopColor="#343e1c" /><stop offset=".55" stopColor="#edf5ce" /><stop offset=".75" stopColor="#899c4c" /><stop offset="1" stopColor="#202812" /></linearGradient>
-                    <linearGradient id="hero-study-edge" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#e0edb0" /><stop offset="1" stopColor="#546434" /></linearGradient>
-                  </defs>
-                  <ellipse cx="163" cy="333" rx="99" ry="11" fill="#38431c" opacity=".2" />
-                  <path d="M82 298V134c0-53 33-88 79-88s79 35 79 88v164h-51V138c0-23-10-39-28-39s-28 16-28 39v160Z" fill="url(#hero-study-metal)" stroke="url(#hero-study-edge)" strokeWidth="2" />
-                  <path d="M110 302V142c0-41 20-68 51-68s51 27 51 68v160" stroke="#f1ffd6" strokeOpacity=".55" strokeWidth="2" />
-                  <ellipse cx="107" cy="300" rx="25" ry="6" fill="#afbf7c" /><ellipse cx="215" cy="300" rx="25" ry="6" fill="#75864e" />
-                  <path d="M86 132c0-48 31-83 75-83" stroke="#fff" strokeOpacity=".65" strokeWidth="3" />
-                </svg>
-                <span className={styles.objectNumber}>Attract the right customers.</span>
-              </div>
+          <div className={`${styles.webStudy} ${styles.latestProjectCard} ${styles.latestProjectWebCard}`}>
+            <Image
+              src="https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789243124/ebc13b6a-bd14-4520-a10d-b21d8d4abc64.png"
+              alt="Truedge Digital's latest project"
+              fill
+              priority
+              sizes="(max-width: 599px) 86vw, (max-width: 899px) 56vw, 46vw"
+              className={styles.latestProjectImage}
+            />
+            <div className={styles.latestProjectEyebrow}>
+              <span aria-hidden="true" />
+              Our Latest Project
             </div>
-            <div className={styles.webFooter}><span>Look professional.</span><span>Build trust.</span><span>Win enquiries.</span></div>
           </div>
         </div>
 
