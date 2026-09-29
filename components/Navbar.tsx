@@ -70,7 +70,8 @@ export default function Navbar() {
     <header ref={header} className={`${styles.header} ${(pathname === "/" || pathname === "/marketing") && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
       <div className={styles.inner}>
         <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
-          <Image src="/truedge-logo.webp" alt="" width={64} height={72} priority />
+          <Image src="/truedge-logo.webp" alt="Truedge Digital" width={64} height={72} priority className={styles.logoDark} />
+          <Image src="/new-logo-white.webp" alt="Truedge Digital" width={64} height={72} priority className={styles.logoLight} />
           <span className={`${styles.wordmark} ${brandFont.className}`}><span>TRUEDGE</span><span>DIGITAL</span></span>
         </Link>
         <nav aria-label="Main navigation" className={styles.navigation}>
