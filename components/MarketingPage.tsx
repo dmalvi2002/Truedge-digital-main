@@ -66,12 +66,14 @@ function JourneyVisual({ stage }: { stage: number }) {
     <div className={styles.visualCaption}>{["Your next customer is looking.", "Make a lasting impression.", "Turn interest into a conversation.", "A good enquiry deserves a reply."][stage]}</div>
     <div className={styles.scene} data-visible={stage === 0}>
       <div className={styles.searchBackdrop} />
-      <div className={styles.searchBox}><Image src="/marketing-google.svg" alt="" width={28} height={28} /><span className={styles.searchQuery}>A trusted business near me<span className={styles.searchCaret} /></span></div>
-      <div className={styles.searchResult}>
-        <div className={styles.searchIdentity}><span className={styles.brandMark}>t.</span><div><strong>Your business</strong><small>Expertise close to home.</small></div><ArrowUpRight size={23} /></div>
-        <h3>They’re searching.<br /><em>Be the discovery.</em></h3>
-        <p>Show up with clear answers.<br />Give people a reason to choose you.</p>
-        <div className={styles.searchFooter}><span>From searching to choosing.</span><span className={styles.searchCheck}><Check size={19} /></span></div>
+      <div className={styles.searchWrapper}>
+        <div className={styles.searchBox}><Image src="/marketing-google.svg" alt="" width={28} height={28} /><span className={styles.searchQuery}>A trusted business near me<span className={styles.searchCaret} /></span></div>
+        <div className={styles.searchResult}>
+          <div className={styles.searchIdentity}><span className={styles.brandMark}>t.</span><div><strong>Your business</strong><small>Expertise close to home.</small></div><ArrowUpRight size={23} /></div>
+          <h3>They’re searching.<br /><em>Be the discovery.</em></h3>
+          <p>Show up with clear answers.<br />Give people a reason to choose you.</p>
+          <div className={styles.searchFooter}><span>From searching to choosing.</span><span className={styles.searchCheck}><Check size={19} /></span></div>
+        </div>
       </div>
     </div>
     <div className={styles.scene} data-visible={stage === 1}>
