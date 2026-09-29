@@ -74,8 +74,6 @@ function AiProcessor({ variant = "hero" }: { variant?: "hero" | "story" }) {
           <rect className={styles.electricDie} x="-74" y="-74" width="148" height="148" rx="5" fill="#07579a" stroke="#8eeaff" strokeWidth="3" />
           <path d="M-61 -32V-61H-32M32 -61H61V-32M61 32V61H32M-32 61H-61V32" stroke="#d2f4a4" strokeOpacity=".65" strokeWidth="1.5" />
           <text x="0" y="17" textAnchor="middle" fill="#e3ffc0" fontSize="55" fontWeight="500" fontFamily="Arial, sans-serif" letterSpacing="-3">AI</text>
-          <path d="M-21 40H21" stroke="#c1fb00" strokeWidth="2" className={styles.processorLight} />
-          <circle cx="52" cy="-51" r="3" fill="#c1fb00" className={styles.processorLight} />
         </g>
       </g>
     </g>
@@ -92,7 +90,7 @@ function InteractiveProcessor() {
     const timer = window.setTimeout(() => {
       if (phase === "active") setPhase("cooldown");
       else { locked.current = false; setPhase("ready"); }
-    }, phase === "active" ? 3200 : 3000);
+    }, phase === "active" ? 3800 : 3000);
     return () => window.clearTimeout(timer);
   }, [phase]);
 
