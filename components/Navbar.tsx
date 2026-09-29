@@ -11,12 +11,11 @@ import styles from "./Navbar.module.css";
 const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
 const brandFont = Barlow_Semi_Condensed({ subsets: ["latin"], weight: ["600"] });
 const links = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Works", href: "/projects" },
   { name: "Marketing", href: "/marketing" },
   { name: "AI Automation", href: "/ai-automation" },
+  { name: "Web Design", href: "/services" },
+  { name: "Works", href: "/projects" },
+  { name: "About", href: "/about" },
 ];
 
 function WhatsAppIcon() {
