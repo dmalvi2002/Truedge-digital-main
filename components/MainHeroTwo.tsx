@@ -49,7 +49,7 @@ function DesignScene() {
               alt="Truedge Digital's latest project"
               fill
               priority
-              sizes="(max-width: 599px) 86vw, (max-width: 899px) 56vw, 46vw"
+              sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 899px) 56vw, 46vw"
               className={styles.latestProjectImage}
             />
             <div className={styles.latestProjectEyebrow}>
@@ -138,7 +138,7 @@ export default function MainHeroTwo() {
 
   useGSAP(() => {
     const media = gsap.matchMedia();
-    media.add({ motion: "(prefers-reduced-motion: no-preference)", desktop: "(min-width: 900px)" }, (context) => {
+    media.add({ motion: "(prefers-reduced-motion: no-preference)", desktop: "(min-width: 1200px)", phone: "(max-width: 599px)" }, (context) => {
       if (!context.conditions?.motion) return;
       const desktop = context.conditions.desktop;
       gsap.from("[data-intro]", { y: 30, opacity: 0, duration: 1, stagger: .12, ease: "power3.out" });
@@ -146,28 +146,27 @@ export default function MainHeroTwo() {
         scrollTrigger: { trigger: root.current, start: "top top", end: "65% top", scrub: .6 },
         defaults: { ease: "none" },
       })
-        .to("[data-title-first]", { x: desktop ? -115 : -18, y: -25, rotation: -3 }, 0)
-        .to("[data-title-second]", { x: desktop ? 115 : 18, y: 30 }, 0)
+        .to("[data-title-first]", { x: desktop ? -115 : 0, y: desktop ? -25 : 0, rotation: desktop ? -3 : 0 }, 0)
+        .to("[data-title-second]", { x: desktop ? 115 : 0, y: desktop ? 30 : 0 }, 0)
         .to("[data-scene-light]", { scale: 1.4, opacity: 1 }, 0);
 
-      // Unfold the artwork as it enters the viewport; no scroll locking.
-      gsap.timeline({
+      // Phones use a normal-flow card grid; reserve the unfolding for larger screens.
+      if (!context.conditions.phone) gsap.timeline({
         scrollTrigger: { trigger: "[data-scene]", start: "top 95%", end: "bottom 28%", scrub: .8, invalidateOnRefresh: true },
         defaults: { ease: "none" },
       })
         .fromTo('[data-depth="campaign"]',
-          { xPercent: desktop ? 40 : 12, y: 70, rotation: 10, scale: .86 },
-          { xPercent: desktop ? -8 : -3, y: -32, rotation: -5, scale: 1 }, 0)
+          { xPercent: desktop ? 40 : 4, y: desktop ? 70 : 12, rotation: desktop ? 10 : 3, scale: desktop ? .86 : .96 },
+          { xPercent: desktop ? -8 : 0, y: desktop ? -32 : 0, rotation: desktop ? -5 : 0, scale: 1 }, 0)
         .fromTo('[data-depth="web"]',
-          { y: 65, rotationX: 13, scale: .92 },
-          { y: -30, rotationX: 0, scale: 1.04 }, 0)
+          { y: desktop ? 65 : 12, rotationX: desktop ? 13 : 5, scale: desktop ? .92 : .96 },
+          { y: desktop ? -30 : 0, rotationX: 0, scale: desktop ? 1.04 : 1 }, 0)
         .fromTo('[data-depth="brand"]',
-          { xPercent: desktop ? -40 : -12, y: 95, rotation: -12, scale: .85 },
-          { xPercent: desktop ? 8 : 3, y: -60, rotation: 5, scale: 1 }, 0)
-        .fromTo("[data-object]", { y: 16, rotation: -9 }, { y: -15, rotation: 9 }, 0);
+          { xPercent: desktop ? -40 : -4, y: desktop ? 95 : 12, rotation: desktop ? -12 : -3, scale: desktop ? .85 : .96 },
+          { xPercent: desktop ? 8 : 0, y: desktop ? -60 : 0, rotation: desktop ? 5 : 0, scale: 1 }, 0);
 
       gsap.from("[data-capability]", {
-        y: 35, opacity: 0, stagger: .12, duration: .7, ease: "power3.out",
+        y: context.conditions.phone ? 0 : 35, opacity: 0, stagger: .12, duration: .7, ease: "power3.out",
         scrollTrigger: { trigger: "#hero-capabilities", start: "top 94%", once: true },
       });
     });
