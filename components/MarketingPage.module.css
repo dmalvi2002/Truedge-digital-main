@@ -84,6 +84,7 @@
 .workflowCard:nth-child(3){transform:translateX(-8px) rotate(-2deg);background:#d9edb9;color:#29351d}
 .workflowCard small{display:block;font-size:10px;opacity:.7;margin-bottom:7px}.workflowCard strong{font-size:13px;font-weight:500}
 .chapter{min-height:85vh;padding:110px 0 100px;scroll-margin-top:115px;display:flex;flex-direction:column;justify-content:center}
+.chapter:last-child{min-height:75vh;justify-content:flex-end;padding-bottom:46px}
 .chapterHeading h2{font-size:clamp(34px,3.5vw,49px)}
 .chapterHeading>p{color:#a0a29f;font-size:14px;line-height:1.85;margin:25px 0 32px}
 .serviceDetail{background:#ffffff07;border-radius:12px;margin-top:12px;transition:background .3s}
@@ -132,4 +133,4 @@
 .services{padding:40px 0}.serviceLayout{display:flex;flex-direction:column;gap:15px}.guide{position:relative;top:0;width:100%;padding-top:0}.visual{height:405px;width:min(440px,100%);margin:auto}.scene{inset:48px 22px 42px}.visualCaption{font-size:17px}.searchResult{padding:22px}.searchResult h3{font-size:26px}.searchResult p{font-size:11px}.searchBox{font-size:11px;padding:16px}.floatingNote{bottom:0;font-size:10px;padding:14px}.creativeFront{height:250px;top:25px}.creativeBack{height:255px}.enquiryMock{padding:20px 25px}.enquiryMock h3{font-size:23px}.workflowCard{padding:22px}.chapters{width:100%}.chapter{min-height:0;padding:60px 0}.chapterHeading h2{font-size:36px;max-width:490px}.chapterHeading>p{margin:20px 0 23px}.serviceDetail h3{font-size:14px}.serviceDetail summary{padding:22px 18px;gap:13px}.serviceCopy{padding-left:25px}.approachIntro{position:static}.approachImage{height:260px}.approachSteps{gap:15px}.approachSteps article{padding:30px 25px 30px 65px}.stepSymbol{left:24px;top:31px}.approachSteps h3{font-size:21px}.closing{padding:95px 0}.closing h2{font-size:clamp(55px,11vw,85px)}.closeBottom{align-items:flex-start;flex-direction:column;gap:28px;margin-top:35px}.closeBottom>p{font-size:16px}.closeOrbit{width:380px;height:380px;right:-200px;top:0}.faqLayout{gap:35px}.faqItem summary{font-size:13px;padding:22px}
 }
 @media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto!important;transition:none!important}.closeWord>span{clip-path:none!important}.searchCaret{animation:none}}
-.mobileVisual{display:none}@media(max-width:767px){.guide>.visual{display:none}.mobileVisual{display:block;margin-bottom:35px}.chapter{padding:35px 0 55px}}
+.mobileVisual{display:none}@media(max-width:767px){.guide>.visual{display:none}.mobileVisual{display:block;margin-bottom:35px}.chapter,.chapter:last-child{min-height:0;padding:35px 0 55px;justify-content:flex-start}}
