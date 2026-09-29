@@ -16,6 +16,7 @@ const links = [
   { name: "Services", href: "/services" },
   { name: "Works", href: "/projects" },
   { name: "Marketing", href: "/marketing" },
+  { name: "AI Automation", href: "/ai-automation" },
 ];
 
 function WhatsAppIcon() {
@@ -52,7 +53,7 @@ export default function Navbar() {
     const outside = (event: PointerEvent) => {
       if (event.target instanceof Node && !header.current?.contains(event.target)) setOpenPath(null);
     };
-    const desktop = window.matchMedia("(min-width: 1024px)");
+    const desktop = window.matchMedia("(min-width: 1200px)");
     const resize = () => { if (desktop.matches) setOpenPath(null); };
     window.addEventListener("keydown", dismiss);
     window.addEventListener("pointerdown", outside);
@@ -65,9 +66,11 @@ export default function Navbar() {
   }, [isOpen]);
 
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
+  const keepsDarkNavigation = pathname.startsWith("/ai-automation");
+  const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing") && !scrolled);
 
   return (
-    <header ref={header} className={`${styles.header} ${(pathname === "/" || pathname === "/marketing") && !scrolled ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
+    <header ref={header} className={`${styles.header} ${usesDarkNavigation ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
       <div className={styles.inner}>
         <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
           <Image src="/truedge-logo.webp" alt="Truedge Digital" width={64} height={72} priority className={styles.logoDark} />
