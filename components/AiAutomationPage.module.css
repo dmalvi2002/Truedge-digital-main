@@ -148,13 +148,9 @@
 .processorControl[data-phase=active] .processorDie{animation:chipDock 3.8s cubic-bezier(.45,0,.22,1) both}
 .processorControl[data-phase=active] .energyOverlay,.processorControl[data-phase=active] .electricDie{animation:chipPower 3.8s both;filter:drop-shadow(0 0 7px #009dff)}
 .processorControl[data-phase=active] .energyPulse{stroke-dasharray:18 82;animation:energyTravel .7s var(--pulse-delay) linear infinite}
-.processorControl[data-phase=active] .networkNodes>span{animation:nodePower 3.8s both}
-.processorControl[data-phase=active] .networkNodes svg{color:#79dcff}
-.processorControl[data-phase=active] .processorHint{color:#79dcff}
 @keyframes chipDock{0%{transform:translateY(0)}24%,72%{transform:translateY(53px)}100%{transform:translateY(0)}}
 @keyframes chipPower{0%,13%,100%{opacity:0}14%,78%{opacity:1}90%{opacity:.3}}
 @keyframes energyTravel{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
-@keyframes nodePower{0%,100%{border-color:#879e5a40;background:#101711;color:#afbc99}14%,78%{border-color:#65dfff80;background:#071e30;color:#b6edff;box-shadow:0 0 18px #008dff22}}
 .bookingBadge{position:absolute;top:-13px;right:-3px;z-index:2;width:156px;box-sizing:border-box;padding:18px 19px;border:1px solid #d3e6ae;border-radius:14px;background:#e9f6cc;color:#304018;box-shadow:0 12px 30px #0002}
 .bookingBadge>span{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .bookingBadge>span>svg:last-child{background:#d1e5a8;border-radius:50%;padding:4px;width:23px;height:23px}
@@ -167,20 +163,17 @@
 
 /* Live voice preview: an animated illustration, never a microphone connection. */
 .hero h1{font-size:clamp(30px,12.1cqw,90px)}
-.liveVoice{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr) 30px;align-items:center;gap:14px;width:100%;padding:22px 24px 42px;border:0;border-radius:14px;background:#f0eee6;color:#22261b;text-align:left;font:inherit;cursor:pointer;overflow:hidden;transition:transform .35s,box-shadow .35s}
-.liveVoice:hover{transform:translateY(-3px);box-shadow:0 12px 35px #a8d76b18}
-.liveVoice:focus-visible{outline:2px solid #c1fb00;outline-offset:5px}
-.voiceOrb{position:relative;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#28371b;color:#dcff9a}
-.voiceOrb::after{content:"";position:absolute;inset:-5px;border:1px solid #65883c50;border-radius:50%;animation:voiceBreath 2.6s ease-in-out infinite}
-.voiceWords{min-width:0;display:grid;gap:8px}.voiceWords small{display:flex;align-items:center;gap:6px;font-size:10px;color:#74766d}.voiceWords small i{width:5px;height:5px;border-radius:50%;background:#6b9939}
+.liveVoice{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr) 24px;align-items:center;gap:12px;width:100%;padding:15px 18px 31px;border-radius:12px;background:#f0eee6;color:#22261b;text-align:left;overflow:hidden}
+.voiceOrb{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#28371b;color:#dcff9a}
+.voiceWords{min-width:0;display:grid}
 .voiceWords strong{font-size:15px;font-weight:500;letter-spacing:-.035em;line-height:1.4;animation:voiceMessage .4s both}
-.voicePhone{display:grid;place-items:center;color:#748653;transition:transform .3s}.liveVoice:hover .voicePhone{transform:rotate(-14deg)}
-.liveBars{position:absolute;bottom:13px;left:86px;right:25px;height:16px;display:flex;gap:4px;align-items:center;justify-content:flex-start}
+.voicePhone{display:grid;place-items:center;color:#748653;animation:phoneLive 2.2s ease-in-out infinite}
+.liveBars{position:absolute;bottom:9px;left:70px;right:20px;height:12px;display:flex;gap:3px;align-items:center;justify-content:flex-start}
 .liveBars i{height:var(--bar);width:3px;flex:0 1 3px;border-radius:3px;background:#8ba362;animation:voiceBar 1.3s var(--beat) ease-in-out infinite alternate;opacity:.45}
-.liveVoice[data-speaking=true] .liveBars i{animation-duration:.35s;background:#5c822d;opacity:1}.liveVoice[data-speaking=true] .voiceOrb{background:#38551e}.liveVoice[data-speaking=true] .voiceOrb::after{animation-duration:.7s}
+.liveVoice[data-speaking=true] .liveBars i{animation-duration:.5s;background:#5c822d;opacity:1}
 @keyframes voiceBar{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
-@keyframes voiceBreath{50%{transform:scale(1.13);opacity:.2}}
 @keyframes voiceMessage{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes phoneLive{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-12deg)}96%{transform:rotate(8deg)}}
 .voicePoster{transform:none;inset:0;padding:28px;box-sizing:border-box}
 .voicePoster .bookingBadge{top:20px;right:20px;width:138px;padding:15px;box-shadow:none;border:0;border-radius:10px}
 .voicePoster>span{max-width:calc(100% - 156px)}
@@ -200,7 +193,7 @@
 @keyframes nodeWork{0%,65%,100%{border-color:#899b7140;box-shadow:none}25%{border-color:#c1fb0099;box-shadow:0 0 18px #b5ed491c}}
 .sceneContent:not([data-visible=true]) .automationVisual *{animation-play-state:paused}
 @media(max-width:1023px){.hero h1{font-size:clamp(30px,12.1cqw,82px)}.voicePoster{padding:22px}.voicePoster .bookingBadge{top:16px;right:16px;width:115px;padding:12px}.voicePoster>span{max-width:calc(100% - 125px)}.automationVisual{padding:26px 18px}.automationHeading>strong{font-size:25px}.automationNode span{font-size:8px}.automationSequence{gap:10px;font-size:9px}}
-@media(max-width:767px){.hero h1{font-size:clamp(30px,12.1cqw,61px)}.liveVoice{padding:20px 16px 40px;grid-template-columns:40px minmax(0,1fr) 20px;gap:12px}.voiceOrb{width:40px;height:40px}.voiceWords strong{font-size:13px}.voiceWords small{font-size:9px}.liveBars{left:68px;right:18px}.voicePoster .posterPhone{margin-top:34px}.automationHeading>strong{font-size:29px}.automationVisual{padding:28px 20px}.automationSequence{font-size:10px;padding-bottom:16px}}
+@media(max-width:767px){.hero h1{font-size:clamp(30px,12.1cqw,61px)}.liveVoice{padding:14px 15px 29px;grid-template-columns:38px minmax(0,1fr) 20px;gap:10px}.voiceOrb{width:38px;height:38px}.voiceWords strong{font-size:13px}.liveBars{left:63px;right:17px;bottom:8px;height:11px}.voicePoster .posterPhone{margin-top:34px}.automationHeading>strong{font-size:29px}.automationVisual{padding:28px 20px}.automationSequence{font-size:10px;padding-bottom:16px}}
 @media(max-width:374px){.voiceWords strong{font-size:11px}.voiceWords small{font-size:8px}.liveVoice{gap:9px;padding-inline:14px}.automationHeading>strong{font-size:25px}.voicePoster .bookingBadge{width:105px}.voicePoster>span{max-width:calc(100% - 115px)}}
 
 /* Editor chrome and one proportionally scaled canvas keep every node in frame. */

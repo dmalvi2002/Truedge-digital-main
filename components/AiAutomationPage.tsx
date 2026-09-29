@@ -117,25 +117,17 @@ function Waveform() {
 
 function LiveVoiceCard() {
   const [step, setStep] = useState(0);
-  const busy = useRef(false);
   useEffect(() => {
-    if (!step) return;
-    const timer = window.setTimeout(() => {
-      if (step === 3) { busy.current = false; setStep(0); }
-      else setStep(step + 1);
-    }, 1800);
-    return () => window.clearTimeout(timer);
-  }, [step]);
-  const play = () => { if (!busy.current) { busy.current = true; setStep(1); } };
+    const timer = window.setInterval(() => setStep(current => (current + 1) % 4), 2200);
+    return () => window.clearInterval(timer);
+  }, []);
   const messages = ["Hello. How can I help?", "I’m here. Tell me more.", "Let’s find a time for you.", "You’re all set. Speak soon."];
-  return <button type="button" className={styles.liveVoice} data-speaking={step > 0}
-    aria-label="Play visual AI conversation demo" onClick={play}
-    onPointerEnter={event => { if (event.pointerType !== "touch") play(); }}>
+  return <div className={styles.liveVoice} data-speaking="true" aria-label="Live visual AI conversation demo">
     <span className={styles.voiceOrb}><AudioLines size={25} /></span>
-    <span className={styles.voiceWords}><small><i />A voice for your business.</small><strong key={step}>{messages[step]}</strong></span>
+    <span className={styles.voiceWords}><strong key={step}>{messages[step]}</strong></span>
     <span className={styles.voicePhone}><Phone size={18} /></span>
     <span className={styles.liveBars} aria-hidden="true">{Array.from({length: 28}, (_, i) => <i key={i} style={{"--bar": `${(12 + Math.sin(i * .8) ** 2 * 88).toFixed(2)}%`, "--beat": `${(i * -.09).toFixed(2)}s`} as CSSProperties} />)}</span>
-  </button>;
+  </div>;
 }
 
 function AutomationVisual() {
