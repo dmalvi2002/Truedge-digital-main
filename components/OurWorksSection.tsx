@@ -359,13 +359,27 @@ export default function OurWorksSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20 pointer-events-none" />
               </div>
 
-              {/* Top Right: ONLY the Green Portfolio Pill (No extra info on the card!) */}
+              {/* Top Right: Sleek Rectangular Tech Portfolio Badge (Square Corners) */}
               <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 pointer-events-none">
-                <div className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-[#d2f83a]/30 flex items-center gap-2 shadow-lg group-hover:border-[#d2f83a]/70 group-hover:bg-black/80 transition-all duration-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#d2f83a] shadow-[0_0_8px_#d2f83a]" />
-                  <span className="text-xs font-semibold text-white tracking-wide">
-                    Portfolio
-                  </span>
+                <div className="relative">
+                  {/* Subtle Ambient Glow on Card Hover */}
+                  <div className="absolute -inset-0.5 bg-[#d2f83a]/25 rounded-md blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Main Rectangular Badge Container with Square / Crisp Corners */}
+                  <div className="relative h-8 sm:h-8.5 px-3 sm:px-3.5 rounded-[4px] bg-[#08090e]/90 backdrop-blur-xl border border-white/15 group-hover:border-[#d2f83a]/60 shadow-[0_4px_20px_rgba(0,0,0,0.6)] group-hover:shadow-[0_0_20px_rgba(210,248,58,0.25)] transition-all duration-300 flex items-center gap-2">
+                    
+                    {/* Tech Corner Accent Marks */}
+                    <span className="absolute -top-[1px] -left-[1px] w-1.5 h-1.5 border-t-2 border-l-2 border-[#d2f83a]" />
+                    <span className="absolute -bottom-[1px] -right-[1px] w-1.5 h-1.5 border-b-2 border-r-2 border-[#d2f83a]" />
+
+                    {/* All Text: Lime Coloured & Same Size */}
+                    <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#d2f83a]">
+                      Portfolio
+                    </span>
+                    <span className="text-xs font-mono font-bold text-[#d2f83a]">
+                      0{idx + 1}
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
