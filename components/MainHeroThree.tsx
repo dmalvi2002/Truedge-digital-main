@@ -273,7 +273,7 @@ export default function MainHeroThree() {
           <div data-hero-action className="mt-6 flex justify-center sm:mt-7 lg:justify-start">
             <Link
               href="/contact"
-              className={`${heroTwoStyles.cta} ${ctaFont.className} focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-[#d2f83a] motion-reduce:transition-none`}
+              className={`${heroTwoStyles.cta} ${ctaFont.className} !bg-[#c1fb00] hover:!bg-[#d3ff2b] focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-[#c1fb00] motion-reduce:transition-none`}
             >
               <span>Book a Free Strategy Call</span>
               <span className={`${heroTwoStyles.ctaIcon} motion-reduce:transition-none`} aria-hidden="true"><ArrowUpRight size={21} /></span>
