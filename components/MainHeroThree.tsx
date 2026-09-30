@@ -37,14 +37,14 @@ function HeroDoodles() {
     <>
       <svg data-doodle className="absolute top-[5%] md:top-[12%] -left-[5%] md:-left-[25%] z-20 w-[27%] rotate-240 text-[#c1fb00]" viewBox="0 0 180 160" fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-          <path data-doodle-stroke pathLength="1" d="M14 140C15 109 34 81 60 79C85 77 90 113 69 117C42 122 38 64 76 51C107 41 133 62 160 27" />
-          <path data-doodle-stroke pathLength="1" d="M139 25C147 25 154 25 162 24L159 47" />
+          <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M14 140C15 109 34 81 60 79C85 77 90 113 69 117C42 122 38 64 76 51C107 41 133 62 160 27" />
+          <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M139 25C147 25 154 25 162 24L159 47" />
         </g>
       </svg>
       <svg data-doodle className="absolute -top-[1%] -right-[1%] z-20 w-[17%] rotate-12 text-[#cbb3e8]" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path data-doodle-stroke pathLength="1" d="M48 8C48 29 59 42 84 44C60 47 49 61 46 86C44 62 31 49 9 46C34 43 43 32 48 8Z" />
-          <path data-doodle-stroke pathLength="1" d="M80 16 85 10M89 28 96 27" />
+          <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M48 8C48 29 59 42 84 44C60 47 49 61 46 86C44 62 31 49 9 46C34 43 43 32 48 8Z" />
+          <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M80 16 85 10M89 28 96 27" />
         </g>
       </svg>
     </>
@@ -102,15 +102,9 @@ export default function MainHeroThree() {
     // Content is visible in the server render and in reduced-motion mode.
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const opening = gsap.timeline({ defaults: { ease: "power3.out" } });
-      const desktop = window.matchMedia("(min-width: 1024px)").matches;
-      const scene = root.current?.querySelector("[data-portrait-scene]");
-      const film = desktop ? opening : gsap.timeline({
-        defaults: { ease: "power3.out" },
-        scrollTrigger: { trigger: scene, start: "top 92%", once: true },
-      });
 
-      // The aperture and slow dolly retain the previous cinematic reveal.
-      film
+      // The aperture, slow dolly, brand fold, and doodles reveal on all screen sizes
+      opening
         .from("[data-film-frame]", {
           clipPath: "inset(18% 36% 18% 36% round 24px)",
           duration: 1.8,
@@ -126,16 +120,12 @@ export default function MainHeroThree() {
           transformOrigin: "50% 72%", duration: 1.6,
           clearProps: "transform,opacity",
         }, 0.65)
-        .fromTo("[data-doodle-stroke]", {
-          strokeDasharray: 1, strokeDashoffset: 1,
-        }, {
-          strokeDashoffset: 0, duration: 1.1, stagger: 0.16,
-          ease: "power2.inOut", clearProps: "strokeDasharray,strokeDashoffset",
-        }, 1.45)
-        .from("[data-doodle]", {
-          rotation: "-=12", scale: 0.85, duration: 1.35,
-          ease: "back.out(1.25)", clearProps: "transform",
-        }, 1.4);
+        .to("[data-doodle-stroke]", {
+          strokeDashoffset: 0,
+          duration: 1.15,
+          stagger: 0.16,
+          ease: "power2.inOut",
+        }, 0.85);
 
       opening
         .from("[data-strategy-title]", {
@@ -157,8 +147,18 @@ export default function MainHeroThree() {
         }, 1.35)
         .from("[data-service-link]", {
           opacity: 0, y: 12, duration: 0.65, stagger: 0.08,
-          clearProps: "opacity,transform",
-        }, 1.55);
+          clearProps: "opacity, transform",
+        }, 1.55)
+        .set("[data-growth-wrap]", { overflow: "visible" }, 1.85)
+        .fromTo("[data-growth-reveal]",
+          { clipPath: "inset(-8px 100% -8px 0)" },
+          {
+            clipPath: "inset(-8px 0% -8px 0)",
+            duration: 1.35,
+            ease: "power2.inOut",
+          },
+          ">+=0.4"
+        );
     });
 
     // Separate wrappers keep the entrance and reversible scroll story independent.
@@ -226,29 +226,51 @@ export default function MainHeroThree() {
         COLOR_INTENSITY={2.4}
       />
       <div className="relative mx-auto grid w-full max-w-[1440px] items-center gap-8 sm:gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-3">
-        <div data-copy-depth className="relative z-30">
+        <div data-copy-depth className="relative z-30 text-center lg:text-left">
           <p data-strategy-title className={`${headline.className} mb-5 text-[clamp(1.25rem,5.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.035em] text-[#d9cbed] [word-spacing:0.08em] lg:mb-6 lg:text-[clamp(1.65rem,2.25vw,2.25rem)]`}>
             From Strategy to Scale
           </p>
           <h1
             id="main-hero-title"
-            aria-label="Your One-Stop Partner for Digital Growth"
+            aria-label="Your One-Stop Partner for Digital Growth."
             className={`${headline.className} text-[clamp(1.85rem,7.6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.055em] lg:text-[clamp(2.85rem,5.25vw,5.5rem)]`}
           >
-            {["Your One-Stop", "Partner for", "Digital Growth"].map((line, index) => (
-              <span key={line} aria-hidden="true" className="-mb-[0.06em] block overflow-hidden pb-[0.15em] pr-[0.06em] [perspective:900px]">
-                <span data-title-line className={`flex gap-[0.22em] ${index === 2 ? "text-[#c1fb00]" : ""}`}>
-                  {line.split(" ").map((word, wordIndex) => <span key={word}>{word}{wordIndex === 0 ? " " : ""}</span>)}
+            {["Your One-Stop", "Partner for", "Digital Growth."].map((line, index) => (
+              <span
+                key={line}
+                aria-hidden="true"
+                data-growth-wrap={index === 2 ? "" : undefined}
+                className={`block overflow-hidden pr-[0.06em] [perspective:900px] ${
+                  index === 2 ? "-mb-[0.24em] pb-[0.38em]" : "-mb-[0.06em] pb-[0.15em]"
+                }`}
+              >
+                <span data-title-line className={`flex justify-center gap-[0.22em] lg:justify-start ${index === 2 ? "text-[#c1fb00]" : ""}`}>
+                  {index === 2 ? (
+                    <span className="relative inline-block" data-growth-word>
+                      <span className="inline-block pt-[0.06em] pb-[0.24em] text-[#c1fb00]">
+                        Digital Growth.
+                      </span>
+                      <span
+                        data-growth-reveal
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -left-[0.18em] -right-[0.18em] inset-y-0 inline-block rounded-[4px] bg-[#c1fb00] pl-[0.18em] pr-[0.18em] pt-[0.06em] pb-[0.24em] text-[#06070b] [clip-path:inset(-8px_100%_-8px_0)] motion-reduce:hidden"
+                      >
+                        Digital Growth.
+                      </span>
+                    </span>
+                  ) : (
+                    line.split(" ").map((word, wordIndex) => <span key={word}>{word}{wordIndex === 0 ? " " : ""}</span>)
+                  )}
                 </span>
               </span>
             ))}
           </h1>
-          <p data-supporting-copy className="mt-5 max-w-[530px] text-[15px] leading-[1.8] text-[#bfc3ba] sm:text-[16px] lg:mt-6 lg:text-[17px]">
+          <p data-supporting-copy className="mx-auto mt-5 max-w-[530px] text-[15px] leading-[1.8] text-[#bfc3ba] sm:text-[16px] lg:mx-0 lg:mt-6 lg:text-[17px]">
             Websites that earn trust. Marketing that brings enquiries.
             AI that takes busywork off your plate. We bring it all together,
             so you can focus on growing your business.
           </p>
-          <div data-hero-action className="mt-6 sm:mt-7">
+          <div data-hero-action className="mt-6 flex justify-center sm:mt-7 lg:justify-start">
             <Link
               href="/contact"
               className={`${heroTwoStyles.cta} ${ctaFont.className} focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-[#d2f83a] motion-reduce:transition-none`}
@@ -257,7 +279,7 @@ export default function MainHeroThree() {
               <span className={`${heroTwoStyles.ctaIcon} motion-reduce:transition-none`} aria-hidden="true"><ArrowUpRight size={21} /></span>
             </Link>
           </div>
-          <nav aria-label="Explore our services" className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 sm:mt-6 sm:gap-x-6">
+          <nav aria-label="Explore our services" className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 sm:mt-6 sm:gap-x-6 lg:justify-start">
             {services.map((service) => (
               <Link
                 key={service.href}
