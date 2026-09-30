@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/photos/7693685/pexels-photo-7693685.jpeg",
+      },
+      {
+        protocol: "https",
         hostname: "res.cloudinary.com",
       },
       {

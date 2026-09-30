@@ -1,4 +1,4 @@
-import MainHeroTwo from "@/components/MainHeroTwo";
+import MainHeroThree from "@/components/MainHeroThree";
 import ClientLogosSection from "@/components/ClientLogosSection";
 import PasSection from "@/components/PasSection";
 import ServicesListSection from "@/components/ServicesListSection";
@@ -13,8 +13,12 @@ import { homeFaqs } from "@/data/homeFaqs";
 export default function Home() {
   return (
     <div>
-      <MainHeroTwo />
-      <ClientLogosSection />
+      <MainHeroThree />
+      <div data-hero-following className="overflow-hidden bg-[#06070b]">
+        <div className="bg-white">
+          <ClientLogosSection />
+        </div>
+      </div>
       <PasSection />
       <ServicesListSection />
       <OurWorksSection />
