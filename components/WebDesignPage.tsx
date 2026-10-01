@@ -4,13 +4,14 @@ import { useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans } from "next/font/google";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Globe2, Layers3, LayoutTemplate, Link2, MousePointer2, Plus, Search, ShoppingBag } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Globe2, LayoutTemplate, Link2, MousePointer2, Plus, Search, ShoppingBag } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import projectImage from "@/public/assets/web-design-project.webp";
 import sanchezImage from "@/public/assets/web-design-sanchez.webp";
+import MainCTA from "@/components/MainCTA";
 import heroStyles from "./MainHeroTwo.module.css";
 import styles from "./WebDesignPage.module.css";
 
@@ -23,13 +24,21 @@ const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] }
 const technologies = [
   { file: "figma", name: "Figma" },
   { file: "nextdotjs", name: "Next.js" },
+  { file: "tailwind-css", name: "Tailwind CSS" },
   { file: "gsap", name: "GSAP" },
+  { file: "stripe-link", name: "Stripe" },
   { file: "supabase", name: "Supabase" },
+  { file: "postgresql-badge", name: "PostgreSQL" },
+  { file: "firebase-studio", name: "Firebase" },
+  { file: "aws", name: "AWS" },
+  { file: "googlecloud", name: "Google Cloud" },
+  { file: "cloudflare", name: "Cloudflare" },
   { file: "github", name: "GitHub" },
   { file: "openai", name: "OpenAI" },
-  { file: "postgresql-badge", name: "PostgreSQL" },
-  { file: "gcp-api", name: "API integrations" },
+  { file: "claude", name: "Claude" },
+  { file: "n8n", name: "n8n" },
   { file: "python", name: "Python" },
+  { file: "gcp-api", name: "API integrations" },
 ];
 
 const services = [
@@ -61,8 +70,16 @@ function WebsiteScene() {
   return <div className={styles.scene} aria-label="Website design and development preview">
     <div className={styles.sceneDepth} data-scene-depth>
       <div className={styles.designSheet} data-assemble>
-        <div className={styles.sheetTop}><Image src="/assets/tech/figma.svg" alt="" width={16} height={24} /><span>Designed with you.</span><Layers3 size={17} /></div>
+        <div className={styles.sheetTop}>
+          <Image src="/assets/tech/figma.svg" alt="" width={16} height={24} />
+          <span>Designed with you.</span>
+        </div>
         <div className={styles.sheetWords}>Review your design<br /><em>before we build.</em></div>
+        <div className={`${styles.avatarCursor} ${styles.avatarCursorTwo}`} data-avatar-cursor="developer" aria-hidden="true">
+          <MousePointer2 size={19} fill="currentColor" />
+          <Image src="/why-truedge-strategist.jpg" alt="" width={34} height={34} />
+          <span>Developer #13</span>
+        </div>
       </div>
       <div className={styles.browserPosition} data-browser-scroll>
         <div className={styles.browser} data-browser-reveal>
@@ -72,8 +89,11 @@ function WebsiteScene() {
             <p>Show what you do, answer their questions and make getting in touch easy.</p>
             <ul><li><Check size={15} /> Clearly explain your services</li><li><Check size={15} /> Make enquiries and bookings simple</li><li><Check size={15} /> Update your content as you grow</li></ul>
             <div className={styles.collaborators} aria-hidden="true">
-              <div className={`${styles.avatarCursor} ${styles.avatarCursorOne}`} data-avatar-cursor><MousePointer2 size={19} fill="currentColor" /><Image src="/advisor-avatar.jpg" alt="" width={34} height={34} /><span>Your feedback</span></div>
-              <div className={`${styles.avatarCursor} ${styles.avatarCursorTwo}`} data-avatar-cursor><MousePointer2 size={19} fill="currentColor" /><Image src="/why-truedge-strategist.jpg" alt="" width={34} height={34} /><span>Our team</span></div>
+              <div className={`${styles.avatarCursor} ${styles.avatarCursorOne}`} data-avatar-cursor="designer">
+                <MousePointer2 size={19} fill="currentColor" />
+                <Image src="/advisor-avatar.jpg" alt="" width={34} height={34} />
+                <span>Designer #1</span>
+              </div>
             </div>
           </div>
         </div>
@@ -83,11 +103,9 @@ function WebsiteScene() {
 }
 
 function TechStackSection() {
-  const [paused, setPaused] = useState(false);
-  return <section className={styles.techSection} aria-labelledby="tech-stack-title" data-paused={paused}>
+  return <section className={styles.techSection} aria-labelledby="tech-stack-title">
     <div className={`${styles.container} ${styles.techHeading}`}>
       <div><h2 id="tech-stack-title">Tech Stack We Use</h2><p>We choose the right tools for your website, so it’s easy to use, manage and grow.</p></div>
-      <button type="button" className={styles.motionControl} onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? "Play logos" : "Pause logos"}</button>
     </div>
     <div className={styles.techMarquee}>
       <div className={styles.techTrack}>
@@ -131,10 +149,12 @@ export default function WebDesignPage() {
   const [activeService, setActiveService] = useState(0);
 
   useGSAP(() => {
+    let active = true;
     const media = gsap.matchMedia();
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-      intro.from("[data-hero-line]", { yPercent: 112, rotate: 3, duration: 1.15, stagger: .12 }, .12)
+      intro.from("[data-hero-kicker]", { y: 22, opacity: 0, duration: .85 }, .08)
+        .from("[data-hero-line]", { yPercent: 112, rotate: 3, duration: 1.15, stagger: .14 }, .18)
         .from("[data-hero-copy]", { y: 24, opacity: 0, duration: .85, stagger: .1 }, .65)
         .from("[data-browser-reveal]", { clipPath: "inset(49.8% 0% 49.8% 0% round 10px)", scale: .88, duration: 1.65, ease: "expo.inOut" }, .05)
         .from("[data-assemble]", { y: 65, opacity: 0, rotate: -8, duration: 1.25, stagger: .12 }, .75);
@@ -144,7 +164,74 @@ export default function WebDesignPage() {
         .to("[data-browser-scroll]", { rotate: 0, y: -65, ease: "none" }, 0)
         .to("[data-scene-depth]", { y: -35, ease: "none" }, 0);
 
-      gsap.to("[data-avatar-cursor]", { x: (index) => index ? -18 : 22, y: (index) => index ? 12 : -16, rotation: (index) => index ? -3 : 3, duration: 2.4, ease: "sine.inOut", stagger: .35, repeat: -1, yoyo: true });
+      // Dynamic polygonal path movement: Hexagon (6-sided) and Octagon (8-sided)
+      const animateDynamicPolygon = (
+        selector: string,
+        sides: 6 | 8,
+        baseRx: number,
+        baseRy: number,
+        baseDuration: number,
+        clockwise = true,
+        startVertex = 0
+      ) => {
+        const el = root.current?.querySelector<HTMLElement>(selector);
+        if (!el) return;
+
+        const isMobile = window.innerWidth < 650;
+        const rx = baseRx * (isMobile ? 0.72 : 1);
+        const ry = baseRy * (isMobile ? 0.72 : 1);
+        const step = (Math.PI * 2) / sides;
+        const dir = clockwise ? 1 : -1;
+        let vertex = startVertex;
+
+        const nextMove = () => {
+          if (!active) return;
+
+          vertex = (vertex + 1) % sides;
+          const angle = dir * vertex * step;
+
+          // Subtle organic jitter around each polygon vertex
+          const jitterX = gsap.utils.random(-2.2, 2.2);
+          const jitterY = gsap.utils.random(-1.8, 1.8);
+          const targetX = Math.round((rx * Math.cos(angle) + jitterX) * 10) / 10;
+          const targetY = Math.round((ry * Math.sin(angle) + jitterY) * 10) / 10;
+
+          // Tangent angle determines natural cursor rotation with dynamic tilt
+          const tangent = angle + (clockwise ? Math.PI / 2 : -Math.PI / 2);
+          const targetRot = Math.round((Math.sin(tangent) * 4.5 + gsap.utils.random(-1, 1)) * 10) / 10;
+
+          // Dynamic segment speed and occasional natural hesitation at corners
+          const segDuration = gsap.utils.random(baseDuration * 0.88, baseDuration * 1.18);
+          const pause = Math.random() < 0.28 ? gsap.utils.random(0.06, 0.2) : 0;
+
+          gsap.to(el, {
+            x: targetX,
+            y: targetY,
+            rotation: targetRot,
+            duration: segDuration,
+            delay: pause,
+            ease: "power1.inOut",
+            onComplete: nextMove,
+          });
+        };
+
+        // Initialize at starting vertex
+        const startAngle = dir * vertex * step;
+        gsap.set(el, {
+          x: Math.round(rx * Math.cos(startAngle) * 10) / 10,
+          y: Math.round(ry * Math.sin(startAngle) * 10) / 10,
+          rotation: 0,
+        });
+
+        nextMove();
+      };
+
+      // Purple cursor ("Designer #1") traces a dynamic 6-sided Hexagon (clockwise)
+      animateDynamicPolygon('[data-avatar-cursor="designer"]', 6, 26, 17, 1.1, true, 0);
+
+      // Green cursor ("Developer #13") traces a dynamic 8-sided Octagon (counter-clockwise)
+      animateDynamicPolygon('[data-avatar-cursor="developer"]', 8, 22, 16, 0.95, false, 2);
+
       gsap.to("[data-live-cursor]", { x: 10, y: -8, rotation: 4, duration: 1.7, ease: "sine.inOut", repeat: -1, yoyo: true });
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
@@ -160,7 +247,14 @@ export default function WebDesignPage() {
       ScrollTrigger.create({ trigger: `#${service.id}`, start: "top 58%", end: "bottom 58%", onEnter: () => setActiveService(index), onEnterBack: () => setActiveService(index) });
     });
     document.fonts.ready.then(() => { if (root.current) ScrollTrigger.refresh(); });
-    return () => { media.revert(); scrollTween.current?.kill(); };
+    return () => {
+      active = false;
+      media.revert();
+      scrollTween.current?.kill();
+      if (root.current) {
+        gsap.killTweensOf(root.current.querySelectorAll("[data-avatar-cursor]"));
+      }
+    };
   }, { scope: root });
 
   useGSAP(() => {
@@ -187,14 +281,19 @@ export default function WebDesignPage() {
     <section ref={hero} className={styles.hero} aria-labelledby="web-hero-title">
       <div className={`${styles.container} ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
-          <h1 id="web-hero-title"><span className={styles.lineMask}><span data-hero-line>A better</span></span><span className={styles.lineMask}><span data-hero-line className={styles.lime}>website.</span></span><span className={styles.lineMask}><span data-hero-line>A bigger future.</span></span></h1>
+          <p className={styles.heroKicker} data-hero-kicker>Good design gets attention</p>
+          <h1 id="web-hero-title" className={styles.heroHeadline}>
+            <span className={styles.lineMask}><span data-hero-line className={styles.heroTitleLineWhite}>A Great Website</span></span>
+            <span className={styles.lineMask}><span data-hero-line className={styles.heroTitleLineLime}>Earns The Next Click.</span></span>
+          </h1>
           <p className={styles.heroDescription} data-hero-copy>Give your business a website that looks the part, makes things easy and turns more visits into conversations. We take care of everything, from the first design to launch day.</p>
           <div className={styles.heroActions} data-hero-copy><StrategyCTA /><a href="#website-services" onClick={(event) => goTo(event, "website-services")} className={styles.textLink}>Explore our services <ArrowDown size={17} /></a></div>
-          <div className={styles.heroPromises} data-hero-copy><span>Made for your business</span><span>Built for every screen</span></div>
         </div>
         <WebsiteScene />
       </div>
-      <div className={`${styles.container} ${styles.heroBottom}`} data-hero-copy><p>Good design gets attention.<br /><strong>A great website earns the next click.</strong></p><a href="#selected-work" onClick={(event) => goTo(event, "selected-work")}>See what we’ve made <ArrowUpRight size={19} /></a></div>
+      <div className={`${styles.container} ${styles.heroBottom}`} data-hero-copy>
+        <a href="#selected-work" onClick={(event) => goTo(event, "selected-work")}>See what we’ve made <ArrowUpRight size={19} /></a>
+      </div>
     </section>
 
     <TechStackSection />
@@ -241,7 +340,7 @@ export default function WebDesignPage() {
       ].map((step) => <div className={styles.processStep} key={step.title} data-reveal><step.icon size={28} strokeWidth={1.4} /><h3>{step.title}</h3><p>{step.copy}</p></div>)}</div>
     </div></section>
 
-    <section className={styles.closing} aria-labelledby="closing-title"><div className={styles.container} data-reveal><div className={styles.closingIcon} aria-hidden="true"><ArrowUpRight strokeWidth={1} /></div><h2 id="closing-title">Your next chapter<br />starts with a <span>better website.</span></h2><p>Have a new idea or a website that’s ready for a rethink?<br />Let’s talk about what it could become.</p><StrategyCTA /></div></section>
+    <MainCTA id="web-design-closing" />
 
     <section className={styles.faq} aria-labelledby="faq-title"><div className={`${styles.container} ${styles.faqGrid}`}><div data-reveal><h2 id="faq-title">A few things<br />you might be<br /><span>wondering.</span></h2><p>Still have a question?<br /><Link href="/contact" className={styles.textLink}>Let’s talk <ArrowUpRight size={18} /></Link></p></div><div>{faqs.map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={21} /><ChevronDown size={21} /></summary><p>{answer}</p></details>)}</div></div></section>
   </div>;

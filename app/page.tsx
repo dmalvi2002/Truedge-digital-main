@@ -6,7 +6,7 @@ import OurWorksSection from "@/components/OurWorksSection";
 import WhyTruedgeSection from "@/components/WhyTruedgeSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialSection from "@/components/TestimonialSection";
-import CtaSection from "@/components/CtaSection";
+import MainCTA from "@/components/MainCTA";
 import FaqSection from "@/components/FaqSection";
 import { homeFaqs } from "@/data/homeFaqs";
 
@@ -25,7 +25,7 @@ export default function Home() {
       <WhyTruedgeSection />
       <ProcessSection />
       <TestimonialSection />
-      <CtaSection />
+      <MainCTA />
       <FaqSection faqs={homeFaqs} />
     </div>
   );
