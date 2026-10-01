@@ -111,6 +111,9 @@ export default function Footer() {
                   Marketing
                 </Link>
               </li>
+              <li>
+                <Link href="/pricing" className="hover:text-violet-400 transition-colors duration-200">Pricing</Link>
+              </li>
             </ul>
           </div>
 

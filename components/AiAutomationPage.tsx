@@ -20,6 +20,7 @@ const chapters = [
   { id: "ai-call-agents", name: "AI call agents", title: "Every call.", accent: "A good conversation.", intro: "Your next customer could call while you’re on a job, in a meeting or finished for the day. Give them a helpful voice that knows what to do next.", points: ["Answer enquiries in your business’s voice", "Qualify leads and book appointments", "Hand the conversation to your team when needed"], outcome: "More conversations. Fewer missed opportunities." },
   { id: "agentic-solutions", name: "Agentic AI solutions", title: "Give it a goal.", accent: "Watch work move.", intro: "Go beyond a single automated reply. We build agents that understand a task, find the right information and work across your tools to complete it.", points: ["Research, qualify and route new opportunities", "Work with your documents and business knowledge", "Keep important decisions with your people"], outcome: "From a new request to a clear next step." },
   { id: "workflow-automation", name: "Workflow automation", title: "Join the dots.", accent: "Get your time back.", intro: "The same details shouldn’t need typing into three different systems. Connect your everyday tools so information flows and follow-ups happen.", points: ["Connect your inbox, CRM, calendar and forms", "Automate handovers, reminders and routine admin", "Keep a clear record of what happened and why"], outcome: "Less chasing. Less copying. More moving forward." },
+  { id: "crm-management", name: "CRM management", title: "Every relationship.", accent: "One clear view.", intro: "Keep your contacts, conversations and opportunities in one place. We set up and manage your CRM around how your team works, so every enquiry has an owner and every follow-up has a next step.", points: ["Organise contacts, deal stages and customer history", "Assign enquiries and automate follow-up reminders", "Connect your forms, email and AI agents to your CRM"] },
 ];
 
 const faqs = [
@@ -169,6 +170,24 @@ function ServiceScene({ stage }: { stage: number }) {
     </div>
     <div className={styles.sceneContent} data-visible={stage === 2}>
       <div className={styles.flowPoster}><span>Everything, a little more connected.</span><h3>One enquiry.<br /><em>All in sync.</em></h3><div className={styles.flowSteps}>{[{ icon: Mail, label: "Enquiry received", detail: "From your website" }, { icon: Users, label: "Contact created", detail: "Organised in your CRM" }, { icon: CalendarDays, label: "Follow-up ready", detail: "The right person, notified" }].map(({ icon: Icon, label, detail }) => <div key={label}><span><Icon size={20} /></span><div><strong>{label}</strong><small>{detail}</small></div><Check size={15} /></div>)}</div><span className={styles.flowFoot}>Less admin. More room to grow. <ArrowUpRight size={19} /></span></div>
+    </div>
+    <div className={styles.sceneContent} data-visible={stage === 3}>
+      <div className={styles.crmPanel}>
+        <div className={styles.crmHeader}><Users size={20}/><strong>Sales pipeline</strong><span>CRM</span></div>
+        <div className={styles.crmBody}>
+          <div className={styles.crmBoard}>
+            {[{stage:"New lead",name:"Jamie Davies",company:"Website enquiry",task:"Assign owner"},{stage:"Proposal",name:"Alex Morgan",company:"Website redesign",task:"Follow up"},{stage:"Won",name:"Sam Taylor",company:"Marketing support",task:"Start onboarding"}].map((deal,i)=><div className={styles.crmColumn} key={deal.stage}>
+              <div className={styles.crmStage}><span>{deal.stage}</span><span>1</span></div>
+              <div className={styles.crmDeal} data-selected={i===1}><span className={styles.crmDealIcon}>{i===2?<Check size={15}/>:<FileText size={15}/>}</span><strong>{deal.name}</strong><span>{deal.company}</span><small>{deal.task}<ArrowUpRight size={11}/></small></div>
+            </div>)}
+          </div>
+          <div className={styles.crmRecord}>
+            <div className={styles.crmRecordHeading}><span>AM</span><div><strong>Alex Morgan</strong><small>Website redesign</small></div><span className={styles.crmRecordStatus}>Proposal sent</span></div>
+            <div className={styles.crmRecordFields}><div><span>Contact owner</span><strong><Users size={12}/>Sales team</strong></div><div><span>Next activity</span><strong><CalendarDays size={12}/>Follow-up call</strong></div></div>
+            <div className={styles.crmActivity}><Mail size={15}/><div><strong>Proposal shared by email</strong><span>Conversation saved to the contact.</span></div><Check size={14}/></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>;
 }

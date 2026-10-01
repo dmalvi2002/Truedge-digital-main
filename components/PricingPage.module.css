@@ -1,0 +1,134 @@
+.page { --paper: #f2f2e9; --lime: #c1fb00; --lavender: #d4c3ed; background: #08090c; color: var(--paper); overflow: clip; }
+.container { width: min(1380px, calc(100% - 112px)); margin-inline: auto; }
+.page h1, .page h2, .page h3 { font-family: var(--pricing-display), sans-serif; font-weight: 600; }
+.page a:focus-visible, .page summary:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.page em { font-style: normal; }
+.hero { padding: 58px 0 52px; }
+.opening { display: grid; grid-template-columns: 1.65fr 1fr; gap: 65px; align-items: end; margin-bottom: 55px; }
+.opening h1 { font-size: clamp(46px, 4.65vw, 72px); letter-spacing: -.045em; word-spacing: .045em; line-height: 1.15; }
+.mask { display: block; overflow: hidden; padding-bottom: 8px; margin-bottom: -8px; }
+.mask > span { display: block; transform-origin: left bottom; }
+.opening h1 em { color: var(--lime); }
+.introduction { padding-bottom: 6px; max-width: 340px; }
+.introduction p { font-size: 19px; line-height: 1.65; color: #d7d7dd; }
+.introduction > span { display: block; color: #8e929c; font-size: 14px; line-height: 1.7; margin-top: 16px; }
+.pricingGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 19px; }
+.priceCard { padding: 30px; border-radius: 18px; color: #21231c; height: 100%; }
+.priceCard > div { display: flex; flex-direction: column; height: 100%; }
+.cream { background: var(--paper); }
+.lavender { background: var(--lavender); }
+.lime { background: var(--lime); }
+.cardHeading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.cardHeading h2 { font-size: 25px; letter-spacing: -.025em; word-spacing: .055em; }
+.cardHeading svg { flex-shrink: 0; }
+.amount { margin-top: 36px; margin-bottom: 20px; }
+.amount > span { font-size: 13px; color: #565c4b; display: block; margin-bottom: 3px; }
+.amount strong { display: flex; align-items: baseline; font-family: var(--pricing-display), sans-serif; font-size: clamp(65px, 6.2vw, 90px); font-weight: 500; line-height: 1.1; letter-spacing: -.075em; }
+.amount strong > span { font-size: .54em; align-self: start; padding-top: 9px; margin-right: 8px; letter-spacing: -.03em; }
+.cardDescription { max-width: 290px; font-size: 15px; line-height: 1.7; min-height: 78px; color: #484d3f; margin-bottom: 26px; }
+.quoteLink { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; background: #20231a; color: #f6f6ef; padding: 14px 15px 14px 18px; border-radius: 40px; font-size: 12px; transition: background .2s; }
+.quoteLink svg { flex-shrink: 0; transition: transform .3s; }
+.quoteLink:hover { background: #3b422e; }
+.quoteLink:hover svg { transform: translate(2px, -2px); }
+.priceNote { font-size: 12px; color: #a4a6ae; margin-top: 24px; text-align: center; line-height: 1.7; }
+.services { padding: 80px 0 95px; }
+.sectionHeading { display: flex; align-items: end; justify-content: space-between; gap: 50px; margin-bottom: 55px; }
+.page section:not(.hero) h2 { font-size: clamp(36px, 3.7vw, 57px); line-height: 1.18; letter-spacing: -.035em; word-spacing: .06em; }
+.sectionHeading em { color: var(--lavender); }
+.sectionHeading > p { max-width: 365px; font-size: 15px; line-height: 1.85; color: #9ea0aa; }
+.serviceGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 55px; }
+.serviceGrid article { display: flex; flex-direction: column; }
+.serviceGrid article > svg { color: var(--lavender); margin-bottom: 23px; }
+.serviceGrid h3 { font-size: 24px; line-height: 1.4; letter-spacing: -.02em; word-spacing: .06em; max-width: 290px; }
+.serviceGrid ul { display: grid; gap: 14px; margin-top: 24px; margin-bottom: 26px; }
+.serviceGrid li { display: flex; gap: 10px; font-size: 13px; color: #afb1b9; line-height: 1.7; }
+.serviceGrid li svg { flex-shrink: 0; margin-top: 4px; color: var(--lime); }
+.serviceGrid a { margin-top: auto; width: fit-content; display: inline-flex; align-items: center; gap: 15px; padding: 8px 0; font-size: 13px; }
+.serviceGrid a:hover { color: var(--lime); }
+.scope { background: var(--paper); color: #24271f; padding: 90px 0; border-radius: 25px 25px 0 0; }
+.scopeGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+.scope em { color: #787e69; }
+.scopeGrid > div > p { max-width: 360px; color: #626659; font-size: 16px; line-height: 1.8; margin-top: 24px; }
+.scopeSteps { display: grid; gap: 31px; }
+.scopeSteps h3 { font-size: 20px; letter-spacing: -.015em; word-spacing: .045em; }
+.scopeSteps p { margin-top: 12px; color: #626659; font-size: 14px; line-height: 1.85; }
+.questions { padding: 85px 0; background: #e7e9df; color: #24271f; }
+.faqGrid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 85px; }
+.questions h2 em { color: #777e67; }
+.questions details { background: #f5f6ee; padding: 0 23px; margin-bottom: 9px; border-radius: 11px; }
+.questions summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 21px 0; font-size: 15px; font-weight: 500; list-style: none; cursor: pointer; }
+.questions summary::-webkit-details-marker { display: none; }
+.questions summary svg { flex-shrink: 0; transition: transform .2s; }
+.questions details[open] summary svg { transform: rotate(45deg); }
+.questions details p { padding-bottom: 23px; font-size: 14px; line-height: 1.85; color: #626659; }
+.closing { padding: 85px 0 95px; }
+.page .closing h2 { font-size: clamp(42px, 5vw, 74px); }
+.closing em { color: var(--lime); }
+.closing p { margin: 25px 0 30px; color: #a4a6af; font-size: 16px; line-height: 1.8; }
+@media (max-width: 1199px) {
+  .container { width: calc(100% - 72px); }
+  .opening { gap: 35px; }
+  .introduction p { font-size: 16px; }
+  .priceCard { padding: 24px; }
+  .cardHeading h2 { font-size: 22px; }
+  .quoteLink { font-size: 11px; padding-inline: 13px; }
+  .serviceGrid { gap: 30px; }
+  .serviceGrid h3 { font-size: 22px; }
+  .scopeGrid, .faqGrid { gap: 55px; }
+}
+@media (max-width: 900px) {
+  .opening { grid-template-columns: 1fr; gap: 25px; }
+  .opening h1 { font-size: 58px; }
+  .introduction { max-width: 550px; display: flex; gap: 25px; align-items: start; }
+  .introduction > span { margin: 0; min-width: 155px; font-size: 12px; }
+  .priceCard { padding: 23px 19px; }
+  .pricingGrid { gap: 12px; }
+  .cardHeading h2 { font-size: 19px; }
+  .cardHeading svg { width: 20px; }
+  .amount strong { font-size: 64px; }
+  .cardDescription { font-size: 13px; }
+  .quoteLink { font-size: 10px; gap: 8px; }
+  .quoteLink svg { width: 16px; }
+  .sectionHeading { align-items: start; }
+  .sectionHeading > p { max-width: 260px; }
+  .serviceGrid h3 { font-size: 19px; }
+  .scopeGrid { gap: 35px; }
+  .faqGrid { grid-template-columns: 1fr; gap: 30px; }
+}
+@media (max-width: 650px) {
+  .container { width: calc(100% - 40px); }
+  .hero { padding: 30px 0 25px; }
+  .opening { margin-bottom: 32px; gap: 23px; }
+  .opening h1 { font-size: clamp(36px, 10.2vw, 58px); letter-spacing: -.035em; }
+  .introduction { display: block; }
+  .introduction p { font-size: 15px; }
+  .introduction > span { margin-top: 12px; font-size: 13px; }
+  .introduction br { display: none; }
+  .pricingGrid { grid-template-columns: 1fr; gap: 17px; }
+  .priceCard { padding: 26px; border-radius: 14px; }
+  .cardHeading h2 { font-size: 25px; }
+  .cardHeading svg { width: 26px; }
+  .amount { margin-top: 26px; margin-bottom: 17px; }
+  .amount strong { font-size: 82px; }
+  .cardDescription { font-size: 15px; min-height: 0; margin-bottom: 23px; max-width: none; }
+  .quoteLink { font-size: 12px; padding: 15px 17px; }
+  .quoteLink svg { width: 20px; }
+  .priceNote { text-align: left; }
+  .services { padding: 50px 0 60px; }
+  .sectionHeading { flex-direction: column; gap: 22px; margin-bottom: 37px; }
+  .sectionHeading > p { max-width: none; font-size: 14px; }
+  .serviceGrid { grid-template-columns: 1fr; gap: 36px; }
+  .serviceGrid h3 { font-size: 23px; max-width: 320px; }
+  .serviceGrid article > svg { margin-bottom: 17px; }
+  .serviceGrid ul { margin-block: 18px; }
+  .scope { padding: 55px 0; border-radius: 18px 18px 0 0; }
+  .scopeGrid { grid-template-columns: 1fr; gap: 35px; }
+  .scopeGrid > div > p { font-size: 15px; }
+  .scopeSteps h3 { font-size: 19px; }
+  .questions { padding: 55px 0; }
+  .questions details { padding-inline: 18px; }
+  .questions summary { font-size: 14px; }
+  .closing { padding: 60px 0; }
+  .closing p { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .page *, .page *::before, .page *::after { transition: none !important; } }

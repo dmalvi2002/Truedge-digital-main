@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Sora } from "next/font/google";
+import { Sora, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowDown, ArrowUpRight, Check, Search, Target, FileText, Clapperboard, PanelsTopLeft, MousePointerClick, ContactRound, Workflow, Plus, MessageSquare, Mail } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,10 +11,10 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import styles from "./MarketingPage.module.css";
 import heroStyles from "./MainHeroTwo.module.css";
-import ScrollRippleTitle from "./ScrollRippleTitle";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const display = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--marketing-display" });
 
 const chapters = [
   {
@@ -136,7 +136,7 @@ export default function MarketingPage() {
     return () => { media.revert(); scrollTween.current?.kill(); };
   }, { scope: root });
 
-  return <div ref={root} className={`${styles.page} ${sora.className}`}>
+  return <div ref={root} className={`${styles.page} ${sora.className} ${display.variable}`}>
     <section className={styles.hero} data-marketing-hero aria-labelledby="marketing-title">
       <div className={styles.heroImage} data-hero-image><Image src="/team-collaboration.jpg" alt="" fill priority sizes="100vw" className={styles.photo} /></div>
       <div className={styles.heroShade} />
@@ -152,7 +152,7 @@ export default function MarketingPage() {
 
     <section className={styles.intro} aria-labelledby="marketing-intro">
       <div className={styles.container}>
-        <div className={styles.headingRow}><ScrollRippleTitle id="marketing-intro" text="Not just more marketing. More of it working together." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p data-reveal>A great ad needs a useful landing page. A new enquiry needs a timely reply. We connect the whole journey, so your marketing has somewhere to go.</p></div>
+        <div className={styles.headingRow}><h2 id="marketing-intro" data-reveal>Not just more marketing.<br /><span>More of it working together.</span></h2><p data-reveal>A great ad needs a useful landing page. A new enquiry needs a timely reply. We connect the whole journey, so your marketing has somewhere to go.</p></div>
         <div className={styles.journey}>
           {chapters.map((chapter, index) => { const Icon = [Search, FileText, MessageSquare, Workflow][index]; return <a href={`#${chapter.id}`} onClick={event => scrollToSection(event, chapter.id)} key={chapter.id} data-reveal><Icon size={30} strokeWidth={1.4} aria-hidden="true" /><strong>{chapter.label}</strong><p>{["Reach the people looking for you.", "Show why you’re the right choice.", "Make it easy to get in touch.", "Keep every opportunity moving."][index]}</p><ArrowDown className={styles.journeyArrow} size={21} aria-hidden="true" /></a>; })}
         </div>
@@ -179,7 +179,7 @@ export default function MarketingPage() {
 
     <section className={styles.approach} data-approach aria-labelledby="marketing-approach">
       <div className={`${styles.container} ${styles.approachLayout}`}>
-        <div className={styles.approachIntro}><ScrollRippleTitle id="marketing-approach" text="A clear plan. No guesswork." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p>You shouldn’t have to chase updates or decode a report. You’ll know what we’re doing, why it matters and what comes next.</p><div className={styles.approachImage}><Image data-approach-image src="/team-collaboration.jpg" alt="Colleagues working through a marketing plan together" fill sizes="(max-width: 767px) 90vw, 45vw" /></div></div>
+        <div className={styles.approachIntro}><h2 id="marketing-approach" data-reveal>A clear plan.<br /><span>No guesswork.</span></h2><p>You’ll know what we’re doing, why it matters and what comes next.</p><div className={styles.approachImage}><Image data-approach-image src="/team-collaboration.jpg" alt="Colleagues working through a marketing plan together" fill sizes="(max-width: 767px) 90vw, 45vw" /></div></div>
         <div className={styles.approachSteps}>
           {[
             ["We listen first.", "Your business isn’t a template. We get to know your customers, your goals and what’s holding you back."],
@@ -196,6 +196,6 @@ export default function MarketingPage() {
       <div className={styles.container}><h2 id="marketing-close">Make your<br /><span className={styles.closeWord}>next move.<span data-close-word aria-hidden="true">next move.</span></span></h2><div className={styles.closeBottom}><p>Your business has potential.<br />Let’s put a plan behind it.</p><Link href="/contact" className={styles.button}>Book a Free Strategy Call <ArrowUpRight size={21} aria-hidden="true" /></Link></div></div>
     </section>
 
-    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><ScrollRippleTitle id="marketing-faq" text="Good questions. Clear answers." className={styles.rippleTitle} accentColor="#8b5cf6" baseColor="rgba(23,21,29,.22)" activeColor="#17151d" /><p>A few things you might be wondering before we talk.</p></div><div>{faqs.map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><h2 id="marketing-faq" data-reveal>Good questions.<br /><span>Clear answers.</span></h2><p>A few things you might be wondering before we talk.</p></div><div>{faqs.map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
   </div>;
 }
