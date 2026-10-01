@@ -13,7 +13,7 @@ const brandFont = Barlow_Semi_Condensed({ subsets: ["latin"], weight: ["600"] })
 const links = [
   { name: "Marketing", href: "/marketing" },
   { name: "AI Automation", href: "/ai-automation" },
-  { name: "Web Design", href: "/services" },
+  { name: "Web Design", href: "/web-design" },
   { name: "Works", href: "/projects" },
   { name: "About", href: "/about" },
 ];
@@ -66,7 +66,7 @@ export default function Navbar() {
 
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
   const keepsDarkNavigation = pathname.startsWith("/ai-automation");
-  const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing") && !scrolled);
+  const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing" || pathname === "/web-design") && !scrolled);
 
   return (
     <header ref={header} className={`${styles.header} ${usesDarkNavigation ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>

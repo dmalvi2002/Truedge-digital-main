@@ -27,7 +27,7 @@ const ctaFont = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const services = [
-  { label: "Web design", href: "/services" },
+  { label: "Web design", href: "/web-design" },
   { label: "Digital marketing", href: "/marketing" },
   { label: "AI & automation", href: "/ai-automation" },
 ];
