@@ -1,17 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans } from "next/font/google";
-import { ArrowUpRight, Check, LayoutTemplate, Megaphone, Search, Plus } from "lucide-react";
+import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans, Barlow_Condensed } from "next/font/google";
+import { ArrowUpRight, Check, LayoutTemplate, Megaphone, Search, Plus, ArrowDown } from "lucide-react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ceoMessage, serviceDetails, pricingQuestions } from "@/lib/pricing-page";
 import { useGSAP } from "@gsap/react";
 import heroStyles from "./MainHeroTwo.module.css";
 import styles from "./PricingPage.module.css";
-import { pricingServices, pricingEnquiryHref, carePlans } from "@/lib/pricing";
+import sanchez from "@/public/assets/works/sanchez-arsenal.webp";
+import nelson from "@/public/assets/works/nelson-community.webp";
+import { pricingEnquiryHref } from "@/lib/pricing";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const display = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--pricing-display" });
 const body = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -23,18 +27,25 @@ const offers = [
   { id: "seo", name: "SEO", price: 150, billing: "per month", offer: "seo-starter", theme: "lime", icon: Search, description: "A website review, keyword research and improvements to three priority pages, with a monthly progress summary." },
 ];
 
-const questions = [
-  ["How do I claim the 50% discount?", "Choose a package and select ‘Claim 50% Discount Now!’. We’ll receive your selected service and package with your enquiry, discuss what you need and send a proposal showing the discount. Submitting an enquiry does not take payment or commit you to a purchase."],
-  ["Are the prices shown already discounted?", "Yes. Starter web design is £120 instead of £240, Starter paid marketing is £200 per month instead of £400, and Starter SEO is £150 per month instead of £300. The higher packages receive 50% off their tailored service quote. For monthly plans, the offer period is confirmed in your proposal."],
-  ["Which website package should I choose?", "Starter is for a simple single-page introduction. Professional is for a complete business website with dedicated pages, content editing and agreed functionality. Ecommerce is for selling products, taking payments and managing products and orders online."],
-  ["Is hosting included in the website price?", "Website design and development are one-off payments. Hosting is a separate service starting from £5 per month. We’ll discuss a suitable hosting package, domain costs, any paid tools and optional ongoing care before you decide."],
-  ["Does paid marketing include my advertising budget?", "No. The monthly service price covers our work on your campaigns. Your advertising spend is separate and paid to the advertising platform. We agree that budget with you before campaigns go live."],
-  ["What happens after I choose a package?", "We talk through your goals, confirm the deliverables and send a proposal with the scope, discounted price, billing terms, any applicable tax and relevant third-party costs. Once you’re happy with the proposal, we agree the next steps."],
-  ["Do you guarantee enquiries or search rankings?", "No. Results depend on your market, competition, offer and many other factors. We focus on practical improvements, agree what to measure and explain progress clearly."],
-];
+const sport = Barlow_Condensed({ subsets: ["latin"], weight: ["700", "800"], variable: "--pricing-sport" });
 
 export default function PricingPage() {
   const root = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Existing hero links now open the matching service disclosure.
+    const revealLinkedService = () => {
+      const id = window.location.hash.slice(1);
+      const disclosure = Array.from(root.current?.querySelectorAll<HTMLDetailsElement>("details[id]") ?? []).find((item) => item.id === id);
+      if (disclosure) {
+        disclosure.open = true;
+        requestAnimationFrame(() => disclosure.scrollIntoView({ block: "start" }));
+      }
+    };
+    revealLinkedService();
+    window.addEventListener("hashchange", revealLinkedService);
+    return () => window.removeEventListener("hashchange", revealLinkedService);
+  }, []);
 
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -47,10 +58,73 @@ export default function PricingPage() {
         .from("[data-price-note]", { y: 12, opacity: 0, duration: .7 }, 1.6);
 
     });
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.from("[data-client-heading] > *", {
+        y: 45, opacity: 0, duration: 1, stagger: .12, ease: "power3.out",
+        scrollTrigger: { trigger: "[data-client-heading]", start: "top 84%", once: true },
+      });
+      gsap.from("[data-client-card]", {
+        y: 80, scale: .94, clipPath: "inset(12% 0 0 0 round 24px)", opacity: 0,
+        duration: 1.25, stagger: .16, ease: "power4.out",
+        scrollTrigger: { trigger: "[data-client-grid]", start: "top 86%", once: true },
+      });
+      gsap.to("[data-client-athlete]", {
+        yPercent: -7, ease: "none",
+        scrollTrigger: { trigger: "[data-client-grid]", start: "top bottom", end: "bottom top", scrub: .8 },
+      });
+      gsap.to("[data-client-photo]", {
+        yPercent: 5, scale: 1.08, ease: "none",
+        scrollTrigger: { trigger: "[data-client-grid]", start: "top bottom", end: "bottom top", scrub: .8 },
+      });
+      gsap.from("[data-ceo-heading] > *", {
+        yPercent: 70, opacity: 0, duration: 1.05, stagger: .1, ease: "power4.out",
+        scrollTrigger: { trigger: "[data-ceo-heading]", start: "top 82%", once: true },
+      });
+      gsap.utils.toArray<HTMLElement>("[data-ceo-paragraph]", root.current).forEach((paragraph) => {
+        // Continuous masks reveal letters with only one tween per word.
+        const words = paragraph.querySelectorAll("[data-word-light]");
+        gsap.set(words, { clipPath: "inset(0 100% 0 0)" });
+        gsap.to(words, {
+          clipPath: "inset(0 0% 0 0)", duration: 1, stagger: 1, ease: "none",
+          scrollTrigger: { trigger: paragraph, start: "top 82%", end: "bottom 48%", scrub: .35, invalidateOnRefresh: true },
+        });
+      });
+    });
+    media.add("(min-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo("[data-ceo-depth]", { y: 32, rotateX: 3, z: -35 }, {
+        y: -12, rotateX: 0, z: 0, ease: "none",
+        scrollTrigger: { trigger: "[data-ceo-section]", start: "top bottom", end: "bottom top", scrub: .8 },
+      });
+    });
+    media.add("(min-width: 651px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.from("[data-expertise-heading] > *", {
+        y: 55, opacity: 0, duration: 1, stagger: .12, ease: "power3.out",
+        scrollTrigger: { trigger: "[data-expertise-heading]", start: "top 84%", once: true },
+      });
+      gsap.utils.toArray<HTMLElement>("[data-service-card]", root.current).forEach((card, index) => {
+        gsap.from(card, {
+          xPercent: index % 2 === 0 ? -7 : 7, y: 45, rotateX: 4, opacity: 0,
+          duration: 1.05, ease: "power3.out",
+          scrollTrigger: { trigger: card, start: "top 90%", once: true },
+        });
+      });
+      gsap.to("[data-expertise-wash]", {
+        xPercent: 38, rotate: 16, ease: "none",
+        scrollTrigger: { trigger: "[data-expertise-section]", start: "top bottom", end: "bottom top", scrub: 1 },
+      });
+    });
+    media.add("(max-width: 650px)", () => {
+      gsap.set(`.${styles.mobileAction}`, { autoAlpha: 0 });
+      ScrollTrigger.create({
+        trigger: "[data-price-note]", start: "bottom top+=80",
+        onEnter: () => gsap.set(`.${styles.mobileAction}`, { autoAlpha: 1 }),
+        onLeaveBack: () => gsap.set(`.${styles.mobileAction}`, { autoAlpha: 0 }),
+      });
+    });
     return () => media.revert();
   }, { scope: root });
 
-  return <div ref={root} className={`${styles.page} ${body.className} ${display.variable}`}>
+  return <div ref={root} className={`${styles.page} ${body.className} ${display.variable} ${sport.variable}`}>
     <section className={styles.hero} aria-labelledby="pricing-title">
       <div className={styles.container}>
         <div className={styles.opening}>
@@ -61,7 +135,7 @@ export default function PricingPage() {
           {offers.map((offer) => <div key={offer.name} data-price-depth><article className={`${styles.priceCard} ${styles[offer.theme]}`} data-price-panel aria-label={`${offer.name} from £${offer.price}`}>
             <div data-price-content>
               <div className={styles.cardHeading}><h2>{offer.name}</h2><offer.icon size={26} strokeWidth={1.4} aria-hidden="true" /></div>
-              <div className={styles.amount}><span>Starting from · 50% off</span><div className={styles.priceRow}><strong><span>£</span>{offer.price}</strong><del aria-label={`Standard price £${offer.price * 2}`}>£{offer.price * 2}</del></div><small>{offer.billing}</small></div>
+              <div className={styles.amount}><span>Starting from</span><div className={styles.priceRow}><strong><span>£</span>{offer.price}</strong></div><small>{offer.billing}</small></div>
               <p className={styles.cardDescription}>{offer.description}</p>
               <Link href={pricingEnquiryHref(offer.offer)} className={styles.quoteLink} aria-label={`Let’s talk about your ${offer.name.toLowerCase()} project`}><span>Let’s talk about your project</span><ArrowUpRight size={21} /></Link>
               <a href={`#${offer.id}-packages`} className={styles.compareLink}>Compare {offer.name.toLowerCase()} packages <ArrowUpRight size={15} /></a>
@@ -73,73 +147,69 @@ export default function PricingPage() {
     </section>
 
     <section className={styles.clientProof} aria-labelledby="pricing-clients-title">
-      <div className={`${styles.container} ${styles.clientProofInner}`}>
-        <div className={styles.clientHeading}><h2 id="pricing-clients-title">Chosen by names<br />you recognise.</h2><p>From professional sport to higher education.<br />Meet two of our clients.</p></div>
-        <div className={styles.clientLogos}>
-          <a href="https://www.sanchezwatt.com/" target="_blank" rel="noopener noreferrer" className={styles.clientFeature}>
-            <div className={styles.clientMark}><Image src="/assets/sanchez-watt-logo.webp" alt="Sanchez Watt logo" width={160} height={160} /></div>
-            <div className={styles.clientCaption}><div><h3>Sanchez Watt</h3><p>Former Arsenal player</p></div><ArrowUpRight size={24} aria-hidden="true" /></div>
-          </a>
-          <a href="https://nelsoncollege.ac.uk/" target="_blank" rel="noopener noreferrer" className={`${styles.clientFeature} ${styles.collegeFeature}`}>
-            <div className={`${styles.clientMark} ${styles.collegeMark}`}><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London logo" width={360} height={120} /></div>
-            <div className={styles.clientCaption}><div><h3>Nelson College London</h3><p>Higher education, London</p></div><ArrowUpRight size={24} aria-hidden="true" /></div>
-          </a>
+      <div className={styles.container}>
+        <div className={styles.clientHeading} data-client-heading><h2 id="pricing-clients-title">Chosen by names<br />you recognise.</h2><p>From professional sport to higher education.<br />Meet two of our clients.</p></div>
+        <div className={styles.clientLogos} data-client-grid>
+          <Link href="/works" className={`${styles.clientFeature} ${styles.sanchezFeature}`} aria-label="View our work with Sanchez Watt" data-client-card>
+            <span className={styles.sportBackdrop} aria-hidden="true">WATT</span>
+            <div className={styles.clientVisualCopy}><span className={styles.clientCategory}>SPORT / COACHING</span><h3>SANCHEZ<br />WATT</h3><p>A big personality.<br />A website to match.</p></div>
+            <div className={styles.clientAthlete} data-client-athlete><Image src={sanchez} alt="Sanchez Watt in his Arsenal kit" sizes="(max-width: 650px) 65vw, 30vw" /></div>
+            <div className={styles.clientCaption}><span>Former Arsenal player</span><span className={styles.clientVisit}>View our work <ArrowUpRight size={19} aria-hidden="true" /></span></div>
+          </Link>
+          <Link href="/works" className={`${styles.clientFeature} ${styles.collegeFeature}`} aria-label="View our work with Nelson College London" data-client-card>
+            <div className={styles.collegePhoto} data-client-photo><Image src={nelson} alt="Nelson College London community at a ribbon-cutting event" sizes="(max-width: 650px) 90vw, 45vw" placeholder="blur" /></div>
+            <div className={styles.collegeVisualCopy}><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London" width={180} height={60} /><h3>A place for<br /><em>ambition.</em></h3></div>
+            <div className={styles.clientCaption}><span>Higher education, London</span><span className={styles.clientVisit}>View our work <ArrowUpRight size={19} aria-hidden="true" /></span></div>
+          </Link>
         </div>
       </div>
     </section>
 
-    {pricingServices.map((service) => <section key={service.id} id={`${service.id}-packages`} className={styles.packageSection} aria-labelledby={`${service.id}-packages-title`}>
-      <div className={styles.container}>
-        <div className={styles.packageHeading}><h2 id={`${service.id}-packages-title`}>{service.name} packages</h2><p>{service.id === "web-design" ? "One page, a complete business website or an online shop. Choose what your business needs." : service.id === "marketing" ? "From your first campaign to a wider advertising strategy. Find your level of monthly support." : "From search essentials to ongoing content and technical support. Choose a plan for your website."}</p></div>
-        <div className={styles.packageGrid}>{service.packages.map((plan) => <article key={plan.id} className={`${styles.packageCard} ${plan.recommended ? styles.recommended : ""}`} data-price-reveal>
-          <div className={styles.planTop}><h3>{plan.name}</h3>{plan.recommended && <span>Our recommendation</span>}</div>
-          <p className={styles.forWho}>{plan.forWho}</p>
-          {plan.price ? <div className={styles.packagePrice}><span>Starting from · 50% off</span><div><strong>£{plan.price}</strong><del aria-label={`Standard price £${plan.price * 2}`}>£{plan.price * 2}</del></div><small>{service.billing}</small></div> : <div className={styles.tailoredPrice}><strong>50% off</strong><span>your tailored {service.billing === "per month" ? "monthly " : ""}quote</span></div>}
-          <p className={styles.planDescription}>{plan.description}</p>
-          <p className={styles.includedLabel}>What you get</p>
-          <ul>{plan.features.map((feature) => <li key={feature}><Check size={16} aria-hidden="true" /><span>{feature}</span></li>)}</ul>
-          <p className={styles.planNote}>{plan.note}</p>
-          <Link href={pricingEnquiryHref(plan.id)} className={styles.claimButton} aria-label={`Claim 50% Discount Now! ${service.name} ${plan.name}`}><span>Claim 50% Discount Now!</span><ArrowUpRight size={20} /></Link>
-        </article>)}</div>
-        <aside className={styles.costCallout} aria-label={`${service.name} pricing details`}>
-          <h3>{service.id === "web-design" ? "Your website, your ongoing costs." : service.id === "marketing" ? "Your service fee. Your ad budget." : "Ongoing work. Clear expectations."}</h3>
-          <p>{service.costNote}</p>
-        </aside>
-        {service.id === "web-design" && <details className={styles.careDisclosure}>
-          <summary className={styles.careSummary}>
-            <span className={styles.careSummaryMain}>
-              <span className={styles.careSummaryCopy}>
-                <strong>A home for your new website.</strong>
-                <span>Reliable hosting on its own, or ongoing care when you need more support.</span>
-                <span className={styles.hostingPrice}><small>Hosting from</small><strong>£5</strong><span>per month</span></span>
-              </span>
-            </span>
-            <span className={styles.careToggle}><span className={styles.careShow}>View hosting &amp; care</span><span className={styles.careHide}>Close plans</span><span className={styles.toggleIcon}><Plus size={22} aria-hidden="true" /></span></span>
-          </summary>
-          <div className={styles.careBody}>
-            <p className={styles.careIntro}>Choose hosting on its own from £5/month, or combine hosting with regular updates and support in one of the care plans below.</p>
-            <div className={styles.packageGrid}>{carePlans.map((plan) => <article key={plan.id} className={`${styles.packageCard} ${styles.careCard} ${plan.id === "care-pro" ? styles.recommended : ""}`}>
-              <h3>{plan.name}</h3>
-              <div className={`${styles.tailoredPrice} ${styles.careDiscount}`}><strong>50% off</strong></div>
-              <p className={styles.careDescription}>{plan.description}</p>
-              <p className={styles.includedLabel}>{plan.includes}</p>
-              <ul>{plan.features.map((feature) => <li key={feature}><Check size={16} aria-hidden="true" /><span>{feature}</span></li>)}</ul>
-              <p className={styles.planNote}>{plan.note}</p>
-              <Link href={pricingEnquiryHref(plan.id)} className={styles.claimButton} aria-label={`To be discussed! ${plan.name}`}><span>To be discussed!</span><ArrowUpRight size={20} aria-hidden="true" /></Link>
-            </article>)}</div>
-          </div>
-        </details>}
+    <section className={styles.ceoSection} aria-labelledby="ceo-title" data-ceo-section>
+      <div className={`${styles.container} ${styles.ceoLayout}`}>
+        <header className={styles.ceoHeader} data-ceo-heading>
+          <div><h2 id="ceo-title">A message<br /><em>from our CEO.</em></h2></div>
+          <div className={styles.ceoIntroduction}><p>Before the strategy.<br />Before the quote.<br /><strong>It starts with you.</strong></p><a href="#pricing-services" className={styles.skipMessage}>Explore our expertise <ArrowDown size={17} aria-hidden="true" /></a></div>
+        </header>
+        <div className={styles.ceoDepth} data-ceo-depth>
+          <blockquote className={styles.ceoQuote}>
+            {ceoMessage.map((paragraph) => <p key={paragraph} data-ceo-paragraph>
+              <span className={styles.screenReader}>{paragraph}</span>
+              <span aria-hidden="true">{paragraph.split(" ").map((word, index) => <span key={index} className={styles.revealWord}>
+                <span>{word}</span><span className={styles.wordLight} data-word-light>{word}</span>{" "}
+              </span>)}</span>
+            </p>)}
+          </blockquote>
+          <div className={styles.ceoSignature}><div><strong>Our promise to you.</strong><span>The team at Truedge Digital</span></div></div>
+        </div>
+        <div className={styles.messageAction}><div><p>Tell us what you have in mind.<br />We’ll work out the next step together.</p><span>No obligation. No need to know the answers.</span></div><Link href="/contact" className={styles.strategyButton}>Book a free strategy call <ArrowUpRight size={20} aria-hidden="true" /></Link></div>
       </div>
-    </section>)}
+    </section>
+
+    <section id="pricing-services" className={styles.exploreSection} aria-labelledby="services-title" data-expertise-section>
+      <span className={styles.expertiseWash} data-expertise-wash aria-hidden="true" />
+      <div className={styles.container}>
+        <div className={styles.exploreHeading} data-expertise-heading><div><h2 id="services-title">Expertise, shaped<br /><em>around your business.</em></h2></div><p>One team. The right support.<br />We’ll help you decide what your business needs.</p></div>
+        <div className={styles.disclosures}>{serviceDetails.map((service) => {
+          return <details key={service.id} id={`${service.id}-packages`} className={styles.serviceDisclosure} onToggle={() => ScrollTrigger.refresh()} data-service-card>
+            <summary><span className={styles.serviceName}>{service.name}</span><span className={styles.expandIcon}><span className={styles.exploreLabel}>View services</span><Plus size={23} aria-hidden="true" /></span></summary>
+            <div className={styles.serviceBody}><p className={styles.serviceIntro}>{service.intro}</p><div className={styles.serviceColumns}>{service.groups.map((group) => <div key={group.title}><h3>{group.title}</h3><ul>{group.items.map((item) => <li key={item}><Check size={16} aria-hidden="true" /><span>{item}</span></li>)}</ul></div>)}</div><div className={styles.serviceFoot}><p>{service.note}</p><Link href="/contact">Let’s talk about your business <ArrowUpRight size={18} aria-hidden="true" /></Link></div></div>
+          </details>;
+        })}</div>
+        <div className={styles.unsureNote}><span>You bring the ambition. We’ll help with the how.</span><Link href="/contact">Let’s work it out together <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+      </div>
+    </section>
 
     <section className={styles.questions} aria-labelledby="pricing-faq-title"><div className={`${styles.container} ${styles.faqGrid}`}>
       <h2 id="pricing-faq-title">Your questions,<br />answered.</h2>
-      <div>{questions.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={19} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
+      <div>{pricingQuestions.map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={19} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
     </div></section>
 
     <section className={styles.closing} aria-labelledby="pricing-contact-title"><div className={styles.container} data-price-reveal>
-      <h2 id="pricing-contact-title">Ready to get started?</h2><p>Choose your package. We’ll confirm the scope and your 50% discount in a clear proposal.</p>
-      <Link href="/contact?offer=discount" className={`${heroStyles.cta} ${plex.className}`}><span>Claim 50% Discount Now!</span><span className={heroStyles.ctaIcon} aria-hidden="true"><ArrowUpRight size={21} /></span></Link>
+      <h2 id="pricing-contact-title">Let’s start with your business.</h2><p>Tell us where you are and where you’d like to be. We’ll listen, recommend a way forward and send you a quote built around your needs.</p>
+      <Link href="/contact" className={`${heroStyles.cta} ${plex.className}`}><span>Book a free strategy call</span><span className={heroStyles.ctaIcon} aria-hidden="true"><ArrowUpRight size={21} /></span></Link>
+      <span className={styles.closingNote}>A friendly conversation. A clear plan. No obligation.</span>
     </div></section>
+    <div className={styles.mobileAction}><Link href="/contact">Book a free strategy call <ArrowUpRight size={19} aria-hidden="true" /></Link></div>
   </div>;
 }

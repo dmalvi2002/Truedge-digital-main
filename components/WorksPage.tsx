@@ -67,15 +67,14 @@ export default function WorksPage() {
       <section className={styles.sportCard} data-sport-scene aria-labelledby="sanchez-title">
         <span className={styles.sportBackdrop} data-sport-type aria-hidden="true">WATT</span>
         <div className={styles.sportCopy} data-sport-copy>
-          <p className={styles.sportContext}>Former Arsenal player. Coach. Mentor.</p>
           <h2 id="sanchez-title">SANCHEZ<br />WATT<span>.</span></h2>
           <p className={styles.sportDescription}>A big personality.<br />A website to match.</p>
-          <p className={styles.sportDetail}>A distinctive digital home for Sanchez’s coaching and mentoring, with an integrated booking journey that makes the next step simple.</p>
+          <p className={styles.sportDetail}>Former Arsenal player. Coach. Mentor. A distinctive digital home for Sanchez’s coaching and mentoring, with an integrated booking journey that makes the next step simple.</p>
           <a href="https://www.sanchezwatt.com/" target="_blank" rel="noopener noreferrer" className={styles.sportButton}>Check out his website <ArrowUpRight size={20} /></a>
           <span className={styles.sportCredit}>Website design &amp; development · Booking integration</span>
         </div>
         <div className={styles.athleteDepth} data-athlete-depth><div className={styles.athlete} data-athlete><Image src={sanchez} alt="Sanchez Watt playing in his Arsenal kit" sizes="(max-width: 700px) 90vw, 55vw" priority /></div></div>
-        <div className={styles.football} data-football aria-hidden="true"><Image src={football} alt="" sizes="(max-width: 650px) 94px, 160px" /></div>
+        <div className={styles.football} data-football aria-hidden="true"><Image src={football} alt="" sizes="(max-width: 650px) 84px, 140px" /></div>
       </section>
 
       <section className={styles.collegeCard} data-college-scene aria-labelledby="nelson-title">
@@ -84,7 +83,7 @@ export default function WorksPage() {
       </section>
 
       <section className={styles.walkerCard} aria-labelledby="walker-title">
-        <div className={styles.walkerCopy} data-work-reveal><span>Roofing &amp; building · Aberdeen</span><h2 id="walker-title">Craft on site.<br /><em>Confidence online.</em></h2><h3>Walker Roofing &amp;<br />Building Contractors</h3><p>A confident website that puts the quality of the work first. Clear services, architectural photography and a direct route to request a quote.</p><Link href="/contact?project=walker" className={styles.primary}>Build a website for my business <ArrowUpRight size={20} /></Link></div>
+        <div className={styles.walkerCopy} data-work-reveal><h2 id="walker-title">Craft on site.<br /><em>Confidence online.</em></h2><h3>Walker Roofing &amp;<br />Building Contractors</h3><p>A confident website that puts the quality of the work first. Clear services, architectural photography and a direct route to request a quote.</p><Link href="/contact?project=walker" className={styles.primary}>Build a website for my business <ArrowUpRight size={20} /></Link></div>
         <div className={styles.walkerVisual} data-work-reveal><Image src={walker} alt="Walker Building Contractors website showcasing roofing services and a modern metal roof" sizes="(max-width: 900px) 92vw, 60vw" placeholder="blur" /></div>
       </section>
     </div>

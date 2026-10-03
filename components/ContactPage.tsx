@@ -88,11 +88,20 @@ function ContactExperience({ offer, project }: { offer: Offer; project: string |
         <p className={styles.introText} data-contact-intro>A new website. More enquiries. A simpler way to work. Tell us where you want to go—we’ll help you find the next step.</p>
         <a href="#project-enquiry" className={styles.mobileEnquiry}>Start your enquiry <ArrowUpRight size={19} /></a>
         <div className={styles.direct} data-contact-intro>
-          <a href="mailto:info@truedgedigital.co.uk"><Mail size={20} aria-hidden="true" /><span><small>Email us</small>info@truedgedigital.co.uk</span><ArrowUpRight size={18} aria-hidden="true" /></a>
-          <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer"><MessageCircle size={20} aria-hidden="true" /><span><small>Prefer a quick chat?</small>Talk to us on WhatsApp</span><ArrowUpRight size={18} aria-hidden="true" /></a>
-          <a href="tel:+447832921562"><Phone size={20} aria-hidden="true" /><span><small>Call us</small>+44 7832 921562</span><ArrowUpRight size={18} aria-hidden="true" /></a>
+          <a href="mailto:info@truedgedigital.co.uk"><span className={styles.contactIcon}><Mail size={20} aria-hidden="true" /></span><span><small>Email us</small>info@truedgedigital.co.uk</span></a>
+          <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer"><span className={styles.contactIcon}><MessageCircle size={20} aria-hidden="true" /></span><span><small>Prefer a quick chat?</small>Talk to us on WhatsApp</span></a>
+          <a href="tel:+447832921562"><span className={styles.contactIcon}><Phone size={20} aria-hidden="true" /></span><span><small>Call us</small>+44 7832 921562</span></a>
         </div>
-        <div className={styles.trust} data-contact-intro><p>In good company.</p><div className={styles.trustClients}><div><Image src="/assets/sanchez-watt-logo.webp" alt="" width={42} height={42} /><span>Sanchez Watt<small>Former Arsenal player</small></span></div><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London" width={160} height={65} /></div><Link href="/works">Get to know our work <ArrowUpRight size={16} /></Link></div>
+        <div className={styles.trust} data-contact-intro>
+          <p>Trusted by clients who expect quality.</p>
+          <div className={styles.trustClients}>
+            <div className={styles.clientTile}><Image src="/assets/sanchez-watt-logo.webp" alt="Sanchez Watt" width={64} height={64} className={styles.sanchezLogo} /><span>Sanchez Watt<small>Former Arsenal player</small></span></div>
+            <div className={styles.clientTile}><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London" width={160} height={65} className={styles.nelsonLogo} /></div>
+            <div className={styles.clientTile}><Image src="/assets/walker-logo.webp" alt="Walker Roofing and Building Contractors" width={160} height={80} className={styles.walkerLogo} /></div>
+            <div className={styles.clientTile}><Image src="/assets/ilearners-logo.webp" alt="iLearner’s Hub" width={160} height={65} className={styles.learnerLogo} /></div>
+          </div>
+          <Link href="/works">Explore our client work <ArrowUpRight size={16} /></Link>
+        </div>
       </section>
       <section id="project-enquiry" className={styles.formPanel} aria-labelledby={isSubmitted ? "success-title" : "enquiry-title"} data-contact-intro>
         {isSubmitted ? <div className={styles.success} role="status"><CheckCircle2 size={48} strokeWidth={1.3} /><h2 id="success-title">Thank you.<br />Let’s make it happen.</h2><p>Your enquiry has been sent. We’ll be in touch using the contact details you provided to talk through your project.</p><Link href="/works" className={styles.submit}>Explore our work <ArrowUpRight size={20} /></Link></div> : <>
@@ -119,7 +128,7 @@ function ContactExperience({ offer, project }: { offer: Offer; project: string |
         </>}
       </section>
     </div>
-    <section className={styles.after} aria-labelledby="next-title"><div><h2 id="next-title">A clear next step,<br /><span>from the very start.</span></h2><p>We’ll discuss your goals, recommend a useful starting point and send a proposal you can review before deciding.</p><Link href="/pricing">Prefer to see prices first? <ArrowUpRight size={17} /></Link></div><div className={styles.address}><h3>Based in the UK.<br />Ready to work with you.</h3><address>Suite 2b, Lower Ground Floor<br />1–3 Albyn Terrace, Aberdeen<br />United Kingdom, AB10 1YP</address></div></section>
+    <section className={styles.after} aria-labelledby="next-title"><div><h2 id="next-title">A clear next step,<br /><span>from the very start.</span></h2><p>We’ll discuss your goals, recommend a useful starting point and send a proposal you can review before deciding.</p><Link href="/pricing">Prefer to see prices first? <ArrowUpRight size={17} /></Link></div></section>
     </div>
   </div>;
 }
