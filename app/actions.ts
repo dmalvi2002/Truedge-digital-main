@@ -16,12 +16,12 @@ export async function submitToGoogleSheet(formData: FormData) {
 
   try {
     // We send it without the 'no-cors' mode so the server doesn't hang!
-    await fetch(scriptUrl, {
+    const response = await fetch(scriptUrl, {
       method: "POST",
       body: data,
     });
 
-    return { success: true };
+    return { success: response.ok };
   } catch (error) {
     console.error("Error submitting form:", error);
     return { success: false };

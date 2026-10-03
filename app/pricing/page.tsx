@@ -3,7 +3,7 @@ import PricingPage from "@/components/PricingPage";
 
 export const metadata: Metadata = {
   title: "Pricing | Truedge Digital",
-  description: "Web design from £120, marketing from £150 and SEO from £150. Explore our starting prices and talk to Truedge Digital about the right scope for your business.",
+  description: "Claim 50% off: web design from £120 one-off, paid marketing from £200/month and SEO from £150/month. Compare Starter, Professional, Ecommerce and growth packages. Hosting from £5/month.",
 };
 
 export default function Pricing() {

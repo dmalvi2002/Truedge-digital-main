@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { getPricingOffer, carePlans } from "@/lib/pricing";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import {
   ArrowRight,
@@ -39,10 +42,31 @@ const services = [
   "Bespoke WordPress",
   "Migration",
   "Growth & SEO",
+  "Paid Marketing",
+  "Website Hosting",
 ];
 const budgets = ["< £500", "£500 - £1500", "£1500 - £5000", "£5000+"];
 
 export default function ContactPage() {
+  return <Suspense fallback={<main className="min-h-screen bg-[#fafafa] px-6 py-32 text-slate-900">Loading your enquiry…</main>}><ContactWithOffer /></Suspense>;
+}
+
+function ContactWithOffer() {
+  const params = useSearchParams();
+  const id = params.get("offer");
+  const selected = getPricingOffer(id);
+  const carePlan = carePlans.find((plan) => plan.id === id);
+  const offer = selected ? {
+    title: `${selected.service.name} · ${selected.plan.name}`,
+    detail: selected.plan.price ? `From £${selected.plan.price} ${selected.service.billing}, after 50% off.` : "Claim 50% off your tailored quote.",
+    service: selected.service.contactService,
+  } : carePlan ? { title: carePlan.name, detail: "Package scope and monthly cost to be discussed.", service: "Website Hosting" }
+    : id === "hosting" ? { title: "Website hosting", detail: "Hosting packages from £5 per month.", service: "Website Hosting" }
+    : id === "discount" ? { title: "Your 50% discount enquiry", detail: "Tell us which service you need. We’ll confirm the scope and offer in your proposal.", service: "" } : null;
+  return <ContactForm key={selected?.plan.id ?? (offer ? id : "general")} offer={offer} />;
+}
+
+function ContactForm({ offer }: { offer: { title: string; detail: string; service: string } | null }) {
   // 1. Text Input States
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -50,13 +74,14 @@ export default function ContactPage() {
   const [details, setDetails] = useState("");
 
   // 2. Interactive Pill States
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedServices, setSelectedServices] = useState<string[]>(offer?.service ? [offer.service] : []);
   const [hasCompany, setHasCompany] = useState<boolean | null>(null);
   const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
 
   // 3. Animation States
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
@@ -69,6 +94,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
 
     // Package the data for your server action
     const formData = new FormData();
@@ -88,32 +114,18 @@ export default function ContactPage() {
           : "Not specified",
     );
     formData.append("budget", selectedBudget || "Not specified");
-    formData.append("details", details || "No details provided");
+    formData.append("details", [offer && `${offer.title}: ${offer.detail}`, details || "No details provided"].filter(Boolean).join("\n\n"));
 
     // Securely pass data to the server action
     try {
-      await submitToGoogleSheet(formData);
-    } catch (error) {
-      console.error("Error submitting via server action:", error);
+      const result = await submitToGoogleSheet(formData);
+      if (!result.success) throw new Error("Submission failed");
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError("Your enquiry couldn’t be sent. Please try again, or email info@truedgedigital.co.uk. Your details are still here.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Keep the premium feel with the 2 second delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset everything after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFullName("");
-      setEmail("");
-      setPhone("");
-      setDetails("");
-      setSelectedServices([]);
-      setHasCompany(null);
-      setSelectedBudget(null);
-    }, 5000);
   };
 
   return (
@@ -244,6 +256,12 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <div className="rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.04)] ring-1 ring-slate-100 flex flex-col justify-center">
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                {offer && <div className={`${ibm.className} rounded-2xl bg-purple-50 p-6 text-slate-900`}>
+                  <p className="mb-2 text-sm text-purple-700">Your selected offer</p>
+                  <h2 className="text-xl font-semibold">{offer.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed">{offer.detail}</p>
+                  <Link href="/pricing" className="mt-3 inline-block text-sm font-semibold text-purple-700">Change package →</Link>
+                </div>}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="group sm:col-span-2">
                     <label
@@ -321,6 +339,7 @@ export default function ContactPage() {
                           key={service}
                           type="button"
                           onClick={() => toggleService(service)}
+                          aria-pressed={selectedServices.includes(service)}
                           className={`${ibm.className} cursor-pointer flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${selectedServices.includes(service) ? "border-purple-600 bg-purple-600 text-white shadow-[0_4px_12px_rgba(147,51,234,0.25)]" : "border-slate-200 bg-white text-slate-600 hover:border-purple-300 hover:bg-purple-50"}`}
                         >
                           {service}
@@ -399,7 +418,7 @@ export default function ContactPage() {
                     </label>
                     <textarea
                       rows={4}
-                      placeholder="Tell us about your current infrastructure and what you want to build..."
+                      placeholder="Tell us about your business and what you’d like help with..."
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
                       className={`${ibm.className} w-full resize-y rounded-2xl border border-slate-200 bg-[#fafafa] px-5 py-4 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-purple-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-purple-500/10 hover:border-slate-300`}
@@ -408,8 +427,10 @@ export default function ContactPage() {
                 </div>
 
                 <div>
+                  {submitError && <p role="alert" className="mb-4 text-sm text-red-700">{submitError}</p>}
                   <button
                     type="submit"
+                    aria-label={isSubmitted ? "Enquiry sent" : isSubmitting ? "Sending enquiry" : offer ? "Send my enquiry" : "Book a Strategy Call"}
                     disabled={isSubmitting || isSubmitted}
                     className={`group relative flex w-full items-center justify-center rounded-full text-sm md:text-md md:text-lg font-bold text-white transition-all duration-500 overflow-hidden h-[56px] md:h-[64px] ${isSubmitted ? "bg-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)]" : "bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] shadow-[0_0_20px_rgba(124,58,237,0.4),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.6),inset_0_2px_2px_rgba(255,255,255,0.4)]"} ${isSubmitting ? "opacity-90 cursor-not-allowed" : "cursor-pointer"}`}
                   >
@@ -423,7 +444,7 @@ export default function ContactPage() {
                         opacity: isSubmitting || isSubmitted ? 0 : 1,
                       }}
                     >
-                      <span>Book a Strategy Call</span>
+                      <span>{offer ? "Send my enquiry" : "Book a Strategy Call"}</span>
                       <ArrowRight
                         size={20}
                         className="transition-transform group-hover:translate-x-1"
@@ -459,6 +480,7 @@ export default function ContactPage() {
 
                   <div className="mt-4 mb-4 px-4 h-12 flex justify-center items-start">
                     <p
+                      role="status"
                       className={`${ibm.className} text-center text-xs leading-relaxed max-w-sm ${isSubmitted ? "text-emerald-600 font-semibold scale-105" : "text-slate-500 scale-100"}`}
                     >
                       {isSubmitted
