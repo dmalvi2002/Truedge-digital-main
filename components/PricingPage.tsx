@@ -138,7 +138,6 @@ export default function PricingPage() {
               <div className={styles.amount}><span>Starting from</span><div className={styles.priceRow}><strong><span>£</span>{offer.price}</strong></div><small>{offer.billing}</small></div>
               <p className={styles.cardDescription}>{offer.description}</p>
               <Link href={pricingEnquiryHref(offer.offer)} className={styles.quoteLink} aria-label={`Let’s talk about your ${offer.name.toLowerCase()} project`}><span>Let’s talk about your project</span><ArrowUpRight size={21} /></Link>
-              <a href={`#${offer.id}-packages`} className={styles.compareLink}>Compare {offer.name.toLowerCase()} packages <ArrowUpRight size={15} /></a>
             </div>
           </article></div>)}
         </div>
