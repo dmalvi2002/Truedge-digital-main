@@ -81,14 +81,6 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-sm sm:text-base">
               <li>
                 <Link
-                  href="/about"
-                  className="hover:text-violet-400 transition-colors duration-200"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/services"
                   className="hover:text-violet-400 transition-colors duration-200"
                 >
@@ -97,7 +89,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/projects"
+                  href="/works"
                   className="hover:text-violet-400 transition-colors duration-200"
                 >
                   Showcases

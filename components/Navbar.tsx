@@ -15,8 +15,7 @@ const links = [
   { name: "AI Automation", href: "/ai-automation" },
   { name: "Web Design", href: "/web-design" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Works", href: "/projects" },
-  { name: "About", href: "/about" },
+  { name: "Works", href: "/works" },
 ];
 
 function WhatsAppIcon() {
@@ -66,7 +65,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
-  const keepsDarkNavigation = pathname.startsWith("/ai-automation");
+  const keepsDarkNavigation = pathname.startsWith("/ai-automation") || pathname === "/works" || pathname === "/contact";
   const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing" || pathname === "/web-design" || pathname === "/pricing") && !scrolled);
 
   return (

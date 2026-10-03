@@ -1,0 +1,85 @@
+.page { --paper:#f3f2e9; --lime:#c1fb00; --lavender:#d4c3ed; background:#08090c; color:var(--paper); overflow:clip; }
+.container { width:min(1380px,calc(100% - 112px)); margin-inline:auto; }
+.page h1,.page h2,.page h3 { font-family:var(--works-display),sans-serif; font-weight:600; word-spacing:.045em; }
+.page a:focus-visible { outline:3px solid currentColor; outline-offset:6px; }
+.page em { font-style:normal; }
+.hero { display:grid; grid-template-columns:1.2fr 1fr; gap:65px; align-items:end; padding-block:70px 75px; }
+.hero h1 { font-size:clamp(50px,6vw,88px); letter-spacing:-.055em; line-height:1.08; }
+.hero h1 span { color:var(--lavender); }
+.heroAside { max-width:490px; padding-bottom:5px; }
+.heroAside p { font-size:17px; line-height:1.85; color:#d0d2d9; max-width:440px; }
+.actions { display:flex; align-items:center; flex-wrap:wrap; gap:22px; margin-top:28px; }
+.primary,.sportButton { display:inline-flex; align-items:center; justify-content:space-between; gap:26px; padding:18px 23px; border-radius:50px; background:var(--lime); color:#192015; font-size:14px; font-weight:600; width:fit-content; }
+.primary svg,.sportButton svg { flex-shrink:0; }
+.textLink,.lightLink { display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:500; padding:9px 0; }
+.textLink:hover { color:var(--lime); }
+.container[id] { scroll-margin-top:115px; }
+.sportCard { position:relative; isolation:isolate; background:#c52332; border-radius:24px; overflow:hidden; min-height:760px; }
+.sportCard::before { content:""; position:absolute; inset:0; background:linear-gradient(110deg,#761524 0%,#b61f2e 45%,#e54744 100%); z-index:-2; }
+.sportBackdrop { position:absolute; right:-3%; bottom:-8%; font-family:var(--works-sport),sans-serif; font-size:clamp(220px,36vw,560px); font-weight:800; line-height:.9; letter-spacing:-.04em; color:#ff827c; opacity:.22; pointer-events:none; z-index:-1; }
+.sportCopy { position:relative; z-index:3; padding:65px 0 60px 65px; width:49%; }
+.sportContext { color:#ffdfd5; font-size:14px; margin-bottom:24px; }
+.page .sportCopy h2 { font-family:var(--works-sport),sans-serif; font-size:clamp(80px,8.4vw,125px); font-weight:800; line-height:.86; letter-spacing:-.018em; }
+.sportCopy h2 span { color:#ffcf9e; }
+.sportDescription { font-size:26px; line-height:1.35; margin-top:30px; font-weight:500; }
+.sportDetail { font-size:15px; line-height:1.85; max-width:335px; color:#ffe7de; margin-top:18px; }
+.sportButton { background:#f7eee0; color:#581925; margin-top:28px; }
+.sportCredit { display:block; font-size:11px; line-height:1.8; color:#ffe0d8; margin-top:22px; }
+.athleteDepth { position:absolute; width:57%; right:-1%; top:3%; bottom:-23%; z-index:2; pointer-events:none; }
+.athlete { width:100%; height:100%; }
+.athlete img { width:100%; height:100%; object-fit:contain; object-position:center top; filter:drop-shadow(-20px 15px 25px #450b2940); }
+.football { position:absolute; right:6%; bottom:28px; width:clamp(120px,11vw,160px); aspect-ratio:1; z-index:4; pointer-events:none; }
+.football img { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 12px 12px #450b2950); }
+@media(max-width:650px) { .football { width:94px; right:22px; bottom:22px; } }
+.collegeCard { background:#173b31; border-radius:24px; overflow:hidden; margin-top:36px; }
+.collegeHeader { padding:55px 60px; display:grid; grid-template-columns:1.2fr 1fr; gap:70px; align-items:end; }
+.collegeHeader img { width:160px; height:auto; max-height:70px; object-fit:contain; object-position:left center; margin-bottom:35px; }
+.collegeHeader h2 { font-size:clamp(42px,4.4vw,65px); line-height:1.1; letter-spacing:-.04em; }
+.collegeHeader h2 em { color:#cce1be; }
+.collegeCopy { max-width:400px; }
+.collegeCopy h3 { font-size:23px; }
+.collegeCopy p { margin-top:18px; font-size:16px; line-height:1.85; color:#dce7df; }
+.lightLink { margin-top:20px; color:#eef3dc; }
+.collegeFigure { margin:0 24px 24px; background:#eeeede; color:#26362c; border-radius:12px; overflow:hidden; }
+.collegeImage { overflow:hidden; }
+.collegeImage img { width:100%; height:auto; display:block; }
+.collegeFigure figcaption { display:flex; justify-content:space-between; gap:20px; padding:20px 26px; font-size:14px; }
+.collegeFigure figcaption span { color:#546052; }
+.walkerCard { background:#d6dfe3; color:#23343d; margin-top:36px; padding:55px 0 55px 50px; border-radius:24px; overflow:hidden; display:grid; grid-template-columns:.85fr 1.35fr; gap:45px; align-items:center; }
+.walkerCopy > span { font-size:13px; color:#41545e; }
+.walkerCopy h2 { font-size:clamp(33px,3.15vw,47px); letter-spacing:-.04em; line-height:1.15; margin-top:25px; }
+.walkerCopy h2 em { color:#536f7d; }
+.walkerCopy h3 { font-size:20px; line-height:1.4; margin-top:32px; }
+.walkerCopy p { font-size:15px; line-height:1.85; margin-top:18px; color:#41545e; max-width:360px; }
+.walkerCopy .primary { margin-top:26px; background:#233c49; color:#f1f4f5; font-size:12px; padding:17px 20px; }
+.walkerVisual { padding-right:0; perspective:1200px; }
+.walkerVisual img { width:100%; height:auto; border-radius:13px 0 0 13px; box-shadow:-10px 25px 65px #233c4930; }
+.moreWork { padding-block:100px; }
+.sectionHeading { display:flex; justify-content:space-between; align-items:end; gap:45px; margin-bottom:45px; }
+.sectionHeading h2 { font-size:clamp(36px,4vw,58px); letter-spacing:-.035em; line-height:1.15; }
+.sectionHeading h2 span { color:var(--lavender); }
+.sectionHeading > p { max-width:370px; color:#d0d2d9; font-size:16px; line-height:1.8; }
+.workGrid { display:grid; grid-template-columns:1fr 1fr; gap:44px 28px; }
+.workCard { background:#17191e; border-radius:18px; overflow:hidden; }
+.workImage { display:block; overflow:hidden; background:#232730; aspect-ratio:1.65; }
+.workImage img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .6s ease; }
+.workImage:hover img { transform:scale(1.025); }
+.workContent { padding:30px; }
+.workContent .category { font-size:12px; color:#d4c3ed; margin:0 0 12px; }
+.workContent h3 { font-size:27px; letter-spacing:-.025em; }
+.workContent > p { color:#d0d2d9; font-size:15px; line-height:1.8; margin-top:15px; max-width:510px; }
+.workContent .textLink { margin-top:18px; }
+.workContent small { display:block; font-size:12px; color:#c1c4ce; margin-top:8px; }
+.closing { background:#eeeede; color:#242c21; padding:80px 0; }
+.closingInner { display:grid; grid-template-columns:1.5fr .6fr; gap:70px; align-items:end; }
+.closing h2 { font-size:clamp(40px,4.7vw,68px); letter-spacing:-.04em; line-height:1.15; }
+.closing h2 span { color:#626d53; }
+.closing p { font-size:16px; color:#485341; margin-top:25px; line-height:1.8; max-width:530px; }
+.closing .primary { background:#24311c; color:#f2f6e9; }
+.closing .textLink:hover { color:#52663e; }
+.closingNote > span { font-size:20px; line-height:1.55; }
+.closingNote p { font-size:14px; }
+@media(max-width:1199px) { .container { width:calc(100% - 64px); } .hero { gap:30px; } .sportCopy { padding-left:40px; } .collegeHeader { padding:40px; gap:40px; } .walkerCard { gap:30px; padding-left:35px; } }
+@media(max-width:900px) { .hero { grid-template-columns:1fr; padding-block:45px; gap:28px; } .heroAside { max-width:620px; } .heroAside p { max-width:580px; } .sportCard { min-height:730px; } .sportCopy { width:54%; padding:40px 0 40px 30px; } .sportContext { font-size:12px; } .sportDescription { font-size:23px; } .sportDetail { font-size:14px; } .athleteDepth { width:57%; right:-7%; top:12%; bottom:-12%; } .collegeHeader { grid-template-columns:1fr 1fr; gap:30px; } .collegeCopy h3 { font-size:19px; } .collegeCopy p { font-size:14px; } .walkerCard { grid-template-columns:1fr; padding:36px; } .walkerCopy p { max-width:600px; } .walkerVisual img { border-radius:10px; } .sectionHeading { align-items:start; flex-direction:column; gap:20px; } .sectionHeading p { max-width:550px; } .workContent { padding:24px; } .workContent h3 { font-size:23px; } .closingInner { grid-template-columns:1fr; gap:35px; } .closingNote { display:none; } }
+@media(max-width:650px) { .container { width:calc(100% - 36px); } .hero h1 { font-size:clamp(44px,11vw,66px); } .heroAside p { font-size:15px; } .actions { gap:15px; } .primary { font-size:12px; gap:18px; } .sportCard { border-radius:17px; min-height:0; display:flex; flex-direction:column; } .sportCopy { width:100%; padding:32px 26px 0; } .page .sportCopy h2 { font-size:85px; } .sportDescription { margin-top:22px; } .sportDetail { max-width:100%; } .sportCredit { max-width:240px; } .athleteDepth { position:relative; width:100%; right:auto; top:auto; bottom:auto; height:450px; margin-top:16px; overflow:hidden; } .athlete img { height:660px; width:100%; object-position:top center; } .sportBackdrop { bottom:50px; font-size:240px; } .collegeCard { margin-top:24px; border-radius:17px; } .collegeHeader { padding:30px 26px; grid-template-columns:1fr; gap:27px; } .collegeHeader img { width:150px; margin-bottom:25px; } .collegeHeader h2 { font-size:47px; } .collegeCopy { max-width:none; } .collegeCopy h3 { font-size:22px; } .collegeFigure { margin:0 12px 12px; } .collegeFigure figcaption { padding:16px; flex-direction:column; gap:5px; font-size:12px; } .walkerCard { margin-top:24px; border-radius:17px; padding:30px 24px; } .walkerCopy h2 { font-size:35px; } .walkerCopy .primary { font-size:11px; gap:12px; } .moreWork { padding-block:60px; } .sectionHeading h2 { font-size:38px; } .sectionHeading > p { font-size:15px; } .workGrid { grid-template-columns:1fr; gap:24px; } .workContent h3 { font-size:25px; } .closing { padding-block:55px; } .closing h2 { font-size:40px; } }
+@media(max-width:1099px),(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce) { .page *, .page *::before,.page *::after { transition:none!important; animation:none!important; } .workImage:hover img { transform:none; } }
