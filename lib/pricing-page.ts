@@ -1,7 +1,7 @@
 export const ceoMessage = [
   "You know your business. You shouldn’t have to be a marketing expert to help it grow.",
   "You might need a better website, help getting found, or a little of both. Every business is different. The right approach starts with understanding yours.",
-  "So we listen first. Your goals. Your customers. Your ambitions. Then we build a strategy around what will make a difference to your business — and a clear quote for the work you need.",
+  "So we listen first. Your goals. Your customers. Your ambitions. Then we build a strategy around what will make a difference to your business and a clear quote for the work you need.",
 ];
 
 export const serviceDetails = [
