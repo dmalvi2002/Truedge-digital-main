@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Column 1: Brand & Address (Takes up more space on desktop) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <Link href="/" aria-label="Truedge Digital home" className="inline-flex items-center gap-5 w-fit text-white">
-              <Image src="/truedge-logo.webp" alt="" width={70} height={79} className="h-[79px] w-[70px] object-contain" />
+              <Image src="/truedge-logo-white.svg" alt="" width={70} height={79} className="h-[79px] w-[70px] object-contain" />
               <span className={`${brandFont.className} flex items-baseline gap-2 text-[25px] font-semibold leading-none tracking-[0.045em]`}>
                 <span>TRUEDGE</span>
                 <span>DIGITAL</span>
