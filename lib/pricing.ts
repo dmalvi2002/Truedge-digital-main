@@ -53,6 +53,33 @@ export const pricingServices: {
       { id: "seo-scale", name: "Scale", forWho: "For larger sites or more locations", description: "More extensive search support for a wider range of services, products or locations.", features: ["A broader keyword and competitor review", "A technical improvement plan for your site", "Content support across agreed services or categories", "Search improvements for multiple locations, if needed", "Internal linking and website structure improvements", "Ongoing monitoring and prioritised recommendations", "Reporting across your agreed business priorities"], note: "We scope the number of pages, locations and content pieces before you commit. Your tailored monthly quote receives the 50% discount." },
     ],
   },
+  {
+    id: "content-creation", name: "Content Creation", contactService: "Paid Marketing", billing: "per month", startingPrice: 100,
+    heading: "Engaging visuals, leaflets and organic social content.",
+    introduction: "Consistent organic content for your brand. We design marketing leaflets, edit social media videos and craft organic posts without expensive production overheads.",
+    costNote: "Monthly retainer covers graphic design, video editing and organic posting. Videography and live shoots are not included.",
+    packages: [
+      { id: "content-starter", name: "Starter", price: 100, forWho: "For active social & print content", description: "Design marketing leaflets, edit ready footage and schedule organic social posts consistently.", features: ["Custom marketing leaflet & flyer design", "Short-form video editing for Reels/TikTok", "Organic social graphics and creative carousels", "Content scheduling & basic post captions", "Monthly organic content calendar"], note: "Focuses on design, video editing and organic posting. Videography and production shoots are not included." },
+    ],
+  },
+  {
+    id: "ai-automation", name: "AI & Automation", contactService: "AI Automation", billing: "per month", startingPrice: 300,
+    heading: "Smart workflows, conversational chatbots and agentic systems.",
+    introduction: "Eliminate repetitive tasks and streamline communications across your website, social platforms and internal workflows.",
+    costNote: "Monthly management starts from £300. Third-party AI model token costs and telecom usage are billed separately based on consumption.",
+    packages: [
+      { id: "ai-starter", name: "Starter", price: 300, forWho: "For automating repetitive business tasks", description: "End-to-end automations for social media, website, custom chatbots and autonomous voice agents.", features: ["Social media DM & response automations", "Website intelligent AI chatbot integration", "Autonomous AI phone agents & call routing", "Cross-platform workflow & webhook automations", "Monthly system maintenance & prompt tuning"], note: "Platform management included. Third-party AI token and usage costs are billed separately." },
+    ],
+  },
+  {
+    id: "ai-saas", name: "AI SaaS Software", contactService: "SaaS Development", billing: "one-off", startingPrice: 1500,
+    heading: "Custom AI web applications built to scale.",
+    introduction: "Turn your product vision into reality with bespoke full-stack AI SaaS development, custom logic and ongoing cloud infrastructure care.",
+    costNote: "Development is a one-off project fee starting from £1,500. Cloud hosting, maintenance and database management are billed monthly.",
+    packages: [
+      { id: "saas-starter", name: "Starter", price: 1500, forWho: "For custom AI applications & MVPs", description: "Bespoke full-stack web applications with custom AI models, auth, databases and user dashboards.", features: ["Bespoke frontend & backend architecture", "Custom AI API & LLM integration", "Secure user authentication & payment billing", "Admin dashboard and analytics panel", "Handover, deployment & cloud setup"], note: "Build fee is one-off. Ongoing cloud hosting, maintenance and system updates require a monthly care agreement." },
+    ],
+  },
 ];
 
 export function getPricingOffer(id: string | null) {

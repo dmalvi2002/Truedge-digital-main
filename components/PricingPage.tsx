@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans, Barlow_Condensed } from "next/font/google";
-import { ArrowUpRight, Check, LayoutTemplate, Megaphone, Search, Plus, ArrowDown } from "lucide-react";
+import { ArrowUpRight, Check, LayoutTemplate, Megaphone, Search, Plus, ArrowDown, Palette, Bot, Sparkles } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ceoMessage, serviceDetails, pricingQuestions } from "@/lib/pricing-page";
@@ -25,6 +25,9 @@ const offers = [
   { id: "web-design", name: "Web Design", price: 120, billing: "one-off", offer: "web-starter", theme: "cream", icon: LayoutTemplate, description: "A single-page website with your services, contact details and an enquiry form. Built for mobile and desktop." },
   { id: "marketing", name: "Paid Marketing", price: 200, billing: "per month", offer: "marketing-starter", theme: "lavender", icon: Megaphone, description: "One focused ad campaign, audience targeting, regular checks and a monthly report. Ad spend is separate." },
   { id: "seo", name: "SEO", price: 150, billing: "per month", offer: "seo-starter", theme: "lime", icon: Search, description: "A website review, keyword research and improvements to three priority pages, with a monthly progress summary." },
+  { id: "content-creation", name: "Monthly Content", price: 100, billing: "per month", offer: "content-starter", theme: "lavender", icon: Palette, description: "Custom marketing leaflets, social video editing and regular organic posts to keep your brand active." },
+  { id: "ai-automation", name: "AI Automation", price: 300, billing: "per month", offer: "ai-starter", theme: "lime", icon: Bot, description: "Social media & website automations, agentic AI voice calls and chatbots. AI token costs are separate." },
+  { id: "ai-saas", name: "AI SaaS Software", price: 1500, billing: "one-off", offer: "saas-starter", theme: "cream", icon: Sparkles, description: "Bespoke full-stack AI web apps and custom logic. Requires ongoing monthly hosting and maintenance management." },
 ];
 
 const sport = Barlow_Condensed({ subsets: ["latin"], weight: ["700", "800"], variable: "--pricing-sport" });
@@ -129,7 +132,7 @@ export default function PricingPage() {
       <div className={styles.container}>
         <div className={styles.opening}>
           <h1 id="pricing-title"><span className={styles.mask}><span data-price-line>Big ambitions.</span></span><span className={styles.mask}><span data-price-line>Clear starting <em>prices.</em></span></span></h1>
-          <div className={styles.introduction} data-price-intro><p>50% off web design, paid marketing and SEO. Choose your starting point.</p></div>
+          <div className={styles.introduction} data-price-intro><p>Transparent packages for web design, marketing, SEO, content and AI solutions.</p></div>
         </div>
         <div className={styles.pricingGrid}>
           {offers.map((offer) => <div key={offer.name} data-price-depth><article className={`${styles.priceCard} ${styles[offer.theme]}`} data-price-panel aria-label={`${offer.name} from £${offer.price}`}>
