@@ -10,6 +10,15 @@ function subscribeMotion(callback: () => void) {
 }
 const motionSnapshot = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function subscribeDesktop(callback: () => void) {
+  const media = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+}
+const desktopSnapshot = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)').matches;
+
 interface ColorRGB {
   r: number;
   g: number;
@@ -93,11 +102,12 @@ export default function SplashCursor({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const reducedMotion = useSyncExternalStore(subscribeMotion, motionSnapshot, () => false);
+  const isDesktop = useSyncExternalStore(subscribeDesktop, desktopSnapshot, () => false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const scope = scopeRef.current;
-    if (!canvas || !scope || reducedMotion) return;
+    if (!canvas || !scope || reducedMotion || !isDesktop) return;
     const textures = new Set<WebGLTexture>();
     const framebuffers = new Set<WebGLFramebuffer>();
     const shaders = new Set<WebGLShader>();
@@ -1338,6 +1348,7 @@ export default function SplashCursor({
   }, [
     scopeRef,
     reducedMotion,
+    isDesktop,
     SIM_RESOLUTION,
     DYE_RESOLUTION,
     CAPTURE_RESOLUTION,
@@ -1357,8 +1368,10 @@ export default function SplashCursor({
     COLOR_INTENSITY
   ]);
 
+  if (!isDesktop) return null;
+
   return (
-    <div aria-hidden="true" data-hero-splash className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div aria-hidden="true" data-hero-splash className="absolute inset-0 z-0 pointer-events-none overflow-hidden hidden lg:block">
       <canvas ref={canvasRef} className="h-full w-full block" />
     </div>
   );

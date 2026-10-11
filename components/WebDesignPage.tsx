@@ -138,7 +138,7 @@ function ServiceVisual({ stage }: { stage: number }) {
       </div>}
       {stage === 5 && <div className={styles.launchVisual}><div className={styles.launchGlobe}><Globe2 strokeWidth={.8} size={145} /><ArrowUpRight size={66} /></div><strong>Hello, world.</strong><p>Tested. Ready. Yours.</p><div><Check size={17} /> Let’s put your business online.</div></div>}
     </div>
-    <p className={styles.visualCaption}>{services[stage].outcome}</p>
+    <p className={`${styles.visualCaption} !text-[#090a0d] font-semibold`}>{services[stage].outcome}</p>
   </div>;
 }
 

@@ -93,7 +93,7 @@
 .visualTop { display: flex; justify-content: space-between; font-size: 11px; font-weight: 500; }
 .visualTop > span:last-child { opacity: .6; }
 .visualContent { height: 345px; position: relative; display: grid; align-items: center; }
-.visualCaption { font-size: 12px; text-align: center; line-height: 1.6; padding-top: 5px; }
+.visualCaption { font-size: 13px; font-weight: 600; color: #090a0d !important; text-align: center; line-height: 1.55; padding-top: 6px; }
 .figmaCanvas { position: relative; height: 100%; }
 .figmaMark { position: absolute; left: 5%; top: 50px; transform: rotate(-14deg); z-index: 2; height: auto; }
 .miniArtboard { position: absolute; left: 17%; top: 36px; width: 76%; height: 263px; background: #f7f5ed; box-shadow: 0 20px 40px #30204022; padding: 18px; transform: rotate(-5deg); overflow: hidden; }
@@ -162,7 +162,7 @@
 .serviceName h3 { font-size: 16px; font-weight: 500; letter-spacing: 0; word-spacing: .1em; }
 .serviceName > svg { color: var(--lilac); }
 .chapter h4 { font-size: clamp(28px, 2.7vw, 39px); font-weight: 500; letter-spacing: -.018em; word-spacing: .075em; line-height: 1.23; margin-bottom: 22px; text-wrap: balance; }
-.chapter p { color: #a7a8b1; font-size: 15px; line-height: 1.85; }
+.chapter > div:first-child > p { color: #a7a8b1; font-size: 15px; line-height: 1.85; }
 .chapter ul { display: grid; gap: 13px; margin-top: 25px; }
 .chapter li { display: flex; gap: 12px; align-items: start; font-size: 13px; line-height: 1.65; color: #d6d5dc; }
 .chapter li svg { flex-shrink: 0; margin-top: 3px; color: var(--lime); }
@@ -258,7 +258,7 @@
   .serviceVisual { padding: 16px; }
   .visualContent { height: 295px; }
   .visualTop { font-size: 9px; }
-  .visualCaption { font-size: 10px; }
+  .visualCaption { font-size: 12px; font-weight: 600; color: #090a0d !important; }
   .chapter { min-height: 560px; }
   .chapter h4 { font-size: 29px; }
   .chapter p { font-size: 14px; }
@@ -341,7 +341,7 @@
   .serviceName { margin-bottom: 18px; }
   .serviceName h3 { font-size: 15px; }
   .chapter h4 { font-size: 31px; margin-bottom: 18px; }
-  .chapter p { font-size: 15px; }
+  .chapter > div:first-child > p { font-size: 15px; }
   .chapter li { font-size: 13px; }
   .chapter ul { gap: 12px; margin-top: 22px; }
   .chapter .textLink { margin-top: 16px; }
@@ -349,7 +349,7 @@
   .serviceVisual { padding: 22px; border-radius: 13px; max-width: 480px; margin-inline: auto; }
   .visualContent { height: 300px; max-width: 340px; margin: auto; }
   .visualTop { font-size: 10px; }
-  .visualCaption { font-size: 11px; }
+  .visualCaption { font-size: 13px; font-weight: 600; color: #090a0d !important; line-height: 1.5; padding-top: 8px; }
   .miniArtboard { left: 18%; width: 76%; }
   .miniArtboard > strong { font-size: 28px; }
   .figmaMark { left: 5%; top: 47px; width: 30px; }

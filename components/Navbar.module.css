@@ -14,10 +14,20 @@
 .navigation a:hover, .navigation a[aria-current] { color: var(--nav-ink); background: var(--nav-link); border-color: var(--nav-line); }
 .navigation a[aria-current] { box-shadow: 0 2px 6px #00000005; }
 .right { display: flex; align-items: center; gap: 20px; }
-.contact, .mobile .contact { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 57px 0 21px; gap: 0; background: #25d366; color: #052611; border: 0; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: nowrap; transition: padding .45s cubic-bezier(.16,1,.3,1), background .2s; }
-.contactIcon { display: grid; place-items: center; position: absolute; right: 5px; width: 38px; height: 38px; border-radius: 50%; background: #052611; color: #6cf29d; transition: right .45s cubic-bezier(.16,1,.3,1), transform .45s; }
-.contact:hover, .contact:focus-visible, .mobile .contact:hover, .mobile .contact:focus-visible { padding-left: 57px; padding-right: 21px; background: #49e482; }
-.contact:hover .contactIcon, .contact:focus-visible .contactIcon { right: calc(100% - 43px); transform: rotate(-12deg); }
+.contact, .mobile .contact { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 57px 0 21px; gap: 0; background: #25d366; color: #052611; border: 0; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: nowrap; transition: background .2s; }
+.contactIcon { display: grid; place-items: center; position: absolute; right: 5px; width: 38px; height: 38px; border-radius: 50%; background: #052611; color: #6cf29d; }
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .contact { transition: padding .45s cubic-bezier(.16,1,.3,1), background .2s; }
+  .contact:hover, .contact:focus-visible { padding-left: 57px; padding-right: 21px; background: #49e482; }
+  .contactIcon { transition: right .45s cubic-bezier(.16,1,.3,1), transform .45s; }
+  .contact:hover .contactIcon, .contact:focus-visible .contactIcon { right: calc(100% - 43px); transform: rotate(-12deg); }
+}
+@media (max-width: 1023px), (hover: none), (pointer: coarse) {
+  .contact, .mobile .contact { transition: background .2s; }
+  .contact:hover, .contact:focus-visible, .contact:active, .mobile .contact:hover, .mobile .contact:focus-visible, .mobile .contact:active { background: #49e482; }
+  .contactIcon, .mobile .contactIcon { right: 5px !important; transform: none !important; transition: none !important; }
+  .contact:hover .contactIcon, .contact:focus-visible .contactIcon, .contact:active .contactIcon, .mobile .contact:hover .contactIcon, .mobile .contact:focus-visible .contactIcon, .mobile .contact:active .contactIcon { right: 5px !important; transform: none !important; }
+}
 .menuButton { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer; color: var(--nav-ink); background: var(--nav-track); border: 1px solid var(--nav-line); border-radius: 50%; }
 .mobile { padding: 12px 32px 28px; background: var(--nav-bg); border-bottom: 1px solid var(--nav-line); max-height: calc(100dvh - 76px); overflow-y: auto; }
 .mobile[hidden] { display: none; }

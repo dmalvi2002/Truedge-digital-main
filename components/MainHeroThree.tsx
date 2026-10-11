@@ -209,7 +209,7 @@ export default function MainHeroThree() {
     <section
       ref={root}
       aria-labelledby="main-hero-title"
-      className={`${supporting.className} relative isolate overflow-hidden bg-[#06070b] px-6 pt-8 pb-5 text-white selection:bg-[#c1fb00] selection:text-[#06070b] sm:px-10 sm:pt-10 lg:px-14 lg:py-7`}
+      className={`${supporting.className} relative isolate overflow-hidden bg-[#06070b] px-6 pt-8 pb-5 text-white select-none sm:px-10 sm:pt-10 lg:px-14 lg:py-7`}
     >
       <SplashCursor
         scopeRef={root}
@@ -233,7 +233,7 @@ export default function MainHeroThree() {
           <h1
             id="main-hero-title"
             aria-label="Your One-Stop Partner for Digital Growth."
-            className={`${headline.className} text-[clamp(1.85rem,7.6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.055em] lg:text-[clamp(2.85rem,5.25vw,5.5rem)]`}
+            className={`${headline.className} text-[clamp(2.5rem,10.8vw,4.25rem)] sm:text-[clamp(2.8rem,8.5vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.055em] lg:text-[clamp(2.85rem,5.25vw,5.5rem)] lg:leading-[1.08]`}
           >
             {["Your One-Stop", "Partner for", "Digital Growth."].map((line, index) => (
               <span

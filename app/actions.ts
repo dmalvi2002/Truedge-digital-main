@@ -3,8 +3,8 @@
 async function verifyTurnstileToken(token: string): Promise<boolean> {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
   if (!secretKey) {
-    console.warn("TURNSTILE_SECRET_KEY is not defined. Skipping token verification.");
-    return true;
+    console.error("TURNSTILE_SECRET_KEY is not defined in environment variables!");
+    return false;
   }
 
   try {
@@ -18,6 +18,9 @@ async function verifyTurnstileToken(token: string): Promise<boolean> {
     });
 
     const outcome = await res.json();
+    if (!outcome.success) {
+      console.warn("Turnstile siteverify failed:", outcome);
+    }
     return Boolean(outcome.success);
   } catch (err) {
     console.error("Turnstile verification error:", err);
