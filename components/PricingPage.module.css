@@ -170,25 +170,27 @@
 .introduction { padding-bottom: 6px; max-width: 340px; }
 .introduction p { font-size: 19px; line-height: 1.65; color: #d7d7dd; }
 .introduction > span { display: block; color: #8e929c; font-size: 14px; line-height: 1.7; margin-top: 16px; }
-.pricingGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 19px; }
-.priceCard { padding: 30px; border-radius: 18px; color: #21231c; height: 100%; }
+.pricingGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; grid-auto-rows: 1fr; }
+.priceCard { padding: 24px; border-radius: 18px; color: #21231c; height: 100%; }
 .priceCard > div { display: flex; flex-direction: column; height: 100%; }
 .cream { background: var(--paper); }
 .lavender { background: var(--lavender); }
 .lime { background: var(--lime); }
 .cardHeading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.cardHeading h2 { font-size: 25px; letter-spacing: -.025em; word-spacing: .055em; }
+.cardHeading { min-height: 48px; }
+.cardHeading h2 { font-size: 21px; letter-spacing: -.025em; word-spacing: .055em; line-height: 1.2; }
 .cardHeading svg { flex-shrink: 0; }
-.amount { margin-top: 36px; margin-bottom: 20px; }
+.amount { margin-top: 16px; margin-bottom: 15px; }
 .amount > span { font-size: 13px; color: #565c4b; display: block; margin-bottom: 3px; }
-.amount strong { display: flex; align-items: baseline; font-family: var(--pricing-display), sans-serif; font-size: clamp(65px, 6.2vw, 90px); font-weight: 500; line-height: 1.1; letter-spacing: -.075em; }
-.amount strong > span { font-size: .54em; align-self: start; padding-top: 9px; margin-right: 8px; letter-spacing: -.03em; }
-.priceRow { display: flex; align-items: baseline; gap: 16px; }
+.amount strong { display: flex; align-items: baseline; font-family: var(--pricing-display), sans-serif; font-size: clamp(56px, 5vw, 68px); font-weight: 500; line-height: 1.1; letter-spacing: -.075em; }
+.amount strong > span { font-size: .54em; align-self: start; padding-top: 7px; margin-right: 7px; letter-spacing: -.03em; }
+.priceRow { display: flex; align-items: center; gap: 16px; min-height: 76px; }
+.amount .quoteAmount { display: block; font-size: clamp(36px, 3.5vw, 48px); line-height: 1.1; letter-spacing: -.045em; }
 .priceRow del { font-size: 18px; color: #666954; text-decoration-thickness: 1px; }
 .amount small { display: block; font-size: 12px; color: #515742; margin-top: 6px; }
 .compareLink { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 13px; padding: 5px 0; font-size: 11px; color: #4d523e; }
-.cardDescription { max-width: 290px; font-size: 15px; line-height: 1.7; min-height: 78px; color: #484d3f; margin-bottom: 26px; }
-.quoteLink { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; background: #20231a; color: #f6f6ef; padding: 14px 15px 14px 18px; border-radius: 40px; font-size: 12px; transition: background .2s; }
+.cardDescription { max-width: none; font-size: 14px; line-height: 1.65; min-height: 70px; color: #484d3f; margin-bottom: 20px; }
+.quoteLink { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; min-height: 54px; background: #20231a; color: #f6f6ef; padding: 15px 18px; border-radius: 40px; font-size: 16px; font-weight: 500; line-height: 1.4; transition: background .2s; }
 .quoteLink svg { flex-shrink: 0; transition: transform .3s; }
 .quoteLink:hover { background: #3b422e; }
 .quoteLink:hover svg { transform: translate(2px, -2px); }
@@ -212,8 +214,8 @@
   .opening { gap: 35px; }
   .introduction p { font-size: 16px; }
   .priceCard { padding: 24px; }
-  .cardHeading h2 { font-size: 22px; }
-  .quoteLink { font-size: 11px; padding-inline: 13px; }
+  .cardHeading h2 { font-size: 20px; }
+  .quoteLink { font-size: 15px; padding-inline: 16px; }
   .faqGrid { gap: 55px; }
 }
 @media (max-width: 900px) {
@@ -227,10 +229,11 @@
   .pricingGrid { gap: 12px; }
   .cardHeading h2 { font-size: 19px; }
   .cardHeading svg { width: 20px; }
-  .amount strong { font-size: 64px; }
+  .amount strong { font-size: 56px; }
+  .amount .quoteAmount { font-size: 36px; }
   .cardDescription { font-size: 13px; }
-  .quoteLink { font-size: 10px; gap: 8px; }
-  .quoteLink svg { width: 16px; }
+  .quoteLink { font-size: 15px; gap: 10px; }
+  .quoteLink svg { width: 20px; }
   .faqGrid { grid-template-columns: 1fr; gap: 30px; }
 }
 @media (max-width: 650px) {
@@ -244,14 +247,15 @@
   .introduction p { font-size: 15px; }
   .introduction > span { margin-top: 12px; font-size: 13px; }
   .introduction br { display: none; }
-  .pricingGrid { grid-template-columns: 1fr; gap: 17px; }
-  .priceCard { padding: 26px; border-radius: 14px; }
-  .cardHeading h2 { font-size: 25px; }
+  .pricingGrid { grid-template-columns: 1fr; gap: 14px; }
+  .priceCard { padding: 22px; border-radius: 14px; }
+  .cardHeading h2 { font-size: 22px; }
   .cardHeading svg { width: 26px; }
-  .amount { margin-top: 26px; margin-bottom: 17px; }
-  .amount strong { font-size: 82px; }
-  .cardDescription { font-size: 15px; min-height: 0; margin-bottom: 23px; max-width: none; }
-  .quoteLink { font-size: 12px; padding: 15px 17px; }
+  .amount { margin-top: 12px; margin-bottom: 14px; }
+  .amount strong { font-size: 62px; }
+  .amount .quoteAmount { font-size: 44px; }
+  .cardDescription { font-size: 14px; min-height: 0; margin-bottom: 18px; max-width: none; }
+  .quoteLink { font-size: 16px; padding: 15px 17px; }
   .quoteLink svg { width: 20px; }
   .priceNote { text-align: left; }
   .questions { padding: 55px 0; }

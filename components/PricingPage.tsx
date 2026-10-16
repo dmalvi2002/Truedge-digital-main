@@ -25,9 +25,9 @@ const offers = [
   { id: "web-design", name: "Web Design", price: 120, billing: "one-off", offer: "web-starter", theme: "cream", icon: LayoutTemplate, description: "A single-page website with your services, contact details and an enquiry form. Built for mobile and desktop." },
   { id: "marketing", name: "Paid Marketing", price: 200, billing: "per month", offer: "marketing-starter", theme: "lavender", icon: Megaphone, description: "One focused ad campaign, audience targeting, regular checks and a monthly report. Ad spend is separate." },
   { id: "seo", name: "SEO", price: 150, billing: "per month", offer: "seo-starter", theme: "lime", icon: Search, description: "A website review, keyword research and improvements to three priority pages, with a monthly progress summary." },
-  { id: "content-creation", name: "Monthly Content", price: 100, billing: "per month", offer: "content-starter", theme: "lavender", icon: Palette, description: "Custom marketing leaflets, social video editing and regular organic posts to keep your brand active." },
-  { id: "ai-automation", name: "AI Automation", price: 300, billing: "per month", offer: "ai-starter", theme: "lime", icon: Bot, description: "Social media & website automations, agentic AI voice calls and chatbots. AI token costs are separate." },
-  { id: "ai-saas", name: "AI SaaS Software", price: 1500, billing: "one-off", offer: "saas-starter", theme: "cream", icon: Sparkles, description: "Bespoke full-stack AI web apps and custom logic. Requires ongoing monthly hosting and maintenance management." },
+  { id: "digital-plan", name: "Tailored Digital Plan", price: null, billing: "built around your goals", offer: null, theme: "lavender", icon: Palette, description: "SEO, Google Ads and Meta campaigns brought together with CRM setup. A joined-up plan shaped around your business." },
+  { id: "ai-automation", name: "AI Automation", price: null, billing: "built around your workflow", offer: null, theme: "lime", icon: Bot, description: "AI automation, website chatbots and AI call agents that help answer enquiries, follow up with customers and simplify everyday work." },
+  { id: "ai-saas", name: "AI SaaS Software", price: null, billing: "built around your requirements", offer: null, theme: "cream", icon: Sparkles, description: "Custom AI web apps and website portals for your customers or team. Connected tools and features built around the way your business works." },
 ];
 
 const sport = Barlow_Condensed({ subsets: ["latin"], weight: ["700", "800"], variable: "--pricing-sport" });
@@ -132,15 +132,15 @@ export default function PricingPage() {
       <div className={styles.container}>
         <div className={styles.opening}>
           <h1 id="pricing-title"><span className={styles.mask}><span data-price-line>Big ambitions.</span></span><span className={styles.mask}><span data-price-line>Clear starting <em>prices.</em></span></span></h1>
-          <div className={styles.introduction} data-price-intro><p>Transparent packages for web design, marketing, SEO, content and AI solutions.</p></div>
+          <div className={styles.introduction} data-price-intro><p>Clear starting prices. Tailored quotes for the work your business needs.</p></div>
         </div>
         <div className={styles.pricingGrid}>
-          {offers.map((offer) => <div key={offer.name} data-price-depth><article className={`${styles.priceCard} ${styles[offer.theme]}`} data-price-panel aria-label={`${offer.name} from £${offer.price}`}>
+          {offers.map((offer) => <div key={offer.name} data-price-depth><article className={`${styles.priceCard} ${styles[offer.theme]}`} data-price-panel aria-label={offer.price !== null ? `${offer.name} from £${offer.price}` : `${offer.name}, tailored quotation`}>
             <div data-price-content>
               <div className={styles.cardHeading}><h2>{offer.name}</h2><offer.icon size={26} strokeWidth={1.4} aria-hidden="true" /></div>
-              <div className={styles.amount}><span>Starting from</span><div className={styles.priceRow}><strong><span>£</span>{offer.price}</strong></div><small>{offer.billing}</small></div>
+              <div className={styles.amount}><span>{offer.price !== null ? "Starting from" : "Your next step"}</span><div className={styles.priceRow}>{offer.price !== null ? <strong><span>£</span>{offer.price}</strong> : <strong className={styles.quoteAmount}>Let’s talk.</strong>}</div><small>{offer.billing}</small></div>
               <p className={styles.cardDescription}>{offer.description}</p>
-              <Link href={pricingEnquiryHref(offer.offer)} className={styles.quoteLink} aria-label={`Let’s talk about your ${offer.name.toLowerCase()} project`}><span>Let’s talk about your project</span><ArrowUpRight size={21} /></Link>
+              <Link href={offer.offer ? pricingEnquiryHref(offer.offer) : "/contact"} className={styles.quoteLink} aria-label={offer.price !== null ? `Let’s talk about your ${offer.name.toLowerCase()} project` : `Contact us for quotation: ${offer.name}`}><span>{offer.price !== null ? "Let’s talk about your project" : "Contact us for quotation"}</span><ArrowUpRight size={21} /></Link>
             </div>
           </article></div>)}
         </div>
