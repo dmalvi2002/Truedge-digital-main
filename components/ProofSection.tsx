@@ -59,7 +59,7 @@ export default function ProofSection() {
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
                   <Triangle size={28} />{" "}
                   <span className="whitespace-nowrap text-xl font-bold tracking-tight">
-                    iLearner's Hub
+                    iLearner&apos;s Hub
                   </span>
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
@@ -99,7 +99,7 @@ export default function ProofSection() {
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
                   <Triangle size={28} />{" "}
                   <span className="whitespace-nowrap text-xl font-bold tracking-tight">
-                    iLearner's Hub
+                    iLearner&apos;s Hub
                   </span>
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-slate-400 transition-colors hover:text-slate-900">
@@ -144,7 +144,7 @@ export default function ProofSection() {
           <p
             className={`${ibmPlexSans.className} mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0 sm:text-xl`}
           >
-            We don't just build websites. We engineer high-performance digital
+            We don&apos;t just build websites. We engineer high-performance digital
             assets that drive measurable business growth. Look at the data.
           </p>
         </div>
@@ -238,7 +238,7 @@ export default function ProofSection() {
               <h3
                 className={`${sora.className} mb-4 text-3xl font-bold text-slate-900`}
               >
-                iLearner's Hub
+                iLearner&apos;s Hub
               </h3>
               <p
                 className={`${ibmPlexSans.className} mb-8 text-slate-600 leading-relaxed`}

@@ -166,7 +166,7 @@ export default function MoreProject() {
       <h2
         className={`${sora.className} mt-10 px-4 md:mt-20 text-xl text-center font-semibold leading-tight text-slate-900 md:text-3xl`}
       >
-        We'll be more than happy if you can become our next success story! 😉
+        We&apos;ll be more than happy if you can become our next success story! 😉
       </h2>
     </section>
   );

@@ -19,7 +19,7 @@ export const serviceDetails = [
     intro: "We help you choose where to reach your customers, what to say and how to turn their interest into action.",
     groups: [
       { title: "Reach the right people", items: ["Marketing strategy and audience research", "Google Ads and search campaigns", "Facebook, Instagram, TikTok and YouTube advertising", "Remarketing to interested visitors, where appropriate", "Content marketing, copywriting and social content", "Email campaigns and customer retention"] },
-      { title: "Make every campaign clearer", items: ["Ad copy, creative variations and campaign testing", "Brand videos, short-form reels and motion graphics", "Marketing leaflets, brochures and print design", "Landing-page reviews and improvements", "Enquiry tracking and budget optimisation", "Clear performance reporting and strategy reviews"] },
+      { title: "Make every campaign clearer", items: ["Ad copy, creative variations and campaign testing", "Video ad and short-form reel editing using your footage", "Motion graphics and animated marketing visuals", "Leaflet, brochure and promotional graphic design files", "Landing-page reviews and improvements", "Enquiry tracking and budget optimisation", "Clear performance reporting and strategy reviews"] },
     ],
     note: "Paid marketing from £200/month. Advertising spend is separate; we agree your budget before anything goes live.",
   },

@@ -1,19 +1,21 @@
 .section { width: 100%; padding: 48px 0; background: linear-gradient(#fff, #f8fafc80, #fff); border-block: 1px solid #f1f5f9; overflow: hidden; user-select: none; }
 .heading { max-width: 1280px; margin: 0 auto 32px; padding-inline: 20px; text-align: center; }
 .heading p { color: #64748b; font-size: 11px; font-weight: 600; letter-spacing: .05em; line-height: 1.7; text-transform: uppercase; }
-.ribbon { --logo-gap: 32px; --logo-width: 160px; overflow: hidden; padding-block: 6px; mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.ribbon { --logo-gap: 40px; overflow: hidden; padding-block: 6px; mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
 /* Equal groups include the final gap, so -50% lands precisely on the next copy. */
 .track { display: flex; width: max-content; animation: client-ribbon 65s linear infinite; will-change: transform; }
 .group { display: flex; align-items: center; gap: var(--logo-gap); padding-right: var(--logo-gap); flex: 0 0 auto; }
-.logo { flex: 0 0 var(--logo-width); width: var(--logo-width); height: 76px; display: flex; justify-content: center; align-items: center; filter: grayscale(1); opacity: .78; }
-.imageLogo { display: block; width: 160px; height: 64px; object-fit: contain; }
-.compactLogo { display: block; width: 72px; height: 72px; object-fit: contain; }
+.logo { flex: 0 0 auto; height: 44px; display: flex; justify-content: center; align-items: center; filter: grayscale(1); opacity: .78; }
+.imageLogo { display: block; width: 128px; height: 36px; object-fit: contain; }
+.compactLogo { display: block; flex: 0 0 32px; width: 32px; height: 32px; object-fit: contain; }
+.namedLogo { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; color: #1e293b; }
+.namedLogo > span { font-size: 16px; line-height: 1.2; font-weight: 700; letter-spacing: -.025em; }
 @keyframes client-ribbon { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 @media (min-width: 640px) {
   .section { padding-block: 64px; }
   .heading { margin-bottom: 48px; }
   .heading p { font-size: 12px; }
-  .ribbon { --logo-gap: 64px; }
+  .ribbon { --logo-gap: 56px; }
 }
 @media (min-width: 768px) { .heading p { font-size: 14px; } }
 @media (hover: hover) and (pointer: fine) {

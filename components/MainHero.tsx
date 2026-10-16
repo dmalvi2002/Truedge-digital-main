@@ -288,9 +288,11 @@ export default function MainHero() {
             <span className="h-3 sm:h-3.5 w-px bg-slate-200 shrink-0"></span>
 
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-              <img 
+              <Image
                 src="/google-logo.webp" 
                 alt="Google" 
+                width={64}
+                height={64}
                 className="h-3 sm:h-3.5 w-auto object-contain shrink-0"
               />
               <span className="text-[10.5px] sm:text-xs font-bold text-slate-900 tracking-tight whitespace-nowrap shrink-0">
@@ -489,9 +491,11 @@ export default function MainHero() {
                       transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), margin-left 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                     }}
                   >
-                    <img 
+                    <Image
                       src="/startup.svg" 
                       alt="Startup Rocket" 
+                      width={36}
+                      height={36}
                       className="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-sm"
                     />
                   </span>
@@ -513,9 +517,11 @@ export default function MainHero() {
                       transition: "width 350ms cubic-bezier(0.16, 1, 0.3, 1), margin-left 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                     }}
                   >
-                    <img 
+                    <Image
                       src="/target-hero-title.svg" 
                       alt="Growth Target" 
+                      width={36}
+                      height={36}
                       className="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-sm"
                     />
                   </span>

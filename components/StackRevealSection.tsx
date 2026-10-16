@@ -142,7 +142,7 @@ const NeuralGraphic = () => (
       <circle key={i} cx="156" cy={cy} r="6" strokeOpacity="0.9" />
     ))}
     {[30, 70, 110].flatMap((sy) =>
-      [20, 55, 90, 125].map((ey, j) => (
+      [20, 55, 90, 125].map((ey) => (
         <line key={`${sy}-${ey}`} x1="30" y1={sy} x2="84" y2={ey} strokeOpacity="0.35" />
       ))
     )}
@@ -284,7 +284,7 @@ export default function StackRevealSection() {
           <h2 className="srs-head w-full text-[2rem] min-[400px]:text-4xl md:text-5xl font-semibold leading-[1.15] text-slate-900 tracking-tight break-words">
             Built on the Infrastructure That Powers
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-600 via-violet-500 to-indigo-600">
-              {" "}The World's Most Advanced Software
+              {" "}The World&apos;s Most Advanced Software
             </span>
           </h2>
 

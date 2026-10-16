@@ -3,8 +3,8 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { Sora, IBM_Plex_Sans } from "next/font/google";
+import { ArrowUpRight } from "lucide-react";
+import { Sora } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ScrollRippleTitle from "@/components/ScrollRippleTitle";
@@ -17,11 +17,6 @@ if (typeof window !== "undefined") {
 const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-});
-
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 interface ProjectWork {

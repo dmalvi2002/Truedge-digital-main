@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useTypingText } from "@/lib/use-typing-text";
 import Link from "next/link";
 import { BrainCircuit, Cloud, Smartphone, Clapperboard, ArrowUpRight } from "lucide-react";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
@@ -18,34 +18,7 @@ const codeSnippets = [
 ];
 
 function TypingAnimation() {
-  const [lineIndex, setLineIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentLine = codeSnippets[lineIndex];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!isDeleting && charIndex < currentLine.length) {
-      timeout = setTimeout(() => {
-        setDisplayText(currentLine.slice(0, charIndex + 1));
-        setCharIndex((c) => c + 1);
-      }, 65);
-    } else if (!isDeleting && charIndex === currentLine.length) {
-      timeout = setTimeout(() => setIsDeleting(true), 1800);
-    } else if (isDeleting && charIndex > 0) {
-      timeout = setTimeout(() => {
-        setDisplayText(currentLine.slice(0, charIndex - 1));
-        setCharIndex((c) => c - 1);
-      }, 35);
-    } else {
-      setIsDeleting(false);
-      setLineIndex((i) => (i + 1) % codeSnippets.length);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, lineIndex]);
+  const displayText = useTypingText(codeSnippets);
 
   return (
     <div className="relative z-10 flex flex-col rounded-2xl bg-slate-900/90 border border-white/10 shadow-2xl backdrop-blur-md transition-transform duration-700 group-hover:-translate-y-2 overflow-hidden">

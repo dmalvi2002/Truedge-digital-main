@@ -4,21 +4,26 @@ import styles from "./ClientLogosSection.module.css";
 const clientLogos = [
   { name: "NHI", kind: "nhi" },
   { name: "iLearner’s Hub", src: "/assets/client-logos/ilearners-logo-dark.svg" },
-  { name: "DigiTech World UK", src: "/assets/client-logos/digitech-logo.webp", compact: true },
+  { name: "DigiTech World UK", src: "/assets/client-logos/digitech-logo.webp", compact: true, label: "DigiTech" },
   { name: "ASIS", kind: "asis" },
   { name: "A2Z Immigration", src: "/assets/client-logos/a2z-immigration-logo.svg" },
   { name: "Nelson College London", src: "/assets/client-logos/ncl-coloured-logo.svg" },
   { name: "Kinesis Subsea", src: "/assets/client-logos/kinesis-subsea-logo-dark.svg" },
   { name: "Technology", kind: "technology" },
   { name: "Magix World", src: "/assets/client-logos/magix-world-logo.webp" },
-  { name: "Sanchez Watt", src: "/assets/sanchez-watt-logo.webp", compact: true },
+  { name: "Sanchez Watt", src: "/assets/sanchez-watt-logo.webp", compact: true, label: "Sanchez Watt" },
 ];
 
 function Logo({ logo }: { logo: (typeof clientLogos)[number] }) {
   if (logo.src) {
+    if (logo.compact) {
+      return <span className={styles.namedLogo}>
+        <Image src={logo.src} alt="" width={32} height={32} className={styles.compactLogo} loading="eager" sizes="32px" />
+        <span>{logo.label}</span>
+      </span>;
+    }
     return <Image src={logo.src} alt={logo.name} width={160} height={64}
-      className={logo.compact ? styles.compactLogo : styles.imageLogo}
-      loading="eager" sizes={logo.compact ? "72px" : "160px"} />;
+      className={styles.imageLogo} loading="eager" sizes="128px" />;
   }
   if (logo.kind === "nhi") {
     return <span className="flex items-center gap-0.5 font-black text-2xl tracking-tighter text-emerald-600" role="img" aria-label="NHI">

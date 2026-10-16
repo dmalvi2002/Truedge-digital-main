@@ -39,7 +39,7 @@ export default function AboutGoals() {
           <p
             className={`${ibm.className} mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed`}
           >
-            We don't just write code; we architect solutions. Every decision we
+            We don&apos;t just write code; we architect solutions. Every decision we
             make is governed by three core principles designed to protect your
             investment and scale your brand.
           </p>
@@ -105,7 +105,7 @@ export default function AboutGoals() {
               <p
                 className={`${ibm.className} text-slate-600 text-base leading-relaxed`}
               >
-                We do not do "retain and drain." We build relationships based on
+                We do not do &quot;retain and drain.&quot; We build relationships based on
                 100% intellectual property ownership, flawless project
                 execution, and measurable ROI. When you win, we win.
               </p>

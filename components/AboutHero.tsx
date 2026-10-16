@@ -3,6 +3,7 @@
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Manual Font Imports
 const sora = Sora({ subsets: ["latin"], weight: ["600", "700"] });
@@ -52,7 +53,7 @@ export default function AboutHero() {
             <p
               className={`${ibm.className} text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl mb-10`}
             >
-              Born in Aberdeen, engineered for the globe. We don't just build
+              Born in Aberdeen, engineered for the globe. We don&apos;t just build
               websites; we construct high-performance digital assets designed to
               completely outclass your competition.
             </p>
@@ -76,9 +77,11 @@ export default function AboutHero() {
             {/* Base Image (Main Corporate Shot) */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[85%] h-[75%] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] ring-1 ring-slate-200 z-10 transition-transform duration-700 hover:scale-[1.02]">
               <div className="absolute inset-0 bg-slate-900/10 z-10 mix-blend-overlay"></div>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
                 alt="Truedge Engineering HQ"
+                fill
+                sizes="(min-width: 1024px) 38vw, 85vw"
                 className="object-cover w-full h-full"
               />
             </div>
@@ -86,9 +89,11 @@ export default function AboutHero() {
             {/* Overlapping Image 1 (The Tech/Code Shot) */}
             <div className="absolute left-0 bottom-10 w-[55%] h-[45%] rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)] ring-[4px] ring-white z-20 transition-transform duration-700 hover:-translate-y-2 hover:rotate-1">
               <div className="absolute inset-0 bg-purple-900/20 z-10 mix-blend-overlay"></div>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
                 alt="Bespoke Code Engineering"
+                fill
+                sizes="(min-width: 1024px) 25vw, 55vw"
                 className="object-cover w-full h-full"
               />
             </div>

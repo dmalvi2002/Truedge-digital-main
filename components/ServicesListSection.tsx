@@ -61,26 +61,26 @@ const SERVICES: ServiceItem[] = [
     href: '/services#web-design',
   },
   {
-    id: 'video-production',
+    id: 'video-editing',
     number: '04',
-    line1: 'Cinematic Video &',
-    line2: 'Motion Creative',
-    category: 'Commercial Creative',
+    line1: 'Video Editing &',
+    line2: 'Motion Graphics',
+    category: 'Editing & Motion Design',
     description:
-      'Cinematic brand commercials, viral short-form reels, kinetic product animations, and video ads crafted to capture instant attention.',
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80',
-    href: '/services#video-production',
+      'Turn your footage into videos that sell. We edit video ads, short-form reels and branded content with clear storytelling, captions and motion graphics.',
+    image: '/card-tablet.jpg',
+    href: '/pricing#marketing-packages',
   },
   {
     id: 'marketing-leaflets',
     number: '05',
-    line1: 'Marketing Leaflets &',
-    line2: 'Print Collateral',
-    category: 'Tangible Collateral',
+    line1: 'Leaflet & Brochure',
+    line2: 'Design',
+    category: 'Marketing Design',
     description:
-      'Luxury tactile print collateral, promotional brand leaflets, brochures, packaging, and high-impact physical assets that leave a lasting mark.',
+      'Leaflets, brochures and promotional graphics that make your offer clear and your brand memorable. Delivered as digital design files for sharing or sending to your printer.',
     image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=600&q=80',
-    href: '/services#print-collateral',
+    href: '/pricing#marketing-packages',
   },
   {
     id: 'content-marketing',
@@ -214,7 +214,7 @@ export default function ServicesListSection() {
               accentColor="#a855f7"
             />
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-              From high-converting web architecture and performance ads to commercial video and tactile marketing leaflets—we engineer unified growth across every touchpoint.
+              Websites, search and advertising to help customers find you. Video editing, motion graphics and marketing design to give them a reason to choose you.
             </p>
           </div>
 

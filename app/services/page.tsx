@@ -3,7 +3,7 @@
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { ArrowRight, Smartphone, Database, Code2 } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useTypingText } from "@/lib/use-typing-text";
 import CoreServices from "@/components/CoreServices";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import GrowthBridge from "@/components/GrowthBridge";
@@ -31,30 +31,7 @@ const ibm = IBM_Plex_Sans({
 });
 
 export default function ServicesHero() {
-  // Simple state for hydration check to ensure animations match server/client
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
-
-  const [lineIndex, setLineIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentLine = serviceSnippets[lineIndex];
-    let t: ReturnType<typeof setTimeout>;
-    if (!isDeleting && charIndex < currentLine.length) {
-      t = setTimeout(() => { setDisplayText(currentLine.slice(0, charIndex + 1)); setCharIndex(c => c + 1); }, 65);
-    } else if (!isDeleting && charIndex === currentLine.length) {
-      t = setTimeout(() => setIsDeleting(true), 1800);
-    } else if (isDeleting && charIndex > 0) {
-      t = setTimeout(() => { setDisplayText(currentLine.slice(0, charIndex - 1)); setCharIndex(c => c - 1); }, 35);
-    } else {
-      setIsDeleting(false);
-      setLineIndex(i => (i + 1) % serviceSnippets.length);
-    }
-    return () => clearTimeout(t);
-  }, [charIndex, isDeleting, lineIndex]);
+  const displayText = useTypingText(serviceSnippets);
 
   return (
     <div>
@@ -65,13 +42,11 @@ export default function ServicesHero() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_20%,#000_60%,transparent_100%)] opacity-70"></div>
 
           {/* Animated Aurora Gradients */}
-          {isMounted && (
-            <>
+          <>
               <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob filter blur-[120px] opacity-70"></div>
               <div className="absolute top-0 right-[20%] w-[600px] h-[600px] bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000 filter blur-[120px] opacity-70"></div>
               <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-400/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000 filter blur-[120px] opacity-60"></div>
-            </>
-          )}
+          </>
         </div>
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
@@ -95,7 +70,7 @@ export default function ServicesHero() {
               <h1
                 className={`${sora.className} text-4xl md:text-6xl font-semibold tracking-tight text-slate-950 leading-[1.15] lg:leading-[1.1]`}
               >
-                We don't build websites.
+                We don&apos;t build websites.
                 <br />
                 <span className="relative inline-block mt-2 sm:mt-3">
                   <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 bg-[length:200%_auto] animate-[gradient_8s_linear_infinite]">

@@ -35,7 +35,7 @@ export default function ScrollRippleTitle({
   scrub = 0.8,
   onProgress,
 }: ScrollRippleTitleProps) {
-  const containerRef = useRef<HTMLHeadingElement | null>(null);
+  const containerRef = useRef<HTMLElement | null>(null);
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // Split text into words, then letters
@@ -127,7 +127,7 @@ export default function ScrollRippleTitle({
 
   return (
     <Component
-      ref={containerRef as any}
+      ref={(node) => { containerRef.current = node; }}
       id={id}
       aria-label={text}
       className={`relative inline-block select-none ${className}`}

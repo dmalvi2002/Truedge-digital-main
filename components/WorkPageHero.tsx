@@ -13,7 +13,7 @@ const WorksHero = () => {
       const mm = gsap.matchMedia();
       // Logic fix: Scoped properly instead of using document.querySelector
       const title = gsap.utils.toArray(".hero-title")[0] as HTMLElement;
-      const elements = gsap.utils.toArray(".floating-element");
+      const elements = gsap.utils.toArray<HTMLElement>(".floating-element");
 
       // ---------------------------------------------------------
       // DESKTOP & TABLET ANIMATIONS
@@ -41,7 +41,7 @@ const WorksHero = () => {
         );
 
         // Continuous Float (Using yPercent so it never conflicts with mouse 'y')
-        elements.forEach((el: any, i) => {
+        elements.forEach((el, i) => {
           gsap.to(el, {
             yPercent: i % 2 === 0 ? 4 : -4,
             rotateZ: i % 2 === 0 ? 1 : -1,
@@ -53,16 +53,16 @@ const WorksHero = () => {
         });
 
         // Logic fix: Use gsap.quickTo for high-performance, conflict-free mouse tracking
-        const xTos = elements.map((el: any) =>
+        const xTos = elements.map((el) =>
           gsap.quickTo(el, "x", { duration: 1.5, ease: "power2.out" }),
         );
-        const yTos = elements.map((el: any) =>
+        const yTos = elements.map((el) =>
           gsap.quickTo(el, "y", { duration: 1.5, ease: "power2.out" }),
         );
-        const rotXTos = elements.map((el: any) =>
+        const rotXTos = elements.map((el) =>
           gsap.quickTo(el, "rotateX", { duration: 1.5, ease: "power2.out" }),
         );
-        const rotYTos = elements.map((el: any) =>
+        const rotYTos = elements.map((el) =>
           gsap.quickTo(el, "rotateY", { duration: 1.5, ease: "power2.out" }),
         );
 
@@ -84,7 +84,7 @@ const WorksHero = () => {
           titleXTo(xPos * 30);
           titleYTo(yPos * 30);
 
-          elements.forEach((el: any, i) => {
+          elements.forEach((el, i) => {
             const speed = parseFloat(el.dataset.speed || "20");
 
             // Send new coordinates directly to the quickTo functions
@@ -116,7 +116,7 @@ const WorksHero = () => {
           titleXTo(0);
           titleYTo(0);
 
-          elements.forEach((el: any, i) => {
+          elements.forEach((el, i) => {
             xTos[i](0);
             yTos[i](0);
             rotXTos[i](0);

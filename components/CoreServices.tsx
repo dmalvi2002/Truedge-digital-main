@@ -2,7 +2,6 @@
 
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { Code2, Smartphone, CheckCircle2, Terminal, Zap, Layers } from "lucide-react";
-import Link from "next/link";
 
 const sora = Sora({ subsets: ["latin"], weight: ["600", "700"] });
 const ibm = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -119,7 +118,7 @@ export default function CoreServices() {
                 <div className="p-5 font-mono text-sm flex flex-col gap-3 opacity-80">
                   <div className="flex gap-4"><span className="text-slate-600">1</span><span className="text-purple-400">export default function</span> <span className="text-blue-400">PremiumAsset</span>() {'{'}</div>
                   <div className="flex gap-4"><span className="text-slate-600">2</span><span className="ml-4 text-slate-400">return (</span></div>
-                  <div className="flex gap-4"><span className="text-slate-600">3</span><span className="ml-8 text-emerald-400">&lt;div className="<span className="text-amber-300">max-w-7xl mx-auto</span>"&gt;</span></div>
+                  <div className="flex gap-4"><span className="text-slate-600">3</span><span className="ml-8 text-emerald-400">&lt;div className=&quot;<span className="text-amber-300">max-w-7xl mx-auto</span>&quot;&gt;</span></div>
                   {/* Animated typing line */}
                   <div className="flex gap-4"><span className="text-slate-600">4</span><span className="ml-12 text-slate-300 flex items-center gap-1">&lt;ConversionEngine /&gt; <span className="h-4 w-2 bg-purple-500 animate-pulse"></span></span></div>
                   <div className="flex gap-4"><span className="text-slate-600">5</span><span className="ml-8 text-emerald-400">&lt;/div&gt;</span></div>
@@ -179,7 +178,7 @@ export default function CoreServices() {
               </h3>
 
               <p className={`${ibm.className} text-slate-400 text-lg leading-relaxed`}>
-                We don't ship glorified web wrappers. We engineer true native experiences with React Native — fluid gesture-driven UIs, seamless API integrations, and buttery-smooth performance that feels right at home on any device.
+                We don&apos;t ship glorified web wrappers. We engineer true native experiences with React Native — fluid gesture-driven UIs, seamless API integrations, and buttery-smooth performance that feels right at home on any device.
               </p>
 
               {/* The "Engineering Standard" Grid */}
