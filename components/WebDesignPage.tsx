@@ -1,5 +1,7 @@
 "use client";
 
+import { getFaqs, type PageContent } from "@/lib/sanity/content";
+
 import { useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -142,7 +144,7 @@ function ServiceVisual({ stage }: { stage: number }) {
   </div>;
 }
 
-export default function WebDesignPage() {
+export default function WebDesignPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const hero = useRef<HTMLElement>(null);
   const scrollTween = useRef<gsap.core.Tween | null>(null);
@@ -282,11 +284,11 @@ export default function WebDesignPage() {
       <div className={`${styles.container} ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
           <p className={styles.heroKicker} data-hero-kicker>Good design gets attention</p>
-          <h1 id="web-hero-title" className={styles.heroHeadline}>
+          <h1 id="web-hero-title" className={styles.heroHeadline}>{content.h1Heading ? <span className={styles.lineMask}><span data-hero-line className={styles.heroTitleLineWhite} style={{ whiteSpace: "normal" }}>{content.h1Heading}</span></span> : <>
             <span className={styles.lineMask}><span data-hero-line className={styles.heroTitleLineWhite}>A Great Website</span></span>
             <span className={styles.lineMask}><span data-hero-line className={styles.heroTitleLineLime}>Earns The Next Click.</span></span>
-          </h1>
-          <p className={styles.heroDescription} data-hero-copy>Give your business a website that looks the part, makes things easy and turns more visits into conversations. We take care of everything, from the first design to launch day.</p>
+          </>}</h1>
+          <p className={styles.heroDescription} data-hero-copy>{content.heroSubheading || "Give your business a website that looks the part, makes things easy and turns more visits into conversations. We take care of everything, from the first design to launch day."}</p>
           <div className={styles.heroActions} data-hero-copy><StrategyCTA /><a href="#website-services" onClick={(event) => goTo(event, "website-services")} className={styles.textLink}>Explore our services <ArrowDown size={17} /></a></div>
         </div>
         <WebsiteScene />
@@ -342,6 +344,6 @@ export default function WebDesignPage() {
 
     <MainCTA id="web-design-closing" />
 
-    <section className={styles.faq} aria-labelledby="faq-title"><div className={`${styles.container} ${styles.faqGrid}`}><div data-reveal><h2 id="faq-title">A few things<br />you might be<br /><span>wondering.</span></h2><p>Still have a question?<br /><Link href="/contact" className={styles.textLink}>Let’s talk <ArrowUpRight size={18} /></Link></p></div><div>{faqs.map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={21} /><ChevronDown size={21} /></summary><p>{answer}</p></details>)}</div></div></section>
+    <section className={styles.faq} aria-labelledby="faq-title"><div className={`${styles.container} ${styles.faqGrid}`}><div data-reveal><h2 id="faq-title">A few things<br />you might be<br /><span>wondering.</span></h2><p>Still have a question?<br /><Link href="/contact" className={styles.textLink}>Let’s talk <ArrowUpRight size={18} /></Link></p></div><div>{(getFaqs(content).length ? getFaqs(content).map(({ question, answer }) => [question, answer]) : faqs).map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={21} /><ChevronDown size={21} /></summary><p>{answer}</p></details>)}</div></div></section>
   </div>;
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { getFaqs, type PageContent } from "@/lib/sanity/content";
+
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -192,7 +194,7 @@ function ServiceScene({ stage }: { stage: number }) {
   </div>;
 }
 
-export default function AiAutomationPage() {
+export default function AiAutomationPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const scrollTween = useRef<gsap.core.Tween | null>(null);
   const [active, setActive] = useState(0);
@@ -234,8 +236,8 @@ export default function AiAutomationPage() {
     <section className={styles.hero} data-ai-hero aria-labelledby="ai-title">
       <div className={`${styles.container} ${styles.heroLayout}`}>
         <div className={styles.heroCopy} data-ai-hero-copy>
-          <h1 id="ai-title"><span className={styles.wordMask}><span data-ai-word>Less busywork.</span></span><span className={styles.wordMask}><span data-ai-word>More <em>possibility.</em></span></span></h1>
-          <p className={plex.className} data-ai-intro>AI that answers your calls, takes care of the repetitive work and keeps your business moving. Built around you. Working with your team.</p>
+          <h1 id="ai-title">{content.h1Heading ? <span className={styles.wordMask}><span data-ai-word>{content.h1Heading}</span></span> : <><span className={styles.wordMask}><span data-ai-word>Less busywork.</span></span><span className={styles.wordMask}><span data-ai-word>More <em>possibility.</em></span></span></>}</h1>
+          <p className={plex.className} data-ai-intro>{content.heroSubheading || "AI that answers your calls, takes care of the repetitive work and keeps your business moving. Built around you. Working with your team."}</p>
           <div className={styles.heroActions} data-ai-intro><Button /><a href="#ai-services" onClick={event => navigate(event, "ai-services")} className={styles.explore}>Discover what’s possible <ArrowDown size={16} /></a></div>
         </div>
         <div className={styles.heroArt} data-ai-composition>
@@ -280,6 +282,6 @@ export default function AiAutomationPage() {
 
     <section className={styles.closing} aria-labelledby="ai-close"><div className={styles.closeArt} aria-hidden="true"><AiProcessor variant="story" /></div><div className={styles.container}><h2 id="ai-close">Make room<br />for <em data-ai-ink>what’s next.</em></h2><div className={styles.closeBottom}><p className={plex.className}>A smarter way to work starts with a conversation.<br />Let’s find yours.</p><Button /></div></div></section>
 
-    <section className={styles.faq} aria-labelledby="ai-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div data-ai-reveal><h2 id="ai-faq">Good questions.<br /><em>Clear answers.</em></h2><p className={plex.className}>A few things you might be wondering before we talk.</p></div><div>{faqs.map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p className={plex.className}>{answer}</p></details>)}</div></div></section>
+    <section className={styles.faq} aria-labelledby="ai-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div data-ai-reveal><h2 id="ai-faq">Good questions.<br /><em>Clear answers.</em></h2><p className={plex.className}>A few things you might be wondering before we talk.</p></div><div>{(getFaqs(content).length ? getFaqs(content).map(({ question, answer }) => [question, answer]) : faqs).map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p className={plex.className}>{answer}</p></details>)}</div></div></section>
   </div>;
 }

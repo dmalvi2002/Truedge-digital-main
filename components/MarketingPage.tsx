@@ -1,5 +1,7 @@
 "use client";
 
+import { getFaqs, type PageContent } from "@/lib/sanity/content";
+
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,7 +95,7 @@ function JourneyVisual({ stage }: { stage: number }) {
   </div>;
 }
 
-export default function MarketingPage() {
+export default function MarketingPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const scrollTween = useRef<gsap.core.Tween | null>(null);
   const [activeChapter, setActiveChapter] = useState(0);
@@ -141,9 +143,9 @@ export default function MarketingPage() {
       <div className={styles.heroImage} data-hero-image><Image src="/team-collaboration.jpg" alt="" fill priority sizes="100vw" className={styles.photo} /></div>
       <div className={styles.heroShade} />
       <div className={styles.container} data-hero-content>
-        <h1 id="marketing-title"><span className={styles.wordMask}><span data-hero-word>Good business.</span></span><span className={styles.wordMask}><span data-hero-word>Deserves to</span></span><span className={styles.wordMask}><span data-hero-word className={styles.lime}>be seen.</span></span></h1>
+        <h1 id="marketing-title">{content.h1Heading ? <span className={styles.wordMask}><span data-hero-word>{content.h1Heading}</span></span> : <><span className={styles.wordMask}><span data-hero-word>Good business.</span></span><span className={styles.wordMask}><span data-hero-word>Deserves to</span></span><span className={styles.wordMask}><span data-hero-word className={styles.lime}>be seen.</span></span></>}</h1>
         <div className={styles.heroBottom}>
-          <p data-hero-reveal>Marketing that brings the right people to your business — and gives them a reason to choose you.</p>
+          <p data-hero-reveal>{content.heroSubheading || "Marketing that brings the right people to your business — and gives them a reason to choose you."}</p>
           <div className={styles.heroActions} data-hero-reveal><Link href="/contact" className={heroStyles.cta}><span>Book a Free Strategy Call</span><span className={heroStyles.ctaIcon} aria-hidden="true"><ArrowUpRight size={21} /></span></Link><a href="#marketing-services" onClick={event => scrollToSection(event, "marketing-services")} className={styles.explore}>Explore your next step <ArrowDown size={18} aria-hidden="true" /></a></div>
         </div>
       </div>
@@ -196,6 +198,6 @@ export default function MarketingPage() {
       <div className={styles.container}><h2 id="marketing-close">Make your<br /><span className={styles.closeWord}>next move.<span data-close-word aria-hidden="true">next move.</span></span></h2><div className={styles.closeBottom}><p>Your business has potential.<br />Let’s put a plan behind it.</p><Link href="/contact" className={styles.button}>Book a Free Strategy Call <ArrowUpRight size={21} aria-hidden="true" /></Link></div></div>
     </section>
 
-    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><h2 id="marketing-faq" data-reveal>Good questions.<br /><span>Clear answers.</span></h2><p>A few things you might be wondering before we talk.</p></div><div>{faqs.map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+    <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><h2 id="marketing-faq" data-reveal>Good questions.<br /><span>Clear answers.</span></h2><p>A few things you might be wondering before we talk.</p></div><div>{(getFaqs(content).length ? getFaqs(content) : faqs).map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
   </div>;
 }

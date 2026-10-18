@@ -65,7 +65,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
-  const keepsDarkNavigation = pathname.startsWith("/ai-automation") || pathname === "/works" || pathname === "/contact" || pathname === "/about";
+  const keepsDarkNavigation = pathname.startsWith("/ai-automation") || pathname.startsWith("/blog") || pathname === "/works" || pathname === "/contact" || pathname === "/about";
   const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing" || pathname === "/web-design" || pathname === "/pricing") && !scrolled);
 
   return (

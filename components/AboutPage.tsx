@@ -1,5 +1,7 @@
 "use client";
 
+import { type PageContent } from "@/lib/sanity/content";
+
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +32,7 @@ function TogetherSculpture({ id }: { id: string }) {
   </svg>;
 }
 
-export default function AboutPage() {
+export default function AboutPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const story = useRef<HTMLDivElement>(null);
   useGSAP(() => {
@@ -81,9 +83,9 @@ export default function AboutPage() {
   return <div ref={root} className={`${styles.page} ${body.className} ${display.variable}`}>
     <section className={styles.hero} data-hero aria-labelledby="about-title"><div className={`${styles.container} ${styles.heroInner}`}>
       <div className={styles.heroTop}><span>Independent minds. Shared ambition.</span><span>Aberdeen, UK</span></div>
-      <h1 id="about-title"><span className={styles.lineMask}><span data-hero-line>Great things</span></span><span className={styles.lineMask}><span data-hero-line>happen <em>together.</em></span></span></h1>
+      <h1 id="about-title">{content.h1Heading ? <span className={styles.lineMask}><span data-hero-line>{content.h1Heading}</span></span> : <><span className={styles.lineMask}><span data-hero-line>Great things</span></span><span className={styles.lineMask}><span data-hero-line>happen <em>together.</em></span></span></>}</h1>
       <div className={styles.heroSculpture} data-hero-sculpture><TogetherSculpture id="hero" /></div>
-      <div className={styles.heroBottom}><a href="#our-story" className={styles.scrollLink}><span className={styles.roundArrow}><ArrowDown size={22} aria-hidden="true" /></span><span>There’s a reason<br />we came together.</span></a><div className={styles.heroIntro}><p>Your website. Your marketing. Your next big idea. One team that sees how it all connects.</p><Link href="/contact" className={styles.textLink}>Meet your digital growth partner <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div>
+      <div className={styles.heroBottom}><a href="#our-story" className={styles.scrollLink}><span className={styles.roundArrow}><ArrowDown size={22} aria-hidden="true" /></span><span>There’s a reason<br />we came together.</span></a><div className={styles.heroIntro}><p>{content.heroSubheading || "Your website. Your marketing. Your next big idea. One team that sees how it all connects."}</p><Link href="/contact" className={styles.textLink}>Meet your digital growth partner <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div>
     </div></section>
 
     <section id="our-story" className={styles.story} aria-label="The Truedge story"><div ref={story} className={styles.storyStage}>

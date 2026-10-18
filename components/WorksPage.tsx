@@ -1,5 +1,7 @@
 "use client";
 
+import { type PageContent } from "@/lib/sanity/content";
+
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +22,7 @@ const body = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 const sport = Barlow_Condensed({ subsets: ["latin"], weight: ["700", "800"], variable: "--works-sport" });
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function WorksPage() {
+export default function WorksPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -59,8 +61,8 @@ export default function WorksPage() {
 
   return <div ref={root} className={`${styles.page} ${body.className} ${display.variable} ${sport.variable}`}>
     <section className={`${styles.container} ${styles.hero}`} aria-labelledby="works-title">
-      <h1 id="works-title" data-works-intro>Good work.<br /><span>Real businesses.</span></h1>
-      <div className={styles.heroAside} data-works-intro><p>From a former Arsenal player to established businesses. Take a closer look at the people we work with and the experiences we create.</p><div className={styles.actions}><Link href="/contact" className={styles.primary}>Let’s talk about your project <ArrowUpRight size={20} /></Link><a href="#selected-work" className={styles.textLink}>Explore the work <ArrowDown size={18} /></a></div></div>
+      <h1 id="works-title" data-works-intro>{content.h1Heading ? content.h1Heading : <>Good work.<br /><span>Real businesses.</span></>}</h1>
+      <div className={styles.heroAside} data-works-intro><p>{content.heroSubheading || "From a former Arsenal player to established businesses. Take a closer look at the people we work with and the experiences we create."}</p><div className={styles.actions}><Link href="/contact" className={styles.primary}>Let’s talk about your project <ArrowUpRight size={20} /></Link><a href="#selected-work" className={styles.textLink}>Explore the work <ArrowDown size={18} /></a></div></div>
     </section>
 
     <div className={styles.container} id="selected-work">

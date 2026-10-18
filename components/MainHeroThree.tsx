@@ -1,5 +1,7 @@
 "use client";
 
+import { type PageContent } from "@/lib/sanity/content";
+
 import { useId, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,7 +95,7 @@ function BrandFold({ front = false }: { front?: boolean }) {
   );
 }
 
-export default function MainHeroThree() {
+export default function MainHeroThree({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -148,7 +150,8 @@ export default function MainHeroThree() {
         .from("[data-service-link]", {
           opacity: 0, y: 12, duration: 0.65, stagger: 0.08,
           clearProps: "opacity, transform",
-        }, 1.55)
+        }, 1.55);
+      if (!content.h1Heading) opening
         .set("[data-growth-wrap]", { overflow: "visible" }, 1.85)
         .fromTo("[data-growth-reveal]",
           { clipPath: "inset(-8px 100% -8px 0)" },
@@ -232,10 +235,10 @@ export default function MainHeroThree() {
           </p>
           <h1
             id="main-hero-title"
-            aria-label="Your One-Stop Partner for Digital Growth."
+            aria-label={content.h1Heading || "Your One-Stop Partner for Digital Growth."}
             className={`${headline.className} text-[clamp(2.5rem,10.8vw,4.25rem)] sm:text-[clamp(2.8rem,8.5vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.055em] lg:text-[clamp(2.85rem,5.25vw,5.5rem)] lg:leading-[1.08]`}
           >
-            {["Your One-Stop", "Partner for", "Digital Growth."].map((line, index) => (
+            {content.h1Heading ? <span data-title-line className="block">{content.h1Heading}</span> : ["Your One-Stop", "Partner for", "Digital Growth."].map((line, index) => (
               <span
                 key={line}
                 aria-hidden="true"
@@ -266,9 +269,7 @@ export default function MainHeroThree() {
             ))}
           </h1>
           <p data-supporting-copy className="mx-auto mt-5 max-w-[530px] text-[15px] leading-[1.8] text-[#bfc3ba] sm:text-[16px] lg:mx-0 lg:mt-6 lg:text-[17px]">
-            Websites that earn trust. Marketing that brings enquiries.
-            AI that takes busywork off your plate. We bring it all together,
-            so you can focus on growing your business.
+            {content.heroSubheading || "Websites that earn trust. Marketing that brings enquiries. AI that takes busywork off your plate. We bring it all together, so you can focus on growing your business."}
           </p>
           <div data-hero-action className="mt-6 flex justify-center sm:mt-7 lg:justify-start">
             <Link

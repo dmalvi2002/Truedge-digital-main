@@ -1,10 +1,11 @@
 "use client";
 
+import { type PageContent } from "@/lib/sanity/content";
+
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowUpRight, Check, CheckCircle2, Loader2, Mail, MessageCircle, Phone } from "lucide-react";
 import { gsap } from "gsap";
@@ -46,9 +47,8 @@ const services = [
 ];
 type Offer = { title: string; detail: string; service: string } | null;
 
-export default function ContactPage() {
-  const params = useSearchParams();
-  const id = params.get("offer");
+export default function ContactPage({ content = {}, offerId, projectId }: { content?: PageContent; offerId?: string; projectId?: string } = {}) {
+  const id = offerId ?? null;
   const selected = getPricingOffer(id);
   const care = carePlans.find((plan) => plan.id === id);
   const offer: Offer = selected ? {
@@ -58,11 +58,11 @@ export default function ContactPage() {
   } : care ? { title: care.name, detail: "50% off. Monthly cost and offer terms to be discussed.", service: "Website Hosting" }
     : id === "hosting" ? { title: "Website hosting", detail: "Hosting packages from £5 per month.", service: "Website Hosting" }
     : id === "discount" ? { title: "Your 50% discount enquiry", detail: "We’ll confirm your service, scope and offer in your proposal.", service: "" } : null;
-  const project = params.get("project") === "walker" ? "Walker Roofing & Building Contractors" : null;
-  return <ContactExperience key={`${offer ? id : "general"}-${project ?? ""}`} offer={offer} project={project} />;
+  const project = projectId === "walker" ? "Walker Roofing & Building Contractors" : null;
+  return <ContactExperience key={`${offer ? id : "general"}-${project ?? ""}`} offer={offer} project={project} content={content} />;
 }
 
-function ContactExperience({ offer, project }: { offer: Offer; project: string | null }) {
+function ContactExperience({ offer, project, content }: { offer: Offer; project: string | null; content: PageContent }) {
   const root = useRef<HTMLDivElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
@@ -245,8 +245,8 @@ function ContactExperience({ offer, project }: { offer: Offer; project: string |
   return <div ref={root} className={`${styles.page} ${body.className} ${display.variable}`}>
     <div className={styles.container}><div className={styles.layout}>
       <section className={styles.intro} aria-labelledby="contact-title">
-        <h1 id="contact-title" data-contact-intro>Good things<br />start with<br /><span>a conversation.</span></h1>
-        <p className={styles.introText} data-contact-intro>A new website. More enquiries. A simpler way to work. Tell us where you want to go—we’ll help you find the next step.</p>
+        <h1 id="contact-title" data-contact-intro>{content.h1Heading || <>Good things<br />start with<br /><span>a conversation.</span></>}</h1>
+        <p className={styles.introText} data-contact-intro>{content.heroSubheading || "A new website. More enquiries. A simpler way to work. Tell us where you want to go—we’ll help you find the next step."}</p>
         <a href="#project-enquiry" className={styles.mobileEnquiry}>Start your enquiry <ArrowUpRight size={19} /></a>
         <div className={styles.direct} data-contact-intro>
           <a href="mailto:info@truedgedigital.co.uk"><span className={styles.contactIcon}><Mail size={20} aria-hidden="true" /></span><span><small>Email us</small>info@truedgedigital.co.uk</span></a>

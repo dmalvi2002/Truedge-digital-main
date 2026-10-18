@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.truedgedigital.co.uk"),
   title: "Truedge Digital",
   description: "Professional web development agency website built with Next.js",
   verification: {

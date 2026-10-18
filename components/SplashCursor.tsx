@@ -337,7 +337,6 @@ export default function SplashCursor({
     }
 
     // This WebGL class intentionally closes over this effect's context.
-    // eslint-disable-next-line react-hooks/unsupported-syntax
     class Program {
       program: WebGLProgram | null;
       uniforms: Record<string, WebGLUniformLocation | null>;
@@ -353,7 +352,6 @@ export default function SplashCursor({
     }
 
     // This WebGL class intentionally closes over this effect's context.
-    // eslint-disable-next-line react-hooks/unsupported-syntax
     class Material {
       vertexShader: WebGLShader | null;
       fragmentShaderSource: string;

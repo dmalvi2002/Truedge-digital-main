@@ -1,5 +1,7 @@
 "use client";
 
+import { getFaqs, type PageContent } from "@/lib/sanity/content";
+
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -32,7 +34,7 @@ const offers = [
 
 const sport = Barlow_Condensed({ subsets: ["latin"], weight: ["700", "800"], variable: "--pricing-sport" });
 
-export default function PricingPage() {
+export default function PricingPage({ content = {} }: { content?: PageContent } = {}) {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -131,8 +133,8 @@ export default function PricingPage() {
     <section className={styles.hero} aria-labelledby="pricing-title">
       <div className={styles.container}>
         <div className={styles.opening}>
-          <h1 id="pricing-title"><span className={styles.mask}><span data-price-line>Big ambitions.</span></span><span className={styles.mask}><span data-price-line>Clear starting <em>prices.</em></span></span></h1>
-          <div className={styles.introduction} data-price-intro><p>Clear starting prices. Tailored quotes for the work your business needs.</p></div>
+          <h1 id="pricing-title">{content.h1Heading ? <span className={styles.mask}><span data-price-line>{content.h1Heading}</span></span> : <><span className={styles.mask}><span data-price-line>Big ambitions.</span></span><span className={styles.mask}><span data-price-line>Clear starting <em>prices.</em></span></span></>}</h1>
+          <div className={styles.introduction} data-price-intro><p>{content.heroSubheading || "Clear starting prices. Tailored quotes for the work your business needs."}</p></div>
         </div>
         <div className={styles.pricingGrid}>
           {offers.map((offer) => <div key={offer.name} data-price-depth><article className={`${styles.priceCard} ${styles[offer.theme]}`} data-price-panel aria-label={offer.price !== null ? `${offer.name} from £${offer.price}` : `${offer.name}, tailored quotation`}>
@@ -204,7 +206,7 @@ export default function PricingPage() {
 
     <section className={styles.questions} aria-labelledby="pricing-faq-title"><div className={`${styles.container} ${styles.faqGrid}`}>
       <h2 id="pricing-faq-title">Your questions,<br />answered.</h2>
-      <div>{pricingQuestions.map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={19} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
+      <div>{(getFaqs(content).length ? getFaqs(content).map(({ question, answer }) => [question, answer]) : pricingQuestions).map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={19} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
     </div></section>
 
     <section className={styles.closing} aria-labelledby="pricing-contact-title"><div className={styles.container} data-price-reveal>

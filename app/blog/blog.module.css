@@ -1,0 +1,71 @@
+.page { --paper:#f2f2e9; --lime:#c1fb00; --lavender:#d4c3ed; background:#08090c; color:var(--paper); overflow:clip; }
+.container { width:min(1380px,calc(100% - 112px)); margin-inline:auto; }
+.page h1,.page h2,.page h3,.page h4 { font-family:var(--blog-display),sans-serif; font-weight:600; }
+.page a:focus-visible { outline:2px solid currentColor; outline-offset:6px; }
+.hero { display:grid; grid-template-columns:1.3fr 1fr; gap:70px; align-items:end; padding-block:75px 65px; }
+.hero h1 { font-size:clamp(45px,5.6vw,82px); line-height:1.1; letter-spacing:-.05em; }
+.hero h1 em { font-style:normal; color:var(--lime); }
+.hero > p { max-width:420px; font-size:17px; line-height:1.85; color:#bec0cb; }
+.posts { padding-bottom:100px; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; }
+.card { background:#191c22; border-radius:24px; overflow:hidden; }
+.card > a { display:flex; flex-direction:column; height:100%; }
+.cardImage { aspect-ratio:1.6; overflow:hidden; background:#262932; }
+.cardImage img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+.card a:hover .cardImage img { transform:scale(1.035); }
+.cardCopy { display:flex; flex-direction:column; flex:1; padding:26px; }
+.cardMeta { display:flex; justify-content:space-between; align-items:center; gap:14px; color:var(--lavender); font-size:12px; line-height:1.6; }
+.cardMeta time { color:#b5b8c4; }
+.cardCopy h2 { margin-top:20px; font-size:25px; line-height:1.3; letter-spacing:-.035em; overflow-wrap:anywhere; }
+.cardCopy > p { color:#bfc1cc; font-size:15px; line-height:1.8; margin-top:16px; }
+.readLink { display:flex; justify-content:space-between; align-items:center; gap:15px; padding-top:28px; margin-top:auto; color:var(--paper); font-size:14px; }
+.primary { display:inline-flex; align-items:center; justify-content:space-between; gap:25px; padding:18px 24px; border-radius:50px; background:var(--lime); color:#26301b; font-size:15px; font-weight:600; }
+.empty { margin-block:10px 70px; padding:60px; border-radius:28px; background:#1a1b23; }
+.empty h1,.empty h2 { font-size:clamp(30px,3vw,44px); letter-spacing:-.035em; line-height:1.25; }
+.empty p { max-width:560px; font-size:17px; line-height:1.85; color:#c0bdcb; margin-block:20px 28px; }
+.article { padding-block:35px 85px; }
+.back { display:inline-flex; align-items:center; gap:13px; font-size:14px; padding:12px 0; color:#c4bed0; }
+.articleHeader { max-width:1000px; margin:40px auto; }
+.categories { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
+.categories span { background:#262230; color:var(--lavender); border-radius:50px; padding:8px 14px; font-size:12px; }
+.articleHeader h1 { font-size:clamp(38px,5vw,74px); letter-spacing:-.045em; line-height:1.13; overflow-wrap:anywhere; }
+.excerpt { max-width:800px; margin-top:26px; color:#c9c7d1; font-size:20px; line-height:1.7; }
+.articleMeta { display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:28px; font-size:13px; line-height:1.6; color:#a7abba; }
+.featureImage { margin:0 0 55px; }
+.featureImage img { display:block; width:100%; height:auto; max-height:750px; object-fit:cover; border-radius:24px; }
+.featureImage figcaption,.prose figcaption { margin-top:12px; font-size:13px; color:#acafba; line-height:1.7; }
+.prose { max-width:800px; margin-inline:auto; font-size:18px; line-height:1.95; color:#d6d6df; overflow-wrap:anywhere; }
+.prose > p,.prose > ul,.prose > ol { margin-bottom:25px; }
+.prose h2 { color:var(--paper); font-size:34px; line-height:1.25; letter-spacing:-.03em; margin:48px 0 22px; }
+.prose h3 { color:var(--paper); font-size:27px; line-height:1.35; margin:35px 0 18px; }
+.prose h4 { color:var(--paper); font-size:22px; line-height:1.4; margin:30px 0 15px; }
+.prose strong { color:#f6f5ef; font-weight:600; }
+.prose a:not(.primary) { color:var(--lime); text-decoration:underline; text-underline-offset:4px; }
+.prose ul { list-style:disc; padding-left:26px; }
+.prose ol { list-style:decimal; padding-left:26px; }
+.prose li { margin-block:10px; }
+.prose blockquote { background:#262230; color:#e5d7f0; padding:28px 32px; border-radius:18px; font-size:24px; line-height:1.6; margin-block:35px; }
+.prose code { color:#e2d3f3; background:#292432; border-radius:4px; padding:3px 6px; font-size:.86em; }
+.prose figure { margin-block:35px; }
+.prose figure img { display:block; width:100%; height:auto; border-radius:18px; }
+.author { display:flex; align-items:start; gap:24px; margin-top:60px; padding:28px; border-radius:20px; background:#1c1e26; }
+.author > img { width:65px; height:65px; object-fit:cover; border-radius:50%; flex-shrink:0; }
+.author h2 { font-size:23px; margin:0; }
+.author span { display:block; color:var(--lavender); font-size:13px; margin-top:5px; }
+.author p { font-size:15px; line-height:1.8; margin-top:16px; }
+.articleCta { background:var(--lavender); color:#33273f; border-radius:24px; padding:35px; margin-top:45px; }
+.articleCta h2 { color:#33273f; margin:0 0 18px; font-size:29px; }
+.articleCta p { font-size:16px; line-height:1.8; margin-bottom:25px; }
+@media(max-width:1100px) { .container { width:calc(100% - 72px); } .grid { grid-template-columns:1fr 1fr; } .hero { gap:40px; } }
+@media(max-width:700px) {
+ .container { width:calc(100% - 40px); } .hero { grid-template-columns:1fr; gap:24px; padding-block:35px 40px; }
+ .hero h1 { font-size:clamp(35px,10vw,58px); } .hero > p { font-size:16px; } .posts { padding-bottom:55px; }
+ .grid { grid-template-columns:1fr; gap:20px; } .cardCopy { padding:23px; } .empty { padding:28px; margin-bottom:40px; }
+ .empty p { font-size:15px; } .primary { font-size:14px; gap:16px; } .article { padding-block:20px 55px; }
+ .articleHeader { margin-block:25px; } .articleHeader h1 { font-size:clamp(31px,9vw,45px); } .excerpt { font-size:17px; }
+ .articleMeta { font-size:12px; gap:12px 20px; } .featureImage { margin-bottom:35px; } .featureImage img { border-radius:16px; }
+ .prose { font-size:16px; line-height:1.9; } .prose h2 { font-size:28px; margin-top:35px; } .prose h3 { font-size:23px; }
+ .prose blockquote { padding:23px; font-size:20px; } .author { flex-direction:column; padding:24px; gap:18px; }
+ .articleCta { padding:25px; } .articleCta h2 { font-size:25px; }
+}
+@media(prefers-reduced-motion:reduce) { .page * { transition:none !important; } }
