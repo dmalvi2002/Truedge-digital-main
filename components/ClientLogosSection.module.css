@@ -7,6 +7,7 @@
 .group { display: flex; align-items: center; gap: var(--logo-gap); padding-right: var(--logo-gap); flex: 0 0 auto; }
 .logo { flex: 0 0 auto; height: 44px; display: flex; justify-content: center; align-items: center; filter: grayscale(1); opacity: .78; }
 .imageLogo { display: block; width: 128px; height: 36px; object-fit: contain; }
+.monochromeLogo { filter: brightness(0); }
 .compactLogo { display: block; flex: 0 0 32px; width: 32px; height: 32px; object-fit: contain; }
 .namedLogo { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; color: #1e293b; }
 .namedLogo > span { font-size: 16px; line-height: 1.2; font-weight: 700; letter-spacing: -.025em; }

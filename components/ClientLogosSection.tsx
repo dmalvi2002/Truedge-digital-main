@@ -2,7 +2,6 @@ import Image from "next/image";
 import styles from "./ClientLogosSection.module.css";
 
 const clientLogos = [
-  { name: "NHI", kind: "nhi" },
   { name: "iLearner’s Hub", src: "/assets/client-logos/ilearners-logo-dark.svg" },
   { name: "DigiTech World UK", src: "/assets/client-logos/digitech-logo.webp", compact: true, label: "DigiTech" },
   { name: "ASIS", kind: "asis" },
@@ -12,6 +11,7 @@ const clientLogos = [
   { name: "Technology", kind: "technology" },
   { name: "Magix World", src: "/assets/client-logos/magix-world-logo.webp" },
   { name: "Sanchez Watt", src: "/assets/sanchez-watt-logo.webp", compact: true, label: "Sanchez Watt" },
+  { name: "Walker Roofing", src: "/assets/walker-logo.webp", monochrome: true },
 ];
 
 function Logo({ logo }: { logo: (typeof clientLogos)[number] }) {
@@ -23,12 +23,7 @@ function Logo({ logo }: { logo: (typeof clientLogos)[number] }) {
       </span>;
     }
     return <Image src={logo.src} alt={logo.name} width={160} height={64}
-      className={styles.imageLogo} loading="eager" sizes="128px" />;
-  }
-  if (logo.kind === "nhi") {
-    return <span className="flex items-center gap-0.5 font-black text-2xl tracking-tighter text-emerald-600" role="img" aria-label="NHI">
-      <span>N</span><span className="text-slate-900">H</span><span className="text-emerald-500">I</span>
-    </span>;
+      className={`${styles.imageLogo} ${logo.monochrome ? styles.monochromeLogo : ""}`} loading="eager" sizes="128px" />;
   }
   if (logo.kind === "asis") {
     return <span className="flex items-center gap-2" role="img" aria-label="ASIS">
