@@ -36,11 +36,11 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-2F40L62QSK');
+            gtag('config', 'G-XEMD0L8770');
           `}
         </Script>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2F40L62QSK"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XEMD0L8770"
           strategy="beforeInteractive"
           async
         />
