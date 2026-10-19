@@ -15,6 +15,10 @@ The Studio is a sibling application. It is **not included in commits made in the
 
 ## Admin on your own domain
 
+The editor now uses familiar **Pages / Posts / Categories / Authors** menus, **Content / SEO settings / FAQs** page tabs and **Post content / Post settings / SEO settings** post tabs. Plain-English helper text explains each field. Canonical URLs, noindex and custom structured data live in a collapsed Advanced SEO fieldset. Stored field names and document IDs were not changed. The developer query tool is labeled **Developer tools**.
+
+The detailed editor handbook is `docs/seo-editor-guide.html`; a copy is delivered to `C:\Users\ABU BAKAR\Desktop\my father doc\Truedge Digital - SEO Editor Guide.html`. It includes WordPress comparisons, illustrated workflows, exact field meanings, article creation, FAQ replacement rules, publication/cache checks, a practice search preview, a checklist and troubleshooting. It is self-contained and printable.
+
 `/admin` serves a static build of the standalone Studio from `public/admin`. Its source and dependencies remain in the sibling Studio folder; Next.js does not import or bundle the editor. The website repository intentionally tracks these generated static files, so a normal Vercel website deployment serves the dashboard without a second Vercel project or build-time Sanity token.
 
 The editor uses the same project, dataset, content and Sanity accounts as the hosted Studio. `/admin` and all editor deep links serve the Studio HTML directly, without the marketing website's layout. Assets use `/admin/static/`. Robots rules, the HTML and HTTP headers prevent indexing. Authentication and project roles protect editing access.
