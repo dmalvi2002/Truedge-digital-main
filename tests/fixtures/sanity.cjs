@@ -33,6 +33,24 @@ if (process.env.SANITY_TEST_MODE === '1') {
     if (query.includes('_type == "pageSeo"') && parameter('routePath') === '/contact') result = {
       _id: 'pageSeo.contact', routePath: '/contact', seo: { structuredData: JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: '</script><script>should never execute</script>' }) },
     };
+    // Exercise the real page wrappers without creating/publishing CMS records.
+    const routes = ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/services', '/blog'];
+    const route = parameter('routePath');
+    if (query.includes('_type == "pageSeo"') && routes.includes(route)) {
+      const name = route === '/' ? 'home' : route.slice(1);
+      result = {
+        ...result, routePath: route,
+        h1Heading: `CMS fixture ${name} heading`,
+        heroSubheading: `CMS fixture ${name} introduction`,
+        seo: {
+          ...result?.seo,
+          metaTitle: `CMS fixture ${name} search title`,
+          metaDescription: `CMS fixture ${name} search description`,
+          noIndex: false, ogImage: image,
+        },
+        faqs: [{ _key: name, question: `CMS fixture ${name} question?`, answer: `CMS fixture ${name} answer.` }],
+      };
+    }
     return new Response(JSON.stringify({ result, query, ms: 1 }), { status: 200, headers: { 'content-type': 'application/json' } });
   };
 }

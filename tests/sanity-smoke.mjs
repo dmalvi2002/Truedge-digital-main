@@ -26,6 +26,19 @@ assert(customJson?.includes('\\u003c/script>'), 'Custom JSON-LD escapes HTML clo
 assert.equal(JSON.parse(customJson).name, '</script><script>should never execute</script>');
 const blog = await page('/blog');
 assert.match(blog, /href="\/blog\/sanity-integration-test"/);
+for (const route of ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/services', '/blog']) {
+  const name = route === '/' ? 'home' : route.slice(1);
+  const html = await page(route);
+  assert(html.includes(`<title>CMS fixture ${name} search title</title>`), `${route}: SEO title connected`);
+  assert(html.includes(`name="description" content="CMS fixture ${name} search description"`), `${route}: SEO description connected`);
+  assert.match(html, /property="og:image" content="https:\/\/cdn\.sanity\.io\//, `${route}: social image connected`);
+  const heading = html.match(/<h1(?:\s[^>]*)?>([\s\S]*?)<\/h1>/)?.[1] || '';
+  assert(heading.includes(`CMS fixture ${name} heading`), `${route}: visible H1 connected`);
+  const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
+  assert(visible.includes(`CMS fixture ${name} introduction`), `${route}: visible intro connected`);
+  assert(visible.includes(`CMS fixture ${name} question?`), `${route}: visible FAQs connected`);
+  assert(visible.includes(`CMS fixture ${name} answer.`), `${route}: visible FAQ answer connected`);
+}
 const article = await page('/blog/sanity-integration-test');
 assert.match(article, /<title>CMS article title override<\/title>/);
 assert.match(article, /<h2>Semantic article heading<\/h2>/);
