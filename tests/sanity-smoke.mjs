@@ -41,7 +41,7 @@ for (const route of ['/', '/web-design', '/marketing', '/ai-automation', '/prici
 }
 const article = await page('/blog/sanity-integration-test');
 assert.match(article, /<title>CMS article title override<\/title>/);
-assert.match(article, /<h2>Semantic article heading<\/h2>/);
+assert.match(article, /<h2 id="section-heading">Semantic article heading<\/h2>/);
 assert.match(article, /rel="noopener noreferrer nofollow"/);
 assert.doesNotMatch(article, /href="javascript:/);
 assert.match(article, /<ul>/);

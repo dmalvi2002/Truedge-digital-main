@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+
+const origin = process.env.SANITY_TEST_URL || 'http://localhost:3011';
+async function page(path, status = 200) {
+  const response = await fetch(origin + path);
+  assert.equal(response.status, status, path);
+  return (await response.text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
+}
+const index = await page('/blog');
+assert.match(index, /1–7 of 18 articles/);
+assert.match(index, /href="\/blog\/category\/marketing"/);
+assert.match(index, /href="\/blog\/sanity-integration-test"/);
+const second = await page('/blog?page=2');
+assert.match(second, /8–14 of 18 articles/);
+assert.doesNotMatch(second, /href="\/blog\/sanity-integration-test"/);
+assert.match(second, /rel="canonical" href="https:\/\/www.truedgedigital.co.uk\/blog\?page=2"/);
+assert.match(second, /— Page 2/);
+const category = await page('/blog/category/marketing');
+assert.match(category, /1–7 of 9 articles/);
+assert.doesNotMatch(category, /href="\/blog\/sanity-integration-test"/);
+const search = await page('/blog?q=website');
+assert.match(search, /1–4 of 4 articles/);
+assert.match(search, /name="robots" content="noindex, follow"/);
+assert.doesNotMatch(search, /href="\/blog\/sanity-integration-test"/);
+const combined = await page('/blog/category/marketing?q=website');
+assert.match(combined, /1–2 of 2 articles/);
+const oldest = await page('/blog?sort=oldest');
+assert.match(oldest, /href="\/blog\/journal-story-17"/);
+assert.doesNotMatch(oldest, /href="\/blog\/sanity-integration-test"/);
+assert.match(await page('/blog?q=doesnotexist'), /A different angle might help/);
+assert.match(await page('/blog?page=999'), /15–18 of 18 articles/);
+assert.match(await page('/blog?page=3'), /15–18 of 18 articles/);
+await page('/blog/category/not-a-category', 404);
+await page('/blog/not-a-post', 404);
+const article = await page('/blog/sanity-integration-test');
+assert.match(article, /href="#section-heading"/);
+assert.match(article, /id="section-heading"/);
+assert.match(article, /Keep the ideas flowing/);
+assert.match(article, /href="\/blog\/category\/test"/);
+assert.equal((article.match(/<h1[\s>]/g) || []).length, 1);
+const sitemap = await page('/sitemap.xml');
+assert.match(sitemap, /\/blog\/category\/marketing/);
+console.log('PASS: journal pagination, category archives, search, combined filters, sort, no-results, canonicals, noindex, invalid routes, article navigation and related reads.');

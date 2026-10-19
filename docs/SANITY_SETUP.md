@@ -97,7 +97,9 @@ Published content uses the Sanity CDN and Next.js cache tags with a one-hour fal
 
 ## Configure the publish webhook
 
-**Audit, 20 October 2026:** `/admin`, editor deep links, the blog, robots.txt and sitemap respond correctly in production. The live `/api/revalidate` currently returns **503: Revalidation is not configured**, and the existing Sanity webhook remains disabled. Published content can use the hourly fallback, but immediate publishing refreshes are not complete until the following step is done.
+**Verified live, 20 October 2026:** the deployed endpoint accepted a correctly signed request with HTTP **200** and rejected an unsigned request with **401**. The existing publishing webhook (`ikeC7JscuMdZYA7e`) is now **enabled**, with its signing secret matched to the deployed server. All 10 public routes, `/admin`, editor deep links, robots.txt and sitemap return 200. The live favicon matches the supplied icon. No test content was published. At this check the dataset had no published blog posts or page overrides, so the website correctly retains its existing fallback content.
+
+The earlier missing Vercel environment variable has been resolved. The steps below are retained for future setup or recovery; no additional setup is currently required.
 
 Add the existing local `SANITY_REVALIDATE_SECRET` value to **Vercel → this website project → Settings → Environment Variables → Production**, then redeploy. Do not paste the secret into chat or commit `.env.local`. The variable is server-only, without a `NEXT_PUBLIC_` prefix.
 
@@ -109,7 +111,7 @@ npx sanity exec "D:\Projects\Truedge-digital-main\scripts\enable-sanity-webhook.
 
 The helper verifies a signed cache refresh against the real production endpoint first. Only if that succeeds does it enable the one existing production webhook and ensure its signing secret matches. It does not publish or change CMS content. If production still returns 503 or rejects the signature, the hook stays disabled and the script explains the missing step. A read-only audit is available via `sanity exec "D:\Projects\Truedge-digital-main\scripts\audit-sanity.ts" --with-user-token`.
 
-The webhook **already exists** in Sanity (ID `ikeC7JscuMdZYA7e`). It is **disabled until the website environment variable is deployed to Vercel**. Use the verified helper above to activate it, or ensure the same secret is configured before enabling it manually in Sanity Manage → API → Webhooks → **Truedge website revalidation**.
+The webhook **already exists and is enabled** in Sanity (ID `ikeC7JscuMdZYA7e`). If rebuilding this integration in another environment, keep the hook disabled until that environment's secret is deployed. Use the verified helper above to activate it, or ensure the same secret is configured before enabling it manually in Sanity Manage → API → Webhooks → **Truedge website revalidation**.
 
 Its saved configuration is:
 

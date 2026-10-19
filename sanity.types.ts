@@ -21,14 +21,14 @@ export type Category = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title?: string;
   slug?: Slug;
   description?: string;
 };
 
 export type Slug = {
   _type: "slug";
-  current: string;
+  current?: string;
   source?: string;
 };
 
@@ -59,17 +59,17 @@ export type BlogPost = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  slug: Slug;
-  publishedAt: string;
+  title?: string;
+  slug?: Slug;
+  publishedAt?: string;
   updatedAt?: string;
-  excerpt: string;
-  mainImage: {
+  excerpt?: string;
+  mainImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     caption?: string;
     _type: "image";
   };
@@ -79,7 +79,7 @@ export type BlogPost = {
       _key: string;
     } & CategoryReference
   >;
-  body: Array<
+  body?: Array<
     | {
         children?: Array<{
           marks?: Array<string>;
@@ -90,7 +90,7 @@ export type BlogPost = {
         style?: "normal" | "h2" | "h3" | "h4" | "blockquote";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
-          href: string;
+          href?: string;
           openInNewTab?: boolean;
           relNoFollow?: boolean;
           _type: "link";
@@ -105,7 +105,7 @@ export type BlogPost = {
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
-        alt: string;
+        alt?: string;
         caption?: string;
         _type: "image";
         _key: string;
@@ -125,7 +125,7 @@ export type Seo = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     _type: "image";
   };
   noIndex?: boolean;
@@ -134,18 +134,18 @@ export type Seo = {
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
 };
 
 export type SanityImageHotspot = {
   _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type Author = {
@@ -154,7 +154,7 @@ export type Author = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
+  name?: string;
   slug?: Slug;
   role?: string;
   avatar?: {
@@ -162,7 +162,7 @@ export type Author = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     _type: "image";
   };
   bio?: string;
@@ -174,14 +174,14 @@ export type PageSeo = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  pageName: string;
-  routePath: string;
+  pageName?: string;
+  routePath?: string;
   h1Heading?: string;
   heroSubheading?: string;
-  seo: Seo;
+  seo?: Seo;
   faqs?: Array<{
-    question: string;
-    answer: string;
+    question?: string;
+    answer?: string;
     _type: "faq";
     _key: string;
   }>;
@@ -208,9 +208,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height: number;
-  width: number;
-  aspectRatio: number;
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
@@ -236,14 +236,14 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash: string;
-  extension: string;
-  mimeType: string;
-  size: number;
-  assetId: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
   uploadId?: string;
-  path: string;
-  url: string;
+  path?: string;
+  url?: string;
   source?: SanityAssetSourceData;
 };
 
@@ -265,14 +265,14 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash: string;
-  extension: string;
-  mimeType: string;
-  size: number;
-  assetId: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
   uploadId?: string;
-  path: string;
-  url: string;
+  path?: string;
+  url?: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 };
@@ -311,8 +311,8 @@ export type AllSanitySchemaTypes =
 export type PAGE_SEO_BY_ROUTE_QUERY_RESULT = {
   _id: string;
   _updatedAt: string;
-  pageName: string;
-  routePath: string;
+  pageName: string | null;
+  routePath: string | null;
   h1Heading: string | null;
   heroSubheading: string | null;
   seo: {
@@ -325,7 +325,7 @@ export type PAGE_SEO_BY_ROUTE_QUERY_RESULT = {
     ogImage: {
       asset: {
         _id: string;
-        url: string;
+        url: string | null;
         metadata: {
           dimensions: SanityImageDimensions | null;
           lqip: string | null;
@@ -334,14 +334,14 @@ export type PAGE_SEO_BY_ROUTE_QUERY_RESULT = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     } | null;
-  };
+  } | null;
   faqs: Array<{
     _key: string;
-    question: string;
-    answer: string;
+    question: string | null;
+    answer: string | null;
   }> | null;
 } | null;
 
@@ -350,14 +350,14 @@ export type PAGE_SEO_BY_ROUTE_QUERY_RESULT = {
 // Query: *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()]  | order(publishedAt desc){    _id, title, "slug": slug.current, publishedAt, excerpt,    mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},    author->{name, role}, categories[]->{_id, title, "slug": slug.current}  }
 export type ALL_BLOG_POSTS_QUERY_RESULT = Array<{
   _id: string;
-  title: string;
-  slug: string;
-  publishedAt: string;
-  excerpt: string;
+  title: string | null;
+  slug: string | null;
+  publishedAt: string | null;
+  excerpt: string | null;
   mainImage: {
     asset: {
       _id: string;
-      url: string;
+      url: string | null;
       metadata: {
         dimensions: SanityImageDimensions | null;
         lqip: string | null;
@@ -366,17 +366,17 @@ export type ALL_BLOG_POSTS_QUERY_RESULT = Array<{
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     caption?: string;
     _type: "image";
-  };
+  } | null;
   author: {
-    name: string;
+    name: string | null;
     role: string | null;
   } | null;
   categories: Array<{
     _id: string;
-    title: string;
+    title: string | null;
     slug: string | null;
   }> | null;
 }>;
@@ -387,15 +387,15 @@ export type ALL_BLOG_POSTS_QUERY_RESULT = Array<{
 export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
   _id: string;
   _updatedAt: string;
-  title: string;
-  slug: string;
-  publishedAt: string;
+  title: string | null;
+  slug: string | null;
+  publishedAt: string | null;
   updatedAt: string | null;
-  excerpt: string;
+  excerpt: string | null;
   mainImage: {
     asset: {
       _id: string;
-      url: string;
+      url: string | null;
       metadata: {
         dimensions: SanityImageDimensions | null;
         lqip: string | null;
@@ -404,19 +404,19 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     caption?: string;
     _type: "image";
-  };
+  } | null;
   author: {
-    name: string;
+    name: string | null;
     role: string | null;
     bio: string | null;
     slug: string | null;
     avatar: {
       asset: {
         _id: string;
-        url: string;
+        url: string | null;
         metadata: {
           dimensions: SanityImageDimensions | null;
           lqip: string | null;
@@ -425,13 +425,13 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     } | null;
   } | null;
   categories: Array<{
     _id: string;
-    title: string;
+    title: string | null;
     slug: string | null;
   }> | null;
   body: Array<
@@ -445,7 +445,7 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
         style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
-          href: string;
+          href?: string;
           openInNewTab?: boolean;
           relNoFollow?: boolean;
           _type: "link";
@@ -458,7 +458,7 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
     | {
         asset: {
           _id: string;
-          url: string;
+          url: string | null;
           metadata: {
             dimensions: SanityImageDimensions | null;
             lqip: string | null;
@@ -467,12 +467,12 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
-        alt: string;
+        alt?: string;
         caption?: string;
         _type: "image";
         _key: string;
       }
-  >;
+  > | null;
   seo: {
     metaTitle: string | null;
     metaDescription: string | null;
@@ -483,7 +483,7 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
     ogImage: {
       asset: {
         _id: string;
-        url: string;
+        url: string | null;
         metadata: {
           dimensions: SanityImageDimensions | null;
           lqip: string | null;
@@ -492,7 +492,7 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     } | null;
   } | null;
@@ -502,17 +502,17 @@ export type BLOG_POST_BY_SLUG_QUERY_RESULT = {
 // Variable: SITEMAP_SLUGS_QUERY
 // Query: *[_type == "blogPost" && defined(slug.current) && publishedAt <= now() && seo.noIndex != true]{    "slug": slug.current, _updatedAt, updatedAt, publishedAt  }
 export type SITEMAP_SLUGS_QUERY_RESULT = Array<{
-  slug: string;
+  slug: string | null;
   _updatedAt: string;
   updatedAt: string | null;
-  publishedAt: string;
+  publishedAt: string | null;
 }>;
 
 // Source: ../Truedge-digital-main/lib/sanity/queries.ts
 // Variable: PAGE_SITEMAP_QUERY
 // Query: *[_type == "pageSeo"]{routePath, _updatedAt, "noIndex": seo.noIndex}
 export type PAGE_SITEMAP_QUERY_RESULT = Array<{
-  routePath: string;
+  routePath: string | null;
   _updatedAt: string;
   noIndex: boolean | null;
 }>;
@@ -521,7 +521,165 @@ export type PAGE_SITEMAP_QUERY_RESULT = Array<{
 // Variable: BLOG_STATIC_PARAMS_QUERY
 // Query: *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()]{"slug": slug.current}
 export type BLOG_STATIC_PARAMS_QUERY_RESULT = Array<{
-  slug: string;
+  slug: string | null;
+}>;
+
+// Source: ../Truedge-digital-main/lib/sanity/queries.ts
+// Variable: BLOG_CATEGORIES_QUERY
+// Query: *[_type == "category" && defined(slug.current)] | order(title asc){    _id, title, description, "slug": slug.current,    "postCount": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now() && ^._id in categories[]._ref])  }
+export type BLOG_CATEGORIES_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: string | null;
+  postCount: number;
+}>;
+
+// Source: ../Truedge-digital-main/lib/sanity/queries.ts
+// Variable: BLOG_LIST_NEWEST_QUERY
+// Query: {    "total": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now()      && ($categoryId == "" || $categoryId in categories[]._ref)      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]),    "posts": *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()      && ($categoryId == "" || $categoryId in categories[]._ref)      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]      | order(publishedAt desc, _id asc)[$start...$end]{        _id, title, "slug": slug.current, publishedAt, excerpt,        "readingMinutes": round(length(pt::text(body)) / 1200),        mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},        author->{name, role, avatar{..., asset->{_id, url, metadata{dimensions, lqip}}}},        categories[]->{_id, title, "slug": slug.current}      }  }
+export type BLOG_LIST_NEWEST_QUERY_RESULT = {
+  total: number;
+  posts: Array<{
+    _id: string;
+    title: string | null;
+    slug: string | null;
+    publishedAt: string | null;
+    excerpt: string | null;
+    readingMinutes: number;
+    mainImage: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      caption?: string;
+      _type: "image";
+    } | null;
+    author: {
+      name: string | null;
+      role: string | null;
+      avatar: {
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            dimensions: SanityImageDimensions | null;
+            lqip: string | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      } | null;
+    } | null;
+    categories: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+    }> | null;
+  }>;
+};
+
+// Source: ../Truedge-digital-main/lib/sanity/queries.ts
+// Variable: BLOG_LIST_OLDEST_QUERY
+// Query: {    "total": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now()      && ($categoryId == "" || $categoryId in categories[]._ref)      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]),    "posts": *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()      && ($categoryId == "" || $categoryId in categories[]._ref)      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]      | order(publishedAt asc, _id asc)[$start...$end]{        _id, title, "slug": slug.current, publishedAt, excerpt,        "readingMinutes": round(length(pt::text(body)) / 1200),        mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},        author->{name, role, avatar{..., asset->{_id, url, metadata{dimensions, lqip}}}},        categories[]->{_id, title, "slug": slug.current}      }  }
+export type BLOG_LIST_OLDEST_QUERY_RESULT = {
+  total: number;
+  posts: Array<{
+    _id: string;
+    title: string | null;
+    slug: string | null;
+    publishedAt: string | null;
+    excerpt: string | null;
+    readingMinutes: number;
+    mainImage: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      caption?: string;
+      _type: "image";
+    } | null;
+    author: {
+      name: string | null;
+      role: string | null;
+      avatar: {
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            dimensions: SanityImageDimensions | null;
+            lqip: string | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      } | null;
+    } | null;
+    categories: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+    }> | null;
+  }>;
+};
+
+// Source: ../Truedge-digital-main/lib/sanity/queries.ts
+// Variable: RELATED_BLOG_POSTS_QUERY
+// Query: *[_type == "blogPost" && _id != $postId && defined(slug.current) && publishedAt <= now()    && (count($categoryIds) == 0 || count(categories[@._ref in $categoryIds]) > 0)]    | order(publishedAt desc)[0...3]{      _id, title, "slug": slug.current, publishedAt, excerpt,      "readingMinutes": round(length(pt::text(body)) / 1200),      mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},      author->{name, role}, categories[]->{_id, title, "slug": slug.current}    }
+export type RELATED_BLOG_POSTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  publishedAt: string | null;
+  excerpt: string | null;
+  readingMinutes: number;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+        lqip: string | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    caption?: string;
+    _type: "image";
+  } | null;
+  author: {
+    name: string | null;
+    role: string | null;
+  } | null;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+    slug: string | null;
+  }> | null;
 }>;
 
 // Query TypeMap
@@ -533,6 +691,10 @@ declare global {
     '\n  *[_type == "blogPost" && defined(slug.current) && publishedAt <= now() && seo.noIndex != true]{\n    "slug": slug.current, _updatedAt, updatedAt, publishedAt\n  }\n': SITEMAP_SLUGS_QUERY_RESULT;
     '\n  *[_type == "pageSeo"]{routePath, _updatedAt, "noIndex": seo.noIndex}\n': PAGE_SITEMAP_QUERY_RESULT;
     '\n  *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()]{"slug": slug.current}\n': BLOG_STATIC_PARAMS_QUERY_RESULT;
+    '\n  *[_type == "category" && defined(slug.current)] | order(title asc){\n    _id, title, description, "slug": slug.current,\n    "postCount": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now() && ^._id in categories[]._ref])\n  }\n': BLOG_CATEGORIES_QUERY_RESULT;
+    '\n  {\n    "total": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now()\n      && ($categoryId == "" || $categoryId in categories[]._ref)\n      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]),\n    "posts": *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()\n      && ($categoryId == "" || $categoryId in categories[]._ref)\n      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]\n      | order(publishedAt desc, _id asc)[$start...$end]{\n        _id, title, "slug": slug.current, publishedAt, excerpt,\n        "readingMinutes": round(length(pt::text(body)) / 1200),\n        mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},\n        author->{name, role, avatar{..., asset->{_id, url, metadata{dimensions, lqip}}}},\n        categories[]->{_id, title, "slug": slug.current}\n      }\n  }\n': BLOG_LIST_NEWEST_QUERY_RESULT;
+    '\n  {\n    "total": count(*[_type == "blogPost" && defined(slug.current) && publishedAt <= now()\n      && ($categoryId == "" || $categoryId in categories[]._ref)\n      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]),\n    "posts": *[_type == "blogPost" && defined(slug.current) && publishedAt <= now()\n      && ($categoryId == "" || $categoryId in categories[]._ref)\n      && ($search == "" || title match $pattern || excerpt match $pattern || pt::text(body) match $pattern)]\n      | order(publishedAt asc, _id asc)[$start...$end]{\n        _id, title, "slug": slug.current, publishedAt, excerpt,\n        "readingMinutes": round(length(pt::text(body)) / 1200),\n        mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},\n        author->{name, role, avatar{..., asset->{_id, url, metadata{dimensions, lqip}}}},\n        categories[]->{_id, title, "slug": slug.current}\n      }\n  }\n': BLOG_LIST_OLDEST_QUERY_RESULT;
+    '\n  *[_type == "blogPost" && _id != $postId && defined(slug.current) && publishedAt <= now()\n    && (count($categoryIds) == 0 || count(categories[@._ref in $categoryIds]) > 0)]\n    | order(publishedAt desc)[0...3]{\n      _id, title, "slug": slug.current, publishedAt, excerpt,\n      "readingMinutes": round(length(pt::text(body)) / 1200),\n      mainImage{..., asset->{_id, url, metadata{dimensions, lqip}}},\n      author->{name, role}, categories[]->{_id, title, "slug": slug.current}\n    }\n': RELATED_BLOG_POSTS_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

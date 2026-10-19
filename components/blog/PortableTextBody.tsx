@@ -2,14 +2,15 @@ import Link from 'next/link';
 import { PortableText, type PortableTextComponents, type PortableTextTypeComponentProps } from '@portabletext/react';
 import type { BLOG_POST_BY_SLUG_QUERY_RESULT } from '@/sanity.types';
 import { safeHref } from '@/lib/sanity/content';
+import { headingId } from '@/lib/blog';
 import SanityImage, { type CmsImage } from './SanityImage';
 
 export const portableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p>{children}</p>,
-    h2: ({ children }) => <h2>{children}</h2>,
-    h3: ({ children }) => <h3>{children}</h3>,
-    h4: ({ children }) => <h4>{children}</h4>,
+    h2: ({ children, value }) => <h2 id={value._key ? headingId(value._key) : undefined}>{children}</h2>,
+    h3: ({ children, value }) => <h3 id={value._key ? headingId(value._key) : undefined}>{children}</h3>,
+    h4: ({ children, value }) => <h4 id={value._key ? headingId(value._key) : undefined}>{children}</h4>,
     blockquote: ({ children }) => <blockquote>{children}</blockquote>,
   },
   list: { bullet: ({ children }) => <ul>{children}</ul>, number: ({ children }) => <ol>{children}</ol> },

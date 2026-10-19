@@ -13,6 +13,9 @@ if (process.env.SANITY_TEST_MODE === '1') {
       { ...image, _key: 'inline-image' },
     ], seo: { metaTitle: 'CMS article title override', metaDescription: 'CMS article description override', noIndex: true },
   };
+  const categories = [{ _id: 'fixture-category', title: 'Test category', slug: 'test', description: 'Practical ideas for growing a business.', postCount: 10 }, { _id: 'fixture-marketing', title: 'Marketing', slug: 'marketing', description: 'Make your marketing work harder.', postCount: 8 }];
+  const titles = ['A practical CMS integration test', 'A better website starts with your customers', 'SEO basics for a growing local business', 'What makes a landing page convert?', 'Make Google Ads work for your budget', 'Simple automation that saves your team time', 'Why your website needs a clear next step', 'Turn customer questions into useful content', 'A practical guide to website speed', 'How to choose your first CRM', 'Measure what matters in your marketing', 'Better enquiries start with better pages', 'Build trust before the first conversation', 'Find the right audience for your business', 'Make your follow-up feel personal', 'Plan your next website with confidence', 'A useful checklist for your next campaign', 'Connect your tools and reclaim your time'];
+  const posts = titles.map((title, index) => ({ ...post, _id: index ? `fixture-${index}` : post._id, title, mainImage: null, slug: index ? `journal-story-${index}` : post.slug, publishedAt: `2026-01-${String(18-index).padStart(2,'0')}T12:00:00Z`, categories: [categories[index % 2]], readingMinutes: 4, seo: index ? {} : post.seo }));
   globalThis.fetch = async (input, options) => {
     const address = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
     const url = new URL(address);
@@ -27,8 +30,18 @@ if (process.env.SANITY_TEST_MODE === '1') {
         seo: { metaTitle: 'CMS about title override', metaDescription: 'CMS about description override', canonicalUrl: 'https://www.truedgedigital.co.uk/about', noIndex: true },
         faqs: [{ _key: 'faq', question: 'Does CMS FAQ publishing work?', answer: 'Yes, the same answer is in the page and its structured data.' }],
       } : null : [{ routePath: '/about', noIndex: true }];
+    } else if (query.includes('_type == "category"')) {
+      result = categories.map(category => ({ ...category, postCount: posts.filter(item => item.categories.some(topic => topic._id === category._id)).length }));
     } else if (query.includes('_type == "blogPost"')) {
-      result = query.includes('$slug') ? parameter('slug') === post.slug ? post : null : query.includes('order(publishedAt desc)') ? [post] : query.includes('seo.noIndex != true') ? [] : [{ slug: post.slug }];
+      if (query.includes('"total":')) {
+        const categoryId = parameter('categoryId');
+        const search = String(parameter('search') || '').toLowerCase();
+        const terms = search.match(/[\p{L}\p{N}]+/gu) || ['__no_search_terms__'];
+        let matching = posts.filter(item => (!categoryId || item.categories.some(topic => topic._id === categoryId)) && (!search || terms.every(term => (item.title + ' ' + item.excerpt).toLowerCase().includes(term))));
+        if (query.includes('order(publishedAt asc')) matching = [...matching].reverse();
+        result = { total: matching.length, posts: matching.slice(parameter('start'), parameter('end')) };
+      } else if (query.includes('$postId')) result = posts.filter(item => item._id !== parameter('postId') && item.categories.some(topic => (parameter('categoryIds') || []).includes(topic._id))).slice(0,3);
+      else result = query.includes('$slug') ? parameter('slug') === post.slug ? post : posts.find(item => item.slug === parameter('slug')) || null : query.includes('order(publishedAt desc)') ? posts : query.includes('seo.noIndex != true') ? [] : [{ slug: post.slug }];
     }
     if (query.includes('_type == "pageSeo"') && parameter('routePath') === '/contact') result = {
       _id: 'pageSeo.contact', routePath: '/contact', seo: { structuredData: JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: '</script><script>should never execute</script>' }) },
