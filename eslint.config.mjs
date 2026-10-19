@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "sanity.types.ts",
+    "public/admin/**",
     ".claude/worktrees/**",
   ]),
 ]);

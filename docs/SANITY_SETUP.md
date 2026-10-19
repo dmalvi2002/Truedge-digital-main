@@ -7,10 +7,39 @@
 - Sanity project: `truedge-website-main` (`w5f40uwq`)
 - Dataset: `production` (public published-content reads)
 - Hosted Studio: https://truedge-website-main.sanity.studio/
+- Website admin (after the next website deployment): https://www.truedgedigital.co.uk/admin
 - Deployed Studio application ID: `p3o38znrtb14kdnfqcf30o6p`
 - Canonical website: `https://www.truedgedigital.co.uk` (the non-www site redirects here)
 
 The Studio is a sibling application. It is **not included in commits made in the website repository**. Keep its source in a separate Git repository, or in a parent repository containing both folders. Do not move it into the Next.js app.
+
+## Admin on your own domain
+
+`/admin` serves a static build of the standalone Studio from `public/admin`. Its source and dependencies remain in the sibling Studio folder; Next.js does not import or bundle the editor. The website repository intentionally tracks these generated static files, so a normal Vercel website deployment serves the dashboard without a second Vercel project or build-time Sanity token.
+
+The editor uses the same project, dataset, content and Sanity accounts as the hosted Studio. `/admin` and all editor deep links serve the Studio HTML directly, without the marketing website's layout. Assets use `/admin/static/`. Robots rules, the HTML and HTTP headers prevent indexing. Authentication and project roles protect editing access.
+
+Credential-enabled CORS origins have already been added for `https://www.truedgedigital.co.uk`, `https://truedgedigital.co.uk`, and `http://localhost:3000`. Preview deployment domains are not automatically authorized.
+
+### Deploy now
+
+1. Commit and push the website changes, including **all of `public/admin`** and the routing configuration.
+2. Redeploy the existing website project in Vercel. No additional domain, DNS record, hosting project or admin environment variable is required.
+3. Open `https://www.truedgedigital.co.uk/admin` and sign in with a Sanity account that has access to `w5f40uwq`. Invite other editors through Sanity Manage's project members screen.
+4. Retain the CMS environment variables described below and enable the existing publish webhook after deployment.
+
+The existing `sanity.studio` URL remains available. Once `/admin` is live, register the external Studio URL in Sanity if you use Dashboard, Canvas or other features that discover a Studio; registration is separate from serving the editor and does not affect ordinary editing.
+
+### Update the admin build after schema or Studio changes
+
+From the website folder:
+
+```powershell
+npm run admin:build
+npm run build
+```
+
+Then commit the refreshed `public/admin` files and deploy the website. This local command requires the sibling Studio and its installed dependencies. If it is stored elsewhere, set `SANITY_STUDIO_SOURCE` to its absolute folder path. Normal Vercel builds use the committed files and do not run `admin:build`. Routine content edits and blog publishing require neither command nor a website redeployment.
 
 ## Run locally
 
