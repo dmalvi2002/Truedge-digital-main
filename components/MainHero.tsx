@@ -794,7 +794,7 @@ export default function MainHero() {
           {/* ── 4. EXPLORE COMPLETE ARCHIVE BUTTON (All Devices) ── */}
           <div className="mt-8 sm:mt-10 md:mt-12 flex justify-center px-4 relative z-40">
             <Link
-              href="/projects"
+              href="/works"
               className="relative inline-flex items-center justify-center text-sm sm:text-base font-bold text-white rounded-full h-12 sm:h-[52px] p-1 ps-6 sm:ps-7 pe-14 sm:pe-16 group transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ps-14 sm:hover:ps-16 hover:pe-6 sm:hover:pe-7 w-fit max-w-full overflow-hidden cursor-pointer bg-slate-950 hover:bg-black border border-slate-800/80 shadow-[0_10px_30px_rgba(15,23,42,0.35)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.45)] active:scale-[0.98] select-none transform-gpu"
             >
               <span className="relative z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap text-xs sm:text-base">

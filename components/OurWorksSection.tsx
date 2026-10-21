@@ -384,7 +384,7 @@ export default function OurWorksSection() {
         {/* Bottom CTA to view all projects matching PAS button design */}
         <div className="w-full mt-8 sm:mt-10 flex justify-center">
           <Link
-            href="/projects"
+            href="/works"
             className="group/cta inline-flex items-center gap-3.5 pl-6 pr-2 py-2 rounded-full bg-[#d2f83a] text-slate-950 font-bold shadow-lg shadow-lime-400/20 hover:bg-[#c0e82c] transition-all duration-300 hover:shadow-[0_6px_25px_rgba(210,248,58,0.4)] cursor-pointer"
           >
             <span className="text-sm sm:text-base">Explore Complete Archive</span>

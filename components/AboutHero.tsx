@@ -60,7 +60,7 @@ export default function AboutHero() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <Link
-                href="/projects"
+                href="/works"
                 className="group flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
               >
                 View Our Work

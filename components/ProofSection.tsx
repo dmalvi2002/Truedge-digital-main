@@ -365,7 +365,7 @@ export default function ProofSection() {
         {/* --- PART 3: Call To Action Button --- */}
         <div className="mt-16 flex justify-center">
           <a
-            href="/projects"
+            href="/works"
             className="group flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,rgba(139,92,246,1)0%,rgba(109,40,217,1)100%)] px-10 py-4 text-base font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.5),inset_0_2px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(124,58,237,0.7),inset_0_2px_2px_rgba(255,255,255,0.4)]"
           >
             View All Projects
