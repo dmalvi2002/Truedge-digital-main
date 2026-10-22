@@ -123,7 +123,7 @@ export default function Navbar() {
 
   return (
     <>
-    <div aria-hidden="true" className={styles.spacer} style={{ background: "#06070b" }} />
+    {pathname !== "/marketing" && <div aria-hidden="true" className={styles.spacer} style={{ background: "#06070b" }} />}
     <header ref={header} data-glass-mode={overLightBackground ? "frosted" : "refractive"} className={`${styles.header} ${sora.className}`} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) close(); }}>
       <div className={styles.background} aria-hidden="true">
         <LiquidGlassBackground dark liquid frosted={overLightBackground} />

@@ -13,6 +13,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import styles from "./MarketingPage.module.css";
 import heroStyles from "./MainHeroTwo.module.css";
+import MainCTA from "./MainCTA";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
@@ -132,8 +133,6 @@ export default function MarketingPage({ content = {} }: { content?: PageContent 
         gsap.from(chapter.querySelectorAll("[data-service]"), { x: 45, opacity: 0, stagger: .2, duration: .9, ease: "power3.out", scrollTrigger: { trigger: chapter, start: "top 72%", once: true } });
       });
       gsap.fromTo("[data-approach-image]", { yPercent: -10, scale: 1.13 }, { yPercent: 10, scale: 1.03, ease: "none", scrollTrigger: { trigger: "[data-approach]", start: "top bottom", end: "bottom top", scrub: 1 } });
-      gsap.fromTo("[data-close-word]", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", ease: "none", scrollTrigger: { trigger: "[data-marketing-close]", start: "top 70%", end: "top 20%", scrub: .8 } });
-      gsap.from("[data-close-orbit]", { scale: .6, rotation: -30, ease: "none", scrollTrigger: { trigger: "[data-marketing-close]", start: "top bottom", end: "bottom top", scrub: 1.5 } });
     });
     return () => { media.revert(); scrollTween.current?.kill(); };
   }, { scope: root });
@@ -193,10 +192,7 @@ export default function MarketingPage({ content = {} }: { content?: PageContent 
       </div>
     </section>
 
-    <section className={styles.closing} data-marketing-close aria-labelledby="marketing-close">
-      <div className={styles.closeOrbit} data-close-orbit aria-hidden="true" />
-      <div className={styles.container}><h2 id="marketing-close">Make your<br /><span className={styles.closeWord}>next move.<span data-close-word aria-hidden="true">next move.</span></span></h2><div className={styles.closeBottom}><p>Your business has potential.<br />Let’s put a plan behind it.</p><Link href="/contact" className={styles.button}>Book a Free Strategy Call <ArrowUpRight size={21} aria-hidden="true" /></Link></div></div>
-    </section>
+    <MainCTA />
 
     <section className={styles.faq} aria-labelledby="marketing-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div><h2 id="marketing-faq" data-reveal>Good questions.<br /><span>Clear answers.</span></h2><p>A few things you might be wondering before we talk.</p></div><div>{(getFaqs(content).length ? getFaqs(content) : faqs).map(faq => <details key={faq.question} className={styles.faqItem}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>
   </div>;

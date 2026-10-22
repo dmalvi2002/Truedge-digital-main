@@ -13,6 +13,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import styles from "./AiAutomationPage.module.css";
 import heroStyles from "./MainHeroTwo.module.css";
+import MainCTA from "./MainCTA";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
@@ -280,7 +281,7 @@ export default function AiAutomationPage({ content = {} }: { content?: PageConte
       <div className={styles.humanCopy}><h2 id="human-title" data-ai-reveal>Built to help.<br />Designed around <em>you.</em></h2><p className={plex.className} data-ai-reveal>Good automation should feel like a weight lifted. We build it with you, test it properly and make sure your team knows how to use it.</p><div className={styles.process}>{[["Start with what matters.", "We map where time and opportunities are being lost, then agree on one valuable place to begin."], ["Build it around your business.", "Your voice, your tools, your way of working. With clear rules for when a person should step in."], ["Test, introduce, improve.", "We test real scenarios, roll out carefully and review what’s working with your team."]].map(([title, copy], i) => <article key={title} data-ai-reveal><span>0{i + 1}</span><div><h3>{title}</h3><p className={plex.className}>{copy}</p></div></article>)}</div></div>
     </div></section>
 
-    <section className={styles.closing} aria-labelledby="ai-close"><div className={styles.closeArt} aria-hidden="true"><AiProcessor variant="story" /></div><div className={styles.container}><h2 id="ai-close">Make room<br />for <em data-ai-ink>what’s next.</em></h2><div className={styles.closeBottom}><p className={plex.className}>A smarter way to work starts with a conversation.<br />Let’s find yours.</p><Button /></div></div></section>
+    <MainCTA />
 
     <section className={styles.faq} aria-labelledby="ai-faq"><div className={`${styles.container} ${styles.faqLayout}`}><div data-ai-reveal><h2 id="ai-faq">Good questions.<br /><em>Clear answers.</em></h2><p className={plex.className}>A few things you might be wondering before we talk.</p></div><div>{(getFaqs(content).length ? getFaqs(content).map(({ question, answer }) => [question, answer]) : faqs).map(([question, answer]) => <details key={question} onToggle={() => ScrollTrigger.refresh()}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p className={plex.className}>{answer}</p></details>)}</div></div></section>
   </div>;
