@@ -105,7 +105,7 @@ export default function ServicesPage({ content = {} }: { content?: PageContent }
                 </Link>
 
                 <Link
-                  href="/growth"
+                  href="/marketing"
                   className={`${ibm.className} group flex w-full items-center justify-center gap-2 rounded-full border-2 border-slate-200 bg-white/50 backdrop-blur-sm px-8 py-4 text-base font-bold text-slate-700 transition-all duration-300 hover:border-slate-300 hover:bg-white sm:w-auto`}
                 >
                   View Marketing Suite

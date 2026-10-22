@@ -37,7 +37,7 @@ const services = [
 function HeroDoodles() {
   return (
     <>
-      <svg data-doodle className="absolute top-[5%] md:top-[12%] -left-[5%] md:-left-[25%] z-20 w-[27%] rotate-240 text-[#c1fb00]" viewBox="0 0 180 160" fill="none" aria-hidden="true">
+      <svg data-doodle className="absolute top-[5%] md:top-[12%] -left-[5%] md:-left-[25%] z-20 w-[27%] rotate-240 lg:rotate-175 text-[#c1fb00]" viewBox="0 0 180 160" fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M14 140C15 109 34 81 60 79C85 77 90 113 69 117C42 122 38 64 76 51C107 41 133 62 160 27" />
           <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M139 25C147 25 154 25 162 24L159 47" />
@@ -228,7 +228,7 @@ export default function MainHeroThree({ content = {} }: { content?: PageContent 
         COLOR="#c1fb00"
         COLOR_INTENSITY={2.4}
       />
-      <div className="relative mx-auto grid w-full max-w-[1440px] items-center gap-8 sm:gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-3">
+      <div className="relative mx-auto grid w-full max-w-[1312px] items-center gap-8 sm:gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pl-10">
         <div data-copy-depth className="relative z-30 text-center lg:text-left">
           <p data-strategy-title className={`${headline.className} mb-5 text-[clamp(1.25rem,5.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.035em] text-[#d9cbed] [word-spacing:0.08em] lg:mb-6 lg:text-[clamp(1.65rem,2.25vw,2.25rem)]`}>
             From Strategy to Scale
@@ -294,7 +294,7 @@ export default function MainHeroThree({ content = {} }: { content?: PageContent 
           </nav>
         </div>
 
-        <div data-portrait-scene className="pointer-events-none relative mx-auto aspect-[31/41] w-full max-w-[520px] lg:ml-0" aria-hidden="true">
+        <div data-portrait-scene className="pointer-events-none relative mx-auto aspect-[31/41] w-full max-w-[520px] lg:mx-0 lg:justify-self-end" aria-hidden="true">
           <div data-fold-depth className="absolute inset-0 z-0">
             <div data-fold-reveal className="h-full w-full"><BrandFold /></div>
           </div>

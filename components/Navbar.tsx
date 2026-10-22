@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Folder, House, Mail, Menu, Newspaper, Users, X } from "lucide-react";
 import { Barlow_Semi_Condensed, Sora } from "next/font/google";
 import styles from "./Navbar.module.css";
+import ctaStyles from "./MainHeroTwo.module.css";
+import { LiquidGlassBackground } from "@/components/ui/liquid-glass-button";
 
 const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"] });
 const brandFont = Barlow_Semi_Condensed({ subsets: ["latin"], weight: ["600"] });
@@ -15,7 +17,13 @@ const links = [
   { name: "AI Automation", href: "/ai-automation" },
   { name: "Web Design", href: "/web-design" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Works", href: "/works" },
+];
+const moreLinks = [
+  { name: "Home", href: "/", description: "Back to the beginning", icon: House },
+  { name: "About Us", href: "/about", description: "Meet Truedge", icon: Users },
+  { name: "Our Work", href: "/works", description: "Selected projects", icon: Folder },
+  { name: "Blog", href: "/blog", description: "Ideas and insights", icon: Newspaper },
+  { name: "Contact", href: "/contact", description: "Start a conversation", icon: Mail },
 ];
 
 function WhatsAppIcon() {
@@ -23,37 +31,84 @@ function WhatsAppIcon() {
 }
 
 function WhatsAppButton({ onClick }: { onClick?: () => void }) {
-  return <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer" className={styles.contact} onClick={onClick} aria-label="Chat with us on WhatsApp"><span className={styles.contactLabel}>Chat With Us</span><span className={styles.contactIcon}><WhatsAppIcon /></span></a>;
+  return <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer" className={styles.whatsapp} onClick={onClick} aria-label="Chat with us on WhatsApp"><WhatsAppIcon /></a>;
 }
 
-function subscribeToScroll(callback: () => void) {
-  window.addEventListener("scroll", callback, { passive: true });
-  return () => window.removeEventListener("scroll", callback);
+function ContactButton({ onClick }: { onClick?: () => void }) {
+  return <Link href="/contact" onClick={onClick} className={`${ctaStyles.cta} ${styles.contact}`}><span>Contact Us</span><span className={ctaStyles.ctaIcon} aria-hidden="true"><ArrowUpRight size={21} /></span></Link>;
 }
-const getScrolled = () => window.scrollY > 40;
-const getServerScrolled = () => false;
 
 export default function Navbar() {
   const pathname = usePathname();
-  const scrolled = useSyncExternalStore(subscribeToScroll, getScrolled, getServerScrolled);
-  const [openPath, setOpenPath] = useState<string | null>(null);
-  const isOpen = openPath === pathname;
+  const [openMenu, setOpenMenu] = useState<{ path: string; kind: "mobile" | "more" } | null>(null);
+  const isOpen = openMenu?.path === pathname && openMenu.kind === "mobile";
+  const moreOpen = openMenu?.path === pathname && openMenu.kind === "more";
+  const close = () => setOpenMenu(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const moreTrigger = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
+  const [overLightBackground, setOverLightBackground] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) return;
+    // Read the page beneath the fixed header, excluding the header and its menus.
+    // A majority across three points avoids switching for a small card or image.
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 1;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
+      const nav = header.current;
+      if (!nav || !context) return;
+      const rect = nav.getBoundingClientRect();
+      const lightPoints = [0.2, 0.5, 0.8].filter(position => {
+        const underneath = document.elementsFromPoint(rect.left + rect.width * position, rect.top + rect.height / 2)
+          .find(element => !nav.contains(element));
+        let red = 0, green = 0, blue = 0, remaining = 1;
+        for (let element = underneath; element && remaining > 0.01; element = element.parentElement ?? undefined) {
+          context.clearRect(0, 0, 1, 1);
+          context.fillStyle = getComputedStyle(element).backgroundColor;
+          context.fillRect(0, 0, 1, 1);
+          const [r, g, b, a] = context.getImageData(0, 0, 1, 1).data;
+          const alpha = a / 255;
+          red += r * alpha * remaining;
+          green += g * alpha * remaining;
+          blue += b * alpha * remaining;
+          remaining *= 1 - alpha;
+        }
+        // The browser canvas beneath transparent ancestors defaults to white.
+        const brightness = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255 + remaining;
+        return brightness > 0.6;
+      }).length;
+      setOverLightBackground(lightPoints >= 2);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(measure); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true, capture: true });
+    window.addEventListener("resize", schedule);
+    const observer = new ResizeObserver(schedule);
+    observer.observe(document.body);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule, true);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isOpen && !moreOpen) return;
     const dismiss = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpenPath(null);
-        trigger.current?.focus();
+        setOpenMenu(null);
+        (moreOpen ? moreTrigger : trigger).current?.focus();
       }
     };
     const outside = (event: PointerEvent) => {
-      if (event.target instanceof Node && !header.current?.contains(event.target)) setOpenPath(null);
+      if (event.target instanceof Node && !header.current?.contains(event.target)) setOpenMenu(null);
     };
     const desktop = window.matchMedia("(min-width: 1200px)");
-    const resize = () => { if (desktop.matches) setOpenPath(null); };
+    const resize = () => setOpenMenu(null);
     window.addEventListener("keydown", dismiss);
     window.addEventListener("pointerdown", outside);
     desktop.addEventListener("change", resize);
@@ -62,36 +117,48 @@ export default function Navbar() {
       window.removeEventListener("pointerdown", outside);
       desktop.removeEventListener("change", resize);
     };
-  }, [isOpen]);
+  }, [isOpen, moreOpen]);
 
-  const isActive = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
-  const keepsDarkNavigation = pathname.startsWith("/ai-automation") || pathname.startsWith("/blog") || pathname === "/works" || pathname === "/contact" || pathname === "/about";
-  const usesDarkNavigation = keepsDarkNavigation || ((pathname === "/" || pathname === "/marketing" || pathname === "/web-design" || pathname === "/pricing") && !scrolled);
+  const isActive = (href: string) => pathname !== "/" && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
-    <header ref={header} className={`${styles.header} ${usesDarkNavigation ? styles.dark : ""} ${scrolled ? styles.scrolled : ""} ${sora.className}`}>
+    <>
+    <div aria-hidden="true" className={styles.spacer} style={{ background: "#06070b" }} />
+    <header ref={header} data-glass-mode={overLightBackground ? "frosted" : "refractive"} className={`${styles.header} ${sora.className}`} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) close(); }}>
+      <div className={styles.background} aria-hidden="true">
+        <LiquidGlassBackground dark liquid frosted={overLightBackground} />
+      </div>
       <div className={styles.inner}>
-        <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={() => setOpenPath(null)}>
+        <Link href="/" aria-label="Truedge Digital home" className={styles.brand} onClick={close}>
           <span className={styles.logoFrame} aria-hidden="true">
-            <Image src="/truedge-logo-white.svg" alt="" width={64} height={72} priority className={styles.logoDark} />
-            <Image src="/truedge-logo-black.svg" alt="" width={64} height={72} priority className={styles.logoLight} />
+            <Image src="/truedge-logo-white.svg" alt="" width={64} height={72} priority />
           </span>
           <span className={`${styles.wordmark} ${brandFont.className}`}><span>TRUEDGE</span><span>DIGITAL</span></span>
         </Link>
         <nav aria-label="Main navigation" className={styles.navigation}>
           {links.map((link) => <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}</Link>)}
+          <div className={styles.more}>
+            <button ref={moreTrigger} type="button" className={styles.moreButton} aria-expanded={moreOpen} aria-controls="more-navigation" data-active={moreLinks.some(link => isActive(link.href)) || undefined} onClick={() => setOpenMenu(moreOpen ? null : { path: pathname, kind: "more" })}>More <ChevronDown size={14} aria-hidden="true" /></button>
+            <div id="more-navigation" hidden={!moreOpen} className={styles.dropdown}>
+              <p className={styles.menuLabel}>Explore Truedge</p>
+              <div className={styles.moreGrid}>{moreLinks.map(({ name, href, description, icon: Icon }) => <Link key={href} href={href} onClick={close} aria-current={isActive(href) ? "page" : undefined}><Icon size={20} aria-hidden="true" /><span><strong>{name}</strong><small>{description}</small></span><ArrowUpRight size={15} className={styles.itemArrow} aria-hidden="true" /></Link>)}</div>
+            </div>
+          </div>
         </nav>
         <div className={styles.right}>
           <WhatsAppButton />
-          <button ref={trigger} type="button" className={styles.menuButton} aria-expanded={isOpen} aria-controls="mobile-navigation" aria-label={isOpen ? "Close navigation" : "Open navigation"} onClick={() => setOpenPath(isOpen ? null : pathname)}>
+          <ContactButton onClick={close} />
+          <button ref={trigger} type="button" className={styles.menuButton} aria-expanded={isOpen} aria-controls="mobile-navigation" aria-label={isOpen ? "Close navigation" : "Open navigation"} onClick={() => setOpenMenu(isOpen ? null : { path: pathname, kind: "mobile" })}>
             {isOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
         </div>
       </div>
       <nav id="mobile-navigation" aria-label="Mobile navigation" hidden={!isOpen} className={styles.mobile}>
-        {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpenPath(null)} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}</Link>)}
-        <div className={styles.mobileContact}><WhatsAppButton onClick={() => setOpenPath(null)} /></div>
+        <p className={styles.menuLabel}>What we do</p>
+        <div className={styles.mobilePrimary}>{links.map((link) => <Link key={link.href} href={link.href} onClick={close} aria-current={isActive(link.href) ? "page" : undefined}>{link.name}<ArrowUpRight size={19} aria-hidden="true" /></Link>)}</div>
+        <details className={styles.mobileMore}><summary>More <ChevronDown size={17} aria-hidden="true" /></summary><div className={styles.moreGrid}>{moreLinks.map(({ name, href, icon: Icon }) => <Link key={href} href={href} onClick={close} aria-current={isActive(href) ? "page" : undefined}><Icon size={18} aria-hidden="true" />{name}</Link>)}</div></details>
       </nav>
     </header>
+    </>
   );
 }

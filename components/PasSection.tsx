@@ -44,7 +44,7 @@ const SERVICES: ServiceCard[] = [
     imageSrc: "/card-laptop.jpg",
     imageAlt: "Website Design and Development Laptop Display",
     ctaText: "Website Design",
-    href: "/services",
+    href: "/web-design",
   },
   {
     id: "seo-aeo-geo",
@@ -55,7 +55,7 @@ const SERVICES: ServiceCard[] = [
     imageSrc: "/card-phone.jpg",
     imageAlt: "Search and AI Engine Optimization Display",
     ctaText: "Search Visibility",
-    href: "/services",
+    href: "/marketing#get-found",
   },
   {
     id: "paid-media",
@@ -66,7 +66,7 @@ const SERVICES: ServiceCard[] = [
     imageSrc: "/card-tablet.jpg",
     imageAlt: "Paid Media Strategy Tablet Display",
     ctaText: "Online Advertising",
-    href: "/services",
+    href: "/marketing#get-found",
   },
 ];
 
@@ -396,7 +396,7 @@ export default function PasSection() {
                 </Link>
 
                 <Link
-                  href="/services"
+                  href="/marketing"
                   className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-200 hover:text-white px-4 py-2 transition-colors duration-200"
                 >
                   <span>Explore Capabilities</span>

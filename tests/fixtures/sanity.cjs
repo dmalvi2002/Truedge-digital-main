@@ -47,7 +47,7 @@ if (process.env.SANITY_TEST_MODE === '1') {
       _id: 'pageSeo.contact', routePath: '/contact', seo: { structuredData: JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: '</script><script>should never execute</script>' }) },
     };
     // Exercise the real page wrappers without creating/publishing CMS records.
-    const routes = ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/services', '/blog'];
+    const routes = ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/blog'];
     const route = parameter('routePath');
     if (query.includes('_type == "pageSeo"') && routes.includes(route)) {
       const name = route === '/' ? 'home' : route.slice(1);

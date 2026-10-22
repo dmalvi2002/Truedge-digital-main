@@ -26,7 +26,7 @@ assert(customJson?.includes('\\u003c/script>'), 'Custom JSON-LD escapes HTML clo
 assert.equal(JSON.parse(customJson).name, '</script><script>should never execute</script>');
 const blog = await page('/blog');
 assert.match(blog, /href="\/blog\/sanity-integration-test"/);
-for (const route of ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/services', '/blog']) {
+for (const route of ['/', '/web-design', '/marketing', '/ai-automation', '/pricing', '/contact', '/blog']) {
   const name = route === '/' ? 'home' : route.slice(1);
   const html = await page(route);
   assert(html.includes(`<title>CMS fixture ${name} search title</title>`), `${route}: SEO title connected`);

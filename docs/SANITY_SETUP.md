@@ -156,7 +156,6 @@ All use `getRouteMetadata()` with existing metadata as fallback. Optional H1 and
 | Pricing | `/pricing` | Replace existing FAQs |
 | Our work | `/works` | Add a FAQ section |
 | Contact | `/contact` | Add a FAQ section |
-| Services | `/services` | Replace existing FAQs |
 | Blog index | `/blog` | Add a FAQ section |
 
 Core pages are controlled singleton entries in the Studio's **Core Website Pages (SEO)** list. The initial document fills its name, route, and SEO object automatically. Publishing a new SEO document with blank H1/introduction keeps the designed copy. Leaving the FAQ list empty keeps the existing list. If no document exists, or the CMS cannot be reached, the existing static page continues to render.

@@ -69,9 +69,8 @@ export default function MainCTA({
           }
         );
 
-        gsap.from("[data-close-orbit]", {
-          scale: 0.6,
-          rotation: -30,
+        gsap.fromTo("[data-close-logo]", { xPercent: -35 }, {
+          xPercent: 20,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -94,7 +93,7 @@ export default function MainCTA({
       className={`${styles.closing} ${sora.className} ${className}`.trim()}
       aria-labelledby={`${id}-title`}
     >
-      <div className={styles.orbit} data-close-orbit aria-hidden="true" />
+      <div className={styles.logoWatermark} data-close-logo aria-hidden="true" />
       <div className={styles.container}>
         <h2 id={`${id}-title`} className={`${styles.title} ${sora.className}`}>
           {headlineLine1}

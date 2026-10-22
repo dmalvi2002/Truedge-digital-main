@@ -3,6 +3,7 @@ import { getPageSeo, toPageContent } from "@/lib/sanity/data";
 import PageSeoData from "@/components/sanity/PageSeoData";
 import type { Metadata } from "next";
 import AboutPage from "@/components/AboutPage";
+import MainCTA from "@/components/MainCTA";
 
 const fallbackMetadata: Metadata = {
   title: "About Us | Truedge Digital",
@@ -14,5 +15,5 @@ export async function generateMetadata() { return getRouteMetadata('/about', fal
 
 export default async function About() {
   const page = await getPageSeo('/about');
-  return <><AboutPage content={toPageContent(page)} /><PageSeoData page={page} renderFaqs /></>;
+  return <><AboutPage content={toPageContent(page)} /><MainCTA /><PageSeoData page={page} renderFaqs /></>;
 }

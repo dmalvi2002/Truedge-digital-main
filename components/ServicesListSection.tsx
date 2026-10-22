@@ -36,7 +36,7 @@ const SERVICES: ServiceItem[] = [
     description:
       'We immerse ourselves in your market architecture, dominating generative answer engines, voice search, and organic conversion pipelines.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
-    href: '/services#seo',
+    href: '/marketing#get-found',
   },
   {
     id: 'paid-media',
@@ -47,7 +47,7 @@ const SERVICES: ServiceItem[] = [
     description:
       'Algorithmic multi-channel advertising across Meta, Google Ads, TikTok, and YouTube driving predictable, compounding ROAS.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-    href: '/services#paid-media',
+    href: '/marketing#get-found',
   },
   {
     id: 'web-architecture',
@@ -58,7 +58,7 @@ const SERVICES: ServiceItem[] = [
     description:
       'Custom web platforms built on modern Next.js architecture, engineered for sub-second speeds and maximum transaction velocity.',
     image: '/card-laptop.jpg',
-    href: '/services#web-design',
+    href: '/web-design',
   },
   {
     id: 'video-editing',
@@ -91,7 +91,7 @@ const SERVICES: ServiceItem[] = [
     description:
       'Conversion-focused copywriting, authority-building industry reports, and viral editorial storytelling that positions you as the market leader.',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80',
-    href: '/services#content',
+    href: '/marketing',
   },
   {
     id: 'email-crm',
@@ -102,7 +102,7 @@ const SERVICES: ServiceItem[] = [
     description:
       'Automated customer lifecycle workflows, personalized SMS sequences, and behavioral VIP funnels scaling lifetime customer value.',
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80',
-    href: '/services#crm',
+    href: '/ai-automation',
   },
 ];
 

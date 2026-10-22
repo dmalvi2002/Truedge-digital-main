@@ -1,58 +1,73 @@
-.header { --nav-bg: #ffffff; --nav-ink: #191b20; --nav-muted: #565960; --nav-line: #191b2012; --nav-track: #f1f2f3; --nav-link: #ffffff; position: sticky; top: 0; z-index: 50; background: var(--nav-bg); color: var(--nav-ink); transition: none; }
-.dark { --nav-bg: #06070b; --nav-ink: #f6f6f3; --nav-muted: #c7c8cc; --nav-line: #ffffff0d; --nav-track: #010204; --nav-link: #131417; }
-.scrolled { box-shadow: 0 6px 30px #1118270a; }
-.inner { max-width: 1600px; height: 100px; margin: auto; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.brand { display: flex; align-items: center; gap: 16px; flex-shrink: 0; line-height: 1; color: var(--nav-ink); }
-.brand, .brand * { transition: none; animation: none; }
-.logoFrame { display: grid; width: 59px; height: 66px; flex: 0 0 59px; }
-.brand img { display: block; grid-area: 1 / 1; width: 100%; height: 100%; object-fit: contain; }
-.logoDark { visibility: hidden; }
-.logoLight { visibility: visible; }
-.dark .logoDark { visibility: visible; }
-.dark .logoLight { visibility: hidden; }
-.wordmark { display: flex; align-items: baseline; gap: 7px; font-size: 25px; font-weight: 600; letter-spacing: .045em; }
-.navigation { display: flex; gap: 8px; align-items: center; padding: 7px; border: 1px solid var(--nav-line); border-radius: 100px; background: var(--nav-track); transition: none; }
-.navigation a { display: flex; align-items: center; justify-content: center; padding: 12px 17px; border: 1px solid transparent; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--nav-muted); text-decoration: none; transition: none; }
-.navigation a:hover, .navigation a[aria-current] { color: var(--nav-ink); background: var(--nav-link); border-color: var(--nav-line); }
-.navigation a[aria-current] { box-shadow: 0 2px 6px #00000005; }
-.right { display: flex; align-items: center; gap: 20px; }
-.contact, .mobile .contact { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 57px 0 21px; gap: 0; background: #25d366; color: #052611; border: 0; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: nowrap; transition: background .2s; }
-.contactIcon { display: grid; place-items: center; position: absolute; right: 5px; width: 38px; height: 38px; border-radius: 50%; background: #052611; color: #6cf29d; }
+.spacer { height: 108px; }
+.header { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 50; width: min(1440px, calc(100% - 64px)); margin: 0; color: #f6f6f3; border-radius: 38px; color-scheme: dark; }
+.background { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: #080a10b8; }
+.inner { position: relative; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 24px; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; color: #f6f6f3; line-height: 1; }
+.logoFrame { display: block; width: 38px; height: 44px; flex: 0 0 38px; }
+.logoFrame img { width: 100%; height: 100%; object-fit: contain; }
+.wordmark { display: flex; gap: 5px; font-size: 21px; font-weight: 600; letter-spacing: .045em; }
+.navigation { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+.navigation > a, .moreButton { position: relative; display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: #d1d2d7; font-size: 12px; font-weight: 500; white-space: nowrap; background: none; border: 0; cursor: pointer; }
+.navigation > a:hover, .moreButton:hover { color: #fff; }
+.navigation > a[aria-current], .moreButton[aria-expanded=true], .moreButton[data-active] { color: #c1fb00; }
+.moreButton svg { transition: transform .2s; }
+.moreButton[aria-expanded=true] svg { transform: rotate(180deg); }
+.more { position: relative; }
+.right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: 12px; }
+.whatsapp { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex: 0 0 44px; border-radius: 50%; background: #25d366; color: #052611; transition: background .2s, transform .2s; }
+.whatsapp:hover { background: #49e482; transform: translateY(-1px); }
+.right .contact { min-width: 140px; min-height: 44px; padding: 0 48px 0 17px; background: #c1fb00; font-size: 12px; }
+.right .contact > span:last-child { width: 34px; height: 34px; right: 5px; }
+.right .contact > span:last-child svg { width: 18px; height: 18px; }
 @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
-  .contact { transition: padding .45s cubic-bezier(.16,1,.3,1), background .2s; }
-  .contact:hover, .contact:focus-visible { padding-left: 57px; padding-right: 21px; background: #49e482; }
-  .contactIcon { transition: right .45s cubic-bezier(.16,1,.3,1), transform .45s; }
-  .contact:hover .contactIcon, .contact:focus-visible .contactIcon { right: calc(100% - 43px); transform: rotate(-12deg); }
+  .right .contact:hover, .right .contact:focus-visible { padding-left: 48px; padding-right: 17px; }
+  .right .contact:hover > span:last-child, .right .contact:focus-visible > span:last-child { right: calc(100% - 39px); }
 }
-@media (max-width: 1023px), (hover: none), (pointer: coarse) {
-  .contact, .mobile .contact { transition: background .2s; }
-  .contact:hover, .contact:focus-visible, .contact:active, .mobile .contact:hover, .mobile .contact:focus-visible, .mobile .contact:active { background: #49e482; }
-  .contactIcon, .mobile .contactIcon { right: 5px !important; transform: none !important; transition: none !important; }
-  .contact:hover .contactIcon, .contact:focus-visible .contactIcon, .contact:active .contactIcon, .mobile .contact:hover .contactIcon, .mobile .contact:focus-visible .contactIcon, .mobile .contact:active .contactIcon { right: 5px !important; transform: none !important; }
-}
-.menuButton { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer; color: var(--nav-ink); background: var(--nav-track); border: 1px solid var(--nav-line); border-radius: 50%; }
-.mobile { padding: 12px 32px 28px; background: var(--nav-bg); border-bottom: 1px solid var(--nav-line); max-height: calc(100dvh - 76px); overflow-y: auto; }
-.mobile[hidden] { display: none; }
-.mobile > a { display: flex; align-items: center; margin: 4px 0; padding: 15px 18px; border-radius: 12px; font-size: 18px; color: var(--nav-muted); }
-.mobile > a:hover, .mobile > a[aria-current] { color: var(--nav-ink); background: var(--nav-track); }
-.mobileContact { padding-top: 20px; }
-.mobile .contact { width: 100%; }
-.header a:focus-visible, .header button:focus-visible { outline: 2px solid #748d19; outline-offset: 4px; }
-.dark a:focus-visible, .dark button:focus-visible { outline-color: #d2f83a; }
+.contact:hover, .contact:focus-visible { background: #d3ff2b; }
+.menuButton { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #ffffff24; background: #ffffff08; color: #fff; cursor: pointer; }
+.dropdown, .mobile { position: absolute; top: calc(100% + 18px); border: 1px solid #ffffff24; border-radius: 24px; background: #101218f5; box-shadow: 0 24px 70px #0005; }
+.dropdown { right: -130px; width: 540px; padding: 22px; }
+.dropdown[hidden], .mobile[hidden] { display: none; }
+.menuLabel { padding: 0 12px 14px; color: #90949f; font-size: 9px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
+.moreGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+.moreGrid a { display: flex; align-items: center; gap: 14px; padding: 14px 12px; border-radius: 12px; font-size: 12px; color: #e9eaf0; transition: background .2s; }
+.moreGrid a:hover, .moreGrid a[aria-current] { background: #ffffff0a; }
+.moreGrid a:hover > svg:first-child, .moreGrid a[aria-current] > svg:first-child { color: #c1fb00; }
+.moreGrid a[aria-current] { color: #c1fb00; }
+.moreGrid strong { display: block; font-size: 12px; font-weight: 500; }
+.moreGrid small { display: block; margin-top: 5px; color: #999eab; font-size: 10px; }
+.itemArrow { margin-left: auto; opacity: 0; }
+.moreGrid a:hover .itemArrow { opacity: 1; }
+.mobile { top: calc(100% + 10px); left: 0; right: 0; padding: 24px; max-height: calc(100dvh - 110px); overflow-y: auto; overscroll-behavior: contain; }
+.mobilePrimary a { display: flex; align-items: center; justify-content: space-between; padding: 17px 12px; font-size: 20px; border-bottom: 1px solid #ffffff12; }
+.mobilePrimary a:hover, .mobilePrimary a[aria-current] { color: #c1fb00; }
+.mobilePrimary svg { color: #979ca9; }
+.mobileMore { margin-top: 12px; }
+.mobileMore summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 15px 12px; font-size: 15px; }
+.mobileMore summary::-webkit-details-marker { display: none; }
+.mobileMore[open] summary svg { transform: rotate(180deg); }
+.header a:focus-visible, .header button:focus-visible, .header summary:focus-visible { outline: 2px solid #c1fb00; outline-offset: 4px; }
 @media (min-width: 1200px) { .mobile { display: none; } }
-@media (max-width: 1199px) { .inner { padding: 0 32px; gap: 20px; } .navigation { gap: 3px; } .navigation a { padding: 11px 15px; } }
-@media (max-width: 1199px) { .navigation { display: none; } .menuButton { display: flex; } .inner { height: 80px; } }
+@media (max-width: 1279px) and (min-width: 1200px) { .navigation { gap: 20px; } .wordmark { font-size: 18px; } .inner { gap: 16px; } .right { margin-left: 0; } }
+@media (max-width: 1199px) { .header { width: calc(100% - 40px); } .navigation { display: none; } .menuButton { display: inline-flex; } }
 @media (max-width: 599px) {
-  .inner { padding: 0 20px; height: 76px; gap: 12px; }
-  .brand { gap: 11px; }
-  .logoFrame { width: 46px; height: 52px; flex-basis: 46px; }
-  .wordmark { gap: 5px; font-size: 16px; letter-spacing: .035em; }
-  .right { gap: 12px; }
-  .right .contact { padding: 0; width: 42px; min-height: 42px; }
-  .right .contactLabel { display: none; }
-  .right .contactIcon { width: 32px; height: 32px; right: 5px; }
-  .right .contact:hover .contactIcon, .right .contact:focus-visible .contactIcon { right: 5px; transform: rotate(-12deg); }
-  .menuButton { width: 40px; height: 40px; }
-  .mobile { padding: 8px 20px 24px; }
+  .header { top: 10px; width: calc(100% - 20px); margin: 0; }
+  .inner { height: 66px; padding: 0 10px; gap: 8px; }
+  .brand { gap: 7px; }
+  .logoFrame { width: 28px; height: 34px; flex-basis: 28px; }
+  .wordmark { flex-direction: column; gap: 3px; font-size: 12px; letter-spacing: .06em; }
+  .right { gap: 6px; margin-left: 0; }
+  .whatsapp { width: 36px; height: 36px; flex-basis: 36px; }
+  .whatsapp svg { width: 20px; height: 20px; }
+  .right .contact { min-width: 120px; min-height: 42px; padding: 0 42px 0 14px; font-size: 11px; }
+  .right .contact > span:last-child { width: 32px; height: 32px; right: 5px !important; }
+  .right .contact > span:last-child svg { width: 18px; height: 18px; }
+  .menuButton { width: 36px; height: 36px; }
+  .mobile { padding: 20px 12px; }
+  .moreGrid { column-gap: 4px; }
+  .moreGrid a { gap: 10px; font-size: 11px; }
 }
-@media (prefers-reduced-motion: reduce) { .header, .header * { transition: none !important; } }
+@media (max-width: 349px) { .wordmark { display: none; } }
+@media (prefers-reduced-motion: reduce) { .header *, .header *::after { transition: none !important; } }
+
+@media (max-width: 599px) { .spacer { height: 86px; } }

@@ -24,7 +24,7 @@ export function parseStructuredData(raw?: string | null): Record<string, unknown
   } catch { return null; }
 }
 
-export const coreRoutes = ['/', '/about', '/web-design', '/marketing', '/ai-automation', '/pricing', '/works', '/contact', '/services', '/blog'] as const;
+export const coreRoutes = ['/', '/about', '/web-design', '/marketing', '/ai-automation', '/pricing', '/works', '/contact', '/blog'] as const;
 
 export function siteUrl(path = '/') {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.truedgedigital.co.uk';
