@@ -37,7 +37,7 @@ const services = [
 function HeroDoodles() {
   return (
     <>
-      <svg data-doodle className="absolute top-[5%] md:top-[12%] -left-[5%] md:-left-[25%] z-20 w-[27%] rotate-240 lg:rotate-175 text-[#c1fb00]" viewBox="0 0 180 160" fill="none" aria-hidden="true">
+      <svg data-doodle className="absolute top-[13%] md:top-[20%] -left-[5%] md:-left-[25%] z-20 w-[27%] rotate-240 lg:rotate-175 text-[#c1fb00]" viewBox="0 0 180 160" fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M14 140C15 109 34 81 60 79C85 77 90 113 69 117C42 122 38 64 76 51C107 41 133 62 160 27" />
           <path data-doodle-stroke pathLength="1" style={{ strokeDasharray: 1, strokeDashoffset: 1 }} className="motion-reduce:[stroke-dashoffset:0]" d="M139 25C147 25 154 25 162 24L159 47" />

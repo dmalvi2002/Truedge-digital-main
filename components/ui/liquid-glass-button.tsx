@@ -62,6 +62,7 @@ const liquidbuttonVariants = cva(
 
 const lightShadow = "0 0 6px rgba(0,0,0,0.03),0 2px 6px rgba(0,0,0,0.08),inset 3px 3px 0.5px -3px rgba(0,0,0,0.9),inset -3px -3px 0.5px -3px rgba(0,0,0,0.85),inset 1px 1px 1px -0.5px rgba(0,0,0,0.6),inset -1px -1px 1px -0.5px rgba(0,0,0,0.6),inset 0 0 6px 6px rgba(0,0,0,0.12),inset 0 0 2px 2px rgba(0,0,0,0.06),0 0 12px rgba(255,255,255,0.15)";
 const darkShadow = "0 0 8px rgba(0,0,0,0.03),0 2px 6px rgba(0,0,0,0.08),inset 3px 3px 0.5px -3.5px rgba(255,255,255,0.09),inset -3px -3px 0.5px -3.5px rgba(255,255,255,0.85),inset 1px 1px 1px -0.5px rgba(255,255,255,0.6),inset -1px -1px 1px -0.5px rgba(255,255,255,0.6),inset 0 0 6px 6px rgba(255,255,255,0.12),inset 0 0 2px 2px rgba(255,255,255,0.06),0 0 12px rgba(0,0,0,0.15)";
+const softEdgeShadow = "inset 0 0 0 1px rgba(130,137,145,0.24),0 5px 18px rgba(8,10,16,0.12)";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 function subscribeToMotionPreference(callback: () => void) {
@@ -72,11 +73,12 @@ function subscribeToMotionPreference(callback: () => void) {
 const prefersReducedMotion = () => window.matchMedia(reducedMotionQuery).matches;
 const serverReducedMotion = () => true;
 
-export function LiquidGlassBackground({ className, dark = false, frosted = false, liquid = false }: {
+export function LiquidGlassBackground({ className, dark = false, frosted = false, liquid = false, softEdges = false }: {
   className?: string;
   dark?: boolean;
   frosted?: boolean;
   liquid?: boolean;
+  softEdges?: boolean;
 }) {
   const filterId = `container-glass-${React.useId().replace(/:/g, "")}`;
   const reducedMotion = React.useSyncExternalStore(subscribeToMotionPreference, prefersReducedMotion, serverReducedMotion);
@@ -88,7 +90,7 @@ export function LiquidGlassBackground({ className, dark = false, frosted = false
       backdropFilter,
       WebkitBackdropFilter: backdropFilter,
     }} />
-    <span className="absolute inset-0 rounded-[inherit]" style={{ boxShadow: dark ? darkShadow : lightShadow }} />
+    <span className="absolute inset-0 rounded-[inherit]" style={{ boxShadow: softEdges ? softEdgeShadow : dark ? darkShadow : lightShadow }} />
     <GlassFilter id={filterId} liquid={liquid} frosted={frosted} animate={liquid && !reducedMotion} />
   </span>;
 }

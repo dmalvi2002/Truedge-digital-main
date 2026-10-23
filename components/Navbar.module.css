@@ -1,6 +1,6 @@
 .spacer { height: 108px; }
 .header { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 50; width: min(1440px, calc(100% - 64px)); margin: 0; color: #f6f6f3; border-radius: 38px; color-scheme: dark; }
-.background { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: #080a10b8; }
+.background { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: #080a10c7; }
 .inner { position: relative; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 24px; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; color: #f6f6f3; line-height: 1; }
 .logoFrame { display: block; width: 38px; height: 44px; flex: 0 0 38px; }

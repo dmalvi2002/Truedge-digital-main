@@ -7,12 +7,13 @@ import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
-import { ArrowUpRight, Check, CheckCircle2, Loader2, Mail, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Check, CheckCircle2, Loader2, Mail, Phone } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { getPricingOffer, carePlans } from "@/lib/pricing";
 import { submitToGoogleSheet } from "@/app/actions";
 import styles from "./ContactPage.module.css";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 declare global {
   interface Window {
@@ -248,11 +249,6 @@ function ContactExperience({ offer, project, content }: { offer: Offer; project:
         <h1 id="contact-title" data-contact-intro>{content.h1Heading || <>Good things<br />start with<br /><span>a conversation.</span></>}</h1>
         <p className={styles.introText} data-contact-intro>{content.heroSubheading || "A new website. More enquiries. A simpler way to work. Tell us where you want to go—we’ll help you find the next step."}</p>
         <a href="#project-enquiry" className={styles.mobileEnquiry}>Start your enquiry <ArrowUpRight size={19} /></a>
-        <div className={styles.direct} data-contact-intro>
-          <a href="mailto:info@truedgedigital.co.uk"><span className={styles.contactIcon}><Mail size={20} aria-hidden="true" /></span><span><small>Email us</small>info@truedgedigital.co.uk</span></a>
-          <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer"><span className={styles.contactIcon}><MessageCircle size={20} aria-hidden="true" /></span><span><small>Prefer a quick chat?</small>Talk to us on WhatsApp</span></a>
-          <a href="tel:+447832921562"><span className={styles.contactIcon}><Phone size={20} aria-hidden="true" /></span><span><small>Call us</small>+44 7832 921562</span></a>
-        </div>
         <div className={styles.trust} data-contact-intro>
           <p>Trusted by clients who expect quality.</p>
           <div className={styles.trustClients}>
@@ -274,6 +270,11 @@ function ContactExperience({ offer, project, content }: { offer: Offer; project:
             </div>
           </div>
           <Link href="/works">Explore our client work <ArrowUpRight size={16} /></Link>
+        </div>
+        <div className={styles.direct} data-contact-intro>
+          <a href="mailto:info@truedgedigital.co.uk"><span className={styles.contactIcon}><Mail size={20} aria-hidden="true" /></span><span><small>Email us</small>info@truedgedigital.co.uk</span></a>
+          <a href="https://wa.me/447907901171" target="_blank" rel="noopener noreferrer"><span className={styles.contactIcon}><WhatsAppIcon /></span><span><small>Prefer a quick chat?</small>Talk to us on WhatsApp</span></a>
+          <a href="tel:+447832921562"><span className={styles.contactIcon}><Phone size={20} aria-hidden="true" /></span><span><small>Call us</small>+44 7832 921562</span></a>
         </div>
       </section>
       <section id="project-enquiry" className={styles.formPanel} aria-labelledby={isSubmitted ? "success-title" : "enquiry-title"} data-contact-intro>
