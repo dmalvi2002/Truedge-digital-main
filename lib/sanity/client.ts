@@ -15,5 +15,7 @@ export async function sanityFetch<T>({ query, params = {}, tags = [] }: {
   params?: QueryParams;
   tags?: string[];
 }): Promise<T> {
-  return client.fetch<T>(query, params, { next: { tags, revalidate: 3600 } });
+  // Next.js caches and invalidates these requests. Read from the origin so a
+  // publish webhook cannot refill that cache with an older Sanity CDN response.
+  return client.withConfig({ useCdn: false }).fetch<T>(query, params, { next: { tags, revalidate: 3600 } });
 }

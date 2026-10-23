@@ -19,6 +19,7 @@ assert.match(about, /"@type":"FAQPage"/);
 assert.match(about, /Does CMS FAQ publishing work\?/);
 const works = await page('/works');
 assert.match(works, /<title>Our Work \| Truedge Digital<\/title>/, 'Missing CMS page retains fallback metadata');
+assert.match(works, /rel="canonical" href="https:\/\/www\.truedgedigital\.co\.uk\/works"/, 'Missing CMS page retains automatic canonical');
 const contact = await page('/contact?project=walker');
 assert.match(contact, /<h1[^>]*id="contact-title"/, 'Contact heading is server-rendered');
 const customJson = contact.match(/<script type="application\/ld\+json">(.*?)<\/script>/)?.[1];

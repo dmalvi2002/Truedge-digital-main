@@ -33,6 +33,5 @@ export function mergeSeoMetadata(seo: SeoFields | null | undefined, fallback: Me
 
 export async function getRouteMetadata(routePath: string, fallback: Metadata): Promise<Metadata> {
   const page = await getPageSeo(routePath);
-  if (!page) return fallback;
-  return mergeSeoMetadata(page.seo, fallback, routePath);
+  return mergeSeoMetadata(page?.seo, fallback, routePath);
 }
