@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ScrollExpand from "./ScrollExpand";
@@ -20,7 +20,7 @@ export default function AboutScrollHero({ content }: { content: PageContent }) {
       </div>
     </div>
     <div id="about-showcase" className={styles.showcase}>
-      <ScrollExpand useWindowScroll startWidth={84} startHeight={86} startRadius={26} endRadius={0} mediaZoom={1} scrollDistance={.9} holdDistance={.32} smoothing={.045} overlayScrim={.96} mediaContent={<Image src={ambition} alt="Three architectural paths meeting at one sunlit opening, representing a shared ambition" fill sizes="100vw" priority className={styles.heroImage} />} className={styles.expand} aria-label="Different expertise, one shared direction">
+      <ScrollExpand useWindowScroll startWidth={84} startHeight={86} startRadius={26} endRadius={0} mediaZoom={1} scrollDistance={.9} holdDistance={.32} smoothing={.045} overlayScrim={.96} mediaContent={<Image imageSource="/assets/about-shared-ambition.webp" src={ambition} alt="Three architectural paths meeting at one sunlit opening, representing a shared ambition" fill sizes="100vw" priority className={styles.heroImage} />} className={styles.expand} aria-label="Different expertise, one shared direction">
         <div className={styles.reveal}>
           <span className={styles.revealLabel}>The whole picture. One partner.</span>
           <h2>Built together.<br /><em>Made to matter.</em></h2>

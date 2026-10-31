@@ -4,7 +4,7 @@ import { getFaqs, type PageContent } from "@/lib/sanity/content";
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans, Barlow_Condensed } from "next/font/google";
 import { ArrowUpRight, Check, LayoutTemplate, Megaphone, Search, Plus, ArrowDown, Palette, Bot, Sparkles } from "lucide-react";
 import { gsap } from "gsap";
@@ -157,11 +157,11 @@ export default function PricingPage({ content = {} }: { content?: PageContent } 
           <Link href="/works" className={`${styles.clientFeature} ${styles.sanchezFeature}`} aria-label="View our work with Sanchez Watt" data-client-card>
             <span className={styles.sportBackdrop} aria-hidden="true">WATT</span>
             <div className={styles.clientVisualCopy}><span className={styles.clientCategory}>SPORT / COACHING</span><h3>SANCHEZ<br />WATT</h3><p>A big personality.<br />A website to match.</p></div>
-            <div className={styles.clientAthlete} data-client-athlete><Image src={sanchez} alt="Sanchez Watt in his Arsenal kit" sizes="(max-width: 650px) 65vw, 30vw" /></div>
+            <div className={styles.clientAthlete} data-client-athlete><Image imageSource="/assets/works/sanchez-arsenal.webp" src={sanchez} alt="Sanchez Watt in his Arsenal kit" sizes="(max-width: 650px) 65vw, 30vw" /></div>
             <div className={styles.clientCaption}><span>Former Arsenal player</span><span className={styles.clientVisit}>View our work <ArrowUpRight size={19} aria-hidden="true" /></span></div>
           </Link>
           <Link href="/works" className={`${styles.clientFeature} ${styles.collegeFeature}`} aria-label="View our work with Nelson College London" data-client-card>
-            <div className={styles.collegePhoto} data-client-photo><Image src={nelson} alt="Nelson College London community at a ribbon-cutting event" sizes="(max-width: 650px) 90vw, 45vw" placeholder="blur" /></div>
+            <div className={styles.collegePhoto} data-client-photo><Image imageSource="/assets/works/nelson-community.webp" src={nelson} alt="Nelson College London community at a ribbon-cutting event" sizes="(max-width: 650px) 90vw, 45vw" placeholder="blur" /></div>
             <div className={styles.collegeVisualCopy}><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London" width={180} height={60} /><h3>A place for<br /><em>ambition.</em></h3></div>
             <div className={styles.clientCaption}><span>Higher education, London</span><span className={styles.clientVisit}>View our work <ArrowUpRight size={19} aria-hidden="true" /></span></div>
           </Link>

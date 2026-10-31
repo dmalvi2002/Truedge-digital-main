@@ -5,7 +5,7 @@ import { type PageContent } from "@/lib/sanity/content";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Script from "next/script";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowUpRight, Check, CheckCircle2, Loader2, Mail, Phone } from "lucide-react";
 import { gsap } from "gsap";

@@ -24,7 +24,13 @@ if (process.env.SANITY_TEST_MODE === '1') {
     const query = url.searchParams.get('query') || payload.query || '';
     const parameter = name => payload.params?.[name] ?? JSON.parse(url.searchParams.get('$' + name) || 'null');
     let result = null;
-    if (query.includes('_type == "pageSeo"')) {
+    if (query.includes('defined(imageAlt)')) {
+      result = [
+        {routePath:'/about',imageAlt:{image_64c725cb:{alt:'CMS architectural image description'},image_ecea5f2c:{decorative:true}}},
+        {routePath:'/pricing',imageAlt:{image_ecea5f2c:{alt:'CMS pricing athlete description'}}},
+        {routePath:'/',imageAlt:{image_671ce170:{alt:'CMS external project description'}}},
+      ];
+    } else if (query.includes('_type == "pageSeo"')) {
       result = query.includes('$routePath') ? parameter('routePath') === '/about' ? {
         _id: 'pageSeo.about', routePath: '/about', h1Heading: 'CMS controlled heading', heroSubheading: 'CMS controlled introduction',
         seo: { metaTitle: 'CMS about title override', metaDescription: 'CMS about description override', canonicalUrl: 'https://www.truedgedigital.co.uk/about', noIndex: true },

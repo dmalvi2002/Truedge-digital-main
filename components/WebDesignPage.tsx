@@ -3,7 +3,7 @@
 import { getFaqs, type PageContent } from "@/lib/sanity/content";
 
 import { useRef, useState, type MouseEvent } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Code2, Globe2, LayoutTemplate, Link2, MousePointer2, Plus, Search, ShoppingBag } from "lucide-react";
@@ -326,8 +326,8 @@ export default function WebDesignPage({ content = {} }: { content?: PageContent 
       <div className={styles.container}>
         <div className={styles.sectionHeading} data-reveal><h2 id="work-title">Different businesses.<br /><span>Distinctly theirs.</span></h2><Link href="/works" className={styles.textLink}>Explore our work <ArrowUpRight size={20} /></Link></div>
         <div className={styles.workGrid}>
-          <Link href="/works" className={styles.workCard} data-reveal><div className={styles.workPicture}><Image src={projectImage} alt="Walker Building Contractors website with bold roofing services and architectural photography" sizes="(max-width: 700px) 90vw, 48vw" placeholder="blur" data-work-image /></div><div className={styles.workCaption}><div><h3>Walker Building Contractors</h3><p>A clear, confident home for a hands-on business.</p></div><ArrowUpRight size={23} /></div></Link>
-          <a href="https://www.sanchezwatt.com/" target="_blank" rel="noopener noreferrer" className={styles.workCard} data-reveal><div className={`${styles.workPicture} ${styles.sanchezPicture}`}><Image src={sanchezImage} alt="Sanchez Watt coaching and mentoring website, with bold yellow typography and football photography" sizes="(max-width: 700px) 90vw, 48vw" placeholder="blur" data-work-image /></div><div className={styles.workCaption}><div><h3>Sanchez Watt</h3><p>Personality and purpose, brought to the screen.</p></div><ArrowUpRight size={23} aria-label="Visit website in a new tab" /></div></a>
+          <Link href="/works" className={styles.workCard} data-reveal><div className={styles.workPicture}><Image imageSource="/assets/web-design-project.webp" src={projectImage} alt="Walker Building Contractors website with bold roofing services and architectural photography" sizes="(max-width: 700px) 90vw, 48vw" placeholder="blur" data-work-image /></div><div className={styles.workCaption}><div><h3>Walker Building Contractors</h3><p>A clear, confident home for a hands-on business.</p></div><ArrowUpRight size={23} /></div></Link>
+          <a href="https://www.sanchezwatt.com/" target="_blank" rel="noopener noreferrer" className={styles.workCard} data-reveal><div className={`${styles.workPicture} ${styles.sanchezPicture}`}><Image imageSource="/assets/web-design-sanchez.webp" src={sanchezImage} alt="Sanchez Watt coaching and mentoring website, with bold yellow typography and football photography" sizes="(max-width: 700px) 90vw, 48vw" placeholder="blur" data-work-image /></div><div className={styles.workCaption}><div><h3>Sanchez Watt</h3><p>Personality and purpose, brought to the screen.</p></div><ArrowUpRight size={23} aria-label="Visit website in a new tab" /></div></a>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import { type PageContent } from "@/lib/sanity/content";
 
 import { useRef } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";

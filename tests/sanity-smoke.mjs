@@ -15,6 +15,10 @@ assert.match(about, /rel="canonical" href="https:\/\/www\.truedgedigital\.co\.uk
 assert.match(about, /name="robots" content="noindex, follow"/);
 assert.match(about, /CMS controlled heading/);
 assert.match(about, /CMS controlled introduction/);
+assert.match(about, /alt="CMS architectural image description"/, 'Static imported image uses CMS alt in server HTML');
+assert.doesNotMatch(about, /alt="Sanchez Watt in his Arsenal kit"/, 'Decorative override removes the image description');
+assert.match(await page('/pricing'), /alt="CMS pricing athlete description"/, 'Same source has independent per-page descriptions');
+assert.match(await page('/'), /alt="CMS external project description"/, 'URL-based image uses CMS alt without changing its source');
 assert.match(about, /"@type":"FAQPage"/);
 assert.match(about, /Does CMS FAQ publishing work\?/);
 const works = await page('/works');

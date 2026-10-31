@@ -4,6 +4,8 @@ import { sanityFetch } from './client';
 import { PAGE_SEO_BY_ROUTE_QUERY, ALL_BLOG_POSTS_QUERY, BLOG_POST_BY_SLUG_QUERY, SITEMAP_SLUGS_QUERY, PAGE_SITEMAP_QUERY } from './queries';
 import type { PAGE_SEO_BY_ROUTE_QUERY_RESULT, ALL_BLOG_POSTS_QUERY_RESULT, BLOG_POST_BY_SLUG_QUERY_RESULT, SITEMAP_SLUGS_QUERY_RESULT, PAGE_SITEMAP_QUERY_RESULT } from '@/sanity.types';
 import type { PageContent } from './content';
+import type { PageImageSettings } from './page-images';
+import { PAGE_IMAGE_SETTINGS_QUERY } from './queries';
 import { BLOG_CATEGORIES_QUERY, BLOG_LIST_NEWEST_QUERY, BLOG_LIST_OLDEST_QUERY, RELATED_BLOG_POSTS_QUERY } from './queries';
 import type { BLOG_CATEGORIES_QUERY_RESULT, BLOG_LIST_NEWEST_QUERY_RESULT, RELATED_BLOG_POSTS_QUERY_RESULT } from '@/sanity.types';
 import { BLOG_PAGE_SIZE, searchPattern, type BlogFilters } from '@/lib/blog';
@@ -14,6 +16,15 @@ export const getPageSeo = cache(async (routePath: string) => {
   } catch (error) {
     console.warn(`[Sanity] Page SEO unavailable for ${routePath}; using existing content.`, error instanceof Error ? error.message : 'Fetch failed');
     return null;
+  }
+});
+
+export const getPageImageSettings = cache(async (): Promise<PageImageSettings[]> => {
+  try {
+    return await sanityFetch<PageImageSettings[]>({ query: PAGE_IMAGE_SETTINGS_QUERY, tags: ['pageSeo'] });
+  } catch {
+    // Publishing image descriptions must never be required for a page to render.
+    return [];
   }
 });
 

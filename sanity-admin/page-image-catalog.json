@@ -1,0 +1,1106 @@
+{
+  "/": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_8b74e1d6",
+      "source": "/assets/truedge-strategy.webp",
+      "label": "Truedge Strategy",
+      "sections": [
+        "Hero"
+      ],
+      "alt": "",
+      "bytes": 589472,
+      "width": 2400,
+      "height": 3600,
+      "format": "webp"
+    },
+    {
+      "key": "image_b8278dcf",
+      "source": "/assets/client-logos/ilearners-logo-dark.svg",
+      "label": "iLearners Hub",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "iLearner’s Hub",
+      "bytes": 8469,
+      "width": 737,
+      "height": 307,
+      "format": "svg"
+    },
+    {
+      "key": "image_e5e77a00",
+      "source": "/assets/client-logos/digitech-logo.webp",
+      "label": "Digitech World",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "DigiTech World UK",
+      "bytes": 2334,
+      "width": 192,
+      "height": 192,
+      "format": "webp"
+    },
+    {
+      "key": "image_b8888d4b",
+      "source": "/assets/client-logos/a2z-immigration-logo.svg",
+      "label": "A2Z Immigration Solutions",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "A2Z Immigration",
+      "bytes": 4940,
+      "width": 3280,
+      "height": 720,
+      "format": "svg"
+    },
+    {
+      "key": "image_8124519a",
+      "source": "/assets/client-logos/ncl-coloured-logo.svg",
+      "label": "Nelson College London",
+      "sections": [
+        "Client ribbon"
+      ],
+      "alt": "Nelson College London",
+      "bytes": 6588,
+      "width": 2268,
+      "height": 977,
+      "format": "svg"
+    },
+    {
+      "key": "image_6a3f5b4",
+      "source": "/assets/client-logos/kinesis-subsea-logo-dark.svg",
+      "label": "Kinesis Subsea",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "Kinesis Subsea",
+      "bytes": 8777,
+      "width": 699,
+      "height": 300,
+      "format": "svg"
+    },
+    {
+      "key": "image_fa695186",
+      "source": "/assets/client-logos/magix-world-logo.webp",
+      "label": "Magix World",
+      "sections": [
+        "Client ribbon"
+      ],
+      "alt": "Magix World",
+      "bytes": 17690,
+      "width": 231,
+      "height": 128,
+      "format": "webp"
+    },
+    {
+      "key": "image_dc9be515",
+      "source": "/assets/sanchez-watt-logo.webp",
+      "label": "Sanchez Watt",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "Sanchez Watt",
+      "bytes": 5852,
+      "width": 160,
+      "height": 160,
+      "format": "webp"
+    },
+    {
+      "key": "image_ccd20582",
+      "source": "/assets/walker-logo.webp",
+      "label": "Steven",
+      "sections": [
+        "Client ribbon",
+        "Reviews"
+      ],
+      "alt": "Walker Roofing",
+      "bytes": 26912,
+      "width": 400,
+      "height": 212,
+      "format": "webp"
+    },
+    {
+      "key": "image_94dbbd92",
+      "source": "/card-laptop.jpg",
+      "label": "Fast, Responsive Web Development",
+      "sections": [
+        "Business challenges & services",
+        "Services",
+        "Our process"
+      ],
+      "alt": "Website Design and Development Laptop Display",
+      "bytes": 680204,
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_c6bb7ac8",
+      "source": "/card-phone.jpg",
+      "label": "Testing, Launch & Live Deployment",
+      "sections": [
+        "Business challenges & services",
+        "Our process"
+      ],
+      "alt": "Search and AI Engine Optimization Display",
+      "bytes": 621602,
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_8c578c46",
+      "source": "/card-tablet.jpg",
+      "label": "High-Converting Creative Design",
+      "sections": [
+        "Business challenges & services",
+        "Services",
+        "Our process"
+      ],
+      "alt": "Paid Media Strategy Tablet Display",
+      "bytes": 570213,
+      "width": 1376,
+      "height": 768,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_482e929c",
+      "source": "/pas-business-owner.png",
+      "label": "Pas Business Owner",
+      "sections": [
+        "Business challenges & services"
+      ],
+      "alt": "A business owner taking a worried pause beside a quiet phone and unfinished work",
+      "bytes": 1654958,
+      "width": 1122,
+      "height": 1402,
+      "format": "png"
+    },
+    {
+      "key": "image_e2d9bedb",
+      "source": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      "label": "Photo 1551288049 Bebda4e38f71",
+      "sections": [
+        "Services"
+      ],
+      "alt": ""
+    },
+    {
+      "key": "image_950aae2d",
+      "source": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      "label": "Photo 1460925895917 Afdab827c52f",
+      "sections": [
+        "Services"
+      ],
+      "alt": ""
+    },
+    {
+      "key": "image_78049d77",
+      "source": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=600&q=80",
+      "label": "Photo 1586075010923 2dd4570fb338",
+      "sections": [
+        "Services"
+      ],
+      "alt": ""
+    },
+    {
+      "key": "image_ba919be2",
+      "source": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80",
+      "label": "Photo 1455390582262 044cdead277a",
+      "sections": [
+        "Services"
+      ],
+      "alt": ""
+    },
+    {
+      "key": "image_70b0622e",
+      "source": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80",
+      "label": "Photo 1563986768609 322da13575f3",
+      "sections": [
+        "Services"
+      ],
+      "alt": ""
+    },
+    {
+      "key": "image_671ce170",
+      "source": "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1786092267/6d9b2559-1c68-463f-a498-ef3301229f87.png",
+      "label": "Sanchez Watt",
+      "sections": [
+        "Selected work"
+      ],
+      "alt": "Sanchez Watt"
+    },
+    {
+      "key": "image_5f061e0f",
+      "source": "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789333116/d27e4b89-e476-4a62-b67d-1d2d3945e95f.png",
+      "label": "iLearner's Hub",
+      "sections": [
+        "Selected work"
+      ],
+      "alt": "iLearner's Hub"
+    },
+    {
+      "key": "image_681f79e8",
+      "source": "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771919691/bd26f844-8741-4461-86ca-6099985f1a18.png",
+      "label": "Magic World",
+      "sections": [
+        "Selected work"
+      ],
+      "alt": "Magic World"
+    },
+    {
+      "key": "image_befaeb5c",
+      "source": "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1771634697/c3f54d73-40a0-4dcc-9d28-b91ae55623db.png",
+      "label": "Kinesis Subsea",
+      "sections": [
+        "Selected work"
+      ],
+      "alt": "Kinesis Subsea"
+    },
+    {
+      "key": "image_90ca25ea",
+      "source": "https://res.cloudinary.com/dvvcwzp4n/image/upload/v1789347600/why-choose-us-section_cation.png",
+      "label": "Why Choose Us Section Cation",
+      "sections": [
+        "Why Truedge"
+      ],
+      "alt": "Truedge Senior Strategist"
+    },
+    {
+      "key": "image_b63b3ef9",
+      "source": "/advisor-avatar.jpg",
+      "label": "Advisor Avatar",
+      "sections": [
+        "Why Truedge"
+      ],
+      "alt": "Truedge Advisor",
+      "bytes": 603267,
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_b88190c6",
+      "source": "/team-collaboration.jpg",
+      "label": "Listening to Your Problems & Discovery",
+      "sections": [
+        "Our process"
+      ],
+      "alt": "Listening to Your Problems & Discovery",
+      "bytes": 756571,
+      "width": 1200,
+      "height": 896,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_ec3ed7aa",
+      "source": "/team-strategy.jpg",
+      "label": "Custom Strategy & Action Roadmap",
+      "sections": [
+        "Our process"
+      ],
+      "alt": "Custom Strategy & Action Roadmap",
+      "bytes": 867564,
+      "width": 1200,
+      "height": 896,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_740f96a7",
+      "source": "/why-truedge-strategist.jpg",
+      "label": "CRM Setup & Automated Lead Capture",
+      "sections": [
+        "Our process"
+      ],
+      "alt": "CRM Setup & Automated Lead Capture",
+      "bytes": 290768,
+      "width": 1024,
+      "height": 1536,
+      "format": "jpeg"
+    }
+  ],
+  "/about": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer",
+        "Our story & client work"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_ecea5f2c",
+      "source": "/assets/works/sanchez-arsenal.webp",
+      "label": "Sanchez Arsenal",
+      "sections": [
+        "Our story & client work"
+      ],
+      "alt": "Sanchez Watt in his Arsenal kit",
+      "bytes": 117436,
+      "width": 964,
+      "height": 1632,
+      "format": "webp"
+    },
+    {
+      "key": "image_8408c65a",
+      "source": "/assets/works/nelson-community.webp",
+      "label": "Nelson Community",
+      "sections": [
+        "Our story & client work"
+      ],
+      "alt": "The Nelson College London community",
+      "bytes": 210244,
+      "width": 1800,
+      "height": 1200,
+      "format": "webp"
+    },
+    {
+      "key": "image_ccd20582",
+      "source": "/assets/walker-logo.webp",
+      "label": "Walker Logo",
+      "sections": [
+        "Our story & client work"
+      ],
+      "alt": "Walker Roofing",
+      "bytes": 26912,
+      "width": 400,
+      "height": 212,
+      "format": "webp"
+    },
+    {
+      "key": "image_64c725cb",
+      "source": "/assets/about-shared-ambition.webp",
+      "label": "About Shared Ambition",
+      "sections": [
+        "Hero"
+      ],
+      "alt": "Three architectural paths meeting at one sunlit opening, representing a shared ambition",
+      "bytes": 166286,
+      "width": 1672,
+      "height": 941,
+      "format": "webp"
+    }
+  ],
+  "/web-design": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_ad16d169",
+      "source": "/assets/web-design-project.webp",
+      "label": "Web Design Project",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "Walker Building Contractors website with bold roofing services and architectural photography",
+      "bytes": 115392,
+      "width": 1600,
+      "height": 988,
+      "format": "webp"
+    },
+    {
+      "key": "image_f83ceaa0",
+      "source": "/assets/web-design-sanchez.webp",
+      "label": "Web Design Sanchez",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "Sanchez Watt coaching and mentoring website, with bold yellow typography and football photography",
+      "bytes": 76508,
+      "width": 1600,
+      "height": 716,
+      "format": "webp"
+    },
+    {
+      "key": "image_c231a4af",
+      "source": "/assets/tech/figma.svg",
+      "label": "Figma",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1087,
+      "width": 54,
+      "height": 80,
+      "format": "svg"
+    },
+    {
+      "key": "image_ab17e680",
+      "source": "/assets/tech/nextdotjs.svg",
+      "label": "Next.js",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1091,
+      "width": 180,
+      "height": 180,
+      "format": "svg"
+    },
+    {
+      "key": "image_abd023ab",
+      "source": "/assets/tech/tailwind-css.svg",
+      "label": "Tailwind CSS",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 747,
+      "width": 54,
+      "height": 33,
+      "format": "svg"
+    },
+    {
+      "key": "image_2fe31342",
+      "source": "/assets/tech/gsap.svg",
+      "label": "GSAP",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 4743,
+      "width": 24,
+      "height": 24,
+      "format": "svg"
+    },
+    {
+      "key": "image_618398f3",
+      "source": "/assets/tech/stripe-link.svg",
+      "label": "Stripe",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 318,
+      "width": 26,
+      "height": 26,
+      "format": "svg"
+    },
+    {
+      "key": "image_95da4623",
+      "source": "/assets/tech/supabase.svg",
+      "label": "Supabase",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1082,
+      "width": 109,
+      "height": 113,
+      "format": "svg"
+    },
+    {
+      "key": "image_df563dcd",
+      "source": "/assets/tech/postgresql-badge.svg",
+      "label": "PostgreSQL",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 4466,
+      "width": 1024,
+      "height": 1024,
+      "format": "svg"
+    },
+    {
+      "key": "image_9866d7fd",
+      "source": "/assets/tech/firebase-studio.svg",
+      "label": "Firebase",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 2233,
+      "width": 44,
+      "height": 65,
+      "format": "svg"
+    },
+    {
+      "key": "image_5ea7f992",
+      "source": "/assets/tech/aws.svg",
+      "label": "AWS",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 3188,
+      "width": 24,
+      "height": 24,
+      "format": "svg"
+    },
+    {
+      "key": "image_fa6ffccf",
+      "source": "/assets/tech/googlecloud.svg",
+      "label": "Google Cloud",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 896,
+      "width": 24,
+      "height": 24,
+      "format": "svg"
+    },
+    {
+      "key": "image_673092d2",
+      "source": "/assets/tech/cloudflare.svg",
+      "label": "Cloudflare",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1473,
+      "width": 256,
+      "height": 116,
+      "format": "svg"
+    },
+    {
+      "key": "image_e677e14e",
+      "source": "/assets/tech/github.svg",
+      "label": "GitHub",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 941,
+      "width": 1024,
+      "height": 1024,
+      "format": "svg"
+    },
+    {
+      "key": "image_69ebab9f",
+      "source": "/assets/tech/openai.svg",
+      "label": "OpenAI",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1702,
+      "width": 256,
+      "height": 260,
+      "format": "svg"
+    },
+    {
+      "key": "image_abb08783",
+      "source": "/assets/tech/claude.svg",
+      "label": "Claude",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1936,
+      "width": 24,
+      "height": 24,
+      "format": "svg"
+    },
+    {
+      "key": "image_58733dc3",
+      "source": "/assets/tech/n8n.svg",
+      "label": "n8n",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1646,
+      "width": 228,
+      "height": 120,
+      "format": "svg"
+    },
+    {
+      "key": "image_556280bb",
+      "source": "/assets/tech/python.svg",
+      "label": "Python",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 1126,
+      "width": 32,
+      "height": 32,
+      "format": "svg"
+    },
+    {
+      "key": "image_9e5f7f04",
+      "source": "/assets/tech/gcp-api.svg",
+      "label": "API integrations",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 570,
+      "width": 24,
+      "height": 24,
+      "format": "svg"
+    },
+    {
+      "key": "image_740f96a7",
+      "source": "/why-truedge-strategist.jpg",
+      "label": "Why Truedge Strategist",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 290768,
+      "width": 1024,
+      "height": 1536,
+      "format": "jpeg"
+    },
+    {
+      "key": "image_b63b3ef9",
+      "source": "/advisor-avatar.jpg",
+      "label": "Advisor Avatar",
+      "sections": [
+        "Web design"
+      ],
+      "alt": "",
+      "bytes": 603267,
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg"
+    }
+  ],
+  "/marketing": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_d896caee",
+      "source": "/marketing-google.svg",
+      "label": "Marketing Google",
+      "sections": [
+        "Marketing"
+      ],
+      "alt": "",
+      "bytes": 8169,
+      "width": 268,
+      "height": 274,
+      "format": "svg"
+    },
+    {
+      "key": "image_b88190c6",
+      "source": "/team-collaboration.jpg",
+      "label": "Team Collaboration",
+      "sections": [
+        "Marketing"
+      ],
+      "alt": "Colleagues working through a marketing plan together",
+      "bytes": 756571,
+      "width": 1200,
+      "height": 896,
+      "format": "jpeg"
+    }
+  ],
+  "/ai-automation": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_b88190c6",
+      "source": "/team-collaboration.jpg",
+      "label": "Team Collaboration",
+      "sections": [
+        "AI automation"
+      ],
+      "alt": "Colleagues discussing a plan together",
+      "bytes": 756571,
+      "width": 1200,
+      "height": 896,
+      "format": "jpeg"
+    }
+  ],
+  "/pricing": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_ecea5f2c",
+      "source": "/assets/works/sanchez-arsenal.webp",
+      "label": "Sanchez Arsenal",
+      "sections": [
+        "Client showcase"
+      ],
+      "alt": "Sanchez Watt in his Arsenal kit",
+      "bytes": 117436,
+      "width": 964,
+      "height": 1632,
+      "format": "webp"
+    },
+    {
+      "key": "image_8408c65a",
+      "source": "/assets/works/nelson-community.webp",
+      "label": "Nelson Community",
+      "sections": [
+        "Client showcase"
+      ],
+      "alt": "Nelson College London community at a ribbon-cutting event",
+      "bytes": 210244,
+      "width": 1800,
+      "height": 1200,
+      "format": "webp"
+    },
+    {
+      "key": "image_f64d17eb",
+      "source": "/assets/nelson-college-logo.svg",
+      "label": "Nelson College Logo",
+      "sections": [
+        "Client showcase"
+      ],
+      "alt": "Nelson College London",
+      "bytes": 6585,
+      "width": 2268,
+      "height": 977,
+      "format": "svg"
+    }
+  ],
+  "/works": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_ad16d169",
+      "source": "/assets/web-design-project.webp",
+      "label": "Web Design Project",
+      "sections": [
+        "Our work"
+      ],
+      "alt": "Walker Building Contractors website showcasing roofing services and a modern metal roof",
+      "bytes": 115392,
+      "width": 1600,
+      "height": 988,
+      "format": "webp"
+    },
+    {
+      "key": "image_ecea5f2c",
+      "source": "/assets/works/sanchez-arsenal.webp",
+      "label": "Sanchez Arsenal",
+      "sections": [
+        "Our work"
+      ],
+      "alt": "Sanchez Watt playing in his Arsenal kit",
+      "bytes": 117436,
+      "width": 964,
+      "height": 1632,
+      "format": "webp"
+    },
+    {
+      "key": "image_8408c65a",
+      "source": "/assets/works/nelson-community.webp",
+      "label": "Nelson Community",
+      "sections": [
+        "Our work"
+      ],
+      "alt": "Nelson College London community gathered at a ribbon-cutting event",
+      "bytes": 210244,
+      "width": 1800,
+      "height": 1200,
+      "format": "webp"
+    },
+    {
+      "key": "image_ba4550a2",
+      "source": "/assets/works/football.webp",
+      "label": "Football",
+      "sections": [
+        "Our work"
+      ],
+      "alt": "",
+      "bytes": 17488,
+      "width": 480,
+      "height": 481,
+      "format": "webp"
+    },
+    {
+      "key": "image_f64d17eb",
+      "source": "/assets/nelson-college-logo.svg",
+      "label": "Nelson College Logo",
+      "sections": [
+        "Our work"
+      ],
+      "alt": "Nelson College London",
+      "bytes": 6585,
+      "width": 2268,
+      "height": 977,
+      "format": "svg"
+    },
+    {
+      "key": "image_a44b09a4",
+      "source": "/assets/works/digitech.webp",
+      "label": "DigiTech World UK",
+      "sections": [
+        "Works"
+      ],
+      "alt": "DigiTech World UK website preview",
+      "bytes": 69444,
+      "width": 1200,
+      "height": 545,
+      "format": "webp"
+    },
+    {
+      "key": "image_e8d4c2b0",
+      "source": "/assets/works/ilearners.webp",
+      "label": "iLearner’s Hub",
+      "sections": [
+        "Works"
+      ],
+      "alt": "iLearner’s Hub website preview",
+      "bytes": 56114,
+      "width": 1200,
+      "height": 646,
+      "format": "webp"
+    },
+    {
+      "key": "image_19b69fd5",
+      "source": "/assets/works/kinesis.webp",
+      "label": "Kinesis Subsea",
+      "sections": [
+        "Works"
+      ],
+      "alt": "Kinesis Subsea website preview",
+      "bytes": 28450,
+      "width": 1200,
+      "height": 550,
+      "format": "webp"
+    },
+    {
+      "key": "image_978fcd11",
+      "source": "/assets/works/immigration.webp",
+      "label": "A2Z Immigration UK",
+      "sections": [
+        "Works"
+      ],
+      "alt": "A2Z Immigration UK website preview",
+      "bytes": 38154,
+      "width": 1200,
+      "height": 598,
+      "format": "webp"
+    },
+    {
+      "key": "image_83f57d2e",
+      "source": "/assets/works/accounting.webp",
+      "label": "A2Z Accounting Dubai",
+      "sections": [
+        "Works"
+      ],
+      "alt": "A2Z Accounting Dubai website preview",
+      "bytes": 78668,
+      "width": 1200,
+      "height": 570,
+      "format": "webp"
+    },
+    {
+      "key": "image_a87e7ac9",
+      "source": "/assets/works/magic-world.webp",
+      "label": "Magic World",
+      "sections": [
+        "Works"
+      ],
+      "alt": "Magic World website preview",
+      "bytes": 33930,
+      "width": 1200,
+      "height": 549,
+      "format": "webp"
+    }
+  ],
+  "/contact": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    },
+    {
+      "key": "image_dc9be515",
+      "source": "/assets/sanchez-watt-logo.webp",
+      "label": "Sanchez Watt Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "Sanchez Watt",
+      "bytes": 5852,
+      "width": 160,
+      "height": 160,
+      "format": "webp"
+    },
+    {
+      "key": "image_f64d17eb",
+      "source": "/assets/nelson-college-logo.svg",
+      "label": "Nelson College Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "Nelson College London",
+      "bytes": 6585,
+      "width": 2268,
+      "height": 977,
+      "format": "svg"
+    },
+    {
+      "key": "image_ccd20582",
+      "source": "/assets/walker-logo.webp",
+      "label": "Walker Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "Walker Roofing and Building Contractors",
+      "bytes": 26912,
+      "width": 400,
+      "height": 212,
+      "format": "webp"
+    },
+    {
+      "key": "image_4d9613de",
+      "source": "/assets/ilearners-logo-dark.svg",
+      "label": "Ilearners Logo Dark",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "iLearner’s Hub",
+      "bytes": 8469,
+      "width": 737,
+      "height": 307,
+      "format": "svg"
+    },
+    {
+      "key": "image_a9a8c36c",
+      "source": "/assets/kinesis-subsea-logo.svg",
+      "label": "Kinesis Subsea Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "Kinesis Subsea",
+      "bytes": 8777,
+      "width": 699,
+      "height": 300,
+      "format": "svg"
+    },
+    {
+      "key": "image_5f5c14d4",
+      "source": "/assets/a2z-immigration-logo.svg",
+      "label": "A2z Immigration Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "A2Z Immigration UK",
+      "bytes": 4940,
+      "width": 3280,
+      "height": 720,
+      "format": "svg"
+    },
+    {
+      "key": "image_14163d3c",
+      "source": "/assets/digitech-logo.png",
+      "label": "Digitech Logo",
+      "sections": [
+        "Client credibility"
+      ],
+      "alt": "Digitech",
+      "bytes": 939860,
+      "width": 1254,
+      "height": 1254,
+      "format": "png"
+    }
+  ],
+  "/blog": [
+    {
+      "key": "image_35a1ed02",
+      "source": "/truedge-logo-white.svg",
+      "label": "Truedge Logo White",
+      "sections": [
+        "Navigation",
+        "Footer"
+      ],
+      "alt": "",
+      "bytes": 1656,
+      "width": 36,
+      "height": 36,
+      "format": "svg"
+    }
+  ]
+}

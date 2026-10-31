@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Sora } from "next/font/google";

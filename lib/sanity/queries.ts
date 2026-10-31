@@ -1,5 +1,9 @@
 import { defineQuery } from 'next-sanity';
 
+export const PAGE_IMAGE_SETTINGS_QUERY = defineQuery(`
+  *[_type == "pageSeo" && defined(routePath) && defined(imageAlt)] | order(_updatedAt desc){routePath, imageAlt}
+`);
+
 export const PAGE_SEO_BY_ROUTE_QUERY = defineQuery(`
   *[_type == "pageSeo" && routePath == $routePath] | order(_updatedAt desc)[0]{
     _id, _updatedAt, pageName, routePath, h1Heading, heroSubheading,

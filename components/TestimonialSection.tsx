@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { Sora } from "next/font/google";
 import { motion } from "framer-motion";

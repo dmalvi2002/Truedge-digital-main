@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import styles from "./ClientLogosSection.module.css";
 
 const clientLogos = [

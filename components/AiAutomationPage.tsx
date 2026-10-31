@@ -4,7 +4,7 @@ import { getFaqs, type PageContent } from "@/lib/sanity/content";
 
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { ArrowDown, ArrowUpRight, Check, Phone, PhoneCall, CalendarDays, MessageSquare, ArrowRight, Plus, FileText, Mail, Users, AudioLines } from "lucide-react";
 import { gsap } from "gsap";

@@ -3,7 +3,7 @@
 import { type PageContent } from "@/lib/sanity/content";
 
 import { useRef } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { DM_Sans, Plus_Jakarta_Sans, Barlow_Condensed } from "next/font/google";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
@@ -75,18 +75,18 @@ export default function WorksPage({ content = {} }: { content?: PageContent } = 
           <a href="https://www.sanchezwatt.com/" target="_blank" rel="noopener noreferrer" className={styles.sportButton}>Check out his website <ArrowUpRight size={20} /></a>
           <span className={styles.sportCredit}>Website design &amp; development · Booking integration</span>
         </div>
-        <div className={styles.athleteDepth} data-athlete-depth><div className={styles.athlete} data-athlete><Image src={sanchez} alt="Sanchez Watt playing in his Arsenal kit" sizes="(max-width: 700px) 90vw, 55vw" priority /></div></div>
-        <div className={styles.football} data-football aria-hidden="true"><Image src={football} alt="" sizes="(max-width: 650px) 84px, 140px" /></div>
+        <div className={styles.athleteDepth} data-athlete-depth><div className={styles.athlete} data-athlete><Image imageSource="/assets/works/sanchez-arsenal.webp" src={sanchez} alt="Sanchez Watt playing in his Arsenal kit" sizes="(max-width: 700px) 90vw, 55vw" priority /></div></div>
+        <div className={styles.football} data-football aria-hidden="true"><Image imageSource="/assets/works/football.webp" src={football} alt="" sizes="(max-width: 650px) 84px, 140px" /></div>
       </section>
 
       <section className={styles.collegeCard} data-college-scene aria-labelledby="nelson-title">
         <div className={styles.collegeHeader} data-work-reveal><div><Image src="/assets/nelson-college-logo.svg" alt="Nelson College London" width={210} height={80} /><h2 id="nelson-title">A place for<br /><em>ambition.</em></h2></div><div className={styles.collegeCopy}><h3>Nelson College London</h3><p>We’re proud to count Nelson College London among our clients. A partnership in higher education, with people and their ambitions at its heart.</p><a href="https://nelsoncollege.ac.uk/" target="_blank" rel="noopener noreferrer" className={styles.lightLink}>Explore the college <ArrowUpRight size={20} /></a></div></div>
-        <figure className={styles.collegeFigure}><div className={styles.collegeImage}><Image src={nelson} alt="Nelson College London community gathered at a ribbon-cutting event" sizes="(max-width: 700px) 92vw, 90vw" placeholder="blur" data-college-photo /></div><figcaption>Nelson College London <span>Higher education · London</span></figcaption></figure>
+        <figure className={styles.collegeFigure}><div className={styles.collegeImage}><Image imageSource="/assets/works/nelson-community.webp" src={nelson} alt="Nelson College London community gathered at a ribbon-cutting event" sizes="(max-width: 700px) 92vw, 90vw" placeholder="blur" data-college-photo /></div><figcaption>Nelson College London <span>Higher education · London</span></figcaption></figure>
       </section>
 
       <section className={styles.walkerCard} aria-labelledby="walker-title">
         <div className={styles.walkerCopy} data-work-reveal><h2 id="walker-title">Craft on site.<br /><em>Confidence online.</em></h2><h3>Walker Roofing &amp;<br />Building Contractors</h3><p>A confident website that puts the quality of the work first. Clear services, architectural photography and a direct route to request a quote.</p><Link href="/contact?project=walker" className={styles.primary}>Build a website for my business <ArrowUpRight size={20} /></Link></div>
-        <div className={styles.walkerVisual} data-work-reveal><Image src={walker} alt="Walker Building Contractors website showcasing roofing services and a modern metal roof" sizes="(max-width: 900px) 92vw, 60vw" placeholder="blur" /></div>
+        <div className={styles.walkerVisual} data-work-reveal><Image imageSource="/assets/web-design-project.webp" src={walker} alt="Walker Building Contractors website showcasing roofing services and a modern metal roof" sizes="(max-width: 900px) 92vw, 60vw" placeholder="blur" /></div>
       </section>
     </div>
 

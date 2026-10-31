@@ -3,7 +3,7 @@
 import { type PageContent } from "@/lib/sanity/content";
 
 import { useId, useRef } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { DM_Sans, IBM_Plex_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";
@@ -302,7 +302,7 @@ export default function MainHeroThree({ content = {} }: { content?: PageContent 
           <div data-portrait-depth className="absolute top-[3%] left-[8%] z-10 aspect-[2/3] w-[84%]">
             <div data-film-frame className="relative h-full w-full overflow-hidden rounded-[3px] bg-[#181c17]">
               <div data-film-photo className="absolute inset-0">
-                <Image
+                <Image imageSource="/assets/truedge-strategy.webp"
                   src={strategyImage}
                   alt=""
                   fill

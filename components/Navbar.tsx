@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, ChevronDown, Folder, House, Mail, Menu, Newspaper, Users, X } from "lucide-react";
 import { Barlow_Semi_Condensed, Sora } from "next/font/google";

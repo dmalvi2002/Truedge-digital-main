@@ -3,7 +3,7 @@
 import { getFaqs, type PageContent } from "@/lib/sanity/content";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/sanity/EditableImage";
 import Link from "next/link";
 import { Sora, Plus_Jakarta_Sans } from "next/font/google";
 import { ArrowDown, ArrowUpRight, Check, Search, Target, FileText, Clapperboard, PanelsTopLeft, MousePointerClick, ContactRound, Workflow, Plus, MessageSquare, Mail } from "lucide-react";
