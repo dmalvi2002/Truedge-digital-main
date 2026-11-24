@@ -95,6 +95,9 @@
 .serviceDetail[open] .plus{transform:rotate(45deg);color:var(--lime)}
 .serviceCopy{padding:0 25px 25px 60px;font-size:13px;line-height:1.85;color:#b7bcb0}
 .serviceCopy ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:9px}.serviceCopy li{display:flex;gap:10px;align-items:baseline;font-size:11px}.serviceCopy li svg{flex-shrink:0;color:var(--lime)}
+.serviceLinks{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:24px}
+.serviceLinks a{display:inline-flex;align-items:center;gap:6px;color:var(--lime);text-underline-offset:4px}
+.serviceLinks a:hover,.serviceLinks a:focus-visible{text-decoration:underline}
 .approach{background:#eeefe8;color:#171c13;padding:130px 0}
 .approachLayout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
 .approachIntro{position:sticky;top:125px}

@@ -41,6 +41,17 @@ export const SITEMAP_SLUGS_QUERY = defineQuery(`
   }
 `);
 
+export const BLOG_AUTHOR_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "author" && slug.current == $slug && defined(name)] | order(_id asc)[0]{
+    name, role, bio,
+    avatar{..., asset->{_id, url, metadata{dimensions, lqip}}},
+    "posts": *[_type == "blogPost" && author._ref == ^._id && defined(title) && defined(slug.current)
+      && publishedAt <= now() && seo.noIndex != true] | order(publishedAt desc){
+      title, "slug": slug.current
+    }
+  }
+`);
+
 export const PAGE_SITEMAP_QUERY = defineQuery(`
   *[_type == "pageSeo"]{routePath, _updatedAt, "noIndex": seo.noIndex}
 `);

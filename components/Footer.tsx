@@ -6,7 +6,6 @@ import {
   MapPin,
   Instagram,
   Facebook,
-  Linkedin,
 } from "lucide-react";
 import { Barlow_Semi_Condensed, Sora } from "next/font/google";
 
@@ -168,25 +167,33 @@ export default function Footer() {
             {/* Social Icons Row */}
             <div className="flex items-center gap-4 mt-2">
               <a
-                href="#"
+                href="https://www.instagram.com/truedge_digital/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-300 p-2 rounded-full bg-white/5 hover:bg-violet-600"
               >
                 <Instagram size={18} />
                 <span className="sr-only">Instagram</span>
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61587014287057"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-300 p-2 rounded-full bg-white/5 hover:bg-violet-600"
               >
                 <Facebook size={18} />
                 <span className="sr-only">Facebook</span>
               </a>
               <a
-                href="#"
+                href="https://x.com/truedgedigital"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-300 p-2 rounded-full bg-white/5 hover:bg-violet-600"
               >
-                <Linkedin size={18} />
-                <span className="sr-only">LinkedIn</span>
+                <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932 6.064-6.933Zm-1.29 19.49h2.039L6.487 3.24H4.3l13.311 17.403Z" />
+                </svg>
+                <span className="sr-only">X</span>
               </a>
             </div>
           </div>

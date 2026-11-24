@@ -14,6 +14,7 @@ import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import styles from "./MarketingPage.module.css";
 import heroStyles from "./MainHeroTwo.module.css";
 import MainCTA from "./MainCTA";
+import { marketingServices } from "@/lib/marketing-services";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 const sora = Sora({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
@@ -173,6 +174,11 @@ export default function MarketingPage({ content = {} }: { content?: PageContent 
               <summary><service.icon size={22} strokeWidth={1.5} aria-hidden="true" /><div><h3>{service.name}</h3><p>{service.headline}</p></div><Plus size={20} className={styles.plus} aria-hidden="true" /></summary>
               <div className={styles.serviceCopy}><p>{service.copy}</p><ul>{service.items.map(item => <li key={item}><Check size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul></div>
             </details>)}
+            {chapter.id === 'get-found' && <div className={styles.serviceLinks}>
+              {Object.values(marketingServices).map(service => <Link key={service.route} href={service.route}>
+                {service.name} <ArrowUpRight size={16} aria-hidden="true" />
+              </Link>)}
+            </div>}
           </section>)}
         </div>
       </div>

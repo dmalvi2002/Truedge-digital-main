@@ -5,7 +5,7 @@ if (process.env.SANITY_TEST_MODE === '1') {
   const post = {
     _id: 'fixture-post', _type: 'blogPost', _updatedAt: '2026-01-02T12:00:00Z',
     title: 'A practical CMS integration test', slug: 'sanity-integration-test', publishedAt: '2026-01-01T12:00:00Z', excerpt: 'Testing a complete article without publishing any test content.',
-    mainImage: image, author: { name: 'Test Author', role: 'Editor', bio: 'An isolated test fixture.' }, categories: [{ _id: 'fixture-category', title: 'Test category', slug: 'test' }],
+    mainImage: image, author: { name: 'Test Author', role: 'Editor', slug: 'test-author', bio: 'An isolated test fixture.', avatar: image }, categories: [{ _id: 'fixture-category', title: 'Test category', slug: 'test' }],
     body: [
       { _key: 'heading', _type: 'block', style: 'h2', markDefs: [], children: [{ _type: 'span', _key: 'h', text: 'Semantic article heading', marks: [] }] },
       { _key: 'copy', _type: 'block', style: 'normal', markDefs: [{ _key: 'safe', _type: 'link', href: 'https://example.com', openInNewTab: true, relNoFollow: true }, { _key: 'unsafe', _type: 'link', href: 'javascript:alert(1)' }], children: [{ _type: 'span', _key: 'safe-text', text: 'Safe external link', marks: ['safe'] }, { _type: 'span', _key: 'unsafe-text', text: ' Unsafe link becomes text.', marks: ['unsafe'] }] },
@@ -38,6 +38,10 @@ if (process.env.SANITY_TEST_MODE === '1') {
       } : null : [{ routePath: '/about', noIndex: true }];
     } else if (query.includes('_type == "category"')) {
       result = categories.map(category => ({ ...category, postCount: posts.filter(item => item.categories.some(topic => topic._id === category._id)).length }));
+    } else if (query.includes('_type == "author"')) {
+      result = parameter('slug') === post.author.slug
+        ? { ...post.author, posts: posts.filter(item => item.author?.slug === post.author.slug && !item.seo?.noIndex).map(({ title, slug }) => ({ title, slug })) }
+        : null;
     } else if (query.includes('_type == "blogPost"')) {
       if (query.includes('"total":')) {
         const categoryId = parameter('categoryId');

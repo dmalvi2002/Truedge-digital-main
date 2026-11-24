@@ -16,7 +16,10 @@ import { homeFaqs } from "@/data/homeFaqs";
 
 export const revalidate = 3600;
 export async function generateMetadata() {
-  return getRouteMetadata('/', {title: 'Truedge Digital', description: 'Professional web development agency website built with Next.js'});
+  return getRouteMetadata('/', {
+    title: 'Web Design & Digital Marketing in Aberdeen | Truedge Digital',
+    description: 'Truedge Digital helps Aberdeen businesses get found and win more enquiries through web design, SEO, digital marketing and automation.',
+  });
 }
 
 export default async function Home() {

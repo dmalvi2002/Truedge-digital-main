@@ -6,7 +6,7 @@ import type { PAGE_SEO_BY_ROUTE_QUERY_RESULT, ALL_BLOG_POSTS_QUERY_RESULT, BLOG_
 import type { PageContent } from './content';
 import type { PageImageSettings } from './page-images';
 import { PAGE_IMAGE_SETTINGS_QUERY } from './queries';
-import { BLOG_CATEGORIES_QUERY, BLOG_LIST_NEWEST_QUERY, BLOG_LIST_OLDEST_QUERY, RELATED_BLOG_POSTS_QUERY } from './queries';
+import { BLOG_AUTHOR_BY_SLUG_QUERY, BLOG_CATEGORIES_QUERY, BLOG_LIST_NEWEST_QUERY, BLOG_LIST_OLDEST_QUERY, RELATED_BLOG_POSTS_QUERY } from './queries';
 import type { BLOG_CATEGORIES_QUERY_RESULT, BLOG_LIST_NEWEST_QUERY_RESULT, RELATED_BLOG_POSTS_QUERY_RESULT } from '@/sanity.types';
 import { BLOG_PAGE_SIZE, searchPattern, type BlogFilters } from '@/lib/blog';
 
@@ -38,6 +38,14 @@ export function toPageContent(page: PAGE_SEO_BY_ROUTE_QUERY_RESULT): PageContent
 
 export const getBlogPosts = cache(async () => sanityFetch<ALL_BLOG_POSTS_QUERY_RESULT>({ query: ALL_BLOG_POSTS_QUERY, tags: ['blogPost', 'author', 'category'] }));
 export const getBlogPost = cache(async (slug: string) => sanityFetch<BLOG_POST_BY_SLUG_QUERY_RESULT>({ query: BLOG_POST_BY_SLUG_QUERY, params: { slug }, tags: ['blogPost', 'author', 'category'] }));
+type BlogAuthor = NonNullable<NonNullable<BLOG_POST_BY_SLUG_QUERY_RESULT>['author']>;
+type AuthorProfile = Pick<BlogAuthor, 'role' | 'bio' | 'avatar'> & {
+  name: string;
+  posts: { title: string; slug: string }[];
+};
+export const getBlogAuthor = cache(async (slug: string) => sanityFetch<AuthorProfile | null>({
+  query: BLOG_AUTHOR_BY_SLUG_QUERY, params: { slug }, tags: ['blogPost', 'author'],
+}));
 export const getBlogSlugs = cache(async () => sanityFetch<SITEMAP_SLUGS_QUERY_RESULT>({ query: SITEMAP_SLUGS_QUERY, tags: ['blogPost'] }));
 export const getPageSitemap = cache(async () => sanityFetch<PAGE_SITEMAP_QUERY_RESULT>({ query: PAGE_SITEMAP_QUERY, tags: ['pageSeo'] }));
 
