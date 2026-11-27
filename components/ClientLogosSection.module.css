@@ -23,6 +23,10 @@
   .logo { transition: filter .2s, opacity .2s; }
   .logo:hover { filter: grayscale(0); opacity: 1; }
 }
+@media (width < 1200px) {
+  .logo, .logo:hover { filter: none; opacity: 1; }
+  .monochromeLogo { filter: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   .ribbon { mask-image: none; padding-inline: 20px; }
   .track { width: 100%; animation: none; will-change: auto; }
